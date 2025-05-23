@@ -4,5 +4,5 @@
 @import 'styles-transitions-content.css';
 @import 'styles-advanced.css';
 @import 'qr-code-styles.css';
-
-
+@import 'styles-profiles.css';
+@import 'loading-transition.css';
