@@ -11,31 +11,31 @@ class QRCodeGenerator {
         this.contentPages = [
             {
                 title: "Finding Your First Internship",
-                path: "/content/finding-first-internship.html",
+                path: "https://teeninterns1.github.io/content/template.html",
                 chapter: 3,
                 description: "Step-by-step guide to landing your first internship"
             },
             {
                 title: "Types of Internships Explained",
-                path: "/content/types-of-internships.html",
+                path: "https://teeninterns1.github.io/content/template.html",
                 chapter: 2,
                 description: "Visual guide to different internship opportunities"
             },
             {
                 title: "Resume Building Workshop",
-                path: "/content/resume-building.html",
+                path: "https://teeninterns1.github.io/content/template.html",
                 chapter: 4,
                 description: "Create a standout resume even with limited experience"
             },
             {
                 title: "Interview Preparation Guide",
-                path: "/content/interview-prep.html",
+                path: "https://teeninterns1.github.io/content/template.html",
                 chapter: 5,
                 description: "Ace your internship interviews with confidence"
             },
             {
                 title: "Networking for Beginners",
-                path: "/content/networking.html",
+                path: "https://teeninterns1.github.io/content/template.html",
                 chapter: 6,
                 description: "Build meaningful professional connections as a teenager"
             }
@@ -108,9 +108,6 @@ class QRCodeGenerator {
         downloadLink.download = 'qr-code.png';
         
         const downloadBtn = document.createElement('button');
-        downloadBtn.id = 'qr-download';
-        downloadBtn.className = 'qr-download-btn';
-        downloadBtn.textContent = 'Download QR Code';
         
         downloadLink.appendChild(downloadBtn);
         
