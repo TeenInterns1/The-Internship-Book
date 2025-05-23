@@ -8,7 +8,8 @@
     position: relative;
     width: 100%;
     height: 0;
-    padding-bottom: 75%; /* 4:3 Aspect Ratio */
+    padding-bottom: 75%;
+    /* 4:3 Aspect Ratio */
     overflow: hidden;
     border-radius: var(--border-radius-md);
     box-shadow: var(--box-shadow);
@@ -35,6 +36,10 @@
     height: 100%;
     object-fit: cover;
     display: block;
+}
+
+.bordrad {
+    border-radius: 15%;
 }
 
 /* Line Art Layer */
@@ -68,7 +73,8 @@
 
 /* Specific Containers */
 .team-image {
-    padding-bottom: 100%; /* Square aspect ratio */
+    padding-bottom: 100%;
+    /* Square aspect ratio */
     border-radius: 50%;
     margin: 0 auto var(--spacing-sm);
 }
@@ -250,8 +256,15 @@
 }
 
 @keyframes bookFloat {
-    0%, 100% { transform: rotateY(20deg) translateY(0); }
-    50% { transform: rotateY(20deg) translateY(-10px); }
+
+    0%,
+    100% {
+        transform: rotateY(20deg) translateY(0);
+    }
+
+    50% {
+        transform: rotateY(20deg) translateY(-10px);
+    }
 }
 
 .book-mockup:hover .book-cover {
@@ -306,8 +319,15 @@
 }
 
 @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .preview-image {
