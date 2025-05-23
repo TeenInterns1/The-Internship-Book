@@ -206,7 +206,7 @@
 }
 
 
-/*.scroll-indicator {
+.scroll-indicator {
     position: fixed;
     bottom: 30px;
     right: 30px;
@@ -219,7 +219,7 @@
     z-index: 100;
     box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
     animation: pulse 2s infinite;
-}*/
+}
 
 @keyframes pulse {
 
