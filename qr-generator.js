@@ -102,15 +102,22 @@ class QRCodeGenerator {
         descEl.id = 'qr-description';
         descEl.textContent = this.contentPages[0].description;
         
+        const downloadLink = document.createElement('a');
+        downloadLink.id = 'qr-download-link';
+        downloadLink.href = '#';
+        downloadLink.download = 'qr-code.png';
+        
         const downloadBtn = document.createElement('button');
         downloadBtn.id = 'qr-download';
         downloadBtn.className = 'qr-download-btn';
         downloadBtn.textContent = 'Download QR Code';
         
+        downloadLink.appendChild(downloadBtn);
+        
         infoDisplay.appendChild(titleEl);
         infoDisplay.appendChild(urlEl);
         infoDisplay.appendChild(descEl);
-        infoDisplay.appendChild(downloadBtn);
+        infoDisplay.appendChild(downloadLink);
         
         // Add everything to container
         container.appendChild(selectContainer);
@@ -125,7 +132,8 @@ class QRCodeGenerator {
             this.generateQRCode(parseInt(e.target.value));
         });
         
-        downloadBtn.addEventListener('click', () => {
+        downloadBtn.addEventListener('click', (e) => {
+            e.preventDefault();
             this.downloadQRCode();
         });
     }
@@ -164,19 +172,36 @@ class QRCodeGenerator {
     
     // Download QR code as image
     downloadQRCode() {
+        const qrCanvas = document.querySelector('#qr-display canvas');
         const qrImage = document.querySelector('#qr-display img');
-        if (!qrImage) return;
+        const downloadLink = document.getElementById('qr-download-link');
+        
+        if (!qrCanvas && !qrImage) {
+            alert('No QR code found to download');
+            return;
+        }
         
         const title = document.getElementById('qr-title').textContent;
-        const fileName = title.toLowerCase().replace(/\s+/g, '-') + '-qr.png';
+        const fileName = title.toLowerCase().replace(/[^a-z0-9]/g, '-') + '-qr.png';
         
-        // Create a temporary anchor element to trigger download
-        const link = document.createElement('a');
-        link.href = qrImage.src;
-        link.download = fileName;
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
+        let imageUrl;
+        
+        if (qrCanvas) {
+            // If canvas exists (which is what QRCode.js creates)
+            imageUrl = qrCanvas.toDataURL('image/png');
+        } else if (qrImage) {
+            // If image exists
+            imageUrl = qrImage.src;
+        }
+        
+        if (imageUrl && downloadLink) {
+            // Update the download link with the QR code data
+            downloadLink.href = imageUrl;
+            downloadLink.download = fileName;
+            // The download will happen automatically when the link is clicked
+        } else {
+            alert('Unable to download QR code');
+        }
     }
     
     // Render inline QR codes on the page
