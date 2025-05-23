@@ -1,6 +1,3 @@
-
-
-
 document.addEventListener('DOMContentLoaded', function() {
     
     gsap.registerPlugin(ScrollTrigger);
@@ -25,10 +22,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 loadingScreen.remove();
                 document.body.classList.remove('loading');
                 
-                
-                animateHero();
-                initScrollAnimations();
-                initHorizontalProfiles(); // Initialize horizontal profiles
+                // Initialize animations after DOM is fully loaded and ready
+                initializeAnimations();
             }, 500);
         }, 1000); // Minimum 1 second loading screen for better UX
     });
@@ -47,6 +42,15 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 
+// Centralized animation initialization
+function initializeAnimations() {
+    // Wait a bit more to ensure all elements are rendered
+    setTimeout(() => {
+        animateHero();
+        initScrollAnimations();
+        initHorizontalProfiles();
+    }, 100);
+}
 
 function initNavigation() {
     const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
@@ -232,13 +236,16 @@ function animateHero() {
     
     
     if (heroTitle) {
-        tl.from('.title-line', {
-            y: 50,
-            opacity: 0,
-            duration: 0.8,
-            stagger: 0.2,
-            ease: "power3.out"
-        });
+        const titleLines = document.querySelectorAll('.title-line');
+        if (titleLines.length > 0) {
+            tl.from(titleLines, {
+                y: 50,
+                opacity: 0,
+                duration: 0.8,
+                stagger: 0.2,
+                ease: "power3.out"
+            });
+        }
     }
     
     if (heroSubtitle) {
@@ -270,34 +277,38 @@ function animateHero() {
         }, "-=0.2");
     }
     
-    
-    gsap.from('.float-element', {
-        y: 30,
-        opacity: 0,
-        duration: 1,
-        stagger: 0.2,
-        ease: "power2.out"
-    });
+    // Check if floating elements exist before animating
+    const floatElements = document.querySelectorAll('.float-element');
+    if (floatElements.length > 0) {
+        gsap.from(floatElements, {
+            y: 30,
+            opacity: 0,
+            duration: 1,
+            stagger: 0.2,
+            ease: "power2.out"
+        });
+    }
 }
 
 
 function initScrollAnimations() {
-    
+    // Safely animate section headers
     gsap.utils.toArray('section').forEach(section => {
-        gsap.from(section.querySelector('.section-header'), {
-            y: 50,
-            opacity: 0,
-            duration: 0.8,
-            scrollTrigger: {
-                trigger: section,
-                start: "top 80%",
-                end: "top 50%",
-                toggleActions: "play none none none"
-            }
-        });
+        const sectionHeader = section.querySelector('.section-header');
+        if (sectionHeader) {
+            gsap.from(sectionHeader, {
+                y: 50,
+                opacity: 0,
+                duration: 0.8,
+                scrollTrigger: {
+                    trigger: section,
+                    start: "top 80%",
+                    end: "top 50%",
+                    toggleActions: "play none none none"
+                }
+            });
+        }
     });
-    
-    
 }
 
 
@@ -391,7 +402,10 @@ function initTabs() {
             const tab = this.getAttribute('data-tab');
             
             
-            document.querySelector(`.tab-panel[data-tab="${tab}"]`).classList.add('active');
+            const targetPanel = document.querySelector(`.tab-panel[data-tab="${tab}"]`);
+            if (targetPanel) {
+                targetPanel.classList.add('active');
+            }
         });
     });
 }
@@ -431,7 +445,10 @@ function initQrPage() {
             </a>
         `;
         
-        document.querySelector('.qr-page').appendChild(backButton);
+        const qrPage = document.querySelector('.qr-page');
+        if (qrPage) {
+            qrPage.appendChild(backButton);
+        }
     }
     
     
@@ -465,17 +482,23 @@ function initHorizontalProfiles() {
     const scrollIndicator = document.querySelector('#scrollIndicator');
     
     if (!profilesSection || !profilesContainer || !profileCards.length) {
+        console.log('Team profiles elements not found, skipping horizontal scroll initialization');
         return; // Exit if elements don't exist
     }
     
-    // Create progress dots
-    profileCards.forEach((_, index) => {
-        const dot = document.createElement('div');
-        dot.className = 'progress-dot';
-        if (index === 0) dot.classList.add('active');
-        dot.addEventListener('click', () => scrollToProfile(index));
-        progressDots.appendChild(dot);
-    });
+    // Clear existing dots to prevent duplicates
+    if (progressDots) {
+        progressDots.innerHTML = '';
+        
+        // Create progress dots
+        profileCards.forEach((_, index) => {
+            const dot = document.createElement('div');
+            dot.className = 'progress-dot';
+            if (index === 0) dot.classList.add('active');
+            dot.addEventListener('click', () => scrollToProfile(index));
+            progressDots.appendChild(dot);
+        });
+    }
     
     // Get all progress dots
     const dots = document.querySelectorAll('.progress-dot');
@@ -535,20 +558,27 @@ function initHorizontalProfiles() {
             horizontal: true,
             containerAnimation: horizontalScroll,
             onEnter: () => {
-                gsap.from(card.querySelector('.profile-image'), {
-                    scale: 0.8,
-                    opacity: 0,
-                    duration: 0.8,
-                    ease: "power2.out"
-                });
+                const profileImage = card.querySelector('.profile-image');
+                const profileInfo = card.querySelector('.profile-info');
                 
-                gsap.from(card.querySelector('.profile-info'), {
-                    x: 50,
-                    opacity: 0,
-                    duration: 0.8,
-                    delay: 0.2,
-                    ease: "power2.out"
-                });
+                if (profileImage) {
+                    gsap.from(profileImage, {
+                        scale: 0.8,
+                        opacity: 0,
+                        duration: 0.8,
+                        ease: "power2.out"
+                    });
+                }
+                
+                if (profileInfo) {
+                    gsap.from(profileInfo, {
+                        x: 50,
+                        opacity: 0,
+                        duration: 0.8,
+                        delay: 0.2,
+                        ease: "power2.out"
+                    });
+                }
             }
         });
     });
@@ -559,4 +589,5 @@ function initHorizontalProfiles() {
     });
 }
 
+// Initialize page transitions
 initPageTransitions();
