@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Finding Your First Internship | Teen Interns Book</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="../loading-transition.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&family=Caveat:wght@400;600&display=swap" rel="stylesheet">
+    <!-- GSAP for animations -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    
+    <style>
+        /* Additional styles for the content pages */
+        .content-header {
+            padding: 80px 0 40px;
+            background: linear-gradient(135deg, #6C63FF, #FF6B6B);
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .content-title {
+            font-size: 2.5rem;
+            margin-bottom: 16px;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .content-meta {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+            font-size: 0.95rem;
+            opacity: 0.9;
+            margin-bottom: 8px;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .content-meta-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .content-section {
+            padding: 60px 0;
+        }
+        
+        .content-text {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            color: #333;
+            margin-bottom: 24px;
+            /* Improved text visibility */
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+        
+        .content-video-container {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%; /* 16:9 aspect ratio */
+            margin: 30px 0;
+            overflow: hidden;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .content-video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .content-illustration {
+            max-width: 100%;
+            height: auto;
+            margin: 30px 0;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .content-cta {
+            background-color: #f9f9f9;
+            padding: 40px;
+            border-radius: 12px;
+            margin: 40px 0;
+            text-align: center;
+        }
+        
+        .content-cta h3 {
+            font-size: 1.8rem;
+            margin-bottom: 16px;
+        }
+        
+        .related-content {
+            margin-top: 60px;
+        }
+        
+        .related-content h3 {
+            font-size: 1.8rem;
+            margin-bottom: 24px;
+            text-align: center;
+        }
+        
+        .related-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 24px;
+        }
+        
+        .related-card {
+            background-color: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .related-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+        }
+        
+        .related-image {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+        }
+        
+        .related-info {
+            padding: 20px;
+        }
+        
+        .related-info h4 {
+            font-size: 1.2rem;
+            margin-bottom: 8px;
+        }
+        
+        .related-info p {
+            font-size: 0.95rem;
+            color: #555;
+            margin-bottom: 16px;
+        }
+        
+        .related-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 500;
+            color: #6C63FF;
+            text-decoration: none;
+        }
+        
+        .return-to-book {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 500;
+            color: #fff;
+            text-decoration: none;
+            margin-bottom: 24px;
+        }
+        
+        .return-to-book:hover {
+            color: #f0f0f0;
+        }
+        
+        /* Improved text visibility */
+        p, h1, h2, h3, h4, h5, h6 {
+            text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);
+        }
+        
+        .text-content {
+            font-size: 1.15rem;  /* Increased from base font size */
+            line-height: 1.7;
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            margin-bottom: 30px;
+        }
+        
+        /* Step-by-step guide styling */
+        .step-guide {
+            counter-reset: step-counter;
+            margin: 40px 0;
+        }
+        
+        .step-item {
+            position: relative;
+            padding: 30px;
+            background-color: rgba(255, 255, 255, 0.95);
+            border-radius: 12px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+        }
+        
+        .step-item::before {
+            counter-increment: step-counter;
+            content: "Step " counter(step-counter);
+            position: absolute;
+            top: -15px;
+            left: 30px;
+            background-color: #6C63FF;
+            color: white;
+            font-weight: 700;
+            font-size: 0.95rem;
+            padding: 5px 15px;
+            border-radius: 20px;
+        }
+        
+        .step-item h3 {
+            font-size: 1.5rem;
+            margin-bottom: 16px;
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .content-header {
+                padding: 60px 0 30px;
+            }
+            
+            .content-title {
+                font-size: 2rem;
+            }
+            
+            .content-meta {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 12px;
+            }
+            
+            .content-section {
+                padding: 40px 0;
+            }
+            
+            .content-text {
+                font-size: 1rem;
+            }
+            
+            .content-cta {
+                padding: 30px 20px;
+            }
+            
+            .content-cta h3 {
+                font-size: 1.5rem;
+            }
+            
+            .related-grid {
+                grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            }
+            
+            .step-item {
+                padding: 25px 20px;
+            }
+            
+            .step-item h3 {
+                font-size: 1.3rem;
+            }
+        }
+    </style>
+</head>
+<body class="loading">
+    <!-- Page transition overlay -->
+    <div class="page-transition">
+        <div class="loader">
+            <div class="loader-circle"></div>
+            <div class="loader-circle"></div>
+            <div class="loader-circle"></div>
+        </div>
+        <div class="loader-text">Loading content<span class="dots"></span></div>
+    </div>
+
+    <!-- Background elements -->
+    <div class="background-elements">
+        <div class="bg-shape shape1"></div>
+        <div class="bg-shape shape2"></div>
+        <div class="bg-shape shape3"></div>
+    </div>
+
+    <!-- Header navigation -->
+    <header class="site-header" id="site-header">
+        <div class="container">
+            <nav class="nav-container">
+                <div class="logo">
+                    <a href="../index.html" class="logo-link">
+                        <span class="logo-text">Teen<span class="highlight">Interns</span></span>
+                    </a>
+                </div>
+                <div class="nav-links">
+                    <a href="../index.html#about" class="nav-link">About</a>
+                    <a href="../team.html" class="nav-link">Team</a>
+                    <a href="../index.html#preview" class="nav-link">Preview</a>
+                    <a href="../index.html#impact" class="nav-link">Impact</a>
+                    <a href="../index.html#preorder" class="nav-link nav-cta">Pre-order</a>
+                </div>
+                <button class="mobile-menu-toggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Mobile menu -->
+    <div class="mobile-menu">
+        <div class="mobile-menu-links">
+            <a href="../index.html#about" class="mobile-link">About</a>
+            <a href="../team.html" class="mobile-link">Team</a>
+            <a href="../index.html#preview" class="mobile-link">Preview</a>
+            <a href="../index.html#impact" class="mobile-link">Impact</a>
+            <a href="../index.html#preorder" class="mobile-link mobile-cta">Pre-order</a>
+        </div>
+    </div>
+
+    <!-- Content Header -->
+    <section class="content-header">
+        <div class="container">
+            <a href="../index.html" class="return-to-book">
+                ← Back to Book
+            </a>
+            <h1 class="content-title">Finding Your First Internship</h1>
+            <div class="content-meta">
+                <div class="content-meta-item">
+                    <span>📚</span>
+                    <span>Chapter: 3</span>
+                </div>
+                <div class="content-meta-item">
+                    <span>👤</span>
+                    <span>Author: Aditi</span>
+                </div>
+                <div class="content-meta-item">
+                    <span>🎨</span>
+                    <span>Illustrator: Anya</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content Section -->
+    <section class="content-section">
+        <div class="container">
+            <div class="text-content">
+                <p>Finding your first internship can feel overwhelming. Where do you even start? How do you find opportunities that are open to high school students? What skills do you need to showcase? We've been there too, and we're here to break it down into simple, actionable steps that anyone can follow.</p>
+                <p>This guide expands on the content in Chapter 3 of our book with additional resources, detailed examples, and a video walkthrough of the application process.</p>
+            </div>
+            
+            <!-- Video Content -->
+            <div class="content-video-container">
+                <iframe class="content-video" src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="Finding Your First Internship Video Guide" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+            
+            <!-- Step-by-Step Guide -->
+            <div class="step-guide">
+                <div class="step-item">
+                    <h3>Know What You're Looking For</h3>
+                    <p>Before diving into applications, take some time to reflect on your interests, skills, and goals. Ask yourself:</p>
+                    <ul>
+                        <li>What fields or industries excite me?</li>
+                        <li>What skills do I want to develop?</li>
+                        <li>How much time can I commit each week?</li>
+                        <li>Do I need a remote opportunity or can I commute?</li>
+                        <li>Am I looking for a paid position or is unpaid acceptable?</li>
+                    </ul>
+                    <p>Having clarity on these points will help you focus your search and identify opportunities that are a good fit for you.</p>
+                </div>
+                
+                <div class="step-item">
+                    <h3>Research Potential Opportunities</h3>
+                    <p>Now it's time to find where the internships are hiding! Here are the best places to look:</p>
+                    <ul>
+                        <li><strong>School Resources:</strong> Talk to your guidance counselor, career center, or teachers who may know of opportunities.</li>
+                        <li><strong>Online Platforms:</strong> Sites like LinkedIn, Indeed, and specialized teen internship platforms like Teen Interns.</li>
+                        <li><strong>Company Websites:</strong> Many organizations have dedicated "Careers" pages with internship listings.</li>
+                        <li><strong>Professional Networks:</strong> Ask family friends, relatives, or neighbors who work in fields you're interested in.</li>
+                        <li><strong>Social Media:</strong> Follow companies and organizations on platforms like Instagram and Twitter, where they often announce opportunities.</li>
+                    </ul>
+                </div>
+                
+                <div class="step-item">
+                    <h3>Prepare Your Application Materials</h3>
+                    <p>Most internship applications will require some or all of the following:</p>
+                    <ul>
+                        <li><strong>Resume:</strong> Even if you don't have work experience, you can highlight school projects, volunteer work, extracurricular activities, and relevant skills.</li>
+                        <li><strong>Cover Letter:</strong> A personalized introduction explaining why you're interested in the position and what you bring to the table.</li>
+                        <li><strong>Portfolio:</strong> For creative fields, compile examples of your work (writing samples, design projects, coding examples, etc.)</li>
+                        <li><strong>References:</strong> Teachers, club advisors, or volunteer supervisors who can speak to your skills and character.</li>
+                    </ul>
+                    <p>Pro tip: Customize your materials for each application to highlight relevant skills and experiences!</p>
+                </div>
+                
+                <div class="step-item">
+                    <h3>Submit Strong Applications</h3>
+                    <p>When applying for internships, quality matters more than quantity. Focus on submitting thoughtful applications rather than applying to dozens of positions with generic materials.</p>
+                    <ul>
+                        <li>Read the job description carefully and address specific requirements.</li>
+                        <li>Research the organization before applying to understand their mission and values.</li>
+                        <li>Follow all application instructions precisely.</li>
+                        <li>Proofread everything—typos and grammatical errors can disqualify an otherwise strong application.</li>
+                        <li>Submit your application before the deadline (early is even better!).</li>
+                    </ul>
+                </div>
+                
+                <div class="step-item">
+                    <h3>Prepare for Interviews</h3>
+                    <p>If your application impresses, you'll likely be invited for an interview. Here's how to prepare:</p>
+                    <ul>
+                        <li>Research common interview questions and practice your responses.</li>
+                        <li>Prepare concrete examples that demonstrate your skills and character.</li>
+                        <li>Dress professionally, even for virtual interviews.</li>
+                        <li>Prepare thoughtful questions to ask the interviewer.</li>
+                        <li>For virtual interviews, test your technology in advance and find a quiet, well-lit location.</li>
+                    </ul>
+                    <p>Remember: Interviews are a two-way street. While they're evaluating you, you're also determining if the opportunity is right for you.</p>
+                </div>
+            </div>
+            
+            <!-- Illustration -->
+            <img src="../images/content-illustration.jpg" alt="Illustration of teens preparing for internships" class="content-illustration">
+            
+            <div class="text-content">
+                <h3>Common Challenges and How to Overcome Them</h3>
+                <p>Finding your first internship isn't always smooth sailing. Here are some common challenges and how to navigate them:</p>
+                <ul>
+                    <li><strong>Limited Experience:</strong> Focus on transferable skills from school projects, volunteer work, or extracurricular activities.</li>
+                    <li><strong>Age Restrictions:</strong> Look for programs specifically designed for high school students or consider creating your own opportunity (more on this below).</li>
+                    <li><strong>Competitive Field:</strong> Develop a unique angle or skill that sets you apart, and consider starting with smaller organizations where there may be less competition.</li>
+                    <li><strong>Lack of Connections:</strong> Start building your network by attending career fairs, joining relevant clubs, and reaching out to professionals for informational interviews.</li>
+                </ul>
+                
+                <h3>Creating Your Own Opportunity</h3>
+                <p>Can't find an existing internship that fits? Consider creating your own! Here's how:</p>
+                <ol>
+                    <li>Identify organizations you're interested in, even if they don't advertise internships.</li>
+                    <li>Research their needs and challenges, and think about how you could help.</li>
+                    <li>Craft a compelling pitch that explains what you could offer and what you hope to learn.</li>
+                    <li>Reach out directly to the appropriate person with your proposal.</li>
+                    <li>Be flexible with terms—you might start as a volunteer and transition to a more formal role.</li>
+                </ol>
+                <p>Many successful internships begin this way, and it shows initiative that impresses future employers!</p>
+            </div>
+            
+            <!-- Call to Action -->
+            <div class="content-cta">
+                <h3>Ready to Start Your Internship Journey?</h3>
+                <p>Get the complete guide with all resources and exclusive content in our comprehensive book.</p>
+                <a href="../index.html#preorder" class="cta-button primary">Pre-order the Book</a>
+            </div>
+            
+            <!-- Related Content -->
+            <div class="related-content">
+                <h3>Related Content</h3>
+                <div class="related-grid">
+                    <!-- Related Item 1 -->
+                    <div class="related-card">
+                        <img src="../images/related1.jpg" alt="Resume building workshop" class="related-image">
+                        <div class="related-info">
+                            <h4>Resume Building Workshop</h4>
+                            <p>Create a standout resume even with limited experience.</p>
+                            <a href="resume-building.html" class="related-link">View Content →</a>
+                        </div>
+                    </div>
+                    
+                    <!-- Related Item 2 -->
+                    <div class="related-card">
+                        <img src="../images/related2.jpg" alt="Interview preparation" class="related-image">
+                        <div class="related-info">
+                            <h4>Interview Prep Guide</h4>
+                            <p>Ace your internship interviews with confidence.</p>
+                            <a href="interview-prep.html" class="related-link">View Content →</a>
+                        </div>
+                    </div>
+                    
+                    <!-- Related Item 3 -->
+                    <div class="related-card">
+                        <img src="../images/related3.jpg" alt="Networking for teens" class="related-image">
+                        <div class="related-info">
+                            <h4>Networking for Beginners</h4>
+                            <p>Build meaningful professional connections as a teenager.</p>
+                            <a href="networking.html" class="related-link">View Content →</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <a href="../index.html" class="footer-logo">
+                        <span class="logo-text">Teen<span class="highlight">Interns</span></span>
+                    </a>
+                    <p class="footer-tagline">Empowering the next generation through internships</p>
+                </div>
+                
+                <div class="footer-links">
+                    <div class="footer-group">
+                        <h4>Navigate</h4>
+                        <ul>
+                            <li><a href="../index.html#about">About</a></li>
+                            <li><a href="../index.html#team">Team</a></li>
+                            <li><a href="../index.html#preview">Preview</a></li>
+                            <li><a href="../index.html#impact">Impact</a></li>
+                            <li><a href="../index.html#preorder">Pre-order</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="footer-group">
+                        <h4>Resources</h4>
+                        <ul>
+                            <li><a href="#">Blog</a></li>
+                            <li><a href="#">Free Resources</a></li>
+                            <li><a href="#">Internship Finder</a></li>
+                            <li><a href="#">Success Stories</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="footer-group">
+                        <h4>Support</h4>
+                        <ul>
+                            <li><a href="#">Contact Us</a></li>
+                            <li><a href="#">Help Center</a></li>
+                            <li><a href="#">Shipping Info</a></li>
+                            <li><a href="#">Returns</a></li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="footer-newsletter">
+                    <h4>Stay Updated</h4>
+                    <p>Get the latest news and updates on the book launch</p>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="Your email" required class="newsletter-input">
+                        <button type="submit" class="newsletter-submit">Subscribe</button>
+                    </form>
+                    <div class="social-links">
+                        <a href="#" class="social-link">📸</a>
+                        <a href="#" class="social-link">🎵</a>
+                        <a href="#" class="social-link">📱</a>
+                        <a href="#" class="social-link">📺</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p class="copyright">&copy; 2025 Teen Interns. Made with ❤️ by teens, for teens.</p>
+                <p class="credit">This project was created entirely by teenage interns.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="../script.js"></script>
+    <script src="../page-transition.js"></script>
+</body>
+</html>

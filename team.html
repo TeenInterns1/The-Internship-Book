@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meet the Team | Teen Interns Book</title>
+    <link rel="icon" type="image/png" href="logos/favicon.png">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="loading-transition.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&family=Caveat:wght@400;600&display=swap" rel="stylesheet">
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    
+    <style>
+        .team-page-section {
+            padding: 100px 0 60px;
+        }
+        
+        .team-intro {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 60px;
+        }
+        
+        .team-intro h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: #333;
+        }
+        
+        .team-intro p {
+            font-size: 1.2rem;
+            color: #666;
+            line-height: 1.6;
+        }
+        
+        .advisory-team {
+            background-color: #f8f8f8;
+            padding: 40px;
+            border-radius: 12px;
+            margin-bottom: 60px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .advisory-team h2 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: #333;
+        }
+        
+        .advisory-members {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 30px;
+        }
+        
+        .advisor-card {
+            background-color: white;
+            border-radius: 10px;
+            padding: 20px;
+            width: 180px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .advisor-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        .advisor-card h3 {
+            font-size: 1.2rem;
+            margin: 10px 0 5px;
+            color: #333;
+        }
+        
+        .advisor-card p {
+            font-size: 0.9rem;
+            color: #666;
+            margin: 0;
+        }
+        
+        .advisor-image {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            margin: 0 auto;
+            background-color: #f0f0f0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            color: #6C63FF;
+        }
+        
+        .team-structure {
+            margin-bottom: 60px;
+        }
+        
+        .team-table {
+            width: 100%;
+            border-collapse: collapse;
+            border: 1px solid #e0e0e0;
+            background-color: white;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        
+        .team-table th {
+            background-color: #6C63FF;
+            color: white;
+            text-align: left;
+            padding: 15px 20px;
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+        
+        .team-table td {
+            padding: 12px 20px;
+            border-bottom: 1px solid #e0e0e0;
+            font-size: 1rem;
+            color: #333;
+        }
+        
+        .team-table tr:last-child td {
+            border-bottom: none;
+        }
+        
+        .team-table tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        
+        .team-table tr:hover {
+            background-color: #f0f0ff;
+        }
+        
+        .all-members {
+            margin-top: 60px;
+        }
+        
+        .all-members h2 {
+            font-size: 2rem;
+            margin-bottom: 30px;
+            text-align: center;
+            color: #333;
+        }
+        
+        .members-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 30px;
+        }
+        
+        .member-card {
+            background-color: white;
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+            text-align: center;
+        }
+        
+        .member-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        .member-image {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            margin: 0 auto 15px;
+            background-color: #f0f0f0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            color: #6C63FF;
+        }
+        
+        .member-card h3 {
+            font-size: 1.2rem;
+            margin: 0 0 5px;
+            color: #333;
+        }
+        
+        .member-card p {
+            font-size: 0.9rem;
+            color: #666;
+            margin: 0 0 10px;
+        }
+        
+        .member-card .role {
+            display: inline-block;
+            padding: 5px 10px;
+            background-color: #f0f0f0;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            color: #555;
+            margin-top: 10px;
+        }
+        
+        .book-icon {
+            width: 60px;
+            height: auto;
+            margin-bottom: 20px;
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .team-page-section {
+                padding: 80px 0 40px;
+            }
+            
+            .team-intro h1 {
+                font-size: 2.2rem;
+            }
+            
+            .team-intro p {
+                font-size: 1.1rem;
+            }
+            
+            .advisory-team {
+                padding: 30px 20px;
+            }
+            
+            .advisory-team h2 {
+                font-size: 1.7rem;
+            }
+            
+            .advisor-card {
+                width: 150px;
+                padding: 15px;
+            }
+            
+            .advisor-image {
+                width: 80px;
+                height: 80px;
+                font-size: 2rem;
+            }
+            
+            .team-table {
+                display: block;
+                overflow-x: auto;
+            }
+            
+            .all-members h2 {
+                font-size: 1.7rem;
+            }
+            
+            .members-grid {
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+                gap: 20px;
+            }
+            
+            .member-card {
+                padding: 20px;
+            }
+            
+            .member-image {
+                width: 80px;
+                height: 80px;
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body class="loading">
+    
+    <div class="page-transition">
+        <div class="loader">
+            <div class="loader-circle"></div>
+            <div class="loader-circle"></div>
+            <div class="loader-circle"></div>
+        </div>
+        <div class="loader-text">Loading content<span class="dots"></span></div>
+    </div>
+
+    
+    <div class="background-elements">
+        <div class="bg-shape shape1"></div>
+        <div class="bg-shape shape2"></div>
+        <div class="bg-shape shape3"></div>
+    </div>
+
+    
+    <header class="site-header" id="site-header">
+        <div class="container">
+            <nav class="nav-container">
+                <div class="logo">
+                    <a href="index.html" class="logo-link">
+                        <img src="logos/title.png" alt="Teen Interns" class="logo-img">
+                    </a>
+                </div>
+                <div class="nav-links">
+                    <a href="index.html#about" class="nav-link">About</a>
+                    <a href="index.html#team" class="nav-link">Team</a>
+                    <a href="index.html#preview" class="nav-link">Preview</a>
+                    <a href="index.html#impact" class="nav-link">Impact</a>
+                    <a href="index.html#preorder" class="nav-link nav-cta">Pre-order</a>
+                </div>
+                <button class="mobile-menu-toggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    
+    <div class="mobile-menu">
+        <div class="mobile-menu-links">
+            <a href="index.html#about" class="mobile-link">About</a>
+            <a href="index.html#team" class="mobile-link">Team</a>
+            <a href="index.html#preview" class="mobile-link">Preview</a>
+            <a href="index.html#impact" class="mobile-link">Impact</a>
+            <a href="index.html#preorder" class="mobile-link mobile-cta">Pre-order</a>
+        </div>
+    </div>
+
+    
+    <section class="team-page-section">
+        <div class="container">
+            <div class="team-intro animate-fade-up">
+                <img src="images/book-icon.svg" alt="Book Icon" class="book-icon">
+                <h1>Meet the Team</h1>
+                <p>The Teen Interns Book is a collaborative project created entirely by talented teenage interns. Get to know the amazing individuals who worked together to bring this book to life.</p>
+            </div>
+            
+            
+            <div class="advisory-team animate-fade-up">
+                <h2>Advisory Team</h2>
+                <p>Our advisors guided and supported the project throughout its development.</p>
+                
+                <div class="advisory-members">
+                    <div class="advisor-card animate-pop" style="--delay: 0.1s">
+                        <div class="advisor-image">A</div>
+                        <h3>Arav Dogra</h3>
+                        <p>Advisor</p>
+                    </div>
+                    
+                    <div class="advisor-card animate-pop" style="--delay: 0.2s">
+                        <div class="advisor-image">M</div>
+                        <h3>Mitali Nirody</h3>
+                        <p>Advisor</p>
+                    </div>
+                    
+                    <div class="advisor-card animate-pop" style="--delay: 0.3s">
+                        <div class="advisor-image">S</div>
+                        <h3>Shreyas Kartik</h3>
+                        <p>Advisor</p>
+                    </div>
+                    
+                    <div class="advisor-card animate-pop" style="--delay: 0.4s">
+                        <div class="advisor-image">S</div>
+                        <h3>Saanvi Bhatia</h3>
+                        <p>Advisor</p>
+                    </div>
+                    
+                    <div class="advisor-card animate-pop" style="--delay: 0.5s">
+                        <div class="advisor-image">Y</div>
+                        <h3>Yesha Gathani</h3>
+                        <p>Advisor</p>
+                    </div>
+                    
+                    <div class="advisor-card animate-pop" style="--delay: 0.6s">
+                        <div class="advisor-image">M</div>
+                        <h3>Mala M. M.</h3>
+                        <p>Founder</p>
+                    </div>
+                </div>
+            </div>
+            
+            
+            <div class="team-structure animate-fade-up">
+                <table class="team-table">
+                    <thead>
+                        <tr>
+                            <th>Team</th>
+                            <th>Team Members</th>
+                            <th>Team Leader</th>
+                            <th>Advisor</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Writers</td>
+                            <td>Myrah Sinha, Adithi Bhamidipati</td>
+                            <td>Adithi</td>
+                            <td>Mitali</td>
+                        </tr>
+                        <tr>
+                            <td>Podcasters</td>
+                            <td>Advay Avinash, Balahansini Gujja, Saanvi</td>
+                            <td>Advay</td>
+                            <td>Yesha</td>
+                        </tr>
+                        <tr>
+                            <td>Illustrators</td>
+                            <td>Leanna Bhatia, Aniya Deori, Ira S. B., Ashita Sirkar, Baargavi Manoharan</td>
+                            <td>Aniya</td>
+                            <td>Arav</td>
+                        </tr>
+                        <tr>
+                            <td>Videography</td>
+                            <td>Saanvi, Yesha</td>
+                            <td>Yesha</td>
+                            <td>Saanvi</td>
+                        </tr>
+                        <tr>
+                            <td>Book Editors</td>
+                            <td>Ahona Sircar, Nikhilesh Manna</td>
+                            <td>Ahona</td>
+                            <td>Yesha</td>
+                        </tr>
+                        <tr>
+                            <td>Project Managers</td>
+                            <td>Mannat Gupta, Lakshi Mehta</td>
+                            <td>Mannat</td>
+                            <td>Mitali</td>
+                        </tr>
+                        <tr>
+                            <td>Web Designers</td>
+                            <td>Samant Patil, Shrika Chitturi</td>
+                            <td>Samant</td>
+                            <td>Arav</td>
+                        </tr>
+                        <tr>
+                            <td>Marketing & Social Media</td>
+                            <td>Laksh Pandey, Vidhi Madan, Sarah Hussain, Achal Kaur</td>
+                            <td>Laksh</td>
+                            <td>Shreyas</td>
+                        </tr>
+                        <tr>
+                            <td>Finance & Sponsorship</td>
+                            <td>Mala, Shreyas</td>
+                            <td>Shreyas</td>
+                            <td>Mala</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            
+            <div class="all-members animate-fade-up">
+                <h2>All Contributors</h2>
+                
+                <div class="members-grid">
+                    
+                    <div class="member-card animate-pop" style="--delay: 0.1s">
+                        <div class="member-image">M</div>
+                        <h3>Mannat Gupta</h3>
+                        <p class="role">Project Manager</p>
+                    </div>
+                    
+                    <div class="member-card animate-pop" style="--delay: 0.15s">
+                        <div class="member-image">L</div>
+                        <h3>Leanna Bhatia</h3>
+                        <p class="role">Illustrator</p>
+                    </div>
+                    
+                    <div class="member-card animate-pop" style="--delay: 0.2s">
+                        <div class="member-image">L</div>
+                        <h3>Lakshi Mehta</h3>
+                        <p class="role">Project Manager</p>
+                    </div>
+                    
+                    <div class="member-card animate-pop" style="--delay: 0.25s">
+                        <div class="member-image">S</div>
+                        <h3>Shrika Chitturi</h3>
+                        <p class="role">Web Designer</p>
+                    </div>
+                    
+                    
+                    <div class="member-card animate-pop" style="--delay: 0.3s">
+                        <div class="member-image">M</div>
+                        <h3>Myrah Sinha</h3>
+                        <p class="role">Writer</p>
+                    </div>
+                    
+                    <div class="member-card animate-pop" style="--delay: 0.35s">
+                        <div class="member-image">S</div>
+                        <h3>Sarah Hussain</h3>
+                        <p class="role">Marketing</p>
+                    </div>
+                    
+                    <div class="member-card animate-pop" style="--delay: 0.4s">
+                        <div class="member-image">A</div>
+                        <h3>Adithi Bhamidipati</h3>
+                        <p class="role">Lead Writer</p>
+                    </div>
+                    
+                    <div class="member-card animate-pop" style="--delay: 0.45s">
+                        <div class="member-image">I</div>
+                        <h3>Ira S. B.</h3>
+                        <p class="role">Illustrator</p>
+                    </div>
+                    
+                    
+                    <div class="member-card animate-pop" style="--delay: 0.5s">
+                        <div class="member-image">A</div>
+                        <h3>Advay Avinash</h3>
+                        <p class="role">Podcaster Lead</p>
+                    </div>
+                    
+                    <div class="member-card animate-pop" style="--delay: 0.55s">
+                        <div class="member-image">A</div>
+                        <h3>Ashita Sirkar</h3>
+                        <p class="role">Illustrator</p>
+                    </div>
+                    
+                    <div class="member-card animate-pop" style="--delay: 0.6s">
+                        <div class="member-image">B</div>
+                        <h3>Balahansini Gujja</h3>
+                        <p class="role">Podcaster</p>
+                    </div>
+                    
+                    <div class="member-card animate-pop" style="--delay: 0.65s">
+                        <div class="member-image">A</div>
+                        <h3>Ahona Sircar</h3>
+                        <p class="role">Book Editor Lead</p>
+                    </div>
+                    
+                    
+                    <div class="member-card animate-pop" style="--delay: 0.7s">
+                        <div class="member-image">R</div>
+                        <h3>Rushil Sunder</h3>
+                        <p class="role">Contributor</p>
+                    </div>
+                    
+                    <div class="member-card animate-pop" style="--delay: 0.75s">
+                        <div class="member-image">L</div>
+                        <h3>Laksh Pandey</h3>
+                        <p class="role">Marketing Lead</p>
+                    </div>
+                    
+                    <div class="member-card animate-pop" style="--delay: 0.8s">
+                        <div class="member-image">S</div>
+                        <h3>Samant Patil</h3>
+                        <p class="role">Web Designer Lead</p>
+                    </div>
+                    
+                    <div class="member-card animate-pop" style="--delay: 0.85s">
+                        <div class="member-image">A</div>
+                        <h3>Aniya Deori</h3>
+                        <p class="role">Illustrator Lead</p>
+                    </div>
+                    
+                    
+                    <div class="member-card animate-pop" style="--delay: 0.9s">
+                        <div class="member-image">N</div>
+                        <h3>Nikhilesh Manna</h3>
+                        <p class="role">Book Editor</p>
+                    </div>
+                    
+                    <div class="member-card animate-pop" style="--delay: 0.95s">
+                        <div class="member-image">V</div>
+                        <h3>Vidhi Madan</h3>
+                        <p class="role">Marketing</p>
+                    </div>
+                    
+                    <div class="member-card animate-pop" style="--delay: 1s">
+                        <div class="member-image">B</div>
+                        <h3>Baargavi Manoharan</h3>
+                        <p class="role">Illustrator</p>
+                    </div>
+                    
+                    <div class="member-card animate-pop" style="--delay: 1.05s">
+                        <div class="member-image">A</div>
+                        <h3>Achal Kaur</h3>
+                        <p class="role">Marketing</p>
+                    </div>
+                    
+                    
+                    <div class="member-card animate-pop" style="--delay: 1.1s">
+                        <div class="member-image">A</div>
+                        <h3>Arav Dogra</h3>
+                        <p class="role">Advisor</p>
+                    </div>
+                    
+                    <div class="member-card animate-pop" style="--delay: 1.15s">
+                        <div class="member-image">S</div>
+                        <h3>Saanvi Bhatia</h3>
+                        <p class="role">Advisor</p>
+                    </div>
+                    
+                    <div class="member-card animate-pop" style="--delay: 1.2s">
+                        <div class="member-image">M</div>
+                        <h3>Mitali Nirody</h3>
+                        <p class="role">Advisor</p>
+                    </div>
+                    
+                    <div class="member-card animate-pop" style="--delay: 1.25s">
+                        <div class="member-image">S</div>
+                        <h3>Shreyas Kartik</h3>
+                        <p class="role">Advisor</p>
+                    </div>
+                    
+                    
+                    <div class="member-card animate-pop" style="--delay: 1.3s">
+                        <div class="member-image">Y</div>
+                        <h3>Yesha Gathani</h3>
+                        <p class="role">Advisor</p>
+                    </div>
+                    
+                    <div class="member-card animate-pop" style="--delay: 1.35s">
+                        <div class="member-image">M</div>
+                        <h3>Mala M. M.</h3>
+                        <p class="role">Founder</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <a href="index.html" class="footer-logo">
+                        <img src="logos/title.png" alt="Teen Interns" class="footer-logo-img">
+                    </a>
+                    <p class="footer-tagline">Empowering the next generation through internships</p>
+                </div>
+                
+                <div class="footer-links">
+                    <div class="footer-group">
+                        <h4>Navigate</h4>
+                        <ul>
+                            <li><a href="index.html#about">About</a></li>
+                            <li><a href="index.html#team">Team</a></li>
+                            <li><a href="index.html#preview">Preview</a></li>
+                            <li><a href="index.html#impact">Impact</a></li>
+                            <li><a href="index.html#preorder">Pre-order</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="footer-group">
+                        <h4>Resources</h4>
+                        <ul>
+                            <li><a href="#">Blog</a></li>
+                            <li><a href="#">Free Resources</a></li>
+                            <li><a href="#">Internship Finder</a></li>
+                            <li><a href="#">Success Stories</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="footer-group">
+                        <h4>Support</h4>
+                        <ul>
+                            <li><a href="#">Contact Us</a></li>
+                            <li><a href="#">Help Center</a></li>
+                            <li><a href="#">Shipping Info</a></li>
+                            <li><a href="#">Returns</a></li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="footer-newsletter">
+                    <h4>Stay Updated</h4>
+                    <p>Get the latest news and updates on the book launch</p>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="Your email" required class="newsletter-input">
+                        <button type="submit" class="newsletter-submit">Subscribe</button>
+                    </form>
+                    <div class="social-links">
+                        <a href="#" class="social-link">📸</a>
+                        <a href="#" class="social-link">🎵</a>
+                        <a href="#" class="social-link">📱</a>
+                        <a href="#" class="social-link">📺</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p class="copyright">&copy; 2025 Teen Interns. Made with ❤️ by teens, for teens.</p>
+                <p class="credit">This project was created entirely by teenage interns.</p>
+            </div>
+        </div>
+    </footer>
+
+    
+    <script src="script.js"></script>
+    <script src="page-transition.js"></script>
+    
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Animate team cards on scroll
+            const animatedElements = document.querySelectorAll('.animate-fade-up, .animate-pop');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('in-view');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            });
+            
+            animatedElements.forEach(el => {
+                observer.observe(el);
+            });
+            
+            // Update team links in main navigation
+            const teamLinks = document.querySelectorAll('a[href="index.html#team"]');
+            teamLinks.forEach(link => {
+                link.setAttribute('href', 'team.html');
+            });
+        });
+    </script>
+</body>
+</html>
