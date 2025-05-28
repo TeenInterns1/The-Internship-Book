@@ -24,7 +24,7 @@
     --highlight-color: var(--burnt-sienna); /* Coral for highlights */
     --text-color: var(--brown); /* Dark brown for main text */
     --subtitle-color: var(--syracuse-red-orange); /* Red-orange for subtitles */
-    --bg-color: var(--saffron); /* Main background yellow */
+    --bg-color: white; /* Main background yellow */
     --bg-alt-color: var(--saffron-alt); /* Alt background brighter yellow */
     --card-bg-color: #FFFFFF; /* White cards for contrast */
     --border-color: rgba(129, 52, 5, 0.2); /* Brown-tinted borders */
