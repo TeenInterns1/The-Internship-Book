@@ -122,7 +122,7 @@ section {
     margin-bottom: var(--spacing-xs);
     position: relative;
     color: var(--text-color);
-    text-shadow: 2px 2px 5px back;
+    text-shadow: 2px 2px 5px black;
     display: inline-block;
 }
 
