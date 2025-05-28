@@ -724,8 +724,11 @@
     }
 
     .hero {
+        background-color: white;
         min-height: auto;
         padding-top: 120px;
+        padding-right: 50px;
+        padding-left: 50px;
     }
 
     .hero-stats {
