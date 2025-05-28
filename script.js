@@ -1,42 +1,20 @@
 document.addEventListener('DOMContentLoaded', function() {
-    
     gsap.registerPlugin(ScrollTrigger);
     
-    
-    const loadingScreen = document.createElement('div');
-    loadingScreen.className = 'loading-screen';
-    loadingScreen.innerHTML = `
-        <div class="loading-logo">
-            <img src="logos/title.png" alt="Teen Interns" class="loading-logo-img">
-        </div>
-        <div class="loading-spinner"></div>
-        <div class="loading-message">Loading amazing content...</div>
-    `;
-    document.body.appendChild(loadingScreen);
-    
-    
-    window.addEventListener('load', function() {
-        setTimeout(() => {
-            loadingScreen.classList.add('hide');
-            setTimeout(() => {
-                loadingScreen.remove();
-                document.body.classList.remove('loading');
-                
-                // Initialize animations after DOM is fully loaded and ready
-                initializeAnimations();
-            }, 500);
-        }, 1000); // Minimum 1 second loading screen for better UX
-    });
-    
-    
+    // Initialize all functionality
     initNavigation();
-    initLineToPhotoTransitions();
+    initInteractiveQuestions();
+    initAdvancedAnimations();
     initCounters();
-    initTeamFilter();
     initTabs();
     setupIntersectionObserver();
     
+    // Initialize animations after DOM is fully loaded
+    setTimeout(() => {
+        initializeAnimations();
+    }, 100);
     
+    // QR page specific initialization
     if (document.querySelector('.qr-page')) {
         initQrPage();
     }
@@ -44,12 +22,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // Centralized animation initialization
 function initializeAnimations() {
-    // Wait a bit more to ensure all elements are rendered
-    setTimeout(() => {
-        animateHero();
-        initScrollAnimations();
-        initHorizontalProfiles();
-    }, 100);
+    animateHero();
+    initScrollAnimations();
+    initHorizontalProfiles();
+    initAdvancedScrollEffects();
+    initParallaxEffects();
 }
 
 function initNavigation() {
@@ -58,48 +35,70 @@ function initNavigation() {
     const mobileLinks = document.querySelectorAll('.mobile-link');
     const siteHeader = document.querySelector('.site-header');
     
-    
-    if (mobileMenuToggle) {
+    // Mobile menu toggle with GSAP animations
+    if (mobileMenuToggle && mobileMenu) {
         mobileMenuToggle.addEventListener('click', function() {
             document.body.classList.toggle('mobile-menu-open');
-            mobileMenu.classList.toggle('open');
+            mobileMenu.classList.toggle('active');
+            
+            // Animate hamburger menu with GSAP
+            const spans = mobileMenuToggle.querySelectorAll('span');
+            if (document.body.classList.contains('mobile-menu-open')) {
+                gsap.to(spans[0], {rotation: 45, y: 7, duration: 0.3});
+                gsap.to(spans[1], {opacity: 0, duration: 0.3});
+                gsap.to(spans[2], {rotation: -45, y: -7, duration: 0.3});
+            } else {
+                gsap.to(spans[0], {rotation: 0, y: 0, duration: 0.3});
+                gsap.to(spans[1], {opacity: 1, duration: 0.3});
+                gsap.to(spans[2], {rotation: 0, y: 0, duration: 0.3});
+            }
         });
     }
     
-    
+    // Close mobile menu when clicking on links
     mobileLinks.forEach(link => {
         link.addEventListener('click', function() {
             document.body.classList.remove('mobile-menu-open');
-            mobileMenu.classList.remove('open');
+            if (mobileMenu) {
+                mobileMenu.classList.remove('active');
+            }
+            
+            // Reset hamburger menu with GSAP
+            const spans = mobileMenuToggle?.querySelectorAll('span');
+            if (spans) {
+                gsap.to(spans[0], {rotation: 0, y: 0, duration: 0.3});
+                gsap.to(spans[1], {opacity: 1, duration: 0.3});
+                gsap.to(spans[2], {rotation: 0, y: 0, duration: 0.3});
+            }
         });
     });
     
-    
+    // Enhanced header scroll behavior with GSAP
     let lastScrollTop = 0;
     
     window.addEventListener('scroll', function() {
         const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
         
-        
+        // Smooth background transition
         if (scrollTop > 50) {
-            siteHeader.classList.add('scrolled');
+            gsap.to(siteHeader, {backgroundColor: 'rgba(255, 255, 255, 0.98)', duration: 0.3});
+            siteHeader?.classList.add('scrolled');
         } else {
-            siteHeader.classList.remove('scrolled');
+            gsap.to(siteHeader, {backgroundColor: 'rgba(255, 255, 255, 0.95)', duration: 0.3});
+            siteHeader?.classList.remove('scrolled');
         }
         
-        
+        // Hide/show header with smooth GSAP animation
         if (scrollTop > lastScrollTop && scrollTop > 200) {
-            
-            siteHeader.style.transform = 'translateY(-100%)';
+            gsap.to(siteHeader, {y: '-100%', duration: 0.3, ease: 'power2.out'});
         } else {
-            
-            siteHeader.style.transform = 'translateY(0)';
+            gsap.to(siteHeader, {y: '0%', duration: 0.3, ease: 'power2.out'});
         }
         
         lastScrollTop = scrollTop;
     });
     
-    
+    // Smooth scroll for anchor links with GSAP
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function(e) {
             e.preventDefault();
@@ -109,211 +108,342 @@ function initNavigation() {
             
             const targetElement = document.querySelector(targetId);
             if (targetElement) {
-                const headerHeight = siteHeader.offsetHeight;
-                const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset;
+                const headerHeight = siteHeader?.offsetHeight || 80;
                 
-                window.scrollTo({
-                    top: targetPosition - headerHeight,
-                    behavior: 'smooth'
+                gsap.to(window, {
+                    scrollTo: {
+                        y: targetElement,
+                        offsetY: headerHeight
+                    },
+                    duration: 1.2,
+                    ease: 'power3.inOut'
                 });
             }
         });
     });
 }
 
-
-function initLineToPhotoTransitions() {
+// Interactive What/Why/How Section
+function initInteractiveQuestions() {
+    const navBtns = document.querySelectorAll('.question-nav-btn');
+    const panels = document.querySelectorAll('.question-panel');
     
-    const demoSvgPaths = [
-        
-        `<svg viewBox="0 0 600 400" xmlns="http://www.w3.org/2000/svg">
-            <path class="line-element" d="M150,50 C150,50 200,30 250,50 C300,70 350,30 400,50 C450,70 500,40 550,60" style="--x: 30px; --y: -50px; --rotation: 15deg;"></path>
-            <path class="line-element" d="M100,100 C150,80 200,120 250,100 C300,80 350,120 400,100" style="--x: -40px; --y: -30px; --rotation: -10deg;"></path>
-            <path class="line-element" d="M50,150 C100,170 150,130 200,150 C250,170 300,130 350,150" style="--x: -20px; --y: 40px; --rotation: 5deg;"></path>
-            <path class="line-element" d="M100,200 L200,200 L200,300 L100,300 Z" style="--x: 50px; --y: 10px; --rotation: 20deg;"></path>
-            <path class="line-element" d="M300,200 L400,200 L400,300 L300,300 Z" style="--x: -30px; --y: 60px; --rotation: -25deg;"></path>
-            <path class="line-element" d="M450,150 C500,170 550,130 600,150" style="--x: 20px; --y: -35px; --rotation: 15deg;"></path>
-            <path class="line-element" d="M500,250 C450,230 400,270 350,250" style="--x: 40px; --y: 20px; --rotation: -5deg;"></path>
-            <path class="line-element" d="M150,350 C200,330 250,370 300,350 C350,330 400,370 450,350" style="--x: -25px; --y: 45px; --rotation: 10deg;"></path>
-        </svg>`,
-        
-        
-        `<svg viewBox="0 0 600 400" xmlns="http://www.w3.org/2000/svg">
-            <rect class="line-element" x="100" y="50" width="400" height="300" rx="20" style="--x: 0; --y: -60px; --rotation: 0deg;"></rect>
-            <path class="line-element" d="M150,100 L350,100" style="--x: -40px; --y: -20px; --rotation: -5deg;"></path>
-            <path class="line-element" d="M150,150 L450,150" style="--x: 30px; --y: 10px; --rotation: 5deg;"></path>
-            <path class="line-element" d="M150,200 L400,200" style="--x: -20px; --y: 40px; --rotation: -8deg;"></path>
-            <rect class="line-element" x="150" y="250" width="100" height="50" rx="10" style="--x: 40px; --y: 30px; --rotation: 15deg;"></rect>
-            <rect class="line-element" x="350" y="250" width="100" height="50" rx="10" style="--x: -30px; --y: 50px; --rotation: -10deg;"></rect>
-        </svg>`,
-        
-        
-        `<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-            <circle class="line-element" cx="100" cy="70" r="40" style="--x: 0; --y: -30px; --rotation: 0deg;"></circle>
-            <path class="line-element" d="M60,80 C60,110 140,110 140,80" style="--x: 0; --y: -20px; --rotation: 0deg;"></path>
-            <path class="line-element" d="M100,110 L100,160" style="--x: 0; --y: 30px; --rotation: 0deg;"></path>
-            <path class="line-element" d="M100,130 L60,150" style="--x: -20px; --y: 20px; --rotation: -10deg;"></path>
-            <path class="line-element" d="M100,130 L140,150" style="--x: 20px; --y: 20px; --rotation: 10deg;"></path>
-        </svg>`,
-        
-        
-        `<svg viewBox="0 0 600 400" xmlns="http://www.w3.org/2000/svg">
-            <rect class="line-element" x="100" y="50" width="400" height="300" rx="10" style="--x: 0; --y: -50px; --rotation: 0deg;"></rect>
-            <line class="line-element" x1="150" y1="100" x2="450" y2="100" style="--x: 30px; --y: -20px; --rotation: 5deg;"></line>
-            <line class="line-element" x1="150" y1="150" x2="450" y2="150" style="--x: -40px; --y: 10px; --rotation: -8deg;"></line>
-            <line class="line-element" x1="150" y1="200" x2="350" y2="200" style="--x: 20px; --y: 30px; --rotation: 10deg;"></line>
-            <circle class="line-element" cx="200" cy="300" r="30" style="--x: -40px; --y: 20px; --rotation: -15deg;"></circle>
-            <circle class="line-element" cx="400" cy="300" r="30" style="--x: 50px; --y: 10px; --rotation: 20deg;"></circle>
-        </svg>`,
-        
-        
-        `<svg viewBox="0 0 600 400" xmlns="http://www.w3.org/2000/svg">
-            <path class="line-element" d="M100,100 C150,50 250,50 300,100 C350,150 450,150 500,100" style="--x: 0; --y: -40px; --rotation: 0deg;"></path>
-            <path class="line-element" d="M100,200 C150,150 250,150 300,200 C350,250 450,250 500,200" style="--x: 0; --y: 50px; --rotation: 0deg;"></path>
-            <circle class="line-element" cx="150" cy="250" r="30" style="--x: -30px; --y: 20px; --rotation: -10deg;"></circle>
-            <circle class="line-element" cx="300" cy="150" r="30" style="--x: 0px; --y: -50px; --rotation: 0deg;"></circle>
-            <circle class="line-element" cx="450" cy="250" r="30" style="--x: 40px; --y: 30px; --rotation: 15deg;"></circle>
-        </svg>`
-    ];
+    if (!navBtns.length || !panels.length) return;
     
-    
-    const heroLineArt = document.getElementById('hero-line-art');
-    if (heroLineArt) {
-        heroLineArt.innerHTML = demoSvgPaths[0];
-    }
-    
-    const aboutLineArt = document.getElementById('about-line-art');
-    if (aboutLineArt) {
-        aboutLineArt.innerHTML = demoSvgPaths[1];
-    }
-    
-    
-    const teamLineArts = document.querySelectorAll('.team-line-art');
-    teamLineArts.forEach(art => {
-        art.innerHTML = demoSvgPaths[2];
+    navBtns.forEach(btn => {
+        btn.addEventListener('click', function() {
+            const targetQuestion = this.getAttribute('data-question');
+            
+            // Remove active class from all buttons
+            navBtns.forEach(b => b.classList.remove('active'));
+            
+            // Add active class to clicked button
+            this.classList.add('active');
+            
+            // Hide all panels first
+            panels.forEach(p => {
+                p.classList.remove('active');
+                gsap.set(p, {opacity: 0, display: 'none'});
+            });
+            
+            // Find and show corresponding panel with GSAP animation
+            const targetPanel = document.querySelector(`.question-panel[data-question="${targetQuestion}"]`);
+            if (targetPanel) {
+                targetPanel.classList.add('active');
+                gsap.set(targetPanel, {display: 'grid'});
+                
+                // Animate in new panel
+                gsap.fromTo(targetPanel, 
+                    {opacity: 0, y: 20},
+                    {opacity: 1, y: 0, duration: 0.5, ease: 'power2.out'}
+                );
+                
+                // Animate the image with a slight delay
+                const questionImage = targetPanel.querySelector('.question-image');
+                if (questionImage) {
+                    gsap.fromTo(questionImage, 
+                        {scale: 0.9, opacity: 0},
+                        {scale: 1, opacity: 1, duration: 0.6, delay: 0.2, ease: 'power2.out'}
+                    );
+                }
+                
+                // Animate the text elements
+                const textElements = targetPanel.querySelectorAll('.question-text h3, .question-text p, .question-features li');
+                if (textElements.length) {
+                    gsap.fromTo(textElements,
+                        {opacity: 0, x: 30},
+                        {opacity: 1, x: 0, duration: 0.4, stagger: 0.1, delay: 0.3, ease: 'power2.out'}
+                    );
+                }
+            }
+        });
     });
     
-    
-    const previewLineArt = document.querySelector('.preview-line-art');
-    if (previewLineArt) {
-        previewLineArt.innerHTML = demoSvgPaths[3];
-    }
-    
-    
-    const impactLineArt = document.querySelector('.impact-line-art');
-    if (impactLineArt) {
-        impactLineArt.innerHTML = demoSvgPaths[4];
-    }
-    
-    
-    const containers = document.querySelectorAll('.image-transition-container[data-scroll-trigger]');
-    
-    containers.forEach(container => {
-        ScrollTrigger.create({
-            trigger: container,
-            start: "top 75%",  // Start when the top of the container hits 75% of the viewport
-            end: "bottom 25%", // End when the bottom of the container hits 25% of the viewport
-            onEnter: () => {
-                container.classList.add('lines-dissolving');
-            },
-            onLeaveBack: () => {
-                container.classList.remove('lines-dissolving');
-            },
-            toggleActions: "play none none reverse"
+    // Auto-cycle through questions every 8 seconds
+    let currentIndex = 0;
+    setInterval(() => {
+        if (navBtns.length > 0) {
+            currentIndex = (currentIndex + 1) % navBtns.length;
+            navBtns[currentIndex].click();
+        }
+    }, 8000);
+}
+
+// Advanced GSAP Animations
+function initAdvancedAnimations() {
+    // Service items hover effects
+    const serviceItems = document.querySelectorAll('.service-item');
+    serviceItems.forEach(item => {
+        const icon = item.querySelector('.service-icon');
+        
+        item.addEventListener('mouseenter', () => {
+            gsap.to(item, {
+                y: -10,
+                scale: 1.03,
+                boxShadow: '0 20px 40px rgba(255, 215, 0, 0.2)',
+                duration: 0.4,
+                ease: 'power2.out'
+            });
+            
+            if (icon) {
+                gsap.to(icon, {
+                    scale: 1.3,
+                    rotation: 10,
+                    duration: 0.3,
+                    ease: 'back.out(1.7)'
+                });
+            }
         });
+        
+        item.addEventListener('mouseleave', () => {
+            gsap.to(item, {
+                y: 0,
+                scale: 1,
+                boxShadow: '0 4px 20px rgba(0, 0, 0, 0.1)',
+                duration: 0.4,
+                ease: 'power2.out'
+            });
+            
+            if (icon) {
+                gsap.to(icon, {
+                    scale: 1,
+                    rotation: 0,
+                    duration: 0.3,
+                    ease: 'power2.out'
+                });
+            }
+        });
+    });
+    
+    // Award items staggered animation
+    gsap.fromTo('.award-item', 
+        {y: 50, opacity: 0, scale: 0.8},
+        {
+            y: 0, 
+            opacity: 1, 
+            scale: 1,
+            duration: 0.6,
+            stagger: 0.1,
+            ease: 'back.out(1.7)',
+            scrollTrigger: {
+                trigger: '.awards-grid',
+                start: 'top 80%',
+                toggleActions: 'play none none none'
+            }
+        }
+    );
+    
+    // Friend logos animation
+    gsap.fromTo('.friend-logo', 
+        {y: 30, opacity: 0, rotation: -5},
+        {
+            y: 0, 
+            opacity: 1, 
+            rotation: 0,
+            duration: 0.5,
+            stagger: 0.1,
+            ease: 'power2.out',
+            scrollTrigger: {
+                trigger: '.friends-grid',
+                start: 'top 80%',
+                toggleActions: 'play none none none'
+            }
+        }
+    );
+}
+
+// Advanced scroll effects
+function initAdvancedScrollEffects() {
+    // Parallax background shapes
+    gsap.to('.shape1', {
+        y: -100,
+        rotation: 360,
+        ease: 'none',
+        scrollTrigger: {
+            trigger: 'body',
+            start: 'top top',
+            end: 'bottom bottom',
+            scrub: 1
+        }
+    });
+    
+    gsap.to('.shape2', {
+        y: -50,
+        rotation: -180,
+        ease: 'none',
+        scrollTrigger: {
+            trigger: 'body',
+            start: 'top top',
+            end: 'bottom bottom',
+            scrub: 1
+        }
+    });
+    
+    gsap.to('.shape3', {
+        y: -80,
+        rotation: 270,
+        ease: 'none',
+        scrollTrigger: {
+            trigger: 'body',
+            start: 'top top',
+            end: 'bottom bottom',
+            scrub: 1
+        }
     });
 }
 
+// Parallax effects for images
+function initParallaxEffects() {
+    const parallaxImages = document.querySelectorAll('.transition-photo, .question-image');
+    
+    parallaxImages.forEach(img => {
+        gsap.to(img, {
+            y: -50,
+            ease: 'none',
+            scrollTrigger: {
+                trigger: img,
+                start: 'top bottom',
+                end: 'bottom top',
+                scrub: 1
+            }
+        });
+    });
+}
 
 function animateHero() {
     const heroTitle = document.querySelector('.hero-title');
     const heroSubtitle = document.querySelector('.hero-subtitle');
-    const heroStats = document.querySelectorAll('.stat-item');
+    const heroDescription = document.querySelector('.hero-description');
+    const heroServices = document.querySelector('.hero-services');
     const heroCta = document.querySelectorAll('.hero-cta .cta-button');
     
+    const tl = gsap.timeline({delay: 0.5});
     
-    const tl = gsap.timeline();
-    
-    
+    // Animate title lines with enhanced effects
     if (heroTitle) {
         const titleLines = document.querySelectorAll('.title-line');
         if (titleLines.length > 0) {
-            tl.from(titleLines, {
-                y: 50,
-                opacity: 0,
-                duration: 0.8,
-                stagger: 0.2,
-                ease: "power3.out"
-            });
+            tl.fromTo(titleLines, 
+                {y: 100, opacity: 0, scale: 0.8},
+                {
+                    y: 0, 
+                    opacity: 1, 
+                    scale: 1,
+                    duration: 1,
+                    stagger: 0.3,
+                    ease: 'back.out(1.7)'
+                }
+            );
         }
     }
     
+    // Animate subtitle
     if (heroSubtitle) {
-        tl.from(heroSubtitle, {
-            y: 30,
-            opacity: 0,
-            duration: 0.6,
-            ease: "power2.out"
-        }, "-=0.4");
+        tl.fromTo(heroSubtitle, 
+            {y: 50, opacity: 0},
+            {y: 0, opacity: 1, duration: 0.8, ease: 'power2.out'},
+            '-=0.3'
+        );
     }
     
-    if (heroStats.length) {
-        tl.from(heroStats, {
-            y: 20,
-            opacity: 0,
-            duration: 0.5,
-            stagger: 0.1,
-            ease: "power2.out"
-        }, "-=0.3");
+    // Animate description
+    if (heroDescription) {
+        tl.fromTo(heroDescription, 
+            {y: 30, opacity: 0},
+            {y: 0, opacity: 1, duration: 0.6, ease: 'power2.out'},
+            '-=0.2'
+        );
     }
     
+    // Animate services with special effects
+    if (heroServices) {
+        tl.fromTo(heroServices.children, 
+            {y: 50, opacity: 0, scale: 0.5, rotation: 10},
+            {
+                y: 0, 
+                opacity: 1, 
+                scale: 1, 
+                rotation: 0,
+                duration: 0.6,
+                stagger: 0.1,
+                ease: 'back.out(1.7)'
+            },
+            '-=0.2'
+        );
+    }
+    
+    // Animate CTA buttons with bounce
     if (heroCta.length) {
-        tl.from(heroCta, {
-            y: 20,
-            opacity: 0,
-            duration: 0.5,
-            stagger: 0.1,
-            ease: "power2.out"
-        }, "-=0.2");
-    }
-    
-    // Check if floating elements exist before animating
-    const floatElements = document.querySelectorAll('.float-element');
-    if (floatElements.length > 0) {
-        gsap.from(floatElements, {
-            y: 30,
-            opacity: 0,
-            duration: 1,
-            stagger: 0.2,
-            ease: "power2.out"
-        });
+        tl.fromTo(heroCta, 
+            {y: 30, opacity: 0, scale: 0.8},
+            {
+                y: 0, 
+                opacity: 1, 
+                scale: 1,
+                duration: 0.5,
+                stagger: 0.1,
+                ease: 'back.out(1.7)'
+            },
+            '-=0.1'
+        );
     }
 }
 
-
 function initScrollAnimations() {
-    // Safely animate section headers
+    // Enhanced section animations
     gsap.utils.toArray('section').forEach(section => {
         const sectionHeader = section.querySelector('.section-header');
         if (sectionHeader) {
-            gsap.from(sectionHeader, {
-                y: 50,
-                opacity: 0,
-                duration: 0.8,
+            const title = sectionHeader.querySelector('.section-title');
+            const subtitle = sectionHeader.querySelector('.section-subtitle');
+            
+            const tl = gsap.timeline({
                 scrollTrigger: {
                     trigger: section,
-                    start: "top 80%",
-                    end: "top 50%",
-                    toggleActions: "play none none none"
+                    start: 'top 80%',
+                    toggleActions: 'play none none none'
                 }
             });
+            
+            if (title) {
+                tl.fromTo(title, 
+                    {y: 50, opacity: 0, scale: 0.9},
+                    {y: 0, opacity: 1, scale: 1, duration: 0.8, ease: 'power3.out'}
+                );
+            }
+            
+            if (subtitle) {
+                tl.fromTo(subtitle, 
+                    {y: 30, opacity: 0},
+                    {y: 0, opacity: 1, duration: 0.6, ease: 'power2.out'},
+                    '-=0.3'
+                );
+            }
         }
     });
 }
 
-
 function initCounters() {
-    
     const counters = document.querySelectorAll('[data-count]');
     
     counters.forEach(counter => {
@@ -321,69 +451,28 @@ function initCounters() {
         
         ScrollTrigger.create({
             trigger: counter,
-            start: "top 80%",
+            start: 'top 80%',
             onEnter: () => {
                 gsap.to(counter, {
                     innerText: target,
-                    duration: 2,
+                    duration: 2.5,
                     snap: { innerText: 1 },
-                    ease: "power2.out",
+                    ease: 'power2.out',
                     onUpdate: function() {
                         counter.innerText = Math.ceil(parseFloat(counter.innerText));
                     }
                 });
+                
+                // Add a pulse effect
+                gsap.fromTo(counter, 
+                    {scale: 1},
+                    {scale: 1.1, duration: 0.1, yoyo: true, repeat: 1, ease: 'power2.inOut'}
+                );
             },
             once: true
         });
     });
 }
-
-
-function initTeamFilter() {
-    const filterBtns = document.querySelectorAll('.filter-btn');
-    const teamCards = document.querySelectorAll('.team-card');
-    
-    filterBtns.forEach(btn => {
-        btn.addEventListener('click', function() {
-            
-            filterBtns.forEach(b => b.classList.remove('active'));
-            
-            
-            this.classList.add('active');
-            
-            
-            const filter = this.getAttribute('data-filter');
-            
-            
-            teamCards.forEach(card => {
-                const category = card.getAttribute('data-category');
-                
-                if (filter === 'all' || filter === category) {
-                    gsap.to(card, {
-                        opacity: 1,
-                        scale: 1,
-                        duration: 0.3,
-                        ease: "power2.out",
-                        onStart: function() {
-                            card.style.display = 'block';
-                        }
-                    });
-                } else {
-                    gsap.to(card, {
-                        opacity: 0,
-                        scale: 0.9,
-                        duration: 0.3,
-                        ease: "power2.out",
-                        onComplete: function() {
-                            card.style.display = 'none';
-                        }
-                    });
-                }
-            });
-        });
-    });
-}
-
 
 function initTabs() {
     const tabBtns = document.querySelectorAll('.tab-btn');
@@ -391,25 +480,27 @@ function initTabs() {
     
     tabBtns.forEach(btn => {
         btn.addEventListener('click', function() {
+            const tab = this.getAttribute('data-tab');
             
+            // Remove active classes
             tabBtns.forEach(b => b.classList.remove('active'));
             tabPanels.forEach(p => p.classList.remove('active'));
             
-            
+            // Add active classes
             this.classList.add('active');
-            
-            
-            const tab = this.getAttribute('data-tab');
-            
-            
             const targetPanel = document.querySelector(`.tab-panel[data-tab="${tab}"]`);
             if (targetPanel) {
                 targetPanel.classList.add('active');
+                
+                // Animate in new panel
+                gsap.fromTo(targetPanel, 
+                    {opacity: 0, y: 20},
+                    {opacity: 1, y: 0, duration: 0.5, ease: 'power2.out'}
+                );
             }
         });
     });
 }
-
 
 function setupIntersectionObserver() {
     const animatedElements = document.querySelectorAll('.animate-fade-up, .animate-fade-right, .animate-fade-left, .animate-pop');
@@ -418,9 +509,6 @@ function setupIntersectionObserver() {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('in-view');
-                
-                
-                // observer.unobserve(entry.target);
             }
         });
     }, {
@@ -433,128 +521,46 @@ function setupIntersectionObserver() {
     });
 }
 
-
 function initQrPage() {
-    
-    if (!document.querySelector('.qr-back-to-book')) {
-        const backButton = document.createElement('div');
-        backButton.className = 'qr-back-to-book';
-        backButton.innerHTML = `
-            <a href="javascript:history.back()" class="back-to-book-btn">
-                <span>↩</span> Back to book
-            </a>
-        `;
-        
-        const qrPage = document.querySelector('.qr-page');
-        if (qrPage) {
-            qrPage.appendChild(backButton);
-        }
-    }
-    
-    
     const qrContent = document.querySelector('.qr-content');
     if (qrContent) {
-        gsap.from(qrContent, {
-            y: 50,
-            opacity: 0,
-            duration: 0.8,
-            ease: "power2.out",
-            delay: 0.5
-        });
+        gsap.fromTo(qrContent, 
+            {y: 50, opacity: 0, scale: 0.9},
+            {y: 0, opacity: 1, scale: 1, duration: 0.8, ease: 'back.out(1.7)', delay: 0.5}
+        );
     }
 }
 
-
-function initPageTransitions() {
-    
-    
-    
-    console.log('Page transitions now managed by page-transition.js');
-}
-
-
-// Horizontal Scrolling Team Profiles
+// Horizontal Scrolling Team Profiles (for team.html)
 function initHorizontalProfiles() {
     const profilesSection = document.querySelector('.team-profiles');
     const profilesContainer = document.querySelector('.profiles-container');
     const profileCards = document.querySelectorAll('.profile-card');
-    const progressDots = document.querySelector('#progressDots');
-    const scrollIndicator = document.querySelector('#scrollIndicator');
     
     if (!profilesSection || !profilesContainer || !profileCards.length) {
-        console.log('Team profiles elements not found, skipping horizontal scroll initialization');
-        return; // Exit if elements don't exist
+        return;
     }
     
-    // Clear existing dots to prevent duplicates
-    if (progressDots) {
-        progressDots.innerHTML = '';
-        
-        // Create progress dots
-        profileCards.forEach((_, index) => {
-            const dot = document.createElement('div');
-            dot.className = 'progress-dot';
-            if (index === 0) dot.classList.add('active');
-            dot.addEventListener('click', () => scrollToProfile(index));
-            progressDots.appendChild(dot);
-        });
-    }
-    
-    // Get all progress dots
-    const dots = document.querySelectorAll('.progress-dot');
-    
-    // Calculate total width of all profile cards
     const totalWidth = profileCards.length * window.innerWidth;
     
-    // Create the horizontal scroll animation
     const horizontalScroll = gsap.to(profilesContainer, {
         x: () => -(totalWidth - window.innerWidth),
-        ease: "none",
+        ease: 'none',
         scrollTrigger: {
             trigger: profilesSection,
-            start: "top top",
+            start: 'top top',
             end: () => `+=${totalWidth}`,
             scrub: 1,
             pin: true,
-            anticipatePin: 1,
-            onUpdate: (self) => {
-                // Update progress dots based on scroll progress
-                const progress = self.progress;
-                const currentIndex = Math.round(progress * (profileCards.length - 1));
-                
-                dots.forEach((dot, index) => {
-                    dot.classList.toggle('active', index === currentIndex);
-                });
-                
-                // Hide scroll indicator after first scroll
-                if (progress > 0.1 && scrollIndicator) {
-                    scrollIndicator.style.opacity = '0';
-                } else if (progress <= 0.1 && scrollIndicator) {
-                    scrollIndicator.style.opacity = '1';
-                }
-            }
+            anticipatePin: 1
         }
     });
     
-    // Function to scroll to specific profile
-    function scrollToProfile(index) {
-        const targetProgress = index / (profileCards.length - 1);
-        const scrollTriggerInstance = horizontalScroll.scrollTrigger;
-        const targetScroll = scrollTriggerInstance.start + (targetProgress * (scrollTriggerInstance.end - scrollTriggerInstance.start));
-        
-        gsap.to(window, {
-            scrollTo: targetScroll,
-            duration: 1,
-            ease: "power2.inOut"
-        });
-    }
-    
-    // Animate profile cards on enter
     profileCards.forEach((card, index) => {
         ScrollTrigger.create({
             trigger: card,
-            start: "left 80%",
-            end: "right 20%",
+            start: 'left 80%',
+            end: 'right 20%',
             horizontal: true,
             containerAnimation: horizontalScroll,
             onEnter: () => {
@@ -562,32 +568,91 @@ function initHorizontalProfiles() {
                 const profileInfo = card.querySelector('.profile-info');
                 
                 if (profileImage) {
-                    gsap.from(profileImage, {
-                        scale: 0.8,
-                        opacity: 0,
-                        duration: 0.8,
-                        ease: "power2.out"
-                    });
+                    gsap.fromTo(profileImage, 
+                        {scale: 0.6, opacity: 0, rotation: -10},
+                        {scale: 1, opacity: 1, rotation: 0, duration: 1, ease: 'back.out(1.7)'}
+                    );
                 }
                 
                 if (profileInfo) {
-                    gsap.from(profileInfo, {
-                        x: 50,
-                        opacity: 0,
-                        duration: 0.8,
-                        delay: 0.2,
-                        ease: "power2.out"
-                    });
+                    gsap.fromTo(profileInfo, 
+                        {x: 100, opacity: 0},
+                        {x: 0, opacity: 1, duration: 0.8, delay: 0.3, ease: 'power3.out'}
+                    );
                 }
             }
         });
     });
     
-    // Handle window resize
     window.addEventListener('resize', () => {
         ScrollTrigger.refresh();
     });
 }
 
-// Initialize page transitions
-initPageTransitions();
+// Enhanced loading effects
+window.addEventListener('load', function() {
+    document.body.classList.remove('loading');
+    
+    gsap.fromTo('body', 
+        {opacity: 0},
+        {opacity: 1, duration: 0.5, ease: 'power2.out'}
+    );
+});
+
+// Advanced page interactions
+document.addEventListener('mousemove', (e) => {
+    const shapes = document.querySelectorAll('.bg-shape');
+    const mouseX = e.clientX / window.innerWidth;
+    const mouseY = e.clientY / window.innerHeight;
+    
+    shapes.forEach((shape, index) => {
+        const speed = (index + 1) * 0.02;
+        const x = (mouseX - 0.5) * 20 * speed;
+        const y = (mouseY - 0.5) * 20 * speed;
+        
+        gsap.to(shape, {
+            x: x,
+            y: y,
+            duration: 1,
+            ease: 'power2.out'
+        });
+    });
+});
+
+// Magnetic effect for buttons
+setTimeout(() => {
+    const magneticElements = document.querySelectorAll('.cta-button, .order-btn, .nav-cta');
+
+    magneticElements.forEach(el => {
+        el.addEventListener('mouseenter', () => {
+            gsap.to(el, {
+                scale: 1.05,
+                duration: 0.3,
+                ease: 'power2.out'
+            });
+        });
+        
+        el.addEventListener('mouseleave', () => {
+            gsap.to(el, {
+                scale: 1,
+                x: 0,
+                y: 0,
+                duration: 0.3,
+                ease: 'power2.out'
+            });
+        });
+        
+        el.addEventListener('mousemove', (e) => {
+            const rect = el.getBoundingClientRect();
+            const x = e.clientX - rect.left - rect.width / 2;
+            const y = e.clientY - rect.top - rect.height / 2;
+            
+            gsap.to(el, {
+                x: x * 0.1,
+                y: y * 0.1,
+                duration: 0.3,
+                ease: 'power2.out'
+            });
+        });
+    });
+}, 1000);
