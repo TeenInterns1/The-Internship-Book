@@ -319,7 +319,7 @@ function initAdvancedScrollEffects() {
 
 // Parallax effects for images
 function initParallaxEffects() {
-    const parallaxImages = document.querySelectorAll('.transition-photo, .question-image');
+    const parallaxImages = document.querySelectorAll(' .question-image');
     
     parallaxImages.forEach(img => {
         gsap.to(img, {

@@ -6,6 +6,7 @@
     <title>Teen Interns Book | The Ultimate Guide to Teen Internships</title>
     <link rel="icon" type="image/png" href="logos/favicon.png">
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="preorder-styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -22,6 +23,17 @@
         <div class="bg-shape shape3"></div>
     </div>
 
+    <!-- Right Hover Menu -->
+    <div class="right-hover-menu" id="rightHoverMenu">
+        <div class="menu-trigger">☰</div>
+        <div class="menu-content">
+            <a href="#about" class="menu-item">About</a>
+            <a href="#preview" class="menu-item">Preview</a>
+            <a href="#impact" class="menu-item">Impact</a>
+            <a href="preorder.html" class="menu-item">Pre-order</a>
+        </div>
+    </div>
+
     <!-- Header -->
     <header class="site-header" id="site-header">
         <div class="container">
@@ -32,11 +44,8 @@
                     </a>
                 </div>
                 <div class="nav-links">
-                    <a href="#about" class="nav-link">About</a>
                     <a href="team.html" class="nav-link">Team</a>
-                    <a href="#preview" class="nav-link">Preview</a>
-                    <a href="#impact" class="nav-link">Impact</a>
-                    <a href="#preorder" class="nav-link nav-cta">Pre-order</a>
+                    <a href="preorder.html" class="nav-link nav-cta">Pre-order</a>
                 </div>
                 <button class="mobile-menu-toggle">
                     <span></span>
@@ -50,11 +59,9 @@
     <!-- Mobile Menu -->
     <div class="mobile-menu">
         <div class="mobile-menu-links">
-            <a href="#about" class="mobile-link">About</a>
             <a href="team.html" class="mobile-link">Team</a>
-            <a href="#preview" class="mobile-link">Preview</a>
-            <a href="#impact" class="mobile-link">Impact</a>
-            <a href="#preorder" class="mobile-link mobile-cta">Pre-order</a>
+            <a href="qr-generator.html" class="mobile-link">QR Generator</a>
+            <a href="preorder.html" class="mobile-link mobile-cta">Pre-order</a>
         </div>
     </div>
 
@@ -71,30 +78,10 @@
                     <p class="hero-description">Empowering the next generation through innovative career guidance and meaningful opportunities. We combine cutting-edge design, authentic teen voices, and industry expertise to create the ultimate internship guide that transforms how young people approach their careers.</p>
                 
                     <div class="hero-cta">
-                        <a href="#preorder" class="cta-button primary">Get Your Copy</a>
+                        <a href="preorder.html" class="cta-button primary">Get Your Copy</a>
                         <a href="#about" class="cta-button secondary">Learn More</a>
                     </div>
                 </div>
-                <!--
-                <div class="hero-services">
-                    <div class="service-item">
-                        <div class="service-icon">🔍</div>
-                        <h3>Research<br/>& Strategy</h3>
-                    </div>
-                    <div class="service-item">
-                        <div class="service-icon">🎯</div>
-                        <h3>Career<br/>Guidance</h3>
-                    </div>
-                    <div class="service-item">
-                        <div class="service-icon">🎨</div>
-                        <h3>Visual<br/>Design</h3>
-                    </div>
-                    <div class="service-item">
-                        <div class="service-icon">⭐</div>
-                        <h3>Success<br/>Stories</h3>
-                    </div>
-                </div>
-                -->
                 <div class="book-cover">
                     <img src="images/book-cover.jpg" alt="book-cover">
                 </div>
@@ -182,31 +169,20 @@
         </div>
     </section>
 
-    <!-- About Section with Interactive What/Why/How -->
-    <section class="about" id="about">
-         <section class="about-wrapper" id="about-wrapper">
-             
-            <!-- Title -->
-            <div class="left-side">
-              <div class="section-header animate-fade-up">
+    <!-- About Section - Compact Version -->
+    <section class="about compact" id="about">
+        <div class="container">
+            <div class="section-header animate-fade-up">
                 <h2 class="section-title">About the Book</h2>
                 <p class="section-subtitle">A revolutionary approach to understanding internships</p>
-              </div>
             </div>
-             
-         <!-- Right side-->
-          <div class="yellow-box" id="yellow-box">
-              <div class="description-content">
+            
+            <div class="about-content">
                 <p class="lead-text">
-                  <strong>The Internship Book</strong> is a first-of-its-kind multimedia guide created by teenagers, for teenagers.
+                    <strong>The Internship Book</strong> is a first-of-its-kind multimedia guide created by teenagers, for teenagers.
+                    Launching <strong>24th July 2025</strong>, it's created by <strong>23 teen contributors</strong> under TeenInterns.
                 </p>
-                <p class="description-text">
-                  Launching <strong>24th July 2025</strong>, it’s created by <strong>23 teen contributors</strong> under TeenInterns.
-                </p>
-              </div>
-          </div>
-             
-       </section>
+            </div>
 
             <!-- Interactive What/Why/How Section -->
             <div class="interactive-questions">
@@ -361,10 +337,13 @@
         </div>
     </section>
 
-    <!-- Impact Section -->
+    <!-- Impact Section with Centered Logo -->
     <section class="impact" id="impact">
         <div class="container">
             <div class="section-header animate-fade-up">
+                <div class="impact-logo-center">
+                    <img src="logos/TEENINTERNS_WHITE_TRANSPARENT.png" alt="Teen Interns Logo" class="impact-logo">
+                </div>
                 <h2 class="section-title">Making an Impact</h2>
                 <p class="section-subtitle">Your purchase funds internships for teens who can't afford them</p>
             </div>
@@ -404,118 +383,13 @@
         </div>
     </section>
 
-    <!-- Pre-order Section -->
-    <section class="preorder" id="preorder">
-        <div class="container">
-            <div class="section-header animate-fade-up">
-                <h2 class="section-title">Pre-order Now</h2>
-                <p class="section-subtitle">Be among the first to receive this groundbreaking guide</p>
-            </div>
-            
-            <div class="countdown animate-fade-up">
-                <div class="countdown-label">Launching in:</div>
-                <div class="countdown-timer">
-                    <div class="timer-unit">
-                        <span class="timer-number" data-count="64">0</span>
-                        <span class="timer-label">Days</span>
-                    </div>
-                    <div class="timer-unit">
-                        <span class="timer-number" data-count="12">0</span>
-                        <span class="timer-label">Hours</span>
-                    </div>
-                    <div class="timer-unit">
-                        <span class="timer-number" data-count="45">0</span>
-                        <span class="timer-label">Minutes</span>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="pricing-options">
-                <div class="price-card animate-pop" style="--delay: 0.1s">
-                    <div class="card-header">
-                        <h3>Digital Edition</h3>
-                        <div class="price">
-                            <span class="currency">$</span>
-                            <span class="amount">25</span>
-                        </div>
-                    </div>
-                    
-                    <ul class="features-list">
-                        <li>📱 Digital book access</li>
-                        <li>🎥 All video content</li>
-                        <li>📝 Downloadable resources</li>
-                        <li>🔄 Lifetime updates</li>
-                    </ul>
-                    
-                    <button class="order-btn">Pre-order Digital</button>
-                </div>
-                
-                <div class="price-card featured animate-pop" style="--delay: 0.2s">
-                    <div class="popular-badge">Most Popular</div>
-                    <div class="card-header">
-                        <h3>Print + Digital</h3>
-                        <div class="price">
-                            <span class="currency">$</span>
-                            <span class="amount">45</span>
-                        </div>
-                    </div>
-                    
-                    <ul class="features-list">
-                        <li>📖 Physical book</li>
-                        <li>📱 Digital access</li>
-                        <li>🎥 All video content</li>
-                        <li>📦 Free shipping</li>
-                        <li>💯 First-edition benefits</li>
-                    </ul>
-                    
-                    <button class="order-btn">Pre-order Bundle</button>
-                </div>
-                
-                <div class="price-card animate-pop" style="--delay: 0.3s">
-                    <div class="card-header">
-                        <h3>Premium Package</h3>
-                        <div class="price">
-                            <span class="currency">$</span>
-                            <span class="amount">75</span>
-                        </div>
-                    </div>
-                    
-                    <ul class="features-list">
-                        <li>📖 Signed first edition</li>
-                        <li>📱 Digital access</li>
-                        <li>🎁 Exclusive merchandise</li>
-                        <li>🤝 Virtual meet with authors</li>
-                        <li>🎯 Private community access</li>
-                    </ul>
-                    
-                    <button class="order-btn">Pre-order Premium</button>
-                </div>
-            </div>
-            
-            <div class="trust-badges animate-fade-up">
-                <div class="trust-item">
-                    <span class="trust-icon">🔒</span>
-                    <span>Secure payment</span>
-                </div>
-                <div class="trust-item">
-                    <span class="trust-icon">📦</span>
-                    <span>Free shipping worldwide</span>
-                </div>
-                <div class="trust-item">
-                    <span class="trust-icon">💯</span>
-                    <span>30-day money-back guarantee</span>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <!-- Footer -->
     <footer class="site-footer">
         <div class="container">
             <div class="footer-content">
                 <div class="footer-brand">
                     <a href="#" class="footer-logo">
-                        <img src="logos/title.png" alt="Teen Interns" class="footer-logo-img">
+                        <img src="logos/title.png" alt="Teen Interns" class="footer-logo-img large">
                     </a>
                     <p class="footer-tagline">Empowering the next generation through internships</p>
                 </div>
@@ -528,7 +402,7 @@
                             <li><a href="team.html">Team</a></li>
                             <li><a href="#preview">Preview</a></li>
                             <li><a href="#impact">Impact</a></li>
-                            <li><a href="#preorder">Pre-order</a></li>
+                            <li><a href="preorder.html">Pre-order</a></li>
                         </ul>
                     </div>
                     
@@ -579,6 +453,5 @@
     <script src="script.js"></script>
     <script src="page-transition.js"></script>
     <script src="preorder-system.js"></script>
-    <link rel="stylesheet" href="preorder-styles.css">
 </body>
 </html>

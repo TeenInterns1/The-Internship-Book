@@ -167,8 +167,10 @@
 }
 
 .transition-photo {
-    width: 100%; 
+    /* padding-top: 60px;
+    padding-left: 20px; */
     height: auto;
+    width: 300px;
     display: block;
 }
 
@@ -964,3 +966,4 @@
     .interactive-questions {
         padding: 2rem 1rem;
     }
+}
