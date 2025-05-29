@@ -123,6 +123,11 @@ function initNavigation() {
     });
 }
 
+//Interactive scroll about us section
+
+
+
+
 // Interactive What/Why/How Section
 function initInteractiveQuestions() {
     const navBtns = document.querySelectorAll('.question-nav-btn');
