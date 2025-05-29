@@ -1,6 +1,6 @@
 /**
  * Theme Toggle Functionality
- * Handles dark/light theme switching with system preference detection
+ * Handles dark/light theme switching with system preference detection and logo switching
  */
 
 class ThemeManager {
@@ -10,6 +10,12 @@ class ThemeManager {
             LIGHT: 'light',
             DARK: 'dark',
             AUTO: 'auto'
+        };
+        
+        // Logo paths
+        this.logos = {
+            LIGHT: 'logos/title.png',
+            DARK: 'logos/TEENINTERNS_WHITE_TRANSPARENT.png'
         };
         
         this.init();
@@ -27,6 +33,9 @@ class ThemeManager {
         
         // Update theme toggle icon
         this.updateToggleIcon();
+        
+        // Update logos
+        this.updateLogos();
     }
     
     createThemeToggle() {
@@ -103,7 +112,45 @@ class ThemeManager {
         }
         
         this.updateToggleIcon(theme);
+        this.updateLogos();
         this.announceThemeChange(theme);
+    }
+    
+    updateLogos() {
+        const currentTheme = this.getCurrentTheme();
+        const isDark = currentTheme === this.themes.DARK;
+        const logoSrc = isDark ? this.logos.DARK : this.logos.LIGHT;
+        
+        // Update all logo images
+        const logoSelectors = [
+            '.logo-img',
+            '.footer-logo-img', 
+            '.hero-logo',
+            '.impact-logo',
+            '.cta-logo'
+        ];
+        
+        logoSelectors.forEach(selector => {
+            const logos = document.querySelectorAll(selector);
+            logos.forEach(logo => {
+                if (logo.tagName === 'IMG') {
+                    logo.src = logoSrc;
+                }
+            });
+        });
+        
+        // Handle relative paths for content folder
+        if (window.location.pathname.includes('/content/')) {
+            const relativeSrc = '../' + logoSrc;
+            logoSelectors.forEach(selector => {
+                const logos = document.querySelectorAll(selector);
+                logos.forEach(logo => {
+                    if (logo.tagName === 'IMG') {
+                        logo.src = relativeSrc;
+                    }
+                });
+            });
+        }
     }
     
     toggleTheme() {

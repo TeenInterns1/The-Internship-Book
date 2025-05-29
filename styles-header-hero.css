@@ -52,12 +52,20 @@
 
 /* Dark mode navigation text */
 [data-theme="dark"] .nav-link {
-    color: var(--pure-white);
+    color: var(--pure-white) !important;
+}
+
+[data-theme="dark"] .mobile-menu-toggle span {
+    background: var(--pure-white);
 }
 
 @media (prefers-color-scheme: dark) {
     :root:not([data-theme="light"]) .nav-link {
-        color: var(--pure-white);
+        color: var(--pure-white) !important;
+    }
+    
+    :root:not([data-theme="light"]) .mobile-menu-toggle span {
+        background: var(--pure-white);
     }
 }
 
@@ -134,12 +142,12 @@
 
 /* Dark mode mobile menu text */
 [data-theme="dark"] .mobile-link {
-    color: var(--pure-white);
+    color: var(--pure-white) !important;
 }
 
 @media (prefers-color-scheme: dark) {
     :root:not([data-theme="light"]) .mobile-link {
-        color: var(--pure-white);
+        color: var(--pure-white) !important;
     }
 }
 

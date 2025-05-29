@@ -14,6 +14,23 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollToPlugin.min.js"></script>
+    
+    <style>
+        /* Dark mode styling for preorder page */
+        [data-theme="dark"] .preorder-hero .hero-title,
+        [data-theme="dark"] .preorder-hero .hero-subtitle,
+        [data-theme="dark"] .preorder-hero .hero-description {
+            color: var(--pure-white) !important;
+        }
+        
+        @media (prefers-color-scheme: dark) {
+            :root:not([data-theme="light"]) .preorder-hero .hero-title,
+            :root:not([data-theme="light"]) .preorder-hero .hero-subtitle,
+            :root:not([data-theme="light"]) .preorder-hero .hero-description {
+                color: var(--pure-white) !important;
+            }
+        }
+    </style>
 </head>
 <body class="loading preorder-page">
     

@@ -31,6 +31,26 @@
             color: #333;
         }
         
+        /* Dark mode team intro styling */
+        [data-theme="dark"] .team-intro h1,
+        [data-theme="dark"] .team-intro p {
+            color: var(--pure-white) !important;
+        }
+        
+        [data-theme="dark"] .admin-title,
+        [data-theme="dark"] .admin-subtitle {
+            color: var(--pure-white) !important;
+        }
+        
+        @media (prefers-color-scheme: dark) {
+            :root:not([data-theme="light"]) .team-intro h1,
+            :root:not([data-theme="light"]) .team-intro p,
+            :root:not([data-theme="light"]) .admin-title,
+            :root:not([data-theme="light"]) .admin-subtitle {
+                color: var(--pure-white) !important;
+            }
+        }
+        
         .team-intro p {
             font-size: 1.2rem;
             color: #666;

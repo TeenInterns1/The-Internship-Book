@@ -93,6 +93,31 @@
     margin-bottom: 10px;
 }
 
+/* Dark mode profile text */
+[data-theme="dark"] .profile-name,
+[data-theme="dark"] .profile-description,
+[data-theme="dark"] .profile-quote,
+[data-theme="dark"] .stat-label {
+    color: var(--pure-white) !important;
+}
+
+[data-theme="dark"] .stat-number {
+    color: var(--primary-color) !important;
+}
+
+@media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) .profile-name,
+    :root:not([data-theme="light"]) .profile-description,
+    :root:not([data-theme="light"]) .profile-quote,
+    :root:not([data-theme="light"]) .stat-label {
+        color: var(--pure-white) !important;
+    }
+    
+    :root:not([data-theme="light"]) .stat-number {
+        color: var(--primary-color) !important;
+    }
+}
+
 .profile-role {
     font-size: 1.5rem;
     color: var(--primary-color);
