@@ -123,6 +123,19 @@ function initNavigation() {
     });
 }
 
+//Interactive scroll about us section
+gsap.to(".yellow-box", {
+    width: 0,
+    ease: "none",
+    scrollTrigger: {
+      trigger: ".scroll-container",
+      start: "top top",
+      end: "bottom top",
+      scrub: true,
+    }
+  });
+
+
 // Interactive What/Why/How Section
 function initInteractiveQuestions() {
     const navBtns = document.querySelectorAll('.question-nav-btn');
