@@ -1,5 +1,13 @@
 /* Advanced Styles - Uxpert inspired design patterns */
+.success-stories {
+    background-color: var(--light-grey);
+    height: 65vh;
+}
 
+.sucess-stories .awards-grid .award-item animate-pop{
+   width: 12vw;
+   height: 12vh;
+}
 /* About Section */
 .about {
     padding: 5rem 0;
@@ -53,7 +61,7 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  background: var(--light-grey);
+  background: var(--white);
 }
 
 /* RIGHT SIDE: yellow container */
@@ -101,7 +109,7 @@
     align-items: center;
     gap: 1.5rem;
     padding: 1.5rem;
-    background: var(--bg-secondary);
+    background: var(--bg-color);
     border-radius: var(--border-radius-md);
     transition: all var(--transition-normal);
 }
@@ -232,7 +240,7 @@
 }
 
 .question-image {
-    width: 100%;
+    width: 300px;
     height: 300px;
     object-fit: cover;
     transition: transform var(--transition-slow);
@@ -244,7 +252,7 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background: linear-gradient(135deg, rgba(0,0,0,0.6) 0%, rgba(255,215,0,0.3) 100%);
+    background: linear-gradient(135deg, rgba(0,0,0,0.6) 0%, rgba(200,200,200,0.3) 100%);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -452,7 +460,7 @@
     background: transparent;
     border: 2px solid var(--border-color);
     border-radius: var(--border-radius-sm);
-    color: var(--text-secondary);
+    color: var(--text-color);
     font-weight: 500;
     cursor: pointer;
     transition: all var(--transition-fast);
@@ -546,7 +554,7 @@
 
 .impact-label {
     font-size: 0.9rem;
-    color: var(--text-secondary);
+    color: var(--text-color);
     text-transform: uppercase;
     letter-spacing: 0.05em;
     margin-top: 0.5rem;
@@ -571,7 +579,7 @@
 
 .countdown-label {
     font-size: 1.2rem;
-    color: var(--text-secondary);
+    color: var(--text-color);
     margin-bottom: 1rem;
 }
 
@@ -589,7 +597,7 @@
     display: block;
     font-size: 3rem;
     font-weight: 700;
-    color: var(--primary-color);
+    color: var(--text-secondary);
     line-height: 1;
 }
 
@@ -623,7 +631,8 @@
 }
 
 .price-card.featured {
-    border-color: var(--primary-color);
+    border-color: var(--primary-black);
+    background-color: var(--primary-color);
     transform: scale(1.05);
 }
 
@@ -632,8 +641,8 @@
     top: -10px;
     left: 50%;
     transform: translateX(-50%);
-    background: var(--primary-color);
-    color: var(--accent-color);
+    background: var(--bg-color);
+    color: var(--primary-black);
     padding: 0.5rem 1rem;
     border-radius: var(--border-radius-sm);
     font-size: 0.85rem;
@@ -652,7 +661,7 @@
 
 .currency {
     font-size: 1.5rem;
-    color: var(--text-secondary);
+    color: var(--text-color);
 }
 
 .amount {
@@ -668,7 +677,7 @@
 
 .features-list li {
     padding: 0.5rem 0;
-    color: var(--text-secondary);
+    color: var(--text-color);
     border-bottom: 1px solid var(--border-color);
 }
 
@@ -679,7 +688,7 @@
 .order-btn {
     width: 100%;
     padding: 1rem 2rem;
-    background: var(--primary-color);
+    background: var(--bg-color);
     color: var(--accent-color);
     border: none;
     border-radius: var(--border-radius-sm);
@@ -716,7 +725,7 @@
 
 /* Footer */
 .site-footer {
-    background: var(--accent-color);
+    background: var(--primary-black);
     color: var(--white);
     padding: 3rem 0 1rem;
 }
@@ -801,7 +810,7 @@
 .newsletter-submit {
     padding: 0.75rem 1.5rem;
     background: var(--primary-color);
-    color: var(--accent-color);
+    color: var(--white);
     border: none;
     border-radius: var(--border-radius-sm);
     font-weight: 600;
@@ -810,8 +819,7 @@
 }
 
 .newsletter-submit:hover {
-    background: var(--white);
-    color: var(--accent-color);
+    background: var(--accent-color);
 }
 
 .social-links {
