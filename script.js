@@ -3,6 +3,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Initialize all functionality
     initNavigation();
+    initRightHoverMenu();
     initInteractiveQuestions();
     initAdvancedAnimations();
     initCounters();
@@ -120,6 +121,54 @@ function initNavigation() {
                 });
             }
         });
+    });
+}
+
+// Right Hover Menu Functionality
+function initRightHoverMenu() {
+    const rightMenu = document.getElementById('rightHoverMenu');
+    if (!rightMenu) return;
+    
+    const menuTrigger = rightMenu.querySelector('.menu-trigger');
+    const menuContent = rightMenu.querySelector('.menu-content');
+    const menuItems = rightMenu.querySelectorAll('.menu-item');
+    
+    // Add click functionality for menu items
+    menuItems.forEach(item => {
+        item.addEventListener('click', function(e) {
+            const href = this.getAttribute('href');
+            
+            if (href.startsWith('#')) {
+                e.preventDefault();
+                const targetElement = document.querySelector(href);
+                if (targetElement) {
+                    const headerHeight = document.querySelector('.site-header')?.offsetHeight || 80;
+                    
+                    gsap.to(window, {
+                        scrollTo: {
+                            y: targetElement,
+                            offsetY: headerHeight
+                        },
+                        duration: 1.2,
+                        ease: 'power3.inOut'
+                    });
+                }
+            }
+        });
+    });
+    
+    // Hide menu on scroll
+    let lastScrollTop = 0;
+    window.addEventListener('scroll', function() {
+        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        
+        if (scrollTop > lastScrollTop && scrollTop > 200) {
+            gsap.to(rightMenu, {x: '100px', opacity: 0.3, duration: 0.3});
+        } else {
+            gsap.to(rightMenu, {x: '0px', opacity: 1, duration: 0.3});
+        }
+        
+        lastScrollTop = scrollTop;
     });
 }
 

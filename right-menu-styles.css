@@ -1,0 +1,283 @@
+/* Right Hover Menu Styles */
+.right-hover-menu {
+    position: fixed;
+    top: 50%;
+    right: 20px;
+    transform: translateY(-50%);
+    z-index: 1000;
+    transition: all 0.3s ease;
+}
+
+.menu-trigger {
+    width: 50px;
+    height: 50px;
+    background: var(--primary-color);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 18px;
+    cursor: pointer;
+    box-shadow: 0 4px 20px rgba(244, 93, 1, 0.3);
+    transition: all 0.3s ease;
+}
+
+.menu-trigger:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 25px rgba(244, 93, 1, 0.4);
+}
+
+.menu-content {
+    position: absolute;
+    right: 60px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: white;
+    border-radius: 12px;
+    padding: 10px 0;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    min-width: 150px;
+}
+
+.right-hover-menu:hover .menu-content {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(-50%) translateX(-10px);
+}
+
+.menu-item {
+    display: block;
+    padding: 12px 20px;
+    color: var(--text-color);
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    border-radius: 8px;
+    margin: 2px 8px;
+}
+
+.menu-item:hover {
+    background: var(--primary-color);
+    color: white;
+    transform: translateX(5px);
+}
+
+/* Compact About Section */
+.about.compact {
+    padding: 40px 0;
+}
+
+.about.compact .section-header {
+    margin-bottom: 30px;
+}
+
+.about.compact .about-content {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto 40px;
+}
+
+.about.compact .lead-text {
+    font-size: 1.2rem;
+    line-height: 1.6;
+    color: var(--text-color);
+}
+
+/* Impact Section Logo Centering */
+.impact-logo-center {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.impact-logo {
+    max-width: 200px;
+    height: auto;
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.1));
+}
+
+.impact-logo.large {
+    max-width: 250px;
+}
+
+/* Enlarged Logo Styles */
+.logo-img.large {
+    height: 50px !important;
+    width: auto;
+}
+
+.footer-logo-img.large {
+    height: 60px !important;
+    width: auto;
+}
+
+.hero-logo.large {
+    max-width: 300px;
+    height: auto;
+}
+
+.cta-logo.large {
+    max-width: 250px;
+    height: auto;
+}
+
+/* Preorder Page Specific Styles */
+.preorder-page {
+    background: linear-gradient(135deg, var(--bg-color) 0%, var(--bg-secondary) 100%);
+}
+
+.preorder-hero {
+    padding: 120px 0 80px;
+    background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+    color: white;
+}
+
+.preorder-hero-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+}
+
+.book-logo-center {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.countdown-section {
+    padding: 60px 0;
+    background: var(--bg-color);
+}
+
+.pricing-section {
+    padding: 80px 0;
+}
+
+.trust-section {
+    padding: 40px 0;
+    background: var(--bg-secondary);
+}
+
+.social-impact {
+    padding: 80px 0;
+    background: linear-gradient(135deg, var(--accent-color), var(--primary-color));
+    color: white;
+}
+
+.impact-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+}
+
+.impact-visual {
+    text-align: center;
+}
+
+.impact-image {
+    width: 100%;
+    max-width: 400px;
+    border-radius: 16px;
+    margin-top: 20px;
+}
+
+.final-cta {
+    padding: 80px 0;
+    background: var(--primary-color);
+    color: white;
+    text-align: center;
+}
+
+.cta-content h2 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+}
+
+.cta-buttons {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    margin: 30px 0;
+}
+
+.cta-button.large {
+    padding: 15px 40px;
+    font-size: 1.1rem;
+}
+
+.cta-note {
+    font-size: 0.9rem;
+    opacity: 0.9;
+    margin-top: 15px;
+}
+
+/* Benefits Grid */
+.benefits-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.benefit-card {
+    background: white;
+    padding: 30px;
+    border-radius: 16px;
+    text-align: center;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.benefit-card:hover {
+    transform: translateY(-10px);
+}
+
+.benefit-icon {
+    font-size: 3rem;
+    margin-bottom: 20px;
+}
+
+.benefit-card h3 {
+    font-size: 1.3rem;
+    margin-bottom: 15px;
+    color: var(--text-color);
+}
+
+.benefit-card p {
+    color: var(--text-secondary);
+    line-height: 1.6;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+    .right-hover-menu {
+        display: none;
+    }
+    
+    .preorder-hero-content {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+    
+    .impact-content {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+    
+    .cta-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .benefits-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .about.compact {
+        padding: 30px 0;
+    }
+}

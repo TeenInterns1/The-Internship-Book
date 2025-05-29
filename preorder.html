@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pre-order | Teen Interns Book</title>
+    <link rel="icon" type="image/png" href="logos/favicon.png">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="preorder-styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollToPlugin.min.js"></script>
+</head>
+<body class="loading preorder-page">
+    
+    <div class="background-elements">
+        <div class="bg-shape shape1"></div>
+        <div class="bg-shape shape2"></div>
+        <div class="bg-shape shape3"></div>
+    </div>
+
+    <!-- Header -->
+    <header class="site-header" id="site-header">
+        <div class="container">
+            <nav class="nav-container">
+                <div class="logo">
+                    <a href="index.html" class="logo-link">
+                        <img src="logos/title.png" alt="Teen Interns" class="logo-img large">
+                    </a>
+                </div>
+                <div class="nav-links">
+                    <a href="index.html" class="nav-link">Home</a>
+                    <a href="team.html" class="nav-link">Team</a>
+                    <a href="qr-generator.html" class="nav-link">QR Generator</a>
+                </div>
+                <button class="mobile-menu-toggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu">
+        <div class="mobile-menu-links">
+            <a href="index.html" class="mobile-link">Home</a>
+            <a href="team.html" class="mobile-link">Team</a>
+            <a href="qr-generator.html" class="mobile-link">QR Generator</a>
+        </div>
+    </div>
+
+    <!-- Pre-order Hero Section -->
+    <section class="preorder-hero" id="preorder-hero">
+        <div class="container">
+            <div class="preorder-hero-content">
+                <div class="hero-info">
+                    <div class="book-logo-center">
+                        <img src="logos/TEENINTERNS_WHITE_TRANSPARENT.png" alt="Teen Interns Logo" class="hero-logo large">
+                    </div>
+                    <h1 class="hero-title">
+                        <span class="title-line">Pre-order</span>
+                        <span class="title-line title-highlight">THE INTERNSHIP BOOK</span>
+                    </h1>
+                    <h2 class="hero-subtitle">Be among the first to receive this groundbreaking guide</h2>
+                    <p class="hero-description">Join thousands of teens who are already preparing for their future. Get exclusive early access to the ultimate internship guide created by teenagers, for teenagers.</p>
+                </div>
+                <div class="book-cover">
+                    <img src="images/book-cover.jpg" alt="The Internship Book Cover">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Countdown Section -->
+    <section class="countdown-section" id="countdown">
+        <div class="container">
+            <div class="countdown animate-fade-up">
+                <div class="countdown-label">Launching in:</div>
+                <div class="countdown-timer">
+                    <div class="timer-unit">
+                        <span class="timer-number" data-count="64">0</span>
+                        <span class="timer-label">Days</span>
+                    </div>
+                    <div class="timer-unit">
+                        <span class="timer-number" data-count="12">0</span>
+                        <span class="timer-label">Hours</span>
+                    </div>
+                    <div class="timer-unit">
+                        <span class="timer-number" data-count="45">0</span>
+                        <span class="timer-label">Minutes</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Options Section -->
+    <section class="pricing-section" id="pricing">
+        <div class="container">
+            <div class="section-header animate-fade-up">
+                <h2 class="section-title">Choose Your Package</h2>
+                <p class="section-subtitle">Select the perfect option for your internship journey</p>
+            </div>
+            
+            <div class="pricing-options">
+                <div class="price-card animate-pop" style="--delay: 0.1s">
+                    <div class="card-header">
+                        <h3>Digital Edition</h3>
+                        <div class="price">
+                            <span class="currency">₹</span>
+                            <span class="amount">2,000</span>
+                        </div>
+                        <div class="price-note">Save ₹800 with early bird pricing</div>
+                    </div>
+                    
+                    <ul class="features-list">
+                        <li>📱 Digital book access</li>
+                        <li>🎥 All video content</li>
+                        <li>📝 Downloadable resources</li>
+                        <li>🔄 Lifetime updates</li>
+                        <li>📧 Email support</li>
+                    </ul>
+                    
+                    <button class="order-btn">Pre-order Digital</button>
+                    <p class="guarantee">30-day money-back guarantee</p>
+                </div>
+                
+                <div class="price-card featured animate-pop" style="--delay: 0.2s">
+                    <div class="popular-badge">Most Popular</div>
+                    <div class="card-header">
+                        <h3>Print + Digital Bundle</h3>
+                        <div class="price">
+                            <span class="currency">₹</span>
+                            <span class="amount">3,600</span>
+                        </div>
+                        <div class="price-note">Save ₹1,200 with early bird pricing</div>
+                    </div>
+                    
+                    <ul class="features-list">
+                        <li>📖 Physical book</li>
+                        <li>📱 Digital access</li>
+                        <li>🎥 All video content</li>
+                        <li>📦 Free worldwide shipping</li>
+                        <li>💯 First-edition benefits</li>
+                        <li>🎁 Bonus materials</li>
+                    </ul>
+                    
+                    <button class="order-btn">Pre-order Bundle</button>
+                    <p class="guarantee">30-day money-back guarantee</p>
+                </div>
+                
+                <div class="price-card animate-pop" style="--delay: 0.3s">
+                    <div class="card-header">
+                        <h3>Premium Package</h3>
+                        <div class="price">
+                            <span class="currency">₹</span>
+                            <span class="amount">6,000</span>
+                        </div>
+                        <div class="price-note">Save ₹2,000 with early bird pricing</div>
+                    </div>
+                    
+                    <ul class="features-list">
+                        <li>📖 Signed first edition</li>
+                        <li>📱 Digital access</li>
+                        <li>🎁 Exclusive merchandise</li>
+                        <li>🤝 Virtual meet with authors</li>
+                        <li>🎯 Private community access</li>
+                        <li>💼 Career mentorship session</li>
+                    </ul>
+                    
+                    <button class="order-btn">Pre-order Premium</button>
+                    <p class="guarantee">30-day money-back guarantee</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trust and Security Section -->
+    <section class="trust-section" id="trust">
+        <div class="container">
+            <div class="trust-badges animate-fade-up">
+                <div class="trust-item">
+                    <span class="trust-icon">🔒</span>
+                    <span>Secure payment</span>
+                </div>
+                <div class="trust-item">
+                    <span class="trust-icon">📦</span>
+                    <span>Free shipping worldwide</span>
+                </div>
+                <div class="trust-item">
+                    <span class="trust-icon">💯</span>
+                    <span>30-day money-back guarantee</span>
+                </div>
+                <div class="trust-item">
+                    <span class="trust-icon">⚡</span>
+                    <span>Instant digital access</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Social Impact Section -->
+    <section class="social-impact" id="social-impact">
+        <div class="container">
+            <div class="impact-content">
+                <div class="impact-visual animate-fade-right">
+                    <div class="impact-logo-center">
+                        <img src="logos/TEENINTERNS_WHITE_TRANSPARENT.png" alt="Teen Interns Logo" class="impact-logo large">
+                    </div>
+                    <img src="images/impact.jpg" alt="Teens benefitting from funded internships" class="impact-image">
+                </div>
+                
+                <div class="impact-info animate-fade-left">
+                    <h2>Your Purchase Makes a Difference</h2>
+                    <p class="impact-description">
+                        When you pre-order our book, you're not just investing in yourself—you're helping another teen access opportunities they couldn't otherwise afford.
+                    </p>
+                    
+                    <div class="impact-stats">
+                        <div class="impact-stat">
+                            <span class="impact-number" data-count="1000">0</span>
+                            <span class="impact-label">Funded Internships Goal</span>
+                        </div>
+                        <div class="impact-stat">
+                            <span class="impact-number" data-count="50">0</span>
+                            <span class="impact-label">Partner Companies</span>
+                        </div>
+                        <div class="impact-stat">
+                            <span class="impact-number" data-count="100">0</span>
+                            <span class="impact-label">% Transparent</span>
+                        </div>
+                    </div>
+                    
+                    <p>All profits from the book go directly to funding internships for teens who can't afford them. Track your impact with our transparent reporting system.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA Section -->
+    <section class="final-cta" id="final-cta">
+        <div class="container">
+            <div class="cta-content animate-fade-up">
+                <div class="cta-logo-center">
+                    <img src="logos/TEENINTERNS_WHITE_TRANSPARENT.png" alt="Teen Interns Logo" class="cta-logo large">
+                </div>
+                <h2>Ready to Start Your Internship Journey?</h2>
+                <p>Join thousands of teens who are already preparing for their future. Pre-order now and save with early bird pricing.</p>
+                <div class="cta-buttons">
+                    <a href="#pricing" class="cta-button primary large">Choose Your Package</a>
+                    <a href="index.html" class="cta-button secondary">Learn More</a>
+                </div>
+                <p class="cta-note">Early bird pricing ends soon. Don't miss out!</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <a href="index.html" class="footer-logo">
+                        <img src="logos/title.png" alt="Teen Interns" class="footer-logo-img large">
+                    </a>
+                    <p class="footer-tagline">Empowering the next generation through internships</p>
+                </div>
+                
+                <div class="footer-links">
+                    <div class="footer-group">
+                        <h4>Navigate</h4>
+                        <ul>
+                            <li><a href="index.html">Home</a></li>
+                            <li><a href="team.html">Team</a></li>
+                            <li><a href="qr-generator.html">QR Generator</a></li>
+                            <li><a href="preorder.html">Pre-order</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="footer-group">
+                        <h4>Resources</h4>
+                        <ul>
+                            <li><a href="#">Blog</a></li>
+                            <li><a href="#">Free Resources</a></li>
+                            <li><a href="#">Internship Finder</a></li>
+                            <li><a href="#">Success Stories</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="footer-group">
+                        <h4>Support</h4>
+                        <ul>
+                            <li><a href="#">Contact Us at</a></li>
+                            <li><a href="#">+91 90087 49238</a></li>
+                            <li><a href="#">or</a></li>
+                            <li><a href="#">impact@teeninternsthebook.com</a></li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="footer-newsletter">
+                    <h4>Stay Updated</h4>
+                    <p>Get the latest news and updates on the book launch</p>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="Your email" required class="newsletter-input">
+                        <button type="submit" class="newsletter-submit">Subscribe</button>
+                    </form>
+                    <div class="social-links">
+                        <a href="#" class="social-link">📸</a>
+                        <a href="#" class="social-link">🎵</a>
+                        <a href="#" class="social-link">📱</a>
+                        <a href="#" class="social-link">📺</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p class="copyright">&copy; 2025 Teen Interns. Made with ❤️ by teens, for teens.</p>
+                <p class="credit">This project was created entirely by teenage interns.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script src="page-transition.js"></script>
+    <script src="preorder-system.js"></script>
+    <script src="theme-toggle.js"></script>
+</body>
+</html>

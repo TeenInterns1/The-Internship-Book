@@ -167,10 +167,8 @@
 }
 
 .transition-photo {
-    /* padding-top: 60px;
-    padding-left: 20px; */
-    height: auto;
-    width: 300px;
+    /* padding: 60px; */
+    height: 150px;
     display: block;
 }
 
