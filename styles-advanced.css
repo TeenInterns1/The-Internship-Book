@@ -5,9 +5,11 @@
 }
 
 .sucess-stories .awards-grid .award-item animate-pop{
-   width: 12vw;
-   height: 12vh;
+   width: 150px;
+    height: 150px;
 }
+
+
 /* About Section */
 .about {
     padding: 5rem 0;
@@ -49,8 +51,11 @@
 
 .about-wrapper {
   display: flex;
-  height: 100vh;
+  height: 70vh;
   width: 100vw;
+  margin-top: 0;
+  margin-bottom: 0;
+  align-items: center;
   position: relative;
 }
 
@@ -140,7 +145,7 @@
 }
 
 .image-transition-container {
-    max-width: 400px;
+    max-width: 300px;
     border-radius: var(--border-radius-lg);
     overflow: hidden;
     box-shadow: var(--box-shadow);
@@ -641,10 +646,11 @@
     top: -10px;
     left: 50%;
     transform: translateX(-50%);
-    background: var(--bg-color);
+    background-image: radial-gradient(--white, --primary-yellow);
     color: var(--primary-black);
     padding: 0.5rem 1rem;
     border-radius: var(--border-radius-sm);
+    border-color: var(--primary-black);
     font-size: 0.85rem;
     font-weight: 600;
 }
@@ -692,6 +698,7 @@
     color: var(--accent-color);
     border: none;
     border-radius: var(--border-radius-sm);
+    border-color: var(--primary-black);
     font-weight: 600;
     font-size: 1.1rem;
     cursor: pointer;
