@@ -43,15 +43,36 @@
     position: relative;
 }
 
+.section-header{
+    padding: 2rem;
+}
+
+.about-content{
+    display: flex;
+    position: relative;
+    height: 100vh;
+    box-sizing: border-box;
+    overflow: visible;
+}
+
 .about-us{
     position: relative;
     height: 100vh;
     overflow-y: scroll;
 }
+
+.description-content{
+      flex: 1;
+      z-index: 2;
+      padding-right: 2rem;
+      max-width: 50%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+}
 .scroll-container-about {
     position: relative;
-    height: 150vh;
-    width: 100vw;
+    height: 200vh;
 }
 
 .yellow-box{
@@ -61,13 +82,9 @@
     height: 100vh;
     width: 70vw;
     background-color: var(--primary-yellow);
-   z-index: 0;
-} 
-
-.section-header, .description-content{
-    position: relative;
     z-index: 1;
-}
+    pointer-events: none;
+} 
 
 .spacer-about{
     height: 200vh;
