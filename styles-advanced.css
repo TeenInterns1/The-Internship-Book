@@ -1,9 +1,14 @@
 /* Advanced Styles - Uxpert inspired design patterns */
 .hero-content{
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
 }
+
+.hero-description{
+    color: var(--text-color);
+}
+
 .success-stories {
     background-color: var(--light-grey);
     height: 65vh;
@@ -96,6 +101,10 @@
   margin: 0 auto;
   text-align: center;
   color: #000;              /* ensure contrast */
+}
+
+.left-side, .yellow-box {
+  height: 100%;
 }
 
 .section-title {
@@ -643,7 +652,8 @@
 
 .price-card.featured {
     border-color: var(--primary-black);
-    background-image: radial-gradient(--white, --primary-yellow);
+    background: #ffffff;
+    background: radial-gradient(circle,rgba(255, 255, 255, 1) 0%, rgba(240, 233, 180, 1) 27%, rgba(233, 187, 63, 1) 100%);
     transform: scale(1.05);
 }
 
@@ -653,7 +663,7 @@
     left: 50%;
     transform: translateX(-50%);
     background-color: var(--accent-color);
-    color: var(--primary-black);
+    color: var(--white);
     padding: 0.5rem 1rem;
     border-radius: 5px;
     border-color: var(--primary-black);
@@ -702,8 +712,7 @@
     padding: 1rem 2rem;
     background: var(--bg-color);
     color: var(--accent-color);
-    border: none;
-    border-radius: 5px;
+    border: 5px;
     border-color: var(--primary-black);
     font-weight: 600;
     font-size: 1.1rem;
