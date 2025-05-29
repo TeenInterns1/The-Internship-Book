@@ -132,6 +132,8 @@ gsap.to(".yellow-box", {
       start: "top top",
       end: "bottom top",
       scrub: true,
+      scroller: ".about-us",
+      markers: true,
     }
   });
 
