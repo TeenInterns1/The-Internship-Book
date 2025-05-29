@@ -128,7 +128,7 @@ gsap.to(".yellow-box", {
     width: 0,
     ease: "none",
     scrollTrigger: {
-      trigger: ".scroll-container",
+      trigger: ".scroll-container-about",
       start: "top top",
       end: "bottom top",
       scrub: true,
