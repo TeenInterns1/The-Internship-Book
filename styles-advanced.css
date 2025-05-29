@@ -39,9 +39,10 @@
     color: var(--text-color);
 }
 
+}
 .scroll-container {
     position: relative;
-    height: 100vh;
+    height: 150vh;
     overflow: hidden;
 }
 
