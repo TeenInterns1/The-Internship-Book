@@ -124,19 +124,8 @@ function initNavigation() {
 }
 
 //Interactive scroll about us section
-gsap.to(".yellow-box", {
-    width: 0,
-    ease: "none",
-    scrollTrigger: {
-      trigger: ".right-side",
-      start: "top top",
-      end: +=100%",
-      scrub: true,
-      pin: true,
-      scroller: ".about-wrapper",
-      markers: true,
-    }
-  });
+
+
 
 
 // Interactive What/Why/How Section
