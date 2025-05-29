@@ -128,12 +128,12 @@ gsap.to(".yellow-box", {
     width: 0,
     ease: "none",
     scrollTrigger: {
-      trigger: ".scroll-container-about",
+      trigger: ".right-side",
       start: "top top",
       end: "bottom top",
       scrub: true,
       pin: true,
-      scroller: ".about-us",
+      scroller: ".about-wrapper",
       markers: true,
     }
   });
