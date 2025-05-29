@@ -41,35 +41,42 @@
 
 .about-wrapper {
   display: flex;
-  flex-direction: row;
-  position: relative;
   height: 100vh;
   width: 100vw;
+  position: relative;
 }
 
- .left-side {
-      flex: 0 0 30%;
-      padding: 2rem;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      background: var(--light-grey);
-    }
+/* LEFT SIDE */
+.left-side {
+  flex: 0 0 30%;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background: var(--light-grey);
+}
 
+/* RIGHT SIDE: yellow container */
 .yellow-box {
-      flex: 0 0 70%;
-      background: yellow;
-      padding: 2rem;
-      display: flex;
-      z-index:0;
-      flex-direction: column;
-      justify-content: center;
-    }
-.description-content{
-    text-align: center;
-    z-index: 10;
-.section-header {
-  max-width: 300px;
+  flex: 0 0 70%;
+  position: relative;       /* create stacking context */
+  background: var(--primary-yellow);
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  overflow: hidden;
+  z-index: 0;
+}
+
+/* TEXT that sits on top of the yellow box */
+.description-content {
+  position: relative;       /* lift above the yellow box */
+  z-index: 1;
+  max-width: 80%;
+  margin: 0 auto;
+  text-align: center;
+  color: #000;              /* ensure contrast */
 }
 
 .section-title {
@@ -81,7 +88,6 @@
   font-size: 1rem;
   color: gray;
 }
-
 
 
 .questions-list {
