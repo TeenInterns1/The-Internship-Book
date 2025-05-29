@@ -45,12 +45,12 @@
 }
 .scroll-container-about {
     position: relative;
-    height: 150vh;
+    height: 180vh;
     overflow: hidden;
 }
 
 .yellow-box{
-    position: fixed;
+    position: absolute;
     top: 0;
     right: 0;
     height: 100vh;
