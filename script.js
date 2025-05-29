@@ -130,7 +130,7 @@ gsap.to(".yellow-box", {
     scrollTrigger: {
       trigger: ".right-side",
       start: "top top",
-      end: "bottom top",
+      end: +=100%",
       scrub: true,
       pin: true,
       scroller: ".about-wrapper",
