@@ -104,8 +104,8 @@
 }
 
 .quotes-container {
-   width: 70vw;
    display: flex;
+    flex-direction: column;
    justify-content: flex-end;
 }
 
@@ -799,8 +799,8 @@
 
 /* Footer */
 .site-footer {
-    background: var(--primary-black);
-    color: var(--white);
+    background: var(--pure-black);
+    color: var(--pure-white);
     padding: 3rem 0 1rem;
 }
 
@@ -835,7 +835,7 @@
 }
 
 .footer-group h4 {
-    color: var(--white);
+    color: var(--pure-white);
     margin-bottom: 1rem;
     font-size: 1.1rem;
 }
