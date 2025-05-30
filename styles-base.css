@@ -10,24 +10,24 @@
 
 :root {
     /* Updated Color Palette with better contrast */
-    --light-grey: #F7F7F7;          /* Light background */
+    --light-grey: #EFEFEF;          /* Light background */
     --teal-primary: #009A94;         /* Teal green - main accent */
     --yellow-primary: #E9BB3F;       /* Yellow - secondary accent */
     --dark-grey: #262626;            /* Dark grey/black - text */
-    --pure-black: #000000;           /* Pure black for better contrast */
-    --pure-white: #FFFFFF;           /* Pure white */
+    --black: #262626;           /* Pure black for better contrast */
+    --white:#F7F7F7 ;           /* Pure white */
     
     /* Light Theme Colors (default) */
-    --primary-color: var(--teal-primary);
-    --secondary-color: var(--yellow-primary);
-    --accent-color: var(--yellow-primary);
-    --text-color: var(--pure-black);           /* Changed to pure black for better contrast */
-    --text-secondary: var(--dark-grey);       /* Slightly lighter for secondary text */
-   --text-button: var(--pure-white);
+    --primary-color: var(--yellow-primary);
+    --secondary-color: var(--teal-primary);
+    --accent-color: var(--teal-primary);
+    --text-color: var(--black);           /* Changed to pure black for better contrast */
+    --text-secondary: var(--primary-teal);       /* Slightly lighter for secondary text */
+    --text-button: var(--white);
     --bg-color: var(--light-grey);
-    --bg-secondary: var(--pure-white);
-    --bg-alt-color: #f0f9ff;
-    --bg-fills: var(--teal-primary);
+    --bg-secondary: var(--white);
+    --bg-alt-color: var(--light-grey);
+    --bg-fills: var(--yellow-primary);
     --border-color: #e5e7eb;
     --shadow-color: rgba(0, 154, 148, 0.1);
     --shadow-color-hover: rgba(0, 154, 148, 0.15);
@@ -93,7 +93,7 @@
 /* Automatic Dark Mode based on system preference */
 @media (prefers-color-scheme: dark) {
     :root:not([data-theme="light"]) {
-        --text-color: var(--pure-white);
+        --text-color: #FFFFFF;
         --text-secondary: #e5e7eb;
         --bg-color: #1a1a1a;
         --bg-secondary: #262626;
@@ -101,7 +101,7 @@
         --border-color: #444444;
         --shadow-color: rgba(0, 0, 0, 0.3);
         --shadow-color-hover: rgba(0, 0, 0, 0.4);
-        --subtitle-color: #d1d5db;
+        --subtitle-color: var(--white);
     }
 }
 
