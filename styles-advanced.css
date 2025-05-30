@@ -87,8 +87,14 @@
     margin: 2rem 0;
 }
 
-    
+.quotes .container{
+    background-color: var(--bg-color);
 }
+
+.friends-section .container{
+    background-color: var(--bg-secondary);
+}
+
 .quotes-container cite {
     display: block;
     margin-top: 1rem;
