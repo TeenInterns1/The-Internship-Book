@@ -70,7 +70,7 @@
     position: relative;
 }
 
-.features .features-grid{
+.features-grid .container{
     display: flex;
     justify-content: space-evenly;
     flex-direction: row;
@@ -78,7 +78,7 @@
 }
 
 /*Quotes*/
-.preview-quote {
+.quote {
     font-style: italic;
     font-size: 1.2rem;
     color: var(--text-color);
