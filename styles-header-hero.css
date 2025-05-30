@@ -4,7 +4,7 @@
     top: 0;
     left: 0;
     right: 0;
-    background: rgba(255, 255, 255, 0.95);
+    background: rgba(255, 255, 255, 0.05);
     backdrop-filter: blur(10px);
     z-index: 1000;
     transition: all var(--transition-fast);
@@ -19,7 +19,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1rem 0;
+    /* padding: 1rem 0; */
 }
 
 .logo-img {
