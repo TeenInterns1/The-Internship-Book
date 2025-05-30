@@ -155,7 +155,7 @@ class QRCodeGenerator {
                 text: fullUrl,
                 width: 256,
                 height: 256,
-                colorDark: "#000000",
+                // colorDark: "#000000",
                 colorLight: "#ffffff",
                 correctLevel: QRCode.CorrectLevel.H
             });
@@ -217,7 +217,7 @@ class QRCodeGenerator {
                         text: this.baseUrl + page.path,
                         width: 128,
                         height: 128,
-                        colorDark: "#000000",
+                        // colorDark: "#000000",
                         colorLight: "#ffffff",
                         correctLevel: QRCode.CorrectLevel.H
                     });
