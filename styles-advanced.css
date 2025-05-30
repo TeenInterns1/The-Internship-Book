@@ -219,7 +219,7 @@
 .question-nav-btn.active {
     background: var(--primary-color);
     border-color: var(--primary-color);
-    color: var(--accent-color);
+    color: var(--text-button);
     transform: translateY(-5px);
     box-shadow: var(--box-shadow-hover);
 }
@@ -502,7 +502,7 @@
 .tab-btn:hover {
     background: var(--primary-color);
     border-color: var(--primary-color);
-    color: var(--accent-color);
+    color: var(--text-button);
 }
 
 .tab-panel {
@@ -856,6 +856,7 @@
 
 .newsletter-submit:hover {
     background: var(--accent-color);
+    color: var(--text-color);
 }
 
 .social-links {
