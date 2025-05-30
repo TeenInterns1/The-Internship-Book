@@ -15,6 +15,66 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     
     <style>
+        /* Left Sidebar Navigation */
+        .left-sidebar {
+            position: fixed;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 20px 15px;
+            border-radius: 0 15px 15px 0;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            border: 1px solid var(--border-color);
+        }
+        
+        [data-theme="dark"] .left-sidebar {
+            background: rgba(26, 26, 26, 0.95);
+            border-color: var(--border-color);
+        }
+        
+        .sidebar-nav {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        
+        .sidebar-link {
+            display: block;
+            color: var(--text-color);
+            text-decoration: none;
+            padding: 10px 15px;
+            border-radius: 8px;
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: all var(--transition-fast);
+            white-space: nowrap;
+        }
+        
+        .sidebar-link:hover {
+            background: var(--primary-color);
+            color: white;
+            transform: translateX(5px);
+        }
+        
+        .sidebar-link.active {
+            background: var(--primary-color);
+            color: white;
+        }
+        
+        /* Dark mode sidebar links */
+        [data-theme="dark"] .sidebar-link {
+            color: var(--pure-white);
+        }
+        
+        @media (max-width: 768px) {
+            .left-sidebar {
+                display: none;
+            }
+        }
+        
         .team-page-section {
             padding: 100px 0 60px;
         }
@@ -28,33 +88,19 @@
         .team-intro h1 {
             font-size: 3rem;
             margin-bottom: 20px;
-            color: #333;
+            color: var(--pure-black);
+        }
+        
+        .team-intro p {
+            font-size: 1.2rem;
+            color: var(--pure-black);
+            line-height: 1.6;
         }
         
         /* Dark mode team intro styling */
         [data-theme="dark"] .team-intro h1,
         [data-theme="dark"] .team-intro p {
             color: var(--pure-white) !important;
-        }
-        
-        [data-theme="dark"] .admin-title,
-        [data-theme="dark"] .admin-subtitle {
-            color: var(--pure-white) !important;
-        }
-        
-        @media (prefers-color-scheme: dark) {
-            :root:not([data-theme="light"]) .team-intro h1,
-            :root:not([data-theme="light"]) .team-intro p,
-            :root:not([data-theme="light"]) .admin-title,
-            :root:not([data-theme="light"]) .admin-subtitle {
-                color: var(--pure-white) !important;
-            }
-        }
-        
-        .team-intro p {
-            font-size: 1.2rem;
-            color: #666;
-            line-height: 1.6;
         }
         
         .book-icon {
@@ -467,6 +513,21 @@
         <div class="bg-shape shape2"></div>
         <div class="bg-shape shape3"></div>
     </div>
+
+    <!-- Left Sidebar Navigation -->
+    <nav class="left-sidebar" id="leftSidebar">
+        <div class="sidebar-nav">
+            <a href="index.html#preview" class="sidebar-link">Sneak Peek</a>
+            <a href="index.html#about" class="sidebar-link">About the Book</a>
+            <a href="index.html#what-why-how" class="sidebar-link">What/Why/How</a>
+            <a href="index.html#success-stories" class="sidebar-link">Readers Success</a>
+            <a href="index.html#work-love" class="sidebar-link">We Love Our Work</a>
+            <a href="index.html#impact" class="sidebar-link">Making an Impact</a>
+            <a href="index.html#features" class="sidebar-link">QR/Illustrations/Stories</a>
+            <a href="index.html#friends" class="sidebar-link">Our Friends</a>
+            <a href="preorder.html" class="sidebar-link">Pre-order Now</a>
+        </div>
+    </nav>
 
     
     <header class="site-header" id="site-header">

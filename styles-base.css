@@ -22,7 +22,7 @@
     --secondary-color: var(--yellow-primary);
     --accent-color: var(--yellow-primary);
     --text-color: var(--pure-black);           /* Changed to pure black for better contrast */
-    --text-secondary: var(--dark-grey);        /* Slightly lighter for secondary text */
+    --text-secondary: var(--pure-black);       /* Changed to black for consistency */
     --bg-color: var(--light-grey);
     --bg-secondary: var(--pure-white);
     --bg-alt-color: #f0f9ff;
@@ -30,7 +30,7 @@
     --border-color: #e5e7eb;
     --shadow-color: rgba(0, 154, 148, 0.1);
     --shadow-color-hover: rgba(0, 154, 148, 0.15);
-    --subtitle-color: var(--dark-grey);
+    --subtitle-color: var(--pure-black);        /* Changed to black */
     --highlight-color: var(--yellow-primary);
     
     /* Typography */

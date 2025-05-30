@@ -187,7 +187,10 @@
 }
 
 .title-highlight {
-    color: var(--primary-color);
+    color: var(--pure-black);           /* Black text on yellow background */
+    background: var(--yellow-primary);  /* Yellow background */
+    padding: 0.2rem 0.5rem;
+    border-radius: 8px;
     position: relative;
 }
 

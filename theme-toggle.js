@@ -94,9 +94,9 @@ class ThemeManager {
         if (storedTheme) {
             this.applyTheme(storedTheme);
         } else {
-            // First visit - use system preference
-            this.setStoredTheme(this.themes.AUTO);
-            this.applyTheme(this.themes.AUTO);
+            // First visit - default to light theme
+            this.setStoredTheme(this.themes.LIGHT);
+            this.applyTheme(this.themes.LIGHT);
         }
     }
     
