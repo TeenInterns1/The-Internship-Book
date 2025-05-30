@@ -4,16 +4,16 @@
     top: 0;
     left: 0;
     right: 0;
-    background: rgba(255, 255, 255, 0.05);
+    background: rgba(255, 255, 255, 0.95);
     backdrop-filter: blur(10px);
     z-index: 1000;
     transition: all var(--transition-fast);
     border-bottom: 1px solid var(--border-color);
 }
 
-[data-theme="dark"] .site-header {
+/* [data-theme="dark"] .site-header {
     background: rgba(26, 26, 26, 0.95);
-}
+} */
 
 .nav-container {
     display: flex;
