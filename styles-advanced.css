@@ -70,9 +70,10 @@
     position: relative;
 }
 
-.features-grid{
+.features .features-grid{
     display: flex;
     justify-content: space-evenly;
+    flex-direction: row;
     align-items: center;
 }
 
@@ -86,16 +87,6 @@
     margin: 2rem 0;
 }
 
-.quotes-container{
-  background-color: var(--bg-color);
-    max-width: 65vw;
-}
-
-.quotes{
-   display: flex;
-   justify-content: space-between;
-   align-items: center;
-}
     
 }
 .quotes-container cite {
@@ -106,9 +97,6 @@
     font-style: normal;
 }
 
-.quotes .container{
-    background-color: var(--bg-fills);
-}
 
 /* LEFT SIDE */
 .left-side {
