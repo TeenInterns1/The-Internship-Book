@@ -70,6 +70,34 @@
     position: relative;
 }
 
+.features-grid .container{
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: row;
+    align-items: center;
+}
+
+/*Quotes*/
+.quote {
+    font-style: italic;
+    font-size: 1.2rem;
+    color: var(--text-color);
+    border-left: 4px solid var(--primary-color);
+    padding-left: 1.5rem;
+    margin: 2rem 0;
+}
+
+    
+}
+.quotes-container cite {
+    display: block;
+    margin-top: 1rem;
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    font-style: normal;
+}
+
+
 /* LEFT SIDE */
 .left-side {
     flex: 0 0 30%;
@@ -219,7 +247,7 @@
 .question-nav-btn.active {
     background: var(--primary-color);
     border-color: var(--primary-color);
-    color: var(--accent-color);
+    color: var(--text-button);
     transform: translateY(-5px);
     box-shadow: var(--box-shadow-hover);
 }
@@ -502,7 +530,7 @@
 .tab-btn:hover {
     background: var(--primary-color);
     border-color: var(--primary-color);
-    color: var(--accent-color);
+    color: var(--text-button);
 }
 
 .tab-panel {
@@ -856,6 +884,7 @@
 
 .newsletter-submit:hover {
     background: var(--accent-color);
+    color: var(--text-color);
 }
 
 .social-links {
