@@ -22,7 +22,8 @@
     --secondary-color: var(--yellow-primary);
     --accent-color: var(--yellow-primary);
     --text-color: var(--pure-black);           /* Changed to pure black for better contrast */
-    --text-secondary: var(--dark-grey);        /* Slightly lighter for secondary text */
+    --text-secondary: var(--dark-grey);       /* Slightly lighter for secondary text */
+   --text-button: var(--pure-white);
     --bg-color: var(--light-grey);
     --bg-secondary: var(--pure-white);
     --bg-alt-color: #f0f9ff;
