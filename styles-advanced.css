@@ -103,6 +103,12 @@
     font-style: normal;
 }
 
+.quotes-container {
+   width: 70vw;
+   display: flex;
+   justify-content: flex-end;
+}
+
 
 /* LEFT SIDE */
 .left-side {
