@@ -126,13 +126,14 @@
 
 /* Preorder Page Specific Styles */
 .preorder-page {
-    background: linear-gradient(135deg, var(--bg-color) 0%, var(--bg-secondary) 100%);
+    background-color: var(--bg-color);
+    color: var(--text-color);
 }
 
 .preorder-hero {
     padding: 120px 0 80px;
-    background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
-    color: white;
+    background-color: var(--bg-secondary);
+    color: var(--text-color);
 }
 
 .preorder-hero-content {
