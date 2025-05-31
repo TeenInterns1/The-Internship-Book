@@ -4,7 +4,7 @@
     top: 0;
     left: 0;
     right: 0;
-    background: rgba(255, 255, 255, 0.95);
+    background: var(--yellow-primary);
     backdrop-filter: blur(10px);
     z-index: 1000;
     transition: all var(--transition-fast);
@@ -51,6 +51,7 @@
 }
 
 /* Dark mode navigation text */
+/*
 [data-theme="dark"] .nav-link {
     color: var(--pure-white) !important;
 }
@@ -68,10 +69,11 @@
         background: var(--pure-white);
     }
 }
+    */
 
 .nav-cta {
     background: var(--primary-color);
-    color: var(--pure-white) !important;
+    color: var(--text-button) !important; /*variable for text color on teal button*/
     padding: 0.75rem 1.5rem;
     border-radius: var(--border-radius-sm);
     font-weight: 600;
@@ -141,6 +143,7 @@
 }
 
 /* Dark mode mobile menu text */
+/*
 [data-theme="dark"] .mobile-link {
     color: var(--pure-white) !important;
 }
@@ -156,7 +159,7 @@
     color: var(--pure-white) !important;
     padding: 1rem 2rem;
     border-radius: var(--border-radius-sm);
-}
+}*/
 
 /* Hero Section - Enhanced with better contrast */
 .hero {
