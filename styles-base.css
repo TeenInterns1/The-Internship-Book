@@ -404,7 +404,9 @@ a:focus-visible {
    ====================================== */
 
 section {
-    padding: var(--spacing-xl) 0;
+    /* padding: var(--spacing-xl) 0; */
+    padding-top: 0px;
+    padding-bottom: 80px;
     position: relative;
 }
 
