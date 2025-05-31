@@ -187,8 +187,7 @@
 }
 
 .title-highlight {
-    color: var(--pure-black);           /* Black text on yellow background */
-    background: var(--yellow-primary);  /* Yellow background */
+    color: var(--yellow-primary);          
     padding: 0.2rem 0.5rem;
     border-radius: 8px;
     position: relative;
@@ -196,7 +195,7 @@
 
 .hero-subtitle {
     font-size: 1.5rem;
-    color: var(--text-secondary);
+    color: var(--teal-primary);
     margin-bottom: 1.5rem;
     font-weight: 500;
 }
@@ -271,13 +270,14 @@
 
 .cta-button.primary {
     background: var(--primary-color);
-    color: var(--pure-white);
+    color: var(--pure-black);
     border-color: var(--primary-color);
 }
 
 .cta-button.primary:hover {
     background: var(--accent-color);
     color: var(--pure-white);
+    border-color: var(--accent-color)
     transform: translateY(-2px);
     box-shadow: var(--box-shadow);
 }
