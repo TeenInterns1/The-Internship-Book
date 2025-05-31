@@ -24,10 +24,41 @@
             align-items: center;
         }
         
+        /* Countdown timer responsive adjustments */
+        .countdown-timer {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .timer-unit {
+            min-width: 70px;
+            text-align: center;
+        }
+        
         @media (max-width: 768px) {
             .hero-content {
                 grid-template-columns: 1fr;
                 gap: 40px;
+            }
+            
+            .countdown-timer {
+                gap: 15px;
+            }
+            
+            .timer-unit {
+                min-width: 60px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .countdown-timer {
+                gap: 10px;
+            }
+            
+            .timer-unit {
+                min-width: 50px;
             }
         }
         
@@ -78,6 +109,7 @@
         </div>
     </header>
 
+    <!-- Mobile Menu -->
     <div class="mobile-menu">
         <div class="mobile-menu-links">
             <a href="index.html" class="mobile-link">Home</a>
@@ -127,6 +159,10 @@
                     <div class="timer-unit">
                         <span class="timer-number" data-count="45">0</span>
                         <span class="timer-label">Minutes</span>
+                    </div>
+                    <div class="timer-unit">
+                        <span class="timer-number" data-count="30">0</span>
+                        <span class="timer-label">Seconds</span>
                     </div>
                 </div>
             </div>

@@ -50,10 +50,16 @@ let selectedPackage = null;
 
 // Initialize pre-order system
 function initPreorderSystem() {
-    updateCountdown();
-    setInterval(updateCountdown, 1000);
-    setupPreorderButtons();
-    setupFormValidation();
+    try {
+        console.log('Initializing preorder system...');
+        updateCountdown();
+        setInterval(updateCountdown, 1000);
+        setupPreorderButtons();
+        setupFormValidation();
+        console.log('Preorder system initialized successfully');
+    } catch (error) {
+        console.error('Error initializing preorder system:', error);
+    }
 }
 
 // Setup pre-order buttons
@@ -553,30 +559,58 @@ function showSuccessMessage(orderData) {
 
 // Countdown timer
 function updateCountdown() {
-    const launchDate = new Date('2025-07-24T00:00:00').getTime();
-    const now = new Date().getTime();
-    const distance = launchDate - now;
-    
-    if (distance > 0) {
-        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    try {
+        const launchDate = new Date('2025-06-10T00:00:00').getTime();
+        const now = new Date().getTime();
+        const distance = launchDate - now;
         
-        updateCountdownDisplay(days, hours, minutes);
-    } else {
-        updateCountdownDisplay(0, 0, 0);
-        handleLaunchComplete();
+        if (distance > 0) {
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+            
+            updateCountdownDisplay(days, hours, minutes, seconds);
+        } else {
+            updateCountdownDisplay(0, 0, 0, 0);
+            handleLaunchComplete();
+        }
+    } catch (error) {
+        console.error('Error updating countdown:', error);
     }
 }
 
-function updateCountdownDisplay(days, hours, minutes) {
-    const daysEl = document.querySelector('[data-count="64"]');
-    const hoursEl = document.querySelector('[data-count="12"]');
-    const minutesEl = document.querySelector('[data-count="45"]');
-    
-    if (daysEl) daysEl.textContent = days;
-    if (hoursEl) hoursEl.textContent = String(hours).padStart(2, '0');
-    if (minutesEl) minutesEl.textContent = String(minutes).padStart(2, '0');
+function updateCountdownDisplay(days, hours, minutes, seconds) {
+    try {
+        // Find countdown elements by their labels instead of data-count values
+        const timerUnits = document.querySelectorAll('.timer-unit');
+        
+        if (timerUnits.length === 0) {
+            console.warn('No timer units found');
+            return;
+        }
+        
+        timerUnits.forEach(unit => {
+            const label = unit.querySelector('.timer-label');
+            const number = unit.querySelector('.timer-number');
+            
+            if (label && number) {
+                const labelText = label.textContent.toLowerCase();
+                
+                if (labelText.includes('day')) {
+                    number.textContent = days;
+                } else if (labelText.includes('hour')) {
+                    number.textContent = String(hours).padStart(2, '0');
+                } else if (labelText.includes('minute')) {
+                    number.textContent = String(minutes).padStart(2, '0');
+                } else if (labelText.includes('second')) {
+                    number.textContent = String(seconds).padStart(2, '0');
+                }
+            }
+        });
+    } catch (error) {
+        console.error('Error updating countdown display:', error);
+    }
 }
 
 function handleLaunchComplete() {
@@ -617,7 +651,10 @@ function showNotification(message, type = 'info') {
 
 // Initialize when DOM is ready
 document.addEventListener('DOMContentLoaded', function() {
-    initPreorderSystem();
+    // Only initialize if we're on a page with countdown timer
+    if (document.querySelector('.countdown-timer')) {
+        initPreorderSystem();
+    }
 });
 
 // Export for global access
