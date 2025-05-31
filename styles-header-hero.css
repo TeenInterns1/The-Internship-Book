@@ -4,7 +4,7 @@
     top: 0;
     left: 0;
     right: 0;
-    background: var(--yellow-primary);
+    background: var(--pure-white);
     backdrop-filter: blur(10px);
     z-index: 1000;
     transition: all var(--transition-fast);
