@@ -383,6 +383,7 @@ a:focus-visible {
     max-width: var(--container-width);
     margin: 0 auto;
     padding: 0 var(--container-padding);
+    padding-top: 60px;
 }
 
 /* Responsive container adjustments */
