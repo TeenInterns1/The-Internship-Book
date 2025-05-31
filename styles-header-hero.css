@@ -39,7 +39,7 @@
 }
 
 .nav-link {
-    color: var(--text-color);
+    color: var(--pure-black);
     font-weight: 500;
     font-size: var(--font-size-base);
     transition: color var(--transition-fast);
@@ -187,8 +187,8 @@
 }
 
 .title-highlight {
-    color: var(--pure-black);           /* Black text on yellow background */
-    background: var(--yellow-primary);  /* Yellow background */
+    color: var(--text-color);           /* Regular text color without background */
+    /* background: var(--yellow-primary);  Yellow background removed */
     padding: 0.2rem 0.5rem;
     border-radius: 8px;
     position: relative;

@@ -109,6 +109,16 @@
    justify-content: flex-end;
 }
 
+.quotes-person {
+    height: 150px;
+    width: 150px;
+    border-radius: 50%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    overflow: hidden;
+    margin-bottom: 1rem;
+    position: relative;
+}
+
 
 /* LEFT SIDE */
 .left-side {
@@ -634,7 +644,7 @@
 
 .impact-description {
     font-size: 1.1rem;
-    color: var(--text-secondary);
+    color: var(--text-color);
     line-height: 1.6;
 }
 
@@ -824,7 +834,7 @@
 }
 
 .footer-tagline {
-    color: rgba(0, 0, 0, 0.8);
+    color: var(--text-secondary);
     margin: 0;
 }
 
@@ -849,8 +859,7 @@
 }
 
 .footer-group a {
-    color: rgba(0, 0, 0, 0.8);
-    ;
+    color: var(--text-secondary);
     text-decoration: none;
     transition: color var(--transition-fast);
 }
@@ -864,8 +873,7 @@
 }
 
 .footer-newsletter p {
-    color: rgba(0, 0, 0, 0.8);
-    ;
+    color: var(--text-secondary);
     margin-bottom: 1rem;
 }
 
@@ -922,8 +930,7 @@
 
 .copyright,
 .credit {
-    color: rgba(0, 0, 0, 0.8);
-    ;
+    color: var(--text-secondary);
     margin: 0.25rem 0;
     font-size: 0.9rem;
 }

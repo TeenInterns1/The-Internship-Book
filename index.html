@@ -23,12 +23,34 @@
             top: 50%;
             transform: translateY(-50%);
             z-index: 1000;
-            background: rgba(255, 255, 255, 0);
+            background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(2px);
-            padding: 20px 15px;
+            padding: 10px;
             border-radius: 0 15px 15px 0;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
             border: 1px solid var(--border-color);
+            transition: all var(--transition-normal);
+        }
+        
+        .left-sidebar.collapsed .sidebar-nav {
+            display: none;
+        }
+        
+        .sidebar-toggle {
+            background: none;
+            border: none;
+            font-size: 1.2rem;
+            cursor: pointer;
+            padding: 8px;
+            border-radius: 4px;
+            color: var(--pure-black);
+            margin-bottom: 10px;
+            transition: all var(--transition-fast);
+        }
+        
+        .sidebar-toggle:hover {
+            background: var(--primary-color);
+            color: white;
         }
         
         /* [data-theme="dark"] .left-sidebar {
@@ -39,17 +61,18 @@
         .sidebar-nav {
             display: flex;
             flex-direction: column;
-            gap: 15px;
+            gap: 10px;
+            padding: 5px;
         }
         
         .sidebar-link {
             display: block;
-            color: var(--text-color);
+            color: var(--pure-black);
             text-decoration: none;
-            padding: 10px 15px;
-            border-radius: 8px;
+            padding: 8px 12px;
+            border-radius: 6px;
             font-weight: 500;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             transition: all var(--transition-fast);
             white-space: nowrap;
         }
@@ -105,7 +128,8 @@
 
     <!-- Left Sidebar Navigation -->
     <nav class="left-sidebar" id="leftSidebar">
-        <div class="sidebar-nav">
+        <button class="sidebar-toggle" id="sidebarToggle">☰</button>
+        <div class="sidebar-nav" id="sidebarNav">
             <a href="#preview" class="sidebar-link">Sneak Peek</a>
             <a href="#about" class="sidebar-link">About the Book</a>
             <a href="#what-why-how" class="sidebar-link">What/Why/How</a>
@@ -113,6 +137,7 @@
             <a href="#work-love" class="sidebar-link">We Love Our Work</a>
             <a href="#impact" class="sidebar-link">Making an Impact</a>
             <a href="#features" class="sidebar-link">QR/Illustrations/Stories</a>
+            <a href="#quotes" class="sidebar-link">What They Say</a>
             <a href="#friends" class="sidebar-link">Our Friends</a>
             <a href="preorder.html" class="sidebar-link">Pre-order Now</a>
         </div>
@@ -460,9 +485,9 @@
                     "Side hustles. Build your own product. Passion projects. It’s really your time.
 India is no longer just the back office of the world - we’re a creator economy, and our biggest strength is our talent. From metros to rural India, there’s a rising hunger to build, innovate, and take charge - as entrepreneurs or micro-entrepreneurs. Today’s teens / youth are stepping into a world where holding two careers - one for passion, one for profession, could become the norm. And that’s your edge. You have the brightest runway ahead to lead the new Bharat wave." 
                 </blockquote>
-                <cite>- Ronnie Screwvala, Co-founder upGard & Swades Foundation</cite>
+                <cite>- Ronnie Screwvala, Co-founder upGrad & Swades Foundation</cite>
                 <div class="quotes-profile">
-                    <img src="person" alt="Picture of person">
+                    <img src="person.jpg" alt="Picture of person" class="quotes-person">
                 </div>
             </div>
         </div>

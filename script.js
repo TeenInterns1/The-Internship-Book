@@ -36,6 +36,16 @@ function initNavigation() {
     const mobileLinks = document.querySelectorAll('.mobile-link');
     const siteHeader = document.querySelector('.site-header');
     
+    // Sidebar toggle functionality
+    const sidebarToggle = document.querySelector('#sidebarToggle');
+    const leftSidebar = document.querySelector('#leftSidebar');
+    
+    if (sidebarToggle && leftSidebar) {
+        sidebarToggle.addEventListener('click', function() {
+            leftSidebar.classList.toggle('collapsed');
+        });
+    }
+    
     // Mobile menu toggle with GSAP animations
     if (mobileMenuToggle && mobileMenu) {
         mobileMenuToggle.addEventListener('click', function() {
