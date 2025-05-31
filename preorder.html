@@ -16,17 +16,32 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollToPlugin.min.js"></script>
     
     <style>
+        /* Hero section spacing improvement */
+        .hero-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px; /* Increased gap */
+            align-items: center;
+        }
+        
+        @media (max-width: 768px) {
+            .hero-content {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+        }
+        
         /* Dark mode styling for preorder page */
-        /* [data-theme="dark"] .preorder-hero .hero-title,
-        [data-theme="dark"] .preorder-hero .hero-subtitle,
-        [data-theme="dark"] .preorder-hero .hero-description {
+        /* [data-theme="dark"] .hero .hero-title,
+        [data-theme="dark"] .hero .hero-subtitle,
+        [data-theme="dark"] .hero .hero-description {
             color: var(--pure-white) !important;
         } */
         
         /* @media (prefers-color-scheme: dark) {
-            :root:not([data-theme="light"]) .preorder-hero .hero-title,
-            :root:not([data-theme="light"]) .preorder-hero .hero-subtitle,
-            :root:not([data-theme="light"]) .preorder-hero .hero-description {
+            :root:not([data-theme="light"]) .hero .hero-title,
+            :root:not([data-theme="light"]) .hero .hero-subtitle,
+            :root:not([data-theme="light"]) .hero .hero-description {
                 color: var(--pure-white) !important;
             }
         } */
@@ -73,19 +88,21 @@
     </div>
 
     <!-- Pre-order Hero Section -->
-    <section class="preorder-hero" id="preorder-hero">
+    <section class="hero" id="preorder-hero">
         <div class="container">
-            <div class="preorder-hero-content">
+            <div class="hero-content">
                 <div class="hero-info">
-                    <div class="book-logo-center">
-                        <img src="logos/title.png" alt="Teen Interns Logo" class="hero-logo large">
-                    </div>
                     <h1 class="hero-title">
                         <span class="title-line">Pre-order</span>
                         <span class="title-line title-highlight">THE INTERNSHIP BOOK</span>
                     </h1>
-                    <h2 class="hero-subtitle">Be among the first to receive this groundbreaking guide</h2>
-                    <p class="hero-description">Join thousands of teens who are already preparing for their future. Get exclusive early access to the ultimate internship guide created by teenagers, for teenagers.</p>
+                    <h2 class="hero-subtitle">Be among the <strong>first</strong> to receive this <strong>groundbreaking guide</strong></h2>
+                    <p class="hero-description">Join thousands of teens who are already preparing for their future. Get exclusive early access to the ultimate internship guide created by teenagers, for teenagers. Empowering the next generation through innovative career guidance and meaningful opportunities.</p>
+                
+                    <div class="hero-cta">
+                        <a href="#pricing" class="cta-button primary">Choose Your Package</a>
+                        <a href="index.html" class="cta-button secondary">Learn More</a>
+                    </div>
                 </div>
                 <div class="book-cover">
                     <img src="images/book-cover.jpg" alt="The Internship Book Cover">
