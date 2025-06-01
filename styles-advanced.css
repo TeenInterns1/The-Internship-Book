@@ -10,8 +10,11 @@
 }
 
 .success-stories {
-    background-color: var(--light-grey);
-    height: 65vh;
+    background-color: var(--pure-white);
+}
+
+.quotes{
+    background-color: var(--pure-white);
 }
 
 .sucess-stories .awards-grid .award-item animate-pop {
