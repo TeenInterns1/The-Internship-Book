@@ -351,7 +351,7 @@
 /* Friends Section */
 .friends-section {
     padding: 5rem 0;
-    background: var(--bg-secondary);
+    background: var(--bg-color);
 }
 
 .friends-grid {
