@@ -24,6 +24,88 @@
             align-items: center;
         }
         
+        /* Logo Text Styles */
+        .logo-text {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--primary-color);
+            text-decoration: none;
+            font-family: 'Inter', sans-serif;
+            letter-spacing: -0.5px;
+        }
+        
+        /* Header padding adjustment */
+        .site-header {
+            padding: 40px 0;
+        }
+        
+        .site-header .container {
+            padding-top: 0;
+            padding-bottom: 0;
+        }
+        
+        .logo-link {
+            text-decoration: none;
+        }
+        
+        .cta-brand-text {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: white;
+            text-align: center;
+            margin: 0 0 20px 0;
+            font-family: 'Inter', sans-serif;
+            letter-spacing: -0.5px;
+        }
+        
+        .footer-logo-text {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--text-color);
+            text-decoration: none;
+            font-family: 'Inter', sans-serif;
+            letter-spacing: -0.5px;
+        }
+        
+        .footer-logo {
+            text-decoration: none;
+        }
+        
+        /* Dark mode text logo styles */
+        [data-theme="dark"] .logo-text,
+        [data-theme="dark"] .footer-logo-text {
+            color: var(--pure-white);
+        }
+        
+        /* Responsive logo text */
+        @media (max-width: 768px) {
+            .logo-text {
+                font-size: 1.3rem;
+            }
+            
+            .cta-brand-text {
+                font-size: 2rem;
+            }
+            
+            .footer-logo-text {
+                font-size: 1.5rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .logo-text {
+                font-size: 1.2rem;
+            }
+            
+            .cta-brand-text {
+                font-size: 1.8rem;
+            }
+            
+            .footer-logo-text {
+                font-size: 1.3rem;
+            }
+        }
+        
         /* Countdown timer responsive adjustments */
         .countdown-timer {
             display: flex;
@@ -272,7 +354,7 @@
             <nav class="nav-container">
                 <div class="logo">
                     <a href="index.html" class="logo-link">
-                        <img src="logos/title.png" alt="Teen Interns" class="logo-img">
+                        <span class="logo-text">Teen Interns</span>
                     </a>
                 </div>
                 <div class="nav-links">
@@ -410,7 +492,7 @@
         <div class="container">
             <div class="cta-content animate-fade-up">
                 <div class="cta-logo-center">
-                    <img src="logos/TEENINTERNS_WHITE_TRANSPARENT.png" alt="Teen Interns Logo" class="cta-logo large">
+                    <h2 class="cta-brand-text">Teen Interns</h2>
                 </div>
                 <h2>Ready to Start Your Internship Journey?</h2>
                 <p>Join thousands of teens who are already preparing for their future. Pre-order now and save with early bird pricing.</p>
@@ -429,7 +511,7 @@
             <div class="footer-content">
                 <div class="footer-brand">
                     <a href="index.html" class="footer-logo">
-                        <img src="logos/title.png" alt="Teen Interns" class="footer-logo-img large">
+                        <span class="footer-logo-text">Teen Interns</span>
                     </a>
                     <p class="footer-tagline">Empowering the next generation through internships</p>
                 </div>
