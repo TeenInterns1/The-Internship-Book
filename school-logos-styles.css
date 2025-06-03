@@ -511,6 +511,12 @@
     height: 100%;
     object-fit: contain;
     border-radius: 8px;
+    transition: transform 0.3s ease, brightness 0.3s ease;
+}
+
+.logo-item:hover img {
+    transform: scale(1.1);
+    brightness: 1.1;
 }
 
 /* School Tooltip */
