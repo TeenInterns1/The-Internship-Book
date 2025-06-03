@@ -163,6 +163,11 @@
     flex-wrap: wrap;
 }
 
+/* Center single pricing card */
+.pricing-options .price-card:only-child {
+    max-width: 400px;
+}
+
 .price-card {
     background-color: var(--bg-secondary);
     border: 1px solid var(--border-color);

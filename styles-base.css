@@ -205,6 +205,106 @@
     width: auto;
 }
 
+/* Text Logo Styles */
+.logo-text {
+    font-family: var(--font-primary);
+    font-weight: 800;
+    color: var(--text-color);
+    text-decoration: none;
+    transition: all var(--transition-fast);
+    display: inline-block;
+}
+
+/* Header logo text */
+.logo-link .logo-text {
+    font-size: 1.8rem;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.logo-link:hover .logo-text {
+    transform: scale(1.05);
+    filter: brightness(1.1);
+}
+
+/* Footer logo text */
+.footer-logo-img.logo-text {
+    font-size: 2rem;
+    color: var(--text-color);
+    font-weight: 700;
+}
+
+/* Impact section logo text */
+.impact-logo.logo-text {
+    font-size: 2.5rem;
+    color: var(--primary-color);
+    font-weight: 800;
+    text-align: center;
+    display: block;
+}
+
+/* CTA section logo text */
+.cta-logo.logo-text {
+    font-size: 2rem;
+    color: var(--primary-color);
+    font-weight: 700;
+    text-align: center;
+    display: block;
+    margin-bottom: 1rem;
+}
+
+/* Large logo text */
+.logo-text.large {
+    font-size: 2.5rem;
+}
+
+/* Responsive logo text adjustments */
+@media (max-width: 768px) {
+    .logo-link .logo-text {
+        font-size: 1.5rem;
+    }
+    
+    .footer-logo-img.logo-text {
+        font-size: 1.7rem;
+    }
+    
+    .impact-logo.logo-text {
+        font-size: 2rem;
+    }
+    
+    .cta-logo.logo-text {
+        font-size: 1.7rem;
+    }
+    
+    .logo-text.large {
+        font-size: 2rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .logo-link .logo-text {
+        font-size: 1.3rem;
+    }
+    
+    .footer-logo-img.logo-text {
+        font-size: 1.5rem;
+    }
+    
+    .impact-logo.logo-text {
+        font-size: 1.8rem;
+    }
+    
+    .cta-logo.logo-text {
+        font-size: 1.5rem;
+    }
+    
+    .logo-text.large {
+        font-size: 1.8rem;
+    }
+}
+
 /* Logo adjustments for dark theme */
 /* [data-theme="dark"] .logo-img,
 [data-theme="dark"] .footer-logo-img,

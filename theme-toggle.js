@@ -1,278 +1,168 @@
-// /**
-//  * Theme Toggle Functionality
-//  * Handles dark/light theme switching with system preference detection and logo switching
-//  */
+/**
+ * Theme Toggle Functionality
+ * Provides dark/light theme switching capability
+ */
 
-// class ThemeManager {
-//     constructor() {
-//         this.themeKey = 'teeninterns-theme';
-//         this.themes = {
-//             LIGHT: 'light',
-//             DARK: 'dark',
-//             AUTO: 'auto'
-//         };
-        
-//         // Logo paths
-//         this.logos = {
-//             LIGHT: 'logos/title.png',
-//             DARK: 'logos/TEENINTERNS_WHITE_TRANSPARENT.png'
-//         };
-        
-//         this.init();
-//     }
-    
-//     init() {
-//         // Create theme toggle button
-//         this.createThemeToggle();
-        
-//         // Set initial theme
-//         this.setInitialTheme();
-        
-//         // Listen for system theme changes
-//         this.watchSystemTheme();
-        
-//         // Update theme toggle icon
-//         this.updateToggleIcon();
-        
-//         // Update logos
-//         this.updateLogos();
-//     }
-    
-//     createThemeToggle() {
-//         // Check if toggle already exists
-//         if (document.querySelector('.theme-toggle')) return;
-        
-//         const themeToggle = document.createElement('button');
-//         themeToggle.className = 'theme-toggle';
-//         themeToggle.innerHTML = `
-//             <span class="theme-toggle-icon light-icon">🌙</span>
-//             <span class="theme-toggle-icon dark-icon">☀️</span>
-//         `;
-//         themeToggle.setAttribute('aria-label', 'Toggle theme');
-//         themeToggle.setAttribute('title', 'Toggle dark/light theme');
-        
-//         // Add click event
-//         themeToggle.addEventListener('click', () => this.toggleTheme());
-        
-//         // Add keyboard support
-//         themeToggle.addEventListener('keydown', (e) => {
-//             if (e.key === 'Enter' || e.key === ' ') {
-//                 e.preventDefault();
-//                 this.toggleTheme();
-//             }
-//         });
-        
-//         // Add to page
-//         document.body.appendChild(themeToggle);
-//     }
-    
-//     getStoredTheme() {
-//         return localStorage.getItem(this.themeKey);
-//     }
-    
-//     setStoredTheme(theme) {
-//         localStorage.setItem(this.themeKey, theme);
-//     }
-    
-//     getSystemTheme() {
-//         return window.matchMedia('(prefers-color-scheme: dark)').matches 
-//             ? this.themes.DARK 
-//             : this.themes.LIGHT;
-//     }
-    
-//     getCurrentTheme() {
-//         const stored = this.getStoredTheme();
-//         if (stored && stored !== this.themes.AUTO) {
-//             return stored;
-//         }
-//         return this.getSystemTheme();
-//     }
-    
-//     setInitialTheme() {
-//         const storedTheme = this.getStoredTheme();
-        
-//         if (storedTheme) {
-//             this.applyTheme(storedTheme);
-//         } else {
-//             // First visit - default to light theme
-//             this.setStoredTheme(this.themes.LIGHT);
-//             this.applyTheme(this.themes.LIGHT);
-//         }
-//     }
-    
-//     applyTheme(theme) {
-//         const root = document.documentElement;
-        
-//         if (theme === this.themes.AUTO) {
-//             // Remove data-theme to let CSS handle system preference
-//             root.removeAttribute('data-theme');
-//         } else {
-//             // Set explicit theme
-//             root.setAttribute('data-theme', theme);
-//         }
-        
-//         this.updateToggleIcon(theme);
-//         this.updateLogos();
-//         this.announceThemeChange(theme);
-//     }
-    
-//     updateLogos() {
-//         const currentTheme = this.getCurrentTheme();
-//         const isDark = currentTheme === this.themes.DARK;
-//         const logoSrc = isDark ? this.logos.DARK : this.logos.LIGHT;
-        
-//         // Update all logo images
-//         const logoSelectors = [
-//             '.logo-img',
-//             '.footer-logo-img', 
-//             '.hero-logo',
-//             '.impact-logo',
-//             '.cta-logo'
-//         ];
-        
-//         logoSelectors.forEach(selector => {
-//             const logos = document.querySelectorAll(selector);
-//             logos.forEach(logo => {
-//                 if (logo.tagName === 'IMG') {
-//                     logo.src = logoSrc;
-//                 }
-//             });
-//         });
-        
-//         // Handle relative paths for content folder
-//         if (window.location.pathname.includes('/content/')) {
-//             const relativeSrc = '../' + logoSrc;
-//             logoSelectors.forEach(selector => {
-//                 const logos = document.querySelectorAll(selector);
-//                 logos.forEach(logo => {
-//                     if (logo.tagName === 'IMG') {
-//                         logo.src = relativeSrc;
-//                     }
-//                 });
-//             });
-//         }
-//     }
-    
-//     toggleTheme() {
-//         const currentTheme = this.getStoredTheme() || this.themes.AUTO;
-//         let newTheme;
-        
-//         switch (currentTheme) {
-//             case this.themes.LIGHT:
-//                 newTheme = this.themes.DARK;
-//                 break;
-//             case this.themes.DARK:
-//                 newTheme = this.themes.AUTO;
-//                 break;
-//             case this.themes.AUTO:
-//             default:
-//                 // Toggle from auto to the opposite of current system preference
-//                 newTheme = this.getSystemTheme() === this.themes.DARK 
-//                     ? this.themes.LIGHT 
-//                     : this.themes.DARK;
-//                 break;
-//         }
-        
-//         this.setStoredTheme(newTheme);
-//         this.applyTheme(newTheme);
-        
-//         // Add a subtle animation feedback
-//         this.animateToggle();
-//     }
-    
-//     updateToggleIcon(theme = null) {
-//         const toggle = document.querySelector('.theme-toggle');
-//         if (!toggle) return;
-        
-//         const currentTheme = theme || this.getCurrentTheme();
-//         const isCurrentlyDark = currentTheme === this.themes.DARK;
-        
-//         // Update aria-label for accessibility
-//         toggle.setAttribute('aria-label', 
-//             isCurrentlyDark ? 'Switch to light theme' : 'Switch to dark theme'
-//         );
-        
-//         // Update title
-//         const storedTheme = this.getStoredTheme();
-//         let titleText = 'Toggle dark/light theme';
-//         if (storedTheme === this.themes.AUTO) {
-//             titleText += ' (auto)';
-//         }
-//         toggle.setAttribute('title', titleText);
-//     }
-    
-//     animateToggle() {
-//         const toggle = document.querySelector('.theme-toggle');
-//         if (!toggle) return;
-        
-//         toggle.style.transform = 'scale(0.9)';
-//         setTimeout(() => {
-//             toggle.style.transform = '';
-//         }, 150);
-//     }
-    
-//     watchSystemTheme() {
-//         const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
-        
-//         mediaQuery.addEventListener('change', () => {
-//             // Only update if user is using auto theme
-//             if (this.getStoredTheme() === this.themes.AUTO) {
-//                 this.applyTheme(this.themes.AUTO);
-//             }
-//         });
-//     }
-    
-//     announceThemeChange(theme) {
-//         // Create accessible announcement for screen readers
-//         const announcement = document.createElement('div');
-//         announcement.setAttribute('aria-live', 'polite');
-//         announcement.setAttribute('aria-atomic', 'true');
-//         announcement.style.position = 'absolute';
-//         announcement.style.left = '-10000px';
-//         announcement.style.width = '1px';
-//         announcement.style.height = '1px';
-//         announcement.style.overflow = 'hidden';
-        
-//         let message;
-//         switch (theme) {
-//             case this.themes.LIGHT:
-//                 message = 'Switched to light theme';
-//                 break;
-//             case this.themes.DARK:
-//                 message = 'Switched to dark theme';
-//                 break;
-//             case this.themes.AUTO:
-//                 message = 'Switched to auto theme (follows system preference)';
-//                 break;
-//             default:
-//                 message = 'Theme changed';
-//         }
-        
-//         announcement.textContent = message;
-//         document.body.appendChild(announcement);
-        
-//         // Remove after announcement
-//         setTimeout(() => {
-//             if (announcement.parentNode) {
-//                 announcement.parentNode.removeChild(announcement);
-//             }
-//         }, 1000);
-//     }
-    
-//     // Public method to get current theme state
-//     getThemeState() {
-//         return {
-//             stored: this.getStoredTheme(),
-//             current: this.getCurrentTheme(),
-//             system: this.getSystemTheme()
-//         };
-//     }
-// }
+class ThemeToggle {
+    constructor() {
+        this.init();
+    }
 
-// // Initialize theme manager when DOM is ready
-// document.addEventListener('DOMContentLoaded', () => {
-//     window.themeManager = new ThemeManager();
-// });
+    init() {
+        this.themeToggle = document.getElementById('themeToggle');
+        this.lightIcon = this.themeToggle?.querySelector('.light-icon');
+        this.darkIcon = this.themeToggle?.querySelector('.dark-icon');
+        
+        if (!this.themeToggle) return;
 
-// // Also expose as global for debugging
-// window.ThemeManager = ThemeManager;
+        // Get saved theme or default to light
+        this.currentTheme = localStorage.getItem('theme') || 'light';
+        
+        // Apply initial theme
+        this.applyTheme(this.currentTheme);
+        
+        // Add event listener
+        this.themeToggle.addEventListener('click', () => this.toggleTheme());
+
+        // Listen for system theme changes
+        this.watchSystemTheme();
+    }
+
+    applyTheme(theme) {
+        document.documentElement.setAttribute('data-theme', theme);
+        this.updateIcons(theme);
+        
+        // Save to localStorage
+        localStorage.setItem('theme', theme);
+        
+        // Update current theme
+        this.currentTheme = theme;
+        
+        // Dispatch custom event for other components
+        window.dispatchEvent(new CustomEvent('themeChanged', { 
+            detail: { theme } 
+        }));
+    }
+
+    updateIcons(theme) {
+        if (!this.lightIcon || !this.darkIcon) return;
+        
+        if (theme === 'dark') {
+            this.lightIcon.style.display = 'none';
+            this.darkIcon.style.display = 'inline';
+        } else {
+            this.lightIcon.style.display = 'inline';
+            this.darkIcon.style.display = 'none';
+        }
+    }
+
+    toggleTheme() {
+        const newTheme = this.currentTheme === 'light' ? 'dark' : 'light';
+        this.applyTheme(newTheme);
+        
+        // Add a subtle animation feedback
+        this.themeToggle.style.transform = 'scale(0.95)';
+        setTimeout(() => {
+            this.themeToggle.style.transform = '';
+        }, 150);
+    }
+
+    watchSystemTheme() {
+        // Listen for system theme preference changes
+        const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+        mediaQuery.addEventListener('change', (e) => {
+            // Only auto-switch if user hasn't manually set a preference
+            if (!localStorage.getItem('theme')) {
+                this.applyTheme(e.matches ? 'dark' : 'light');
+            }
+        });
+    }
+
+    // Public method to get current theme
+    getCurrentTheme() {
+        return this.currentTheme;
+    }
+
+    // Public method to set theme programmatically
+    setTheme(theme) {
+        if (theme === 'light' || theme === 'dark') {
+            this.applyTheme(theme);
+        }
+    }
+}
+
+// Enhanced CSS for dark theme support
+const darkThemeStyles = `
+    [data-theme="dark"] {
+        --text-color: var(--pure-white);
+        --text-secondary: #e5e7eb;
+        --bg-color: #1a1a1a;
+        --bg-secondary: #262626;
+        --bg-alt-color: #333333;
+        --border-color: #444444;
+        --shadow-color: rgba(0, 0, 0, 0.3);
+        --shadow-color-hover: rgba(0, 0, 0, 0.4);
+        --subtitle-color: #d1d5db;
+    }
+
+    [data-theme="dark"] h1,
+    [data-theme="dark"] h2,
+    [data-theme="dark"] h3,
+    [data-theme="dark"] h4,
+    [data-theme="dark"] h5,
+    [data-theme="dark"] h6,
+    [data-theme="dark"] p,
+    [data-theme="dark"] span,
+    [data-theme="dark"] div,
+    [data-theme="dark"] .hero-title,
+    [data-theme="dark"] .hero-subtitle,
+    [data-theme="dark"] .hero-description,
+    [data-theme="dark"] .section-title,
+    [data-theme="dark"] .section-subtitle,
+    [data-theme="dark"] .timeline-content h3,
+    [data-theme="dark"] .timeline-content p,
+    [data-theme="dark"] .award-item h4 {
+        color: var(--pure-white) !important;
+    }
+
+    [data-theme="dark"] .left-sidebar {
+        background: rgba(26, 26, 26, 0.95);
+        border-color: var(--border-color);
+    }
+
+    [data-theme="dark"] .sidebar-link {
+        color: var(--pure-white);
+    }
+
+    [data-theme="dark"] .sidebar-toggle {
+        color: var(--pure-white);
+    }
+
+    [data-theme="dark"] .timeline-section {
+        background: var(--bg-secondary);
+    }
+
+    [data-theme="dark"] .logo-img,
+    [data-theme="dark"] .footer-logo-img,
+    [data-theme="dark"] .hero-logo,
+    [data-theme="dark"] .impact-logo,
+    [data-theme="dark"] .cta-logo {
+        filter: brightness(1.1) contrast(1.1);
+    }
+`;
+
+// Initialize theme toggle when DOM is loaded
+document.addEventListener('DOMContentLoaded', () => {
+    // Add dark theme styles to document head
+    const styleSheet = document.createElement('style');
+    styleSheet.textContent = darkThemeStyles;
+    document.head.appendChild(styleSheet);
+    
+    // Initialize theme toggle
+    window.themeToggle = new ThemeToggle();
+});
+
+// Export for potential use in other modules
+if (typeof module !== 'undefined' && module.exports) {
+    module.exports = ThemeToggle;
+}

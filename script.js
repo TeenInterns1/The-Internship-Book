@@ -39,11 +39,27 @@ function initNavigation() {
     // Sidebar toggle functionality
     const sidebarToggle = document.querySelector('#sidebarToggle');
     const leftSidebar = document.querySelector('#leftSidebar');
+    const sidebarNav = document.querySelector('#sidebarNav');
     
     if (sidebarToggle && leftSidebar) {
-        sidebarToggle.addEventListener('click', function() {
+        sidebarToggle.addEventListener('click', function(e) {
+            e.stopPropagation();
             leftSidebar.classList.toggle('collapsed');
         });
+        
+        // Close sidebar when clicking outside
+        document.addEventListener('click', function(e) {
+            if (!leftSidebar.contains(e.target) && !leftSidebar.classList.contains('collapsed')) {
+                leftSidebar.classList.add('collapsed');
+            }
+        });
+        
+        // Prevent sidebar from closing when clicking inside navigation
+        if (sidebarNav) {
+            sidebarNav.addEventListener('click', function(e) {
+                e.stopPropagation();
+            });
+        }
     }
     
     // Mobile menu toggle with GSAP animations
