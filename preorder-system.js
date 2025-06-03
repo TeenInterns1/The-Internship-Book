@@ -64,10 +64,10 @@ function initPreorderSystem() {
 
 // Setup pre-order buttons
 function setupPreorderButtons() {
-    document.querySelectorAll('.order-btn').forEach((btn, index) => {
+    document.querySelectorAll('.order-btn:not(.bundle-btn)').forEach((btn, index) => {
         btn.addEventListener('click', function() {
             // Determine package type based on button position
-            const packageTypes = ['digital', 'bundle', 'premium'];
+            const packageTypes = ['digital', 'premium']; // Removed 'bundle' as it now goes directly to payment
             const packageType = packageTypes[index] || 'digital';
             openPreorderModal(packageType);
         });
@@ -560,7 +560,7 @@ function showSuccessMessage(orderData) {
 // Countdown timer
 function updateCountdown() {
     try {
-        const launchDate = new Date('2025-06-10T00:00:00').getTime();
+        const launchDate = new Date('2025-06-10T18:00:00').getTime();
         const now = new Date().getTime();
         const distance = launchDate - now;
         
