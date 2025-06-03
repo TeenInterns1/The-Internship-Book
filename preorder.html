@@ -60,25 +60,51 @@
             .timer-unit {
                 min-width: 50px;
             }
+
+            .theme-toggle {
+                top: 80px;
+                right: 20px;
+                width: 45px;
+                height: 45px;
+            }
         }
         
-        /* Dark mode styling for preorder page */
-        /* [data-theme="dark"] .hero .hero-title,
-        [data-theme="dark"] .hero .hero-subtitle,
-        [data-theme="dark"] .hero .hero-description {
-            color: var(--pure-white) !important;
-        } */
-        
-        /* @media (prefers-color-scheme: dark) {
-            :root:not([data-theme="light"]) .hero .hero-title,
-            :root:not([data-theme="light"]) .hero .hero-subtitle,
-            :root:not([data-theme="light"]) .hero .hero-description {
-                color: var(--pure-white) !important;
-            }
-        } */
+        /* Dark/Light Theme Toggle */
+        .theme-toggle {
+            position: fixed;
+            top: 100px;
+            right: 30px;
+            z-index: 1001;
+            background: var(--bg-secondary);
+            border: 2px solid var(--border-color);
+            border-radius: var(--border-radius-full);
+            padding: 12px;
+            cursor: pointer;
+            transition: all var(--transition-normal);
+            box-shadow: var(--box-shadow);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+        }
+
+        .theme-toggle:hover {
+            transform: scale(1.1);
+            box-shadow: var(--box-shadow-hover);
+        }
+
+        .theme-toggle-icon {
+            font-size: 1.5rem;
+            transition: transform var(--transition-normal);
+        }
+
+        .theme-toggle:hover .theme-toggle-icon {
+            transform: rotate(20deg);
+        }
     </style>
 </head>
-<body class="loading preorder-page">
+<body class="loading preorder-page" data-theme="light">
     
     <div class="background-elements">
         <div class="bg-shape shape1"></div>
@@ -86,13 +112,19 @@
         <div class="bg-shape shape3"></div>
     </div>
 
+    <!-- Theme Toggle Button -->
+    <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark/light theme">
+        <span class="theme-toggle-icon light-icon">🌙</span>
+        <span class="theme-toggle-icon dark-icon" style="display: none;">☀️</span>
+    </button>
+
     <!-- Header -->
     <header class="site-header" id="site-header">
         <div class="container">
             <nav class="nav-container">
                 <div class="logo">
                     <a href="index.html" class="logo-link">
-                        <img src="logos/title.png" alt="Teen Interns" class="logo-img">
+                        <span class="logo-text">Teen Interns</span>
                     </a>
                 </div>
                 <div class="nav-links">
@@ -142,32 +174,7 @@
         </div>
     </section>
 
-    <!-- Countdown Section -->
-    <section class="countdown-section" id="countdown">
-        <div class="container">
-            <div class="countdown animate-fade-up">
-                <div class="countdown-label">Launching in:</div>
-                <div class="countdown-timer">
-                    <div class="timer-unit">
-                        <span class="timer-number" data-count="64">0</span>
-                        <span class="timer-label">Days</span>
-                    </div>
-                    <div class="timer-unit">
-                        <span class="timer-number" data-count="12">0</span>
-                        <span class="timer-label">Hours</span>
-                    </div>
-                    <div class="timer-unit">
-                        <span class="timer-number" data-count="45">0</span>
-                        <span class="timer-label">Minutes</span>
-                    </div>
-                    <div class="timer-unit">
-                        <span class="timer-number" data-count="30">0</span>
-                        <span class="timer-label">Seconds</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+
 
     <!-- Pricing Options Section -->
     <section class="pricing-section" id="pricing">
@@ -178,73 +185,29 @@
             </div>
             
             <div class="pricing-options">
-                <div class="price-card animate-pop" style="--delay: 0.1s">
+                <div class="price-card featured animate-pop" style="--delay: 0.1s">
+                    <div class="popular-badge">Early Bird Special</div>
                     <div class="card-header">
-                        <h3>Digital Edition</h3>
+                        <h3>The Internship Book</h3>
                         <div class="price">
                             <span class="currency">₹</span>
-                            <span class="amount">2,000</span>
+                            <span class="amount">528</span>
                         </div>
-                        <div class="price-note">Save ₹800 with early bird pricing</div>
+                        <div class="price-note">Limited time early bird pricing</div>
                     </div>
                     
                     <ul class="features-list">
-                        <li>📱 Digital book access</li>
-                        <li>🎥 All video content</li>
-                        <li>📝 Downloadable resources</li>
-                        <li>🔄 Lifetime updates</li>
-                        <li>📧 Email support</li>
+                        <li>📖 Physical book (high-quality print)</li>
+                        <li>📱 Digital access included</li>
+                        <li>🎥 Exclusive video content via QR codes</li>
+                        <li>📝 Downloadable templates and resources</li>
+                        <li>📦 Free shipping across India</li>
+                        <li>💯 Written by 23 teen contributors</li>
+                        <li>🎁 Supporting internships for underprivileged teens</li>
                     </ul>
                     
-                    <button class="order-btn">Pre-order Digital</button>
-                    <p class="guarantee">30-day money-back guarantee</p>
-                </div>
-                
-                <div class="price-card featured animate-pop" style="--delay: 0.2s">
-                    <div class="popular-badge">Most Popular</div>
-                    <div class="card-header">
-                        <h3>Print + Digital Bundle</h3>
-                        <div class="price">
-                            <span class="currency">₹</span>
-                            <span class="amount">3,600</span>
-                        </div>
-                        <div class="price-note">Save ₹1,200 with early bird pricing</div>
-                    </div>
-                    
-                    <ul class="features-list">
-                        <li>📖 Physical book</li>
-                        <li>📱 Digital access</li>
-                        <li>🎥 All video content</li>
-                        <li>📦 Free worldwide shipping</li>
-                        <li>💯 First-edition benefits</li>
-                        <li>🎁 Bonus materials</li>
-                    </ul>
-                    
-                    <button class="order-btn">Pre-order Bundle</button>
-                    <p class="guarantee">30-day money-back guarantee</p>
-                </div>
-                
-                <div class="price-card animate-pop" style="--delay: 0.3s">
-                    <div class="card-header">
-                        <h3>Premium Package</h3>
-                        <div class="price">
-                            <span class="currency">₹</span>
-                            <span class="amount">6,000</span>
-                        </div>
-                        <div class="price-note">Save ₹2,000 with early bird pricing</div>
-                    </div>
-                    
-                    <ul class="features-list">
-                        <li>📖 Signed first edition</li>
-                        <li>📱 Digital access</li>
-                        <li>🎁 Exclusive merchandise</li>
-                        <li>🤝 Virtual meet with authors</li>
-                        <li>🎯 Private community access</li>
-                        <li>💼 Career mentorship session</li>
-                    </ul>
-                    
-                    <button class="order-btn">Pre-order Premium</button>
-                    <p class="guarantee">30-day money-back guarantee</p>
+                    <a href="https://payments.cashfree.com/forms/thebook" class="order-btn" target="_blank">Pre-order Now</a>
+                    <p class="guarantee">Secure payment via Cashfree • 30-day money-back guarantee</p>
                 </div>
             </div>
         </div>
@@ -279,7 +242,7 @@
         <div class="container">
             <div class="cta-content animate-fade-up">
                 <div class="cta-logo-center">
-                    <img src="logos/TEENINTERNS_WHITE_TRANSPARENT.png" alt="Teen Interns Logo" class="cta-logo large">
+                    <span class="cta-logo large logo-text">Teen Interns</span>
                 </div>
                 <h2>Ready to Start Your Internship Journey?</h2>
                 <p>Join thousands of teens who are already preparing for their future. Pre-order now and save with early bird pricing.</p>
@@ -298,7 +261,7 @@
             <div class="footer-content">
                 <div class="footer-brand">
                     <a href="index.html" class="footer-logo">
-                        <img src="logos/title.png" alt="Teen Interns" class="footer-logo-img large">
+                        <span class="footer-logo-img large logo-text">Teen Interns</span>
                     </a>
                     <p class="footer-tagline">Empowering the next generation through internships</p>
                 </div>
