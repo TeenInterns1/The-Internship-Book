@@ -16,26 +16,42 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollToPlugin.min.js"></script>
     
     <style>
-        /* Left Sidebar Navigation */
+        /* FIXED Left Sidebar Navigation */
         .left-sidebar {
             position: fixed;
             left: 0;
             top: 50%;
             transform: translateY(-50%);
             z-index: 1000;
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(2px);
-            padding: 10px;
+            background: rgba(255, 255, 255, 0.0001);
+            backdrop-filter: blur(1px);
+            padding: 15px;
             border-radius: 0 15px 15px 0;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
             border: 1px solid var(--border-color);
             transition: all var(--transition-normal);
+            max-width: 250px;
+            min-width: 50px;
+        }
+        
+        /* Improved collapsed state */
+        .left-sidebar.collapsed {
+            width: 50px;
+            padding: 10px;
         }
         
         .left-sidebar.collapsed .sidebar-nav {
-            display: none;
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+            transform: translateX(-20px);
         }
         
+        .left-sidebar.collapsed .sidebar-toggle {
+            margin-bottom: 0;
+        }
+        
+        /* Enhanced toggle button */
         .sidebar-toggle {
             background: none;
             border: none;
@@ -46,52 +62,94 @@
             color: var(--pure-black);
             margin-bottom: 10px;
             transition: all var(--transition-fast);
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
         }
         
         .sidebar-toggle:hover {
             background: var(--primary-color);
             color: white;
+            transform: scale(1.05);
         }
         
-        /* [data-theme="dark"] .left-sidebar {
-            background: rgba(26, 26, 26, 0.95);
-            border-color: var(--border-color);
-        } */
+        .sidebar-toggle:focus-visible {
+            outline: 2px solid var(--primary-color);
+            outline-offset: 2px;
+        }
         
+        /* Improved navigation container */
         .sidebar-nav {
             display: flex;
             flex-direction: column;
-            gap: 10px;
-            padding: 5px;
+            gap: 8px;
+            padding: 5px 0;
+            transition: opacity var(--transition-normal), 
+                        visibility var(--transition-normal), 
+                        transform var(--transition-normal);
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(0);
         }
         
+        /* Enhanced navigation links */
         .sidebar-link {
             display: block;
             color: var(--pure-black);
             text-decoration: none;
-            padding: 8px 12px;
+            padding: 10px 12px;
             border-radius: 6px;
             font-weight: 500;
             font-size: 0.85rem;
             transition: all var(--transition-fast);
             white-space: nowrap;
+            border: 1px solid transparent;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .sidebar-link::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+        }
+        
+        .sidebar-link:hover::before {
+            left: 100%;
         }
         
         .sidebar-link:hover {
             background: var(--primary-color);
             color: white;
             transform: translateX(5px);
+            border-color: var(--primary-color);
+            box-shadow: 0 4px 15px rgba(0, 154, 148, 0.3);
         }
         
         .sidebar-link.active {
             background: var(--primary-color);
             color: white;
+            border-color: var(--primary-color);
+            transform: translateX(3px);
         }
         
-        /* Dark mode sidebar links */
-        /* [data-theme="dark"] .sidebar-link {
-            color: var(--pure-white);
-        } */
+        .sidebar-link:focus-visible {
+            outline: 2px solid var(--accent-color);
+            outline-offset: 2px;
+        }
+        
+        /* Enhanced hover effect for entire sidebar */
+        .left-sidebar:hover {
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+            backdrop-filter: blur(15px);
+        }
         
         /* Hero section spacing improvement */
         .hero-content {
@@ -106,6 +164,7 @@
             max-width: 900px; /* Reduced from 1200px */
         }
         
+        /* Responsive behavior */
         @media (max-width: 768px) {
             .left-sidebar {
                 display: none; /* Hide on mobile */
@@ -114,6 +173,47 @@
             .hero-content {
                 grid-template-columns: 1fr;
                 gap: 40px;
+            }
+        }
+        
+        /* Smooth state transitions */
+        .left-sidebar,
+        .sidebar-nav,
+        .sidebar-link,
+        .sidebar-toggle {
+            will-change: transform, opacity;
+        }
+        
+        /* Accessibility improvements */
+        @media (prefers-reduced-motion: reduce) {
+            .left-sidebar,
+            .sidebar-nav,
+            .sidebar-link,
+            .sidebar-toggle {
+                transition: none !important;
+            }
+            
+            .sidebar-link:hover {
+                transform: none !important;
+            }
+        }
+        
+        /* Fix for high contrast mode */
+        @media (prefers-contrast: high) {
+            .left-sidebar {
+                background: white;
+                border: 2px solid black;
+            }
+            
+            .sidebar-link {
+                border: 1px solid #ccc;
+            }
+            
+            .sidebar-link:hover,
+            .sidebar-link.active {
+                background: black;
+                color: white;
+                border-color: black;
             }
         }
     </style>
@@ -591,26 +691,6 @@ India is no longer just the back office of the world - we’re a creator economy
                     </form>
                     <div class="social-links">
                         <a href="#" class="social-link">📸</a>
-                        <a href="#" class="social-link">🎵</a>
-                        <a href="#" class="social-link">📱</a>
-                        <a href="#" class="social-link">📺</a>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="footer-bottom">
-                <p class="copyright">&copy; 2025 Teen Interns. Made with ❤️ by teens, for teens.</p>
-                <p class="credit">This project was created entirely by teenage interns.</p>
-            </div>
-        </div>
-    </footer>
-
-    <script src="script.js"></script>
-    <script src="page-transition.js"></script>
-    <script src="preorder-system.js"></script>
-    <script src="theme-toggle.js"></script>
-</body>
-</html>-link">📸</a>
                         <a href="#" class="social-link">🎵</a>
                         <a href="#" class="social-link">📱</a>
                         <a href="#" class="social-link">📺</a>

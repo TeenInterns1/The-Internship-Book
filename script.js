@@ -36,21 +36,28 @@ function initNavigation() {
     const mobileLinks = document.querySelectorAll('.mobile-link');
     const siteHeader = document.querySelector('.site-header');
     
-    // Sidebar toggle functionality
+    // Enhanced Sidebar toggle functionality
     const sidebarToggle = document.querySelector('#sidebarToggle');
     const leftSidebar = document.querySelector('#leftSidebar');
     const sidebarNav = document.querySelector('#sidebarNav');
+    const sidebarLinks = document.querySelectorAll('.sidebar-link');
     
     if (sidebarToggle && leftSidebar) {
+        // Toggle sidebar on button click
         sidebarToggle.addEventListener('click', function(e) {
             e.stopPropagation();
             leftSidebar.classList.toggle('collapsed');
+            
+            // Update aria-expanded for accessibility
+            const isExpanded = !leftSidebar.classList.contains('collapsed');
+            sidebarToggle.setAttribute('aria-expanded', isExpanded);
         });
         
         // Close sidebar when clicking outside
         document.addEventListener('click', function(e) {
             if (!leftSidebar.contains(e.target) && !leftSidebar.classList.contains('collapsed')) {
                 leftSidebar.classList.add('collapsed');
+                sidebarToggle.setAttribute('aria-expanded', 'false');
             }
         });
         
@@ -60,6 +67,56 @@ function initNavigation() {
                 e.stopPropagation();
             });
         }
+        
+        // Handle keyboard navigation
+        sidebarToggle.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                this.click();
+            }
+        });
+        
+        // Active link highlighting based on scroll position
+        function updateActiveLink() {
+            const sections = document.querySelectorAll('section[id]');
+            let currentSection = '';
+            
+            sections.forEach(section => {
+                const rect = section.getBoundingClientRect();
+                const sectionTop = rect.top;
+                const sectionHeight = rect.height;
+                
+                // Check if section is in viewport
+                if (sectionTop <= 100 && sectionTop + sectionHeight > 100) {
+                    currentSection = section.id;
+                }
+            });
+            
+            // Update active link
+            sidebarLinks.forEach(link => {
+                link.classList.remove('active');
+                const href = link.getAttribute('href');
+                if (href && href.startsWith('#') && href === `#${currentSection}`) {
+                    link.classList.add('active');
+                }
+            });
+        }
+        
+        // Throttled scroll listener for better performance
+        let scrollTimeout;
+        window.addEventListener('scroll', function() {
+            if (scrollTimeout) {
+                clearTimeout(scrollTimeout);
+            }
+            scrollTimeout = setTimeout(updateActiveLink, 10);
+        });
+        
+        // Initialize active link
+        updateActiveLink();
+        
+        // Set initial aria-expanded state
+        sidebarToggle.setAttribute('aria-expanded', 'false');
+        sidebarToggle.setAttribute('aria-label', 'Toggle navigation sidebar');
     }
     
     // Mobile menu toggle with GSAP animations
@@ -125,7 +182,7 @@ function initNavigation() {
         lastScrollTop = scrollTop;
     });
     
-    // Smooth scroll for anchor links with GSAP
+    // Enhanced smooth scroll for anchor links with GSAP
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function(e) {
             e.preventDefault();
@@ -136,6 +193,11 @@ function initNavigation() {
             const targetElement = document.querySelector(targetId);
             if (targetElement) {
                 const headerHeight = siteHeader?.offsetHeight || 80;
+                
+                // Collapse sidebar on mobile after navigation
+                if (window.innerWidth <= 768 && leftSidebar) {
+                    leftSidebar.classList.add('collapsed');
+                }
                 
                 gsap.to(window, {
                     scrollTo: {
