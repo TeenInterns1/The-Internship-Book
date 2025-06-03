@@ -3,11 +3,27 @@
 
 /* Enhanced Pricing Cards */
 .pricing-options {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
     gap: 30px;
     margin: 50px 0;
     padding: 0 20px;
+    flex-wrap: wrap;
+}
+
+@media (min-width: 1200px) {
+    .pricing-options {
+        max-width: 1200px;
+        margin: 50px auto;
+    }
+}
+
+@media (max-width: 768px) {
+    .pricing-options {
+        flex-direction: column;
+        align-items: center;
+    }
 }
 
 .price-card {
@@ -19,6 +35,9 @@
     position: relative;
     border: 2px solid transparent;
     cursor: pointer;
+    flex: 1;
+    max-width: 350px;
+    min-width: 300px;
 }
 
 .price-card:hover {
@@ -797,17 +816,22 @@
 /* Responsive Design */
 @media (max-width: 768px) {
     .pricing-options {
-        grid-template-columns: 1fr;
+        flex-direction: column;
+        align-items: center;
         gap: 20px;
         padding: 0 10px;
     }
     
     .price-card {
         padding: 30px 20px;
+        width: 100%;
+        max-width: 400px;
+        min-width: unset;
     }
     
     .price-card.featured {
         transform: none;
+        order: -1;
     }
     
     .price-card.featured:hover {
