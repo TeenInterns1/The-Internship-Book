@@ -145,11 +145,11 @@
         }
         
         /* Dark mode styling for preorder page */
-        /* [data-theme="dark"] .hero .hero-title,
+        [data-theme="dark"] .hero .hero-title,
         [data-theme="dark"] .hero .hero-subtitle,
         [data-theme="dark"] .hero .hero-description {
             color: var(--pure-white) !important;
-        } */
+        }
         
         /* @media (prefers-color-scheme: dark) {
             :root:not([data-theme="light"]) .hero .hero-title,
@@ -340,7 +340,7 @@
         }
     </style>
 </head>
-<body class="loading preorder-page">
+<body class="loading preorder-page" data-theme="light">
     
     <div class="background-elements">
         <div class="bg-shape shape1"></div>
@@ -361,6 +361,11 @@
                     <a href="index.html" class="nav-link">Home</a>
                     <a href="team.html" class="nav-link">Team</a>
                     <a href="preorder.html" class="nav-link nav-cta">Pre-order</a>
+                    <!-- Theme Toggle Button -->
+                    <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+                        <span class="light-icon">🌙</span>
+                        <span class="dark-icon">☀️</span>
+                    </button>
                 </div>
                 <button class="mobile-menu-toggle">
                     <span></span>
@@ -377,6 +382,12 @@
             <a href="index.html" class="mobile-link">Home</a>
             <a href="team.html" class="mobile-link">Team</a>
             <a href="qr-generator.html" class="mobile-link">QR Generator</a>
+            <!-- Mobile Theme Toggle -->
+            <button class="theme-toggle mobile-theme-toggle" aria-label="Toggle theme">
+                <span class="light-icon">🌙</span>
+                <span class="dark-icon">☀️</span>
+                <span class="toggle-text">Dark Mode</span>
+            </button>
         </div>
     </div>
 
@@ -442,6 +453,7 @@
             <div class="pricing-options"> 
                 <div class="price-card featured animate-pop" style="--delay: 0.2s">
                     <div class="popular-badge">Most Popular</div>
+                    <div class="india-badge">India Only</div>
                     <div class="card-header">
                         <h3>Print + Digital Bundle</h3>
                         <div class="price">
@@ -452,9 +464,11 @@
                     </div>
                     
                     <ul class="features-list">
-                        <li>📖 Physical book</li>
-                        <li>📱 Digital resources with QR Code Tntegration</li>
+                        <li>📖 Physical book delivered in India</li>
+                        <li>📱 Digital resources with QR Code Integration</li>
                         <li>💯 First-edition benefits</li>
+                        <li>🚚 Shipping available only across India</li>
+                        <li>🇮🇳 Special India-exclusive content</li>
                     </ul>
                     
                     <button class="order-btn bundle-btn" onclick="event.stopPropagation(); window.open('https://payments.cashfree.com/forms/thebook', '_blank');">Pre-order Bundle</button>

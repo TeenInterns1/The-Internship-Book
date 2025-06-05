@@ -654,8 +654,199 @@ document.addEventListener('DOMContentLoaded', function() {
     // Only initialize if we're on a page with countdown timer
     if (document.querySelector('.countdown-timer')) {
         initPreorderSystem();
+        initLocationDetection();
     }
 });
+
+// Location Detection for India-only features
+function initLocationDetection() {
+    try {
+        // Check if user is in India using IP geolocation
+        detectUserLocation();
+    } catch (error) {
+        console.log('Location detection failed, showing all content by default');
+        // Show all content if detection fails
+        showAllContent();
+    }
+}
+
+function detectUserLocation() {
+    // Try multiple methods to detect location
+    
+    // Method 1: Check timezone (rough estimation)
+    const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+    const isIndianTimezone = timezone.includes('Asia/Kolkata') || timezone.includes('Asia/Calcutta');
+    
+    if (isIndianTimezone) {
+        handleIndianUser();
+        return;
+    }
+    
+    // Method 2: Use a free IP geolocation service
+    fetch('https://ipapi.co/json/')
+        .then(response => response.json())
+        .then(data => {
+            if (data.country_code === 'IN') {
+                handleIndianUser();
+            } else {
+                handleNonIndianUser(data.country_name || 'your country');
+            }
+        })
+        .catch(() => {
+            // Fallback: Try another service
+            fetch('https://ipinfo.io/json')
+                .then(response => response.json())
+                .then(data => {
+                    if (data.country === 'IN') {
+                        handleIndianUser();
+                    } else {
+                        handleNonIndianUser(data.country || 'your country');
+                    }
+                })
+                .catch(() => {
+                    // Final fallback: Show all content
+                    console.log('All geolocation services failed, showing all content');
+                    showAllContent();
+                });
+        });
+}
+
+function handleIndianUser() {
+    console.log('Indian user detected - showing India-specific content');
+    
+    // Show India badge
+    const indiaBadges = document.querySelectorAll('.india-badge');
+    indiaBadges.forEach(badge => {
+        badge.style.display = 'flex';
+    });
+    
+    // Update features for Indian users
+    updateContentForIndia();
+    
+    // Show special message
+    showLocationNotification('🇮🇳 Great! You\'re in India. Enjoy free shipping and exclusive Indian content!', 'success');
+}
+
+function handleNonIndianUser(country) {
+    console.log(`Non-Indian user detected from ${country} - adjusting content`);
+    
+    // Hide India-only features
+    const indiaBadges = document.querySelectorAll('.india-badge');
+    indiaBadges.forEach(badge => {
+        badge.style.display = 'none';
+    });
+    
+    // Update pricing and features for international users
+    updateContentForInternational(country);
+    
+    // Show location-aware message
+    showLocationNotification(
+        `🌍 We see you're in ${country}. Digital access is available worldwide! Physical books available with international shipping.`, 
+        'info'
+    );
+}
+
+function updateContentForIndia() {
+    // Update features list for Indian users
+    const featuresLists = document.querySelectorAll('.features-list');
+    featuresLists.forEach(list => {
+        // Find shipping related items and update them
+        const listItems = list.querySelectorAll('li');
+        listItems.forEach(item => {
+            if (item.textContent.includes('shipping')) {
+                item.innerHTML = '🚚 <strong>Free shipping across India</strong>';
+            }
+            if (item.textContent.includes('Physical book') && !item.textContent.includes('delivered')) {
+                item.innerHTML = '📖 Physical book delivered in India';
+            }
+        });
+    });
+    
+    // Add special Indian features if not already present
+    featuresLists.forEach(list => {
+        const hasIndianContent = Array.from(list.children).some(li => 
+            li.textContent.includes('India-exclusive')
+        );
+        
+        if (!hasIndianContent) {
+            const indianFeature = document.createElement('li');
+            indianFeature.innerHTML = '🇮🇳 Special India-exclusive content';
+            list.appendChild(indianFeature);
+        }
+    });
+}
+
+function updateContentForInternational(country) {
+    // Update pricing to show international shipping costs
+    const priceNotes = document.querySelectorAll('.price-note');
+    priceNotes.forEach(note => {
+        if (note.textContent.includes('early bird')) {
+            note.innerHTML = note.innerHTML + '<br><small style="color: #666; font-size: 0.8rem;">+ International shipping to ' + country + '</small>';
+        }
+    });
+    
+    // Update features for international users
+    const featuresLists = document.querySelectorAll('.features-list');
+    featuresLists.forEach(list => {
+        const listItems = list.querySelectorAll('li');
+        listItems.forEach(item => {
+            if (item.textContent.includes('Free shipping')) {
+                item.innerHTML = '🌍 International shipping available';
+            }
+            if (item.textContent.includes('delivered in India')) {
+                item.innerHTML = '📖 Physical book (international shipping)';
+            }
+            if (item.textContent.includes('India-exclusive')) {
+                item.style.display = 'none';
+            }
+        });
+    });
+    
+    // Add digital-first messaging
+    const cardHeaders = document.querySelectorAll('.card-header');
+    cardHeaders.forEach(header => {
+        const subtitle = header.querySelector('.price-note');
+        if (subtitle && !subtitle.textContent.includes('Digital access')) {
+            const digitalNote = document.createElement('div');
+            digitalNote.style.cssText = 'font-size: 0.9rem; color: var(--primary-color); margin-top: 10px; font-weight: 600;';
+            digitalNote.innerHTML = '📱 Instant digital access worldwide';
+            header.appendChild(digitalNote);
+        }
+    });
+}
+
+function showAllContent() {
+    // Default: show all content for users where location detection failed
+    const indiaBadges = document.querySelectorAll('.india-badge');
+    indiaBadges.forEach(badge => {
+        badge.style.display = 'flex';
+    });
+}
+
+function showLocationNotification(message, type = 'info') {
+    // Only show notification if we haven't shown one already
+    if (document.querySelector('.location-notification')) {
+        return;
+    }
+    
+    const notification = document.createElement('div');
+    notification.className = `notification ${type} location-notification`;
+    notification.innerHTML = `
+        <div class="notification-content">
+            <span class="notification-message">${message}</span>
+            <button class="notification-close" onclick="this.parentElement.parentElement.remove()">×</button>
+        </div>
+    `;
+    
+    document.body.appendChild(notification);
+    
+    // Auto-remove after 8 seconds
+    setTimeout(() => {
+        if (notification.parentElement) {
+            notification.remove();
+        }
+    }, 8000);
+}
 
 // Export for global access
 window.PreorderSystem = {

@@ -27,34 +27,80 @@
 }
 
 .price-card {
-    background: white;
+    background: var(--bg-secondary);
     border-radius: 20px;
     padding: 40px 30px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 10px 30px var(--shadow-color);
     transition: all 0.3s ease;
     position: relative;
-    border: 2px solid transparent;
+    border: 2px solid var(--border-color);
     cursor: pointer;
     flex: 1;
     max-width: 350px;
     min-width: 300px;
 }
 
+/* Dark mode price cards */
+[data-theme="dark"] .price-card {
+    background: var(--bg-alt-color);
+    border-color: var(--border-color);
+}
+
 .price-card:hover {
     transform: translateY(-10px);
-    box-shadow: 0 20px 50px rgba(244, 93, 1, 0.15);
+    box-shadow: 0 20px 50px var(--shadow-color-hover);
     border-color: var(--primary-color);
 }
 
 .price-card.featured {
-    background: linear-gradient(135deg, var(--bg-color) 0%, var(--primary-yellow) 100%);
-    color: var(--text-color);
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+    color: white;
     transform: scale(1.05);
-    border-color: #FFD700;
+    border-color: var(--secondary-color);
+}
+
+/* Dark mode featured card */
+[data-theme="dark"] .price-card.featured {
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+    color: white;
 }
 
 .price-card.featured:hover {
     transform: scale(1.05) translateY(-10px);
+}
+
+/* India-Only Badge */
+.india-badge {
+    position: absolute;
+    top: -12px;
+    right: 20px;
+    background: linear-gradient(135deg, #FF6B35, #F7941E);
+    color: white;
+    padding: 6px 12px;
+    border-radius: 15px;
+    font-weight: 600;
+    font-size: 0.8rem;
+    box-shadow: 0 3px 10px rgba(255, 107, 53, 0.3);
+    display: none; /* Initially hidden, shown by JavaScript */
+    align-items: center;
+    gap: 4px;
+    animation: slideInFromRight 0.5s ease-out;
+}
+
+@keyframes slideInFromRight {
+    from {
+        transform: translateX(50px);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+.india-badge::before {
+    content: '🇮🇳';
+    font-size: 0.9rem;
 }
 
 .popular-badge {
@@ -85,7 +131,17 @@
 .card-header h3 {
     font-size: 1.5rem;
     margin-bottom: 15px;
-    color: inherit;
+    color: var(--text-color);
+}
+
+/* Dark mode card headers */
+[data-theme="dark"] .card-header h3 {
+    color: var(--pure-white);
+}
+
+/* Featured card header */
+.price-card.featured .card-header h3 {
+    color: white;
 }
 
 .price {
@@ -114,6 +170,11 @@
     text-align: center;
 }
 
+/* Dark mode original price */
+[data-theme="dark"] .original-price {
+    color: #aaa;
+}
+
 .price-card.featured .original-price {
     color: rgba(255, 255, 255, 0.7);
 }
@@ -126,15 +187,23 @@
 
 .features-list li {
     padding: 12px 0;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    border-bottom: 1px solid var(--border-color);
     font-size: 1rem;
     display: flex;
     align-items: center;
     gap: 10px;
+    color: var(--text-color);
+}
+
+/* Dark mode features list */
+[data-theme="dark"] .features-list li {
+    color: var(--pure-white);
+    border-bottom-color: var(--border-color);
 }
 
 .price-card.featured .features-list li {
     border-bottom-color: rgba(255, 255, 255, 0.2);
+    color: white;
 }
 
 .order-btn {
@@ -175,9 +244,14 @@
 
 .countdown-label {
     font-size: 1.2rem;
-    color: var(--pure-black);
+    color: var(--text-color);
     margin-bottom: 20px;
     font-weight: 600;
+}
+
+/* Dark mode countdown label */
+[data-theme="dark"] .countdown-label {
+    color: var(--pure-white);
 }
 
 .countdown-timer {
@@ -188,13 +262,22 @@
 }
 
 .timer-unit {
-    background: white;
+    background: var(--bg-secondary);
+    border: 2px solid var(--border-color);
     border-radius: 15px;
     padding: 20px 15px;
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 5px 20px var(--shadow-color);
     min-width: 80px;
     position: relative;
     overflow: hidden;
+    transition: all var(--transition-normal);
+}
+
+/* Dark mode timer units */
+[data-theme="dark"] .timer-unit {
+    background: var(--bg-alt-color);
+    border-color: var(--border-color);
+    box-shadow: 0 5px 20px var(--shadow-color);
 }
 
 .timer-unit::before {
@@ -204,6 +287,7 @@
     left: 0;
     right: 0;
     height: 3px;
+    background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
 }
 
 .timer-number {
@@ -217,11 +301,16 @@
 
 .timer-label {
     font-size: 0.9rem;
-    color: #666;
+    color: var(--text-secondary);
     text-transform: uppercase;
     letter-spacing: 0.1em;
     margin-top: 8px;
     font-weight: 600;
+}
+
+/* Dark mode timer text */
+[data-theme="dark"] .timer-label {
+    color: var(--text-secondary);
 }
 
 /* Pre-order Modal */
@@ -794,10 +883,17 @@
     gap: 40px;
     margin: 40px 0 0 0;
     padding: 30px;
-    background: rgba(255, 255, 255, 0.9);
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
     border-radius: 20px;
     backdrop-filter: blur(10px);
     flex-wrap: wrap;
+}
+
+/* Dark mode trust badges */
+[data-theme="dark"] .trust-badges {
+    background: var(--bg-alt-color);
+    border-color: var(--border-color);
 }
 
 .trust-item {
@@ -805,8 +901,13 @@
     align-items: center;
     gap: 10px;
     font-weight: 600;
-    color: #495057;
+    color: var(--text-color);
     font-size: 0.95rem;
+}
+
+/* Dark mode trust items */
+[data-theme="dark"] .trust-item {
+    color: var(--pure-white);
 }
 
 .trust-icon {

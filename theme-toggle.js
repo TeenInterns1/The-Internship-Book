@@ -9,11 +9,10 @@ class ThemeToggle {
     }
 
     init() {
-        this.themeToggle = document.getElementById('themeToggle');
-        this.lightIcon = this.themeToggle?.querySelector('.light-icon');
-        this.darkIcon = this.themeToggle?.querySelector('.dark-icon');
+        // Get all theme toggle buttons (desktop and mobile)
+        this.themeToggles = document.querySelectorAll('.theme-toggle');
         
-        if (!this.themeToggle) return;
+        if (this.themeToggles.length === 0) return;
 
         // Get saved theme or default to light
         this.currentTheme = localStorage.getItem('theme') || 'light';
@@ -21,8 +20,10 @@ class ThemeToggle {
         // Apply initial theme
         this.applyTheme(this.currentTheme);
         
-        // Add event listener
-        this.themeToggle.addEventListener('click', () => this.toggleTheme());
+        // Add event listeners to all theme toggles
+        this.themeToggles.forEach(toggle => {
+            toggle.addEventListener('click', () => this.toggleTheme());
+        });
 
         // Listen for system theme changes
         this.watchSystemTheme();
@@ -45,26 +46,37 @@ class ThemeToggle {
     }
 
     updateIcons(theme) {
-        if (!this.lightIcon || !this.darkIcon) return;
-        
-        if (theme === 'dark') {
-            this.lightIcon.style.display = 'none';
-            this.darkIcon.style.display = 'inline';
-        } else {
-            this.lightIcon.style.display = 'inline';
-            this.darkIcon.style.display = 'none';
-        }
+        // Update icons for all theme toggle buttons
+        this.themeToggles.forEach(toggle => {
+            const lightIcon = toggle.querySelector('.light-icon');
+            const darkIcon = toggle.querySelector('.dark-icon');
+            const toggleText = toggle.querySelector('.toggle-text');
+            
+            if (lightIcon && darkIcon) {
+                if (theme === 'dark') {
+                    lightIcon.style.display = 'none';
+                    darkIcon.style.display = 'inline';
+                    if (toggleText) toggleText.textContent = 'Light Mode';
+                } else {
+                    lightIcon.style.display = 'inline';
+                    darkIcon.style.display = 'none';
+                    if (toggleText) toggleText.textContent = 'Dark Mode';
+                }
+            }
+        });
     }
 
     toggleTheme() {
         const newTheme = this.currentTheme === 'light' ? 'dark' : 'light';
         this.applyTheme(newTheme);
         
-        // Add a subtle animation feedback
-        this.themeToggle.style.transform = 'scale(0.95)';
-        setTimeout(() => {
-            this.themeToggle.style.transform = '';
-        }, 150);
+        // Add a subtle animation feedback to all toggle buttons
+        this.themeToggles.forEach(toggle => {
+            toggle.style.transform = 'scale(0.95)';
+            setTimeout(() => {
+                toggle.style.transform = '';
+            }, 150);
+        });
     }
 
     watchSystemTheme() {
