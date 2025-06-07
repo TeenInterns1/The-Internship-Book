@@ -29,7 +29,7 @@
         }
         
         /* Dark mode styling for QR generator */
-        /* [data-theme="dark"] .admin-title,
+        [data-theme="dark"] .admin-title,
         [data-theme="dark"] .admin-subtitle,
         [data-theme="dark"] .admin-note h3,
         [data-theme="dark"] .admin-note p,
@@ -39,41 +39,31 @@
             color: var(--pure-white) !important;
         }
         
-        [data-theme="dark"] .qr-generator-container,
+        [data-theme="dark"] .qr-generator-container {
+            background-color: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+        }
+        
         [data-theme="dark"] .admin-note {
             background-color: var(--bg-secondary);
-            border-color: var(--border-color);
+            border-left: 4px solid var(--primary-color);
         }
         
         [data-theme="dark"] .qr-generator-select select {
-            background-color: var(--bg-secondary);
+            background-color: var(--bg-color);
             color: var(--text-color);
             border-color: var(--border-color);
         }
         
-        @media (prefers-color-scheme: dark) {
-            :root:not([data-theme="light"]) .admin-title,
-            :root:not([data-theme="light"]) .admin-subtitle,
-            :root:not([data-theme="light"]) .admin-note h3,
-            :root:not([data-theme="light"]) .admin-note p,
-            :root:not([data-theme="light"]) .admin-note li,
-            :root:not([data-theme="light"]) .qr-generator-select label,
-            :root:not([data-theme="light"]) .qr-info-display h3 {
-                color: var(--pure-white) !important;
-            }
-            
-            :root:not([data-theme="light"]) .qr-generator-container,
-            :root:not([data-theme="light"]) .admin-note {
-                background-color: var(--bg-secondary);
-                border-color: var(--border-color);
-            }
-            
-            :root:not([data-theme="light"]) .qr-generator-select select {
-                background-color: var(--bg-secondary);
-                color: var(--text-color);
-                border-color: var(--border-color);
-            }
-        } */
+        [data-theme="dark"] .qr-display {
+            background-color: var(--bg-color);
+        }
+        
+        [data-theme="dark"] .qr-url {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            border: 1px solid var(--border-color);
+        }
         
         .admin-subtitle {
             font-size: 1.1rem;
@@ -208,7 +198,7 @@
         }
     </style>
 </head>
-<body class="loading">
+<body class="loading" data-theme="dark">
     <div class="page-transition">
         <div class="loader">
             <div class="loader-circle"></div>
@@ -235,6 +225,11 @@
                 <div class="nav-links">
                     <a href="team.html" class="nav-link">Team</a>
                     <a href="preorder.html" class="nav-link nav-cta">Pre-order</a>
+                    <!-- Theme Toggle Button -->
+                    <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+                        <span class="light-icon">🌙</span>
+                        <span class="dark-icon">☀️</span>
+                    </button>
                 </div>
                 <button class="mobile-menu-toggle">
                     <span></span>
@@ -252,6 +247,12 @@
             <a href="index.html#preview" class="mobile-link">Preview</a>
             <a href="index.html#impact" class="mobile-link">Impact</a>
             <a href="index.html#preorder" class="mobile-link mobile-cta">Pre-order</a>
+            <!-- Mobile Theme Toggle -->
+            <button class="theme-toggle mobile-theme-toggle" aria-label="Toggle theme">
+                <span class="light-icon">🌙</span>
+                <span class="dark-icon">☀️</span>
+                <span class="toggle-text">Dark Mode</span>
+            </button>
         </div>
     </div>
 

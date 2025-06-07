@@ -435,7 +435,195 @@
             z-index: 1;
         }
 
-        /* Responsive adjustments */
+        /* Content highlights styling */
+        .content-highlights {
+            margin: 25px 0;
+        }
+        
+        .content-feature {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            margin-bottom: 18px;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 8px;
+            border-left: 3px solid var(--accent-color);
+            transition: all var(--transition-fast);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .content-feature:hover {
+            background: rgba(255, 255, 255, 1);
+            transform: translateX(3px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+        
+        .content-icon {
+            font-size: 1.3rem;
+            line-height: 1;
+            flex-shrink: 0;
+        }
+        
+        .content-text {
+            flex: 1;
+            line-height: 1.5;
+            color: var(--pure-black);
+        }
+        
+        .content-text strong {
+            color: var(--accent-color);
+            font-weight: 600;
+            display: inline;
+            margin-right: 8px;
+        }
+        
+        /* Enhanced multimedia features styling */
+        .multimedia-features {
+            margin: 25px 0;
+        }
+        
+        .media-feature {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            margin-bottom: 20px;
+            padding: 15px;
+            background: rgba(var(--primary-color-rgb), 0.05);
+            border-radius: 8px;
+            border-left: 3px solid var(--primary-color);
+            transition: all var(--transition-fast);
+        }
+        
+        .media-feature:hover {
+            background: rgba(var(--primary-color-rgb), 0.1);
+            transform: translateX(5px);
+        }
+        
+        .media-icon {
+            font-size: 1.5rem;
+            line-height: 1;
+            flex-shrink: 0;
+        }
+        
+        .media-content {
+            flex: 1;
+            line-height: 1.5;
+        }
+        
+        .media-content strong {
+            color: var(--primary-color);
+            font-weight: 600;
+            display: block;
+            margin-bottom: 4px;
+        }
+        
+        /* Multimedia highlight stats */
+        .multimedia-highlight {
+            display: flex;
+            justify-content: space-around;
+            margin: 30px 0;
+            padding: 25px;
+            background: linear-gradient(135deg, rgba(var(--primary-color-rgb), 0.1), rgba(var(--accent-color-rgb), 0.1));
+            border-radius: 12px;
+            border: 1px solid rgba(var(--primary-color-rgb), 0.2);
+        }
+        
+        .highlight-stat {
+            text-align: center;
+            flex: 1;
+        }
+        
+        .stat-number {
+            display: block;
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--primary-color);
+            line-height: 1;
+            margin-bottom: 8px;
+        }
+        
+        .stat-label {
+            display: block;
+            font-size: 0.9rem;
+            color: var(--subtitle-color);
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .multimedia-quote {
+            margin-top: 30px;
+            padding: 20px;
+            background: rgba(var(--accent-color-rgb), 0.1);
+            border-left: 4px solid var(--accent-color);
+            border-radius: 0 8px 8px 0;
+            font-style: italic;
+            color: var(--subtitle-color);
+        }
+        
+        .multimedia-quote cite {
+            display: block;
+            margin-top: 10px;
+            font-style: normal;
+            font-weight: 600;
+            color: var(--primary-color);
+            font-size: 0.9rem;
+        }
+        
+        /* Dark mode adjustments for multimedia features */
+        [data-theme="dark"] .content-feature {
+            background: rgba(26, 26, 26, 0.9);
+            border-left: 3px solid var(--accent-color);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+        }
+        
+        [data-theme="dark"] .content-feature:hover {
+            background: rgba(26, 26, 26, 1);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+        }
+        
+        [data-theme="dark"] .content-text {
+            color: var(--pure-white);
+        }
+        
+        [data-theme="dark"] .media-feature {
+            background: rgba(255, 255, 255, 0.05);
+        }
+        
+        [data-theme="dark"] .media-feature:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+        
+        [data-theme="dark"] .multimedia-highlight {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.08));
+            border-color: rgba(255, 255, 255, 0.1);
+        }
+        
+        [data-theme="dark"] .multimedia-quote {
+            background: rgba(255, 255, 255, 0.05);
+        }
+        
+        /* Responsive adjustments for multimedia features */
+        @media (max-width: 768px) {
+            .media-feature {
+                flex-direction: column;
+                gap: 8px;
+            }
+            
+            .media-icon {
+                align-self: flex-start;
+            }
+            
+            .multimedia-highlight {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            .stat-number {
+                font-size: 2rem;
+            }
+        }
         @media (max-width: 768px) {
             .book-cover-3d {
                 width: 250px;
@@ -596,18 +784,86 @@
                         </div>
                         
                         <div class="tab-panel active" data-tab="content">
-                            <h3>Authentic Teen Voice</h3>
-                            <p>Written by 23 teenagers who've navigated the internship world themselves. Real experiences, practical advice, and honest insights from your peers.</p>
+                            <h3>Written by Teens, For Teens</h3>
+                            <p>This book breaks the mold of traditional career guides. Created by 23 teenagers who've actually been through the internship journey, it's packed with real stories, practical strategies, and the kind of honest advice you won't find anywhere else.</p>
                             
-                            <blockquote class="preview-quote">
-                                "We've been where you are - confused about internships but eager to grow. This book is your roadmap to turning that confusion into confidence."
-                                <cite>— The Teen Contributors</cite>
-                            </blockquote>
+                            <div class="content-highlights">
+                                <div class="content-feature">
+                                    <span class="content-icon">📝</span>
+                                    <div class="content-text">
+                                        <strong>No Adult BS:</strong> Just straight talk from people who remember what it's like to be completely lost about internships.
+                                    </div>
+                                </div>
+                                
+                                <div class="content-feature">
+                                    <span class="content-icon">🎯</span>
+                                    <div class="content-text">
+                                        <strong>Actually Useful:</strong> Every tip, template, and strategy has been tested by real teens in real situations.
+                                    </div>
+                                </div>
+                                
+                                <div class="content-feature">
+                                    <span class="content-icon">💯</span>
+                                    <div class="content-text">
+                                        <strong>Completely Honest:</strong> We share the failures, the awkward moments, and the wins that actually matter.
+                                    </div>
+                                </div>
+                            </div>
                         </div>
 
-                         <div class="tab-panel" data-tab="multimedia">
-                            <h3>Interactive Multimedia Experience</h3>
-                            <p>Videos featuring real internship stories, BTS content from our teen contributors, and exclusive interviews with industry mentors - all accessible through QR codes in the book.</p>
+                        <div class="tab-panel" data-tab="multimedia">
+                            <h3>Your Digital Companion</h3>
+                            <p>Step into the future of learning with our multimedia-rich experience. Every QR code is a gateway to exclusive content created by teens, for teens—bringing the internship world to life beyond the printed page.</p>
+                            
+                            <div class="multimedia-features">
+                                <div class="media-feature">
+                                    <span class="media-icon">📹</span>
+                                    <div class="media-content">
+                                        <strong>Behind-the-Scenes Stories:</strong> Watch raw, unfiltered moments from our teen contributors as they share their biggest internship wins, epic fails, and everything in between.
+                                    </div>
+                                </div>
+                                
+                                <div class="media-feature">
+                                    <span class="media-icon">💬</span>
+                                    <div class="media-content">
+                                        <strong>Real Talk Sessions:</strong> Listen to honest conversations about imposter syndrome, networking anxiety, and how to bounce back when things don't go as planned.
+                                    </div>
+                                </div>
+                                
+                                <div class="media-feature">
+                                    <span class="media-icon">🎯</span>
+                                    <div class="media-content">
+                                        <strong>Action-Ready Tools:</strong> Get instant access to templates, scripts, and checklists that have actually worked for real teens landing their dream internships.
+                                    </div>
+                                </div>
+                                
+                                <div class="media-feature">
+                                    <span class="media-icon">🌟</span>
+                                    <div class="media-content">
+                                        <strong>Success Spotlights:</strong> Celebrate with teens who went from "I have no idea what I'm doing" to crushing their internship goals—and learn exactly how they did it.
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="multimedia-highlight">
+                                <div class="highlight-stat">
+                                    <span class="stat-number">50+</span>
+                                    <span class="stat-label">Exclusive Videos</span>
+                                </div>
+                                <div class="highlight-stat">
+                                    <span class="stat-number">30+</span>
+                                    <span class="stat-label">Downloadable Resources</span>
+                                </div>
+                                <div class="highlight-stat">
+                                    <span class="stat-number">24/7</span>
+                                    <span class="stat-label">Community Access</span>
+                                </div>
+                            </div>
+                            
+                            <blockquote class="multimedia-quote">
+                                "It's like having a group chat with 23 teens who've already figured out the internship game—except it's way more organized and actually helpful!"
+                                <cite>— Laksh, Marketing Team & Beta Reader</cite>
+                            </blockquote>
                         </div>
                         
                         <div class="tab-panel" data-tab="interactive">
