@@ -26,12 +26,27 @@
         
         /* Logo Text Styles */
         .logo-text {
+            color: #009A94 !important;
+            background: none !important;
+            -webkit-background-clip: initial !important;
+            -webkit-text-fill-color: #009A94 !important;
+            background-clip: initial !important;
+            font-weight: 700;
             font-size: 1.5rem;
-            font-weight: 800;
-            color: var(--primary-color);
-            text-decoration: none;
-            font-family: 'Inter', sans-serif;
-            letter-spacing: -0.5px;
+        }
+
+        /* Ensure all logo variations have solid teal fill */
+        .logo-text,
+        .footer-logo-text,
+        .footer-logo-img,
+        .cta-brand-text {
+            color: #009A94 !important;
+            fill: #009A94 !important;
+            -webkit-text-fill-color: #009A94 !important;
+            background: none !important;
+            background-image: none !important;
+            -webkit-background-clip: initial !important;
+            background-clip: initial !important;
         }
         
         /* Header padding adjustment */
@@ -103,6 +118,225 @@
             
             .footer-logo-text {
                 font-size: 1.3rem;
+            }
+        }
+
+        /* Enhanced 3D Book Cover Styling */
+        .book-cover-3d {
+            position: relative;
+            width: 300px;
+            height: 400px;
+            margin: 0 auto;
+            transform: perspective(1200px) rotateY(-15deg) rotateX(2deg);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            transform-style: preserve-3d;
+        }
+
+        .book-cover-3d:hover {
+            transform: perspective(1200px) rotateY(-8deg) rotateX(-1deg) translateZ(30px);
+        }
+
+        .book-front {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: #ffffff;
+            border-radius: 10px 6px 6px 10px;
+            box-shadow: 
+                0 0 0 2px #e0e0e0,
+                0 0 0 3px #d0d0d0,
+                0 5px 15px rgba(0, 0, 0, 0.2),
+                0 10px 30px rgba(0, 0, 0, 0.15),
+                0 20px 60px rgba(0, 0, 0, 0.1),
+                inset 0 0 0 1px rgba(255, 255, 255, 0.8);
+            overflow: hidden;
+            transform-style: preserve-3d;
+            border: 1px solid #ccc;
+        }
+
+        .book-front img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: contain; /* Changed from cover to contain */
+            object-position: center;
+            border-radius: 10px 6px 6px 10px;
+            padding: 8px; /* Add padding to ensure text isn't cut off */
+            box-sizing: border-box;
+        }
+
+        .book-spine {
+            position: absolute;
+            right: -18px;
+            top: 0;
+            width: 18px;
+            height: 100%;
+            background: linear-gradient(180deg, 
+                #006B66 0%, 
+                #005A55 25%, 
+                #004D49 50%, 
+                #004440 75%, 
+                #003A36 100%);
+            border-radius: 0 8px 8px 0;
+            box-shadow: 
+                3px 0 12px rgba(0, 0, 0, 0.4),
+                inset -3px 0 8px rgba(0, 0, 0, 0.3),
+                inset 3px 0 3px rgba(255, 255, 255, 0.1),
+                inset 0 0 0 1px rgba(0, 107, 102, 0.8);
+            transform: rotateY(90deg);
+            transform-origin: left center;
+            position: relative;
+        }
+
+        .book-spine::before {
+            content: 'TEEN INTERNS';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(90deg);
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 0.6rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            text-shadow: 
+                0 1px 2px rgba(0, 0, 0, 0.6),
+                0 0 4px rgba(0, 0, 0, 0.3);
+            white-space: nowrap;
+        }
+
+        .book-spine::after {
+            content: '';
+            position: absolute;
+            top: 10%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 2px;
+            height: 80%;
+            background: linear-gradient(to bottom,
+                transparent 0%,
+                rgba(255, 255, 255, 0.2) 20%,
+                rgba(255, 255, 255, 0.1) 50%,
+                rgba(255, 255, 255, 0.2) 80%,
+                transparent 100%);
+            border-radius: 1px;
+        }
+
+        .book-pages {
+            position: absolute;
+            right: -15px;
+            top: 3px;
+            width: 15px;
+            height: calc(100% - 6px);
+            background: linear-gradient(to right, 
+                #f2f2f2 0%, 
+                #f8f8f8 30%, 
+                #ffffff 70%, 
+                #fdfdfd 100%);
+            border-radius: 0 6px 6px 0;
+            box-shadow: 
+                inset -4px 0 8px rgba(0, 0, 0, 0.12),
+                inset -2px 0 4px rgba(0, 0, 0, 0.08),
+                inset -1px 0 2px rgba(0, 0, 0, 0.05),
+                3px 0 10px rgba(0, 0, 0, 0.15),
+                1px 0 3px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+
+        .book-pages::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: repeating-linear-gradient(
+                to bottom,
+                transparent 0px,
+                transparent 6px,
+                rgba(0, 0, 0, 0.03) 6px,
+                rgba(0, 0, 0, 0.03) 7px,
+                transparent 7px,
+                transparent 13px,
+                rgba(0, 0, 0, 0.02) 13px,
+                rgba(0, 0, 0, 0.02) 14px
+            );
+            border-radius: 0 6px 6px 0;
+        }
+
+        .book-pages::after {
+            content: '';
+            position: absolute;
+            right: -1px;
+            top: 2px;
+            width: 1px;
+            height: calc(100% - 4px);
+            background: linear-gradient(
+                to bottom,
+                transparent 0%,
+                rgba(0, 0, 0, 0.15) 10%,
+                rgba(0, 0, 0, 0.1) 30%,
+                rgba(0, 0, 0, 0.08) 70%,
+                rgba(0, 0, 0, 0.12) 90%,
+                transparent 100%
+            );
+            border-radius: 0.5px;
+        }
+
+        /* Enhanced book cover frame effect */
+        .book-front::before {
+            content: '';
+            position: absolute;
+            top: 6px;
+            left: 6px;
+            right: 6px;
+            bottom: 6px;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            border-radius: 6px 2px 2px 6px;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        /* Book container adjustments */
+        .book-cover {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 30px;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .book-cover-3d {
+                width: 250px;
+                height: 330px;
+                transform: perspective(1000px) rotateY(-12deg) rotateX(1deg);
+            }
+
+            .book-cover-3d:hover {
+                transform: perspective(1000px) rotateY(-6deg) rotateX(0deg) translateZ(20px);
+            }
+
+            .book-cover {
+                padding: 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .book-cover-3d {
+                width: 200px;
+                height: 260px;
+                transform: perspective(800px) rotateY(-10deg) rotateX(1deg);
+            }
+
+            .book-cover-3d:hover {
+                transform: perspective(800px) rotateY(-5deg) rotateX(0deg) translateZ(15px);
+            }
+
+            .book-cover {
+                padding: 15px;
             }
         }
         
@@ -340,7 +574,7 @@
         }
     </style>
 </head>
-<body class="loading preorder-page" data-theme="light">
+<body class="loading preorder-page" data-theme="dark">
     
     <div class="background-elements">
         <div class="bg-shape shape1"></div>
@@ -354,7 +588,7 @@
             <nav class="nav-container">
                 <div class="logo">
                     <a href="index.html" class="logo-link">
-                        <span class="logo-text">Teen Interns</span>
+                        <span class="logo-text">Teen Interns Book</span>
                     </a>
                 </div>
                 <div class="nav-links">
@@ -506,7 +740,7 @@
         <div class="container">
             <div class="cta-content animate-fade-up">
                 <div class="cta-logo-center">
-                    <h2 class="cta-brand-text">Teen Interns</h2>
+                    <h2 class="cta-brand-text">Teen Interns Book</h2>
                 </div>
                 <h2>Ready to Start Your Internship Journey?</h2>
                 <p>Join thousands of teens who are already preparing for their future. Pre-order now and save with early bird pricing.</p>
@@ -525,7 +759,7 @@
             <div class="footer-content">
                 <div class="footer-brand">
                     <a href="index.html" class="footer-logo">
-                        <span class="footer-logo-text">Teen Interns</span>
+                        <span class="footer-logo-text">Teen Interns Book</span>
                     </a>
                     <p class="footer-tagline">Empowering the next generation through internships</p>
                 </div>

@@ -231,6 +231,162 @@ Madhavi -->
             margin-bottom: 20px;
         }
 
+        /* Logo styling - teal color without gradient */
+        .logo-text {
+            color: #009A94 !important;
+            background: none !important;
+            background-clip: initial !important;
+            -webkit-background-clip: initial !important;
+            -webkit-text-fill-color: #009A94 !important;
+            font-weight: 700;
+            font-size: 1.5rem;
+        }
+
+        /* Ensure all logo variations have solid teal fill */
+        .logo-text,
+        .footer-logo-img,
+        .impact-logo,
+        .cta-brand-text {
+            color: #009A94 !important;
+            fill: #009A94 !important;
+            -webkit-text-fill-color: #009A94 !important;
+            background: none !important;
+            background-image: none !important;
+            -webkit-background-clip: initial !important;
+            background-clip: initial !important;
+        }
+
+        /* 3D Book Cover Styling */
+        .book-cover-3d {
+            position: relative;
+            width: 300px;
+            height: 400px;
+            margin: 0 auto;
+            transform: perspective(1000px) rotateY(-15deg) rotateX(2deg);
+            transition: transform 0.3s ease;
+        }
+
+        .book-cover-3d:hover {
+            transform: perspective(1000px) rotateY(-10deg) rotateX(0deg) translateZ(20px);
+        }
+
+        .book-front {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #009A94, #00C4B8);
+            border-radius: 8px 4px 4px 8px;
+            box-shadow: 
+                0 0 0 2px #006B66,
+                0 8px 20px rgba(0, 0, 0, 0.3),
+                0 12px 40px rgba(0, 0, 0, 0.2);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-weight: bold;
+            font-size: 1.2rem;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .book-spine {
+            position: absolute;
+            right: -12px;
+            top: 0;
+            width: 12px;
+            height: 100%;
+            background: linear-gradient(180deg, #006B66, #004D49);
+            border-radius: 0 4px 4px 0;
+            box-shadow: 2px 0 8px rgba(0, 0, 0, 0.3);
+            transform: rotateY(90deg);
+            transform-origin: left center;
+        }
+
+        .book-pages {
+            position: absolute;
+            right: -8px;
+            top: 2px;
+            width: 8px;
+            height: calc(100% - 4px);
+            background: #f5f5f5;
+            border-radius: 0 2px 2px 0;
+            box-shadow: inset -2px 0 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .book-spiral {
+            position: absolute;
+            left: 15px;
+            top: 0;
+            width: 4px;
+            height: 100%;
+            background: repeating-linear-gradient(
+                to bottom,
+                #006B66 0px,
+                #006B66 8px,
+                transparent 8px,
+                transparent 12px
+            );
+            border-radius: 2px;
+        }
+
+        .book-spiral::before {
+            content: '';
+            position: absolute;
+            left: -2px;
+            top: 0;
+            width: 8px;
+            height: 100%;
+            background: repeating-linear-gradient(
+                to bottom,
+                rgba(0, 107, 102, 0.3) 0px,
+                rgba(0, 107, 102, 0.3) 6px,
+                transparent 6px,
+                transparent 14px
+            );
+            border-radius: 4px;
+        }
+
+        /* Apply book styling to existing book icons */
+        .book-icon {
+            width: 60px;
+            height: 80px;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #009A94, #00C4B8);
+            border-radius: 4px 2px 2px 4px;
+            position: relative;
+            transform: perspective(500px) rotateY(-10deg);
+            box-shadow: 
+                0 0 0 1px #006B66,
+                0 4px 12px rgba(0, 0, 0, 0.3),
+                0 6px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .book-icon::before {
+            content: '';
+            position: absolute;
+            right: -6px;
+            top: 0;
+            width: 6px;
+            height: 100%;
+            background: linear-gradient(180deg, #006B66, #004D49);
+            border-radius: 0 2px 2px 0;
+            transform: rotateY(90deg);
+            transform-origin: left center;
+        }
+
+        .book-icon::after {
+            content: '';
+            position: absolute;
+            right: -4px;
+            top: 1px;
+            width: 4px;
+            height: calc(100% - 2px);
+            background: #f5f5f5;
+            border-radius: 0 1px 1px 0;
+        }
+
 /* Horizontal Scrolling Team Profiles Styles */
 
 /* Main container for the horizontal scrolling section */
@@ -652,7 +808,7 @@ Madhavi -->
         }
     </style>
 </head>
-<body class="loading" data-theme="light">
+<body class="loading" data-theme="dark">
     
     <div class="page-transition">
         <div class="loader">
@@ -674,7 +830,7 @@ Madhavi -->
             <nav class="nav-container">
                 <div class="logo">
                     <a href="index.html" class="logo-link">
-                        <span class="logo-text">Teen Interns</span>
+                        <span class="logo-text">Teen Interns Book</span>
                     </a>
                 </div>
                 <div class="nav-links">
@@ -712,7 +868,6 @@ Madhavi -->
     <section class="team-page-section">
         <div class="container">
             <div class="team-intro animate-fade-up">
-                <img src="" class="book-icon">
                 <h1>Meet the Team</h1>
                 <p>The Teen Interns Book is a collaborative project created entirely by talented teenage interns. Get to know the amazing individuals who worked together to bring this book to life.</p>
             </div>
@@ -901,9 +1056,9 @@ Madhavi -->
                             </p>
                             <div class="profile-skills">
                                 <span class="skill-tag">Video Editing</span>
+                                <span class="skill-tag">Motivating</span>
                                 <span class="skill-tag">Creative</span>
-                                <span class="skill-tag">Tech Troubleshooting</span>
-                                <span class="skill-tag">Game Development</span>
+                                <span class="skill-tag">Positive</span>
                             </div>
                             
                         </div>
@@ -1028,10 +1183,12 @@ Madhavi -->
                         </div>
                         <div class="profile-info">
                             <p class="profile-description">
-                                Team member description coming soon...
+                                Hi, I'm <b>Ashita</b>. I'm in <b>10th Grade</b> and one of the illustrators for The Internship Book. I would consider myself an artist who enjoys creating both traditional and digital art. I'm passionate about bringing ideas to life through visual storytelling and design. I approach my work with determination and curiosity, always looking for ways to improve and learn new techniques.
                             </p>
                             <div class="profile-skills">
-                                <span class="skill-tag">Skills coming soon...</span>
+                                <span class="skill-tag">Determined</span>
+                                <span class="skill-tag">Realistic</span>
+                                <span class="skill-tag">Inquisitive</span>
                             </div>
                             
                         </div>
@@ -1047,10 +1204,12 @@ Madhavi -->
                         </div>
                         <div class="profile-info">
                             <p class="profile-description">
-                                Team member description coming soon...
+                                Hi, I'm <b>Baargavi</b>. I'm in <b>8th Grade</b> and one of the illustrators for The Internship Book. I'm a digital artist who loves creating visual content that tells stories and captures emotions. I enjoy experimenting with different art styles and techniques to bring ideas to life through illustrations.
                             </p>
                             <div class="profile-skills">
-                                <span class="skill-tag">Skills coming soon...</span>
+                                <span class="skill-tag">Creativity</span>
+                                <span class="skill-tag">Visual Story Telling</span>
+                                <span class="skill-tag">Researching</span>
                             </div>
                             
                         </div>
@@ -1066,10 +1225,12 @@ Madhavi -->
                         </div>
                         <div class="profile-info">
                             <p class="profile-description">
-                                Team member description coming soon...
+                                Hi, I'm <b>Ira</b>. I'm in <b>9th Grade</b> and one of the illustrators for The Internship Book. I'm a homeschooling student with a passion for creative expression through art. I enjoy bringing fresh perspectives to my illustrations and collaborating with the team to create meaningful visual content.
                             </p>
                             <div class="profile-skills">
-                                <span class="skill-tag">Skills coming soon...</span>
+                                <span class="skill-tag">Creative</span>
+                                <span class="skill-tag">Innovative</span>
+                                <span class="skill-tag">Communicating Well</span>
                             </div>
                             
                         </div>
@@ -1085,10 +1246,12 @@ Madhavi -->
                         </div>
                         <div class="profile-info">
                             <p class="profile-description">
-                                Team member description coming soon...
+                                Hi, I'm <b>Aniya</b>. I'm in <b>9th Grade</b> and one of the illustrators for The Internship Book. I'm an artist with a passion for character design and visual storytelling. I enjoy combining my love for art with research to create illustrations that are both creative and informative. Beyond art, I also have a talent for singing.
                             </p>
                             <div class="profile-skills">
-                                <span class="skill-tag">Skills coming soon...</span>
+                                <span class="skill-tag">Character Sketching</span>
+                                <span class="skill-tag">Singing</span>
+                                <span class="skill-tag">Researching</span>
                             </div>
                             
                         </div>
@@ -1104,10 +1267,13 @@ Madhavi -->
                         </div>
                         <div class="profile-info">
                             <p class="profile-description">
-                                Team member description coming soon...
+                                Hi, I'm <b>Leanna</b>. I'm in <b>6th Grade</b> and one of the illustrators for The Internship Book. I'm a light-hearted artist who enjoys both traditional and digital art forms. I have a keen eye for detail and love observing the world around me to inspire my creative work. I enjoy collaborating with the team to bring visual stories to life.
                             </p>
                             <div class="profile-skills">
-                                <span class="skill-tag">Skills coming soon...</span>
+                                <span class="skill-tag">Traditional and Digital Art</span>
+                                <span class="skill-tag">Observant</span>
+                                <span class="skill-tag">Creative</span>
+                                <span class="skill-tag">Collaborative</span>
                             </div>
                             
                         </div>
@@ -1123,10 +1289,13 @@ Madhavi -->
                         </div>
                         <div class="profile-info">
                             <p class="profile-description">
-                                Team member description coming soon...
+                                Hi, I'm <b>Achal</b>. I'm in <b>11th Grade</b> and part of the social media and marketing team for The Internship Book. I bring creativity and emotional intelligence to our marketing strategies, focusing on connecting with our teen audience in authentic and meaningful ways. I enjoy problem-solving and working collaboratively to create engaging content that resonates with our community.
                             </p>
                             <div class="profile-skills">
-                                <span class="skill-tag">Skills coming soon...</span>
+                                <span class="skill-tag">Creativity</span>
+                                <span class="skill-tag">Teamwork</span>
+                                <span class="skill-tag">Emotional Intelligence</span>
+                                <span class="skill-tag">Problem Solving</span>
                             </div>
                             
                         </div>
@@ -1142,10 +1311,14 @@ Madhavi -->
                         </div>
                         <div class="profile-info">
                             <p class="profile-description">
-                                Team member description coming soon...
+                                Hi, I'm <b>Laksh</b>. I'm in <b>9th Grade</b> and part of the social media and marketing team for The Internship Book. I'm passionate about public speaking, marketing strategies, and leveraging AI for creative solutions. I enjoy debating and academic pursuits, and I bring creative thinking to our marketing campaigns to help spread awareness about internship opportunities for teens.
                             </p>
                             <div class="profile-skills">
-                                <span class="skill-tag">Skills coming soon...</span>
+                                <span class="skill-tag">Public Speaking</span>
+                                <span class="skill-tag">Marketing</span>
+                                <span class="skill-tag">AI</span>
+                                <span class="skill-tag">Creative Thinking</span>
+                                <span class="skill-tag">Debating</span>
                             </div>
                             
                         </div>
@@ -1161,10 +1334,14 @@ Madhavi -->
                         </div>
                         <div class="profile-info">
                             <p class="profile-description">
-                                Team member description coming soon...
+                                Hi, I'm <b>Sarah</b>. I'm in <b>9th Grade</b> and part of the social media and marketing team for The Internship Book. I'm passionate about understanding human psychology and how it applies to marketing and communication. I enjoy public speaking, podcasting, and creative thinking to develop marketing strategies that truly connect with our audience.
                             </p>
                             <div class="profile-skills">
-                                <span class="skill-tag">Skills coming soon...</span>
+                                <span class="skill-tag">Public Speaking</span>
+                                <span class="skill-tag">Podcasting</span>
+                                <span class="skill-tag">Marketing</span>
+                                <span class="skill-tag">Human Psychology</span>
+                                <span class="skill-tag">Creative Thinking</span>
                             </div>
                             
                         </div>
@@ -1180,10 +1357,13 @@ Madhavi -->
                         </div>
                         <div class="profile-info">
                             <p class="profile-description">
-                                Team member description coming soon...
+                                Hi, I'm <b>Vidhi</b>. I'm in <b>10th Grade</b> and part of the social media and marketing team for The Internship Book. I specialize in social media marketing, content creation, and audience engagement. I'm passionate about understanding platform dynamics and creating content that drives meaningful interactions with our community.
                             </p>
                             <div class="profile-skills">
-                                <span class="skill-tag">Skills coming soon...</span>
+                                <span class="skill-tag">Social Media Marketing</span>
+                                <span class="skill-tag">Content Creation</span>
+                                <span class="skill-tag">Audience Engagement</span>
+                                <span class="skill-tag">Platform Management</span>
                             </div>
                             
                         </div>
@@ -1199,10 +1379,12 @@ Madhavi -->
                         </div>
                         <div class="profile-info">
                             <p class="profile-description">
-                                Team member description coming soon...
+                                Hi, I'm <b>Shreyas</b>. I'm in <b>11th Grade</b> and part of the finance and sponsorship team for The Internship Book. I work on developing financial strategies, managing budgets, and securing sponsorships to support our project goals. I enjoy analyzing data and creating sustainable financial models for our initiatives.
                             </p>
                             <div class="profile-skills">
-                                <span class="skill-tag">Skills coming soon...</span>
+                                <span class="skill-tag">Financial Analysis</span>
+                                <span class="skill-tag">Budget Management</span>
+                                <span class="skill-tag">Strategic Planning</span>
                             </div>
                             
                         </div>
@@ -1213,15 +1395,17 @@ Madhavi -->
                     <div class="profile-content">
                         <div class="profile-image-section">
                             <div class="profile-image">K</div>
-                            <h2 class="profile-name">Krishna</h2>
+                            <h2 class="profile-name">Krishna Iyer</h2>
                             <p class="profile-role">Finance & Sponsorship Managers</p>
                         </div>
                         <div class="profile-info">
                             <p class="profile-description">
-                                Team member description coming soon...
+                                Hello, I am Krishna. I am in 9th grade and part of the finance and sponsorship management team. I study at Oakridge International School, Bengaluru. My role in this project is to identify sponsors who would be interested in being featured in our book. 
                             </p>
                             <div class="profile-skills">
-                                <span class="skill-tag">Skills coming soon...</span>
+                                <span class="skill-tag">Researching</span>
+                                <span class="skill-tag">Planning</span>
+                                <span class="skill-tag">Open-Minded</span>
                             </div>
                             
                         </div>
@@ -1237,10 +1421,12 @@ Madhavi -->
                         </div>
                         <div class="profile-info">
                             <p class="profile-description">
-                                Team member description coming soon...
+                                Hi, I'm <b>Madhavi</b>. I'm part of the finance and sponsorship management team for The Internship Book. I work alongside the team to develop financial strategies and secure partnerships that support our mission of making internships accessible to all teenagers.
                             </p>
                             <div class="profile-skills">
-                                <span class="skill-tag">Skills coming soon...</span>
+                                <span class="skill-tag">Financial Planning</span>
+                                <span class="skill-tag">Partnership Development</span>
+                                <span class="skill-tag">Team Collaboration</span>
                             </div>
                             
                         </div>
@@ -1265,7 +1451,7 @@ Madhavi -->
             <div class="footer-content">
                 <div class="footer-brand">
                     <a href="index.html" class="footer-logo">
-                        <span class="footer-logo-img logo-text">Teen Interns</span>
+                        <span class="footer-logo-img logo-text">Teen Interns Book</span>
                     </a>
                     <p class="footer-tagline">Empowering the next generation through internships</p>
                 </div>
