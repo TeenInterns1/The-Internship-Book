@@ -40,6 +40,108 @@ Madhavi -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     
     <style>
+        /* CSS Variables for Theme System */
+        :root {
+            --primary-color: #009A94;
+            --secondary-color: #00C4B8;
+            --accent-color: #00E6D6;
+            --highlight-color: #FF6B6B;
+            
+            /* Light Theme Colors */
+            --bg-color: #FFFFFF;
+            --bg-secondary: #F8F9FA;
+            --bg-alt-color: #F1F3F4;
+            --text-color: #000000;
+            --text-secondary: #000000;
+            --subtitle-color: #000000;
+            --border-color: #E0E0E0;
+            --card-bg: #FFFFFF;
+            --sidebar-bg: rgba(255, 255, 255, 0.95);
+            --sidebar-text: #000000;
+            
+            /* Transition variables */
+            --transition-fast: 0.2s ease;
+            --transition-normal: 0.3s ease;
+            --transition-slow: 0.5s ease;
+        }
+        
+        /* Dark Theme Colors */
+        [data-theme="dark"] {
+            --bg-color: rgb(26, 26, 26);
+            --bg-secondary: rgb(26, 26, 26);
+            --bg-alt-color: #2A2A2A;
+            --text-color: #FFFFFF;
+            --text-secondary: #E0E0E0;
+            --subtitle-color: #B0B0B0;
+            --border-color: #333333;
+            --card-bg: rgb(26, 26, 26);
+            --sidebar-bg: rgba(26, 26, 26, 0.95);
+            --sidebar-text: #FFFFFF;
+        }
+        
+        /* Apply theme colors to body and main elements */
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            transition: background-color var(--transition-normal), color var(--transition-normal);
+        }
+        
+        /* Force header background and text colors */
+        .site-header {
+            background-color: var(--bg-color) !important;
+            transition: background-color var(--transition-normal);
+        }
+        
+        .nav-container {
+            background-color: transparent !important;
+        }
+        
+        .nav-link {
+            color: var(--text-color) !important;
+        }
+        
+        .mobile-menu {
+            background-color: var(--bg-color) !important;
+        }
+        
+        .mobile-link {
+            color: var(--text-color) !important;
+        }
+        
+        /* Ultra aggressive text color overrides for light mode */
+        [data-theme="light"] h1,
+        [data-theme="light"] h2,
+        [data-theme="light"] h3,
+        [data-theme="light"] h4,
+        [data-theme="light"] h5,
+        [data-theme="light"] h6,
+        [data-theme="light"] p,
+        [data-theme="light"] span,
+        [data-theme="light"] div,
+        [data-theme="light"] li,
+        [data-theme="light"] a {
+            color: #000000 !important;
+        }
+        
+        /* Force specific elements to black in light mode */
+        [data-theme="light"] .team-intro h1,
+        [data-theme="light"] .team-intro p,
+        [data-theme="light"] .profile-name,
+        [data-theme="light"] .profile-description,
+        [data-theme="light"] .footer-tagline,
+        [data-theme="light"] .footer-group h4,
+        [data-theme="light"] .footer-group a,
+        [data-theme="light"] .copyright,
+        [data-theme="light"] .credit {
+            color: #000000 !important;
+        }
+        
+        /* Keep teal colors for branding in light mode */
+        [data-theme="light"] .logo-text,
+        [data-theme="light"] .profile-role,
+        [data-theme="light"] .skill-tag {
+            color: #009A94 !important;
+        }
         /* Enhanced Left Sidebar Navigation */
         .left-sidebar {
             position: fixed;
@@ -47,7 +149,7 @@ Madhavi -->
             top: 50%;
             transform: translateY(-50%);
             z-index: 1000;
-            background: rgba(255, 255, 255, 0.95);
+            background: var(--sidebar-bg);
             backdrop-filter: blur(15px);
             padding: 15px;
             border-radius: 0 15px 15px 0;
@@ -58,6 +160,81 @@ Madhavi -->
             min-width: 50px;
             max-height: 80vh;
             overflow-y: auto;
+        }
+        
+        /* Theme Toggle Button Styles */
+        .theme-toggle {
+            background: none;
+            border: 2px solid var(--primary-color);
+            border-radius: 50px;
+            padding: 8px 12px;
+            cursor: pointer;
+            font-size: 1.2rem;
+            transition: all var(--transition-fast);
+            position: relative;
+            overflow: hidden;
+            margin-left: 15px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .theme-toggle:hover {
+            background: var(--primary-color);
+            transform: scale(1.05);
+        }
+        
+        .theme-toggle .light-icon,
+        .theme-toggle .dark-icon {
+            transition: opacity var(--transition-fast), transform var(--transition-fast);
+        }
+        
+        /* Show/hide icons based on theme */
+        [data-theme="light"] .theme-toggle .light-icon {
+            opacity: 1;
+            transform: scale(1);
+        }
+        
+        [data-theme="light"] .theme-toggle .dark-icon {
+            opacity: 0;
+            transform: scale(0.8);
+            position: absolute;
+        }
+        
+        [data-theme="dark"] .theme-toggle .dark-icon {
+            opacity: 1;
+            transform: scale(1);
+        }
+        
+        [data-theme="dark"] .theme-toggle .light-icon {
+            opacity: 0;
+            transform: scale(0.8);
+            position: absolute;
+        }
+        
+        /* Mobile theme toggle */
+        .mobile-theme-toggle {
+            background: none;
+            border: 2px solid var(--primary-color);
+            border-radius: 8px;
+            padding: 10px 15px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all var(--transition-fast);
+            color: var(--text-color);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 10px;
+        }
+        
+        .mobile-theme-toggle:hover {
+            background: var(--primary-color);
+            color: white;
+        }
+        
+        .toggle-text {
+            font-size: 0.9rem;
         }
         
         /* Custom scrollbar for sidebar */
@@ -387,7 +564,13 @@ Madhavi -->
             border-radius: 0 1px 1px 0;
         }
 
-/* Horizontal Scrolling Team Profiles Styles */
+        /* FIXED: Profile image styling for actual images */
+        .profile-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 20px;
+        }
 
 /* Main container for the horizontal scrolling section */
 .team-profiles {
@@ -808,7 +991,7 @@ Madhavi -->
         }
     </style>
 </head>
-<body class="loading" data-theme="dark">
+<body class="loading" data-theme="light">
     
     <div class="page-transition">
         <div class="loader">
@@ -837,6 +1020,11 @@ Madhavi -->
                     <a href="index.html" class="nav-link">Home</a>
                     <a href="team.html" class="nav-link">Team</a>
                     <a href="preorder.html" class="nav-link nav-cta">Pre-order</a>
+                    <!-- Theme Toggle Button -->
+                    <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+                        <span class="light-icon">🌙</span>
+                        <span class="dark-icon">☀️</span>
+                    </button>
                 </div>
                 <button class="mobile-menu-toggle">
                     <span></span>
@@ -852,7 +1040,7 @@ Madhavi -->
             <a href="team.html" class="mobile-link">Team</a>
             <a href="preorder.html" class="mobile-link mobile-cta">Pre-order</a>
             <!-- Mobile Theme Toggle -->
-            <button class="theme-toggle mobile-theme-toggle" aria-label="Toggle theme">
+            <button class="theme-toggle mobile-theme-toggle" id="mobileThemeToggle" aria-label="Toggle theme">
                 <span class="light-icon">🌙</span>
                 <span class="dark-icon">☀️</span>
                 <span class="toggle-text">Dark Mode</span>
@@ -926,7 +1114,7 @@ Madhavi -->
                     </div>
                 </div>
                 <!--Lakshi Mehta-->
-                <div class="profile-card" id="mannat">
+                <div class="profile-card" id="lakshi">
                     <div class="profile-content">
                         <div class="profile-image-section">
                             <div class="profile-image">L</div>

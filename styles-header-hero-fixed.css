@@ -40,7 +40,6 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    /* padding: 1rem 0; */
 }
 
 .logo-img {
@@ -95,7 +94,7 @@
 
 .nav-cta {
     background: var(--primary-color);
-    color: var(--text-button) !important; /*variable for text color on teal button*/
+    color: var(--text-button) !important;
     padding: 0.75rem 1.5rem;
     border-radius: var(--border-radius-sm);
     font-weight: 600;
@@ -164,25 +163,6 @@
     color: var(--primary-color);
 }
 
-/* Dark mode mobile menu text */
-/*
-[data-theme="dark"] .mobile-link {
-    color: var(--pure-white) !important;
-}
-
-@media (prefers-color-scheme: dark) {
-    :root:not([data-theme="light"]) .mobile-link {
-        color: var(--pure-white) !important;
-    }
-}
-
-.mobile-cta {
-    background: var(--primary-color);
-    color: var(--pure-white) !important;
-    padding: 1rem 2rem;
-    border-radius: var(--border-radius-sm);
-}*/
-
 /* Hero Section - Enhanced with better contrast */
 .hero {
     min-height: 100vh;
@@ -212,8 +192,7 @@
 }
 
 .title-highlight {
-    color: var(--teal-primary);           /* Regular text color without background */
-    /* background: var(--yellow-primary);  Yellow background removed */
+    color: var(--teal-primary);
     padding: 0.2rem 0.5rem;
     border-radius: 8px;
     position: relative;
@@ -297,7 +276,6 @@
 .cta-button.primary {
     background: var(--primary-color);
     color: #FFFFFF;
-    /* border-color: var(--primary-color); */
 }
 
 .cta-button.primary:hover {
@@ -317,124 +295,6 @@
     background: var(--text-color);
     color: var(--bg-secondary);
     transform: translateY(-2px);
-}
-
-/* Work Love Section */
-.work-love {
-    padding: 5rem 0;
-    background: var(--bg-secondary);
-}
-
-.work-love .section-title {
-    font-size: clamp(2rem, 5vw, 3.5rem);
-    line-height: 1.2;
-}
-
-/* Success Stories / Awards Section */
-.success-stories {
-    padding: 5rem 0;
-    background: var(--bg-color);
-}
-
-.awards-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-    gap: 2rem;
-    margin-top: 3rem;
-}
-
-.award-item {
-    text-align: center;
-    padding: 2rem 1rem;
-    background: var(--bg-secondary);
-    border-radius: var(--border-radius-md);
-    transition: all var(--transition-normal);
-    border: 1px solid var(--border-color);
-}
-
-.award-item:hover {
-    transform: translateY(-5px);
-    box-shadow: var(--box-shadow);
-}
-
-.award-icon {
-    font-size: 2.5rem;
-    margin-bottom: 1rem;
-    display: block;
-}
-
-.award-item h4 {
-    font-size: 1.1rem;
-    font-weight: 600;
-    color: var(--text-color);
-    line-height: 1.3;
-}
-
-/* Friends Section */
-.friends-section {
-    padding: 5rem 0;
-    background: var(--bg-secondary);
-}
-
-.friends-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-    gap: 2rem;
-    margin-top: 3rem;
-}
-
-.friend-logo {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 1.5rem;
-    background: var(--bg-secondary);
-    border: 1px solid var(--border-color);
-    border-radius: var(--border-radius-md);
-    transition: all var(--transition-normal);
-    height: 120px;
-}
-
-.friend-logo:hover {
-    transform: translateY(-3px);
-    box-shadow: var(--box-shadow);
-}
-
-.friend-img {
-    max-width: 100%;
-    max-height: 80px;
-    object-fit: contain;
-    transition: transform var(--transition-normal), filter var(--transition-normal);
-}
-
-.friend-logo:hover .friend-img {
-    transform: scale(1.1);
-    filter: brightness(1.1);
-}
-
-/* Contact Section */
-.contact {
-    padding: 5rem 0;
-    background: var(--bg-color);
-    text-align: center;
-}
-
-.contact-info {
-    max-width: 400px;
-    margin: 0 auto;
-}
-
-.contact-address {
-    font-size: 1.2rem;
-    color: var(--text-secondary);
-    margin-bottom: 1rem;
-    line-height: 1.6;
-}
-
-.contact-phone {
-    font-size: 1.4rem;
-    color: var(--text-color);
-    font-weight: 600;
 }
 
 /* Responsive Design */
@@ -461,33 +321,10 @@
         width: 200px;
         text-align: center;
     }
-    
-    .awards-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 1rem;
-    }
-    
-    .friends-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 1rem;
-    }
-    
-    .friend-logo {
-        height: 100px;
-        padding: 1rem;
-    }
 }
 
 @media (max-width: 480px) {
     .hero-services {
-        grid-template-columns: 1fr;
-    }
-    
-    .awards-grid {
-        grid-template-columns: 1fr;
-    }
-    
-    .friends-grid {
         grid-template-columns: 1fr;
     }
 }
