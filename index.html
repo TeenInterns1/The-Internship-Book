@@ -16,18 +16,18 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollToPlugin.min.js"></script>
     
     <style>
-        /* FIXED Left Sidebar Navigation */
+        /* FIXED Left Sidebar Navigation - Dark Theme */
         .left-sidebar {
             position: fixed;
             left: 0;
             top: 50%;
             transform: translateY(-50%);
             z-index: 1000;
-            background: rgba(255, 255, 255, 0.0001);
-            backdrop-filter: blur(1px);
+            background: rgba(26, 26, 26, 0.95);
+            backdrop-filter: blur(15px);
             padding: 15px;
             border-radius: 0 15px 15px 0;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
             border: 1px solid var(--border-color);
             transition: all var(--transition-normal);
             max-width: 250px;
@@ -51,7 +51,7 @@
             margin-bottom: 0;
         }
         
-        /* Enhanced toggle button */
+        /* Enhanced toggle button - White text */
         .sidebar-toggle {
             background: none;
             border: none;
@@ -59,7 +59,7 @@
             cursor: pointer;
             padding: 8px;
             border-radius: 4px;
-            color: var(--pure-black);
+            color: #FFFFFF;
             margin-bottom: 10px;
             transition: all var(--transition-fast);
             width: 100%;
@@ -71,7 +71,7 @@
         
         .sidebar-toggle:hover {
             background: var(--primary-color);
-            color: white;
+            color: #FFFFFF;
             transform: scale(1.05);
         }
         
@@ -94,10 +94,10 @@
             transform: translateX(0);
         }
         
-        /* Enhanced navigation links */
+        /* Enhanced navigation links - White text */
         .sidebar-link {
             display: block;
-            color: var(--pure-black);
+            color: #FFFFFF;
             text-decoration: none;
             padding: 10px 12px;
             border-radius: 6px;
@@ -127,7 +127,7 @@
         
         .sidebar-link:hover {
             background: var(--primary-color);
-            color: white;
+            color: #FFFFFF;
             transform: translateX(5px);
             border-color: var(--primary-color);
             box-shadow: 0 4px 15px rgba(0, 154, 148, 0.3);
@@ -135,7 +135,7 @@
         
         .sidebar-link.active {
             background: var(--primary-color);
-            color: white;
+            color: #FFFFFF;
             border-color: var(--primary-color);
             transform: translateX(3px);
         }
@@ -145,10 +145,10 @@
             outline-offset: 2px;
         }
         
-        /* Enhanced hover effect for entire sidebar */
+        /* Enhanced hover effect for entire sidebar - Dark background */
         .left-sidebar:hover {
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
-            backdrop-filter: blur(15px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(20px);
         }
 
         /* Book container adjustments */
@@ -213,26 +213,83 @@
             }
         }
         
-        /* Fix for high contrast mode */
+        /* Fix for high contrast mode - Dark theme only */
         @media (prefers-contrast: high) {
             .left-sidebar {
-                background: white;
-                border: 2px solid black;
+                background: rgba(26, 26, 26, 1);
+                border: 2px solid white;
             }
             
             .sidebar-link {
-                border: 1px solid #ccc;
+                border: 1px solid #555;
+                color: #FFFFFF;
             }
             
             .sidebar-link:hover,
             .sidebar-link.active {
-                background: black;
-                color: white;
-                border-color: black;
+                background: var(--primary-color);
+                color: #FFFFFF;
+                border-color: var(--primary-color);
             }
         }
 
-        /* Logo styling - teal color without gradient */
+        /* Impact text logo styling */
+        .impact-text-logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 400px;
+            width: 100%;
+            background: linear-gradient(135deg, rgba(0, 154, 148, 0.1), rgba(0, 196, 184, 0.1));
+            border-radius: 20px;
+            border: 2px solid var(--primary-color);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .impact-text-logo::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 154, 148, 0.2), transparent);
+            transition: left 0.8s ease;
+        }
+        
+        .impact-text-logo:hover::before {
+            left: 100%;
+        }
+        
+        .impact-brand-text {
+            font-size: 3rem;
+            font-weight: 800;
+            text-align: center;
+            line-height: 1.2;
+            letter-spacing: 0.05em;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        @media (max-width: 768px) {
+            .impact-text-logo {
+                height: 300px;
+            }
+            
+            .impact-brand-text {
+                font-size: 2rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .impact-text-logo {
+                height: 250px;
+            }
+            
+            .impact-brand-text {
+                font-size: 1.5rem;
+            }
+        }
         .logo-text {
             color: #009A94 !important;
             background: none !important;
@@ -255,6 +312,55 @@
             background-image: none !important;
             -webkit-background-clip: initial !important;
             background-clip: initial !important;
+        }
+
+        /* Enhanced Impact Logo Styling */
+        .impact-logo-center {
+            margin-bottom: 30px;
+        }
+        
+        .impact-logo.large {
+            font-size: 4rem !important;
+            font-weight: 800 !important;
+            letter-spacing: -0.02em;
+            line-height: 1.1;
+            text-align: center;
+            display: block;
+            margin: 0 auto;
+            text-shadow: 0 4px 20px rgba(0, 154, 148, 0.3);
+            background: linear-gradient(135deg, #009A94 0%, #00C4B8 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            position: relative;
+        }
+        
+        .impact-logo.large::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, #009A94 0%, #00C4B8 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            filter: blur(20px);
+            opacity: 0.3;
+            z-index: -1;
+        }
+        
+        @media (max-width: 768px) {
+            .impact-logo.large {
+                font-size: 2.5rem !important;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .impact-logo.large {
+                font-size: 2rem !important;
+            }
         }
 
         /* Enhanced 3D Book Cover Styling */
@@ -435,7 +541,7 @@
             z-index: 1;
         }
 
-        /* Content highlights styling */
+        /* Content highlights styling - Updated for better contrast */
         .content-highlights {
             margin: 25px 0;
         }
@@ -446,33 +552,36 @@
             gap: 12px;
             margin-bottom: 18px;
             padding: 15px;
-            background: rgba(255, 255, 255, 0.95);
+            background: #1A1A1A;
             border-radius: 8px;
-            border-left: 3px solid var(--accent-color);
+            border-left: 3px solid var(--primary-color);
             transition: all var(--transition-fast);
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+            border: 1px solid var(--border-color);
         }
         
         .content-feature:hover {
-            background: rgba(255, 255, 255, 1);
+            background: #000000;
             transform: translateX(3px);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+            border-left-color: var(--accent-color);
         }
         
         .content-icon {
             font-size: 1.3rem;
             line-height: 1;
             flex-shrink: 0;
+            color: var(--primary-color);
         }
         
         .content-text {
             flex: 1;
             line-height: 1.5;
-            color: var(--pure-black);
+            color: #FFFFFF;
         }
         
         .content-text strong {
-            color: var(--accent-color);
+            color: var(--primary-color);
             font-weight: 600;
             display: inline;
             margin-right: 8px;
@@ -489,26 +598,30 @@
             gap: 12px;
             margin-bottom: 20px;
             padding: 15px;
-            background: rgba(var(--primary-color-rgb), 0.05);
+            background: #1A1A1A;
             border-radius: 8px;
             border-left: 3px solid var(--primary-color);
             transition: all var(--transition-fast);
+            border: 1px solid var(--border-color);
         }
         
         .media-feature:hover {
-            background: rgba(var(--primary-color-rgb), 0.1);
+            background: #000000;
             transform: translateX(5px);
+            border-left-color: var(--accent-color);
         }
         
         .media-icon {
             font-size: 1.5rem;
             line-height: 1;
             flex-shrink: 0;
+            color: var(--primary-color);
         }
         
         .media-content {
             flex: 1;
             line-height: 1.5;
+            color: #FFFFFF;
         }
         
         .media-content strong {
@@ -524,9 +637,9 @@
             justify-content: space-around;
             margin: 30px 0;
             padding: 25px;
-            background: linear-gradient(135deg, rgba(var(--primary-color-rgb), 0.1), rgba(var(--accent-color-rgb), 0.1));
+            background: #1A1A1A;
             border-radius: 12px;
-            border: 1px solid rgba(var(--primary-color-rgb), 0.2);
+            border: 1px solid var(--border-color);
         }
         
         .highlight-stat {
@@ -546,7 +659,7 @@
         .stat-label {
             display: block;
             font-size: 0.9rem;
-            color: var(--subtitle-color);
+            color: #FFFFFF;
             font-weight: 500;
             text-transform: uppercase;
             letter-spacing: 0.5px;
@@ -555,11 +668,12 @@
         .multimedia-quote {
             margin-top: 30px;
             padding: 20px;
-            background: rgba(var(--accent-color-rgb), 0.1);
-            border-left: 4px solid var(--accent-color);
+            background: #1A1A1A;
+            border-left: 4px solid var(--primary-color);
             border-radius: 0 8px 8px 0;
             font-style: italic;
-            color: var(--subtitle-color);
+            color: #FFFFFF;
+            border: 1px solid var(--border-color);
         }
         
         .multimedia-quote cite {
@@ -571,37 +685,57 @@
             font-size: 0.9rem;
         }
         
-        /* Dark mode adjustments for multimedia features */
-        [data-theme="dark"] .content-feature {
-            background: rgba(26, 26, 26, 0.9);
-            border-left: 3px solid var(--accent-color);
+        /* Dark mode adjustments for multimedia features - Consistent styling */
+        .content-feature,
+        .media-feature {
+            background: #1A1A1A;
+            border-left: 3px solid var(--primary-color);
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+            border: 1px solid var(--border-color);
         }
         
-        [data-theme="dark"] .content-feature:hover {
-            background: rgba(26, 26, 26, 1);
+        .content-feature:hover,
+        .media-feature:hover {
+            background: #000000;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+            border-left-color: var(--accent-color);
         }
         
-        [data-theme="dark"] .content-text {
-            color: var(--pure-white);
+        .content-text,
+        .media-content {
+            color: #FFFFFF;
         }
         
-        [data-theme="dark"] .media-feature {
-            background: rgba(255, 255, 255, 0.05);
+        .content-text strong,
+        .media-content strong {
+            color: var(--primary-color);
         }
         
-        [data-theme="dark"] .media-feature:hover {
-            background: rgba(255, 255, 255, 0.1);
+        .content-icon,
+        .media-icon {
+            color: var(--primary-color);
         }
         
-        [data-theme="dark"] .multimedia-highlight {
-            background: linear-gradient(135deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.08));
-            border-color: rgba(255, 255, 255, 0.1);
+        .multimedia-highlight,
+        .multimedia-quote {
+            background: #1A1A1A;
+            border: 1px solid var(--border-color);
         }
         
-        [data-theme="dark"] .multimedia-quote {
-            background: rgba(255, 255, 255, 0.05);
+        .multimedia-quote {
+            border-left: 4px solid var(--primary-color);
+        }
+        
+        /* Tab panel visibility and transitions */
+        .tab-panel {
+            display: none;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .tab-panel.active {
+            display: block;
+            opacity: 1;
         }
         
         /* Responsive adjustments for multimedia features */
@@ -697,11 +831,7 @@
                     <a href="index.html" class="nav-link">Home</a>
                     <a href="team.html" class="nav-link">Team</a>
                     <a href="preorder.html" class="nav-link nav-cta">Pre-order</a>
-                    <!-- Theme Toggle Button -->
-                    <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
-                        <span class="light-icon">🌙</span>
-                        <span class="dark-icon">☀️</span>
-                    </button>
+
                 </div>
                 <button class="mobile-menu-toggle">
                     <span></span>
@@ -718,12 +848,7 @@
             <a href="team.html" class="mobile-link">Team</a>
             <a href="qr-generator.html" class="mobile-link">QR Generator</a>
             <a href="preorder.html" class="mobile-link mobile-cta">Pre-order</a>
-            <!-- Mobile Theme Toggle -->
-            <button class="theme-toggle mobile-theme-toggle" aria-label="Toggle theme">
-                <span class="light-icon">🌙</span>
-                <span class="dark-icon">☀️</span>
-                <span class="toggle-text">Dark Mode</span>
-            </button>
+
         </div>
     </div>
 
@@ -771,18 +896,13 @@
                 
                 <div class="preview-features animate-fade-left">
                     <div class="preview-tabs">
-                        <button class="tab-btn" data-tab="content">Content</button>
-                        <button class="tab-btn" data-tab="content">Multimedia</button>
-                        <button class="tab-btn active" data-tab="illustrations">Illustrations</button>
+                        <button class="tab-btn active" data-tab="content">Content</button>
+                        <button class="tab-btn" data-tab="multimedia">Multimedia</button>
+                        <button class="tab-btn" data-tab="illustrations">Illustrations</button>
                         <button class="tab-btn" data-tab="interactive">Interactive</button>
                     </div>
                     
                     <div class="tab-content">
-                        <div class="tab-panel" data-tab="illustrations">
-                            <h3>Rich Visual Storytelling</h3>
-                            <p>Every concept is brought to life with our signature line art style - minimalist, bright, and cohesive illustrations that make complex internship concepts easy to understand.</p>
-                        </div>
-                        
                         <div class="tab-panel active" data-tab="content">
                             <h3>Written by Teens, For Teens</h3>
                             <p>This book breaks the mold of traditional career guides. Created by 23 teenagers who've actually been through the internship journey, it's packed with real stories, practical strategies, and the kind of honest advice you won't find anywhere else.</p>
@@ -790,22 +910,15 @@
                             <div class="content-highlights">
                                 <div class="content-feature">
                                     <span class="content-icon">📝</span>
-                                    <div class="content-text">
+                                    <div class="media-content">
                                         <strong>No Adult BS:</strong> Just straight talk from people who remember what it's like to be completely lost about internships.
                                     </div>
                                 </div>
                                 
                                 <div class="content-feature">
                                     <span class="content-icon">🎯</span>
-                                    <div class="content-text">
+                                    <div class="media-content">
                                         <strong>Actually Useful:</strong> Every tip, template, and strategy has been tested by real teens in real situations.
-                                    </div>
-                                </div>
-                                
-                                <div class="content-feature">
-                                    <span class="content-icon">💯</span>
-                                    <div class="content-text">
-                                        <strong>Completely Honest:</strong> We share the failures, the awkward moments, and the wins that actually matter.
                                     </div>
                                 </div>
                             </div>
@@ -829,20 +942,6 @@
                                         <strong>Real Talk Sessions:</strong> Listen to honest conversations about imposter syndrome, networking anxiety, and how to bounce back when things don't go as planned.
                                     </div>
                                 </div>
-                                
-                                <div class="media-feature">
-                                    <span class="media-icon">🎯</span>
-                                    <div class="media-content">
-                                        <strong>Action-Ready Tools:</strong> Get instant access to templates, scripts, and checklists that have actually worked for real teens landing their dream internships.
-                                    </div>
-                                </div>
-                                
-                                <div class="media-feature">
-                                    <span class="media-icon">🌟</span>
-                                    <div class="media-content">
-                                        <strong>Success Spotlights:</strong> Celebrate with teens who went from "I have no idea what I'm doing" to crushing their internship goals—and learn exactly how they did it.
-                                    </div>
-                                </div>
                             </div>
                             
                             <div class="multimedia-highlight">
@@ -860,15 +959,48 @@
                                 </div>
                             </div>
                             
-                            <blockquote class="multimedia-quote">
-                                "It's like having a group chat with 23 teens who've already figured out the internship game—except it's way more organized and actually helpful!"
-                                <cite>— Laksh, Marketing Team & Beta Reader</cite>
-                            </blockquote>
+                        </div>
+                        
+                        <div class="tab-panel" data-tab="illustrations">
+                            <h3>Rich Visual Storytelling</h3>
+                            <p>Every concept is brought to life with our signature line art style - minimalist, bright, and cohesive illustrations that make complex internship concepts easy to understand.</p>
+                            
+                            <div class="content-highlights">
+                                <div class="content-feature">
+                                    <span class="content-icon">🎨</span>
+                                    <div class="media-content">
+                                        <strong>Consistent Style:</strong> Hand-crafted illustrations that maintain a cohesive visual language throughout the entire book.
+                                    </div>
+                                </div>
+                                
+                                <div class="content-feature">
+                                    <span class="content-icon">💡</span>
+                                    <div class="media-content">
+                                        <strong>Concept Clarity:</strong> Complex ideas simplified through visual storytelling that makes learning effortless and engaging.
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                         
                         <div class="tab-panel" data-tab="interactive">
                             <h3>Beyond the Page</h3>
                             <p>Scan QR codes throughout the book to access downloadable templates, video tutorials, and a private community of teen interns sharing their journeys.</p>
+                            
+                            <div class="content-highlights">
+                                <div class="content-feature">
+                                    <span class="content-icon">📱</span>
+                                    <div class="media-contentt">
+                                        <strong>QR Code Access:</strong> Instant access to exclusive digital content, templates, and resources with a simple scan.
+                                    </div>
+                                </div>
+                                
+                                <div class="content-feature">
+                                    <span class="content-icon">👥</span>
+                                    <div class="media-content">
+                                        <strong>Community Connection:</strong> Join a private network of teen interns sharing real experiences and supporting each other.
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -1032,19 +1164,14 @@
     <section class="impact" id="impact">
         <div class="container">
             <div class="section-header animate-fade-up">
-                <div class="impact-logo-center">
-                    <span class="impact-logo large logo-text">Teen Interns Book</span>
-                </div>
                 <h2 class="section-title">Making an Impact</h2>
                 <p class="section-subtitle">Your purchase funds internships for teens who can't afford them</p>
             </div>
             
             <div class="impact-content">
                 <div class="impact-visual animate-fade-right">
-                    <div class="image-transition-container">
-                        <div class="photo-layer">
-                            <img src="images/impact.jpg" alt="Teens benefitting from funded internships" class="transition-photo">
-                        </div>
+                    <div class="impact-text-logo">
+                        <span class="impact-brand-text logo-text">The Internship Book</span>
                     </div>
                 </div>
                 
@@ -1231,6 +1358,6 @@ India is no longer just the back office of the world - we’re a creator economy
     <script src="script.js"></script>
     <script src="page-transition.js"></script>
     <script src="preorder-system.js"></script>
-    <script src="theme-toggle.js"></script>
+
 </body>
 </html>

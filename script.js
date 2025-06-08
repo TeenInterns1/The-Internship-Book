@@ -163,12 +163,12 @@ function initNavigation() {
     window.addEventListener('scroll', function() {
         const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
         
-        // Smooth background transition
+        // Smooth background transition - keep dark theme
         if (scrollTop > 50) {
-            gsap.to(siteHeader, {backgroundColor: 'rgba(255, 255, 255, 0.98)', duration: 0.3});
+            gsap.to(siteHeader, {backgroundColor: 'rgba(26, 26, 26, 0.98)', duration: 0.3});
             siteHeader?.classList.add('scrolled');
         } else {
-            gsap.to(siteHeader, {backgroundColor: 'rgba(255, 255, 255, 0.95)', duration: 0.3});
+            gsap.to(siteHeader, {backgroundColor: 'rgba(26, 26, 26, 0.95)', duration: 0.3});
             siteHeader?.classList.remove('scrolled');
         }
         
@@ -673,7 +673,7 @@ function initQrPage() {
     }
 }
 
-// Horizontal Scrolling Team Profiles (for team.html)
+// Horizontal Scrolling Team Profiles (for team.html) - Smooth continuous scroll
 function initHorizontalProfiles() {
     const profilesSection = document.querySelector('.team-profiles');
     const profilesContainer = document.querySelector('.profiles-container');
@@ -683,49 +683,94 @@ function initHorizontalProfiles() {
         return;
     }
     
+    // Calculate the total scroll distance needed
     const totalWidth = profileCards.length * window.innerWidth;
+    const sectionHeight = totalWidth; // Make scroll distance proportional to content
     
+    // Set up the smooth horizontal scroll with GSAP ScrollTrigger
     const horizontalScroll = gsap.to(profilesContainer, {
         x: () => -(totalWidth - window.innerWidth),
         ease: 'none',
         scrollTrigger: {
             trigger: profilesSection,
             start: 'top top',
-            end: () => `+=${totalWidth}`,
-            scrub: 1,
+            end: () => `+=${sectionHeight}`,
+            scrub: 0.5, // Smooth scrubbing with slight lag for better feel
             pin: true,
-            anticipatePin: 1
+            anticipatePin: 1,
+            invalidateOnRefresh: true
         }
     });
     
+    // Add entrance animations for profile cards
     profileCards.forEach((card, index) => {
-        ScrollTrigger.create({
-            trigger: card,
-            start: 'left 80%',
-            end: 'right 20%',
-            horizontal: true,
-            containerAnimation: horizontalScroll,
-            onEnter: () => {
-                const profileImage = card.querySelector('.profile-image');
-                const profileInfo = card.querySelector('.profile-info');
-                
-                if (profileImage) {
-                    gsap.fromTo(profileImage, 
-                        {scale: 0.6, opacity: 0, rotation: -10},
-                        {scale: 1, opacity: 1, rotation: 0, duration: 1, ease: 'back.out(1.7)'}
-                    );
+        const profileImage = card.querySelector('.profile-image');
+        const profileInfo = card.querySelector('.profile-info');
+        
+        if (profileImage) {
+            gsap.fromTo(profileImage, 
+                {scale: 0.8, opacity: 0},
+                {
+                    scale: 1, 
+                    opacity: 1, 
+                    duration: 0.6,
+                    ease: 'power2.out',
+                    scrollTrigger: {
+                        trigger: card,
+                        start: 'left 70%',
+                        end: 'left 30%',
+                        containerAnimation: horizontalScroll,
+                        scrub: 0.3
+                    }
                 }
-                
-                if (profileInfo) {
-                    gsap.fromTo(profileInfo, 
-                        {x: 100, opacity: 0},
-                        {x: 0, opacity: 1, duration: 0.8, delay: 0.3, ease: 'power3.out'}
-                    );
+            );
+        }
+        
+        if (profileInfo) {
+            gsap.fromTo(profileInfo, 
+                {x: 50, opacity: 0},
+                {
+                    x: 0, 
+                    opacity: 1, 
+                    duration: 0.8,
+                    ease: 'power2.out',
+                    scrollTrigger: {
+                        trigger: card,
+                        start: 'left 60%',
+                        end: 'left 20%',
+                        containerAnimation: horizontalScroll,
+                        scrub: 0.3
+                    }
                 }
-            }
-        });
+            );
+        }
     });
     
+    // Update progress indicators based on scroll progress
+    ScrollTrigger.create({
+        trigger: profilesSection,
+        start: 'top top',
+        end: () => `+=${sectionHeight}`,
+        onUpdate: (self) => {
+            const progress = self.progress;
+            const currentIndex = Math.floor(progress * profileCards.length);
+            const clampedIndex = Math.min(currentIndex, profileCards.length - 1);
+            
+            // Update progress dots
+            const progressDots = document.querySelectorAll('.progress-dot');
+            progressDots.forEach((dot, index) => {
+                dot.classList.toggle('active', index === clampedIndex);
+            });
+            
+            // Update sidebar active state
+            const sidebarLinks = document.querySelectorAll('.sidebar-link');
+            sidebarLinks.forEach((link, index) => {
+                link.classList.toggle('active', index === clampedIndex);
+            });
+        }
+    });
+    
+    // Refresh on window resize
     window.addEventListener('resize', () => {
         ScrollTrigger.refresh();
     });

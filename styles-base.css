@@ -17,21 +17,21 @@
     --pure-black: #000000;           /* Pure black for better contrast */
     --pure-white: #FFFFFF;           /* Pure white */
     
-    /* Light Theme Colors (default) */
+    /* Dark Theme Colors (default and only) */
     --primary-color: var(--teal-primary);
     --secondary-color: var(--yellow-primary);
     --accent-color: var(--yellow-primary);
-    --text-color: var(--pure-black);           /* Changed to pure black for better contrast */
-    --text-secondary: var(--pure-black);       /* Changed to black for consistency */
-    --text-button: var(--pure-white); /*for the teal buttons*/
-    --bg-color: var(--light-grey);
-    --bg-secondary: var(--pure-white);
-    --bg-alt-color: #f0f9ff;
+    --text-color: #FFFFFF;
+    --text-secondary: #FFFFFF;
+    --text-button: #FFFFFF; /*for the teal buttons*/
+    --bg-color: #1A1A1A;
+    --bg-secondary: #1A1A1A;
+    --bg-alt-color: #1A1A1A;
     --bg-fills: var(--teal-primary);
-    --border-color: #e5e7eb;
-    --shadow-color: rgba(0, 154, 148, 0.1);
-    --shadow-color-hover: rgba(0, 154, 148, 0.15);
-    --subtitle-color: var(--dark-grey);        /* Changed to black */
+    --border-color: #444444;
+    --shadow-color: rgba(0, 0, 0, 0.3);
+    --shadow-color-hover: rgba(0, 0, 0, 0.4);
+    --subtitle-color: #FFFFFF;
     --highlight-color: var(--yellow-primary);
     
     /* Typography */
@@ -77,17 +77,17 @@
     --logo-size-hero: 200px;       /* Increased from 150px */
 }
 
-/* Dark Theme Variables */
+/* Keep data-theme selector for backward compatibility but it's the same as root */
 [data-theme="dark"] {
-    --text-color: var(--pure-white);
-    --text-secondary: #e5e7eb;
-    --bg-color: #1a1a1a;
-    --bg-secondary: #262626;
-    --bg-alt-color: #333333;
+    --text-color: #FFFFFF;
+    --text-secondary: #FFFFFF;
+    --bg-color: #1A1A1A;
+    --bg-secondary: #1A1A1A;
+    --bg-alt-color: #1A1A1A;
     --border-color: #444444;
     --shadow-color: rgba(0, 0, 0, 0.3);
     --shadow-color-hover: rgba(0, 0, 0, 0.4);
-    --subtitle-color: #d1d5db;
+    --subtitle-color: #FFFFFF;
 }
 
 /* Automatic Dark Mode based on system preference */
@@ -106,114 +106,10 @@
 } */
 
 /* ======================================
-   THEME TOGGLE COMPONENT
+   THEME TOGGLE COMPONENT REMOVED
    ====================================== */
 
-.theme-toggle {
-    background: transparent;
-    border: 2px solid var(--border-color);
-    border-radius: var(--border-radius-full);
-    padding: 8px;
-    cursor: pointer;
-    transition: all var(--transition-normal);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 40px;
-    height: 40px;
-    margin-left: 1rem;
-    position: relative;
-}
-
-/* Mobile theme toggle styling */
-.mobile-theme-toggle {
-    background: transparent;
-    border: 2px solid var(--border-color);
-    border-radius: var(--border-radius-md);
-    padding: 1rem 2rem;
-    cursor: pointer;
-    transition: all var(--transition-normal);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.5rem;
-    width: auto;
-    height: auto;
-    margin: 1rem 0;
-    font-size: 1.2rem;
-    color: var(--text-color);
-}
-
-.mobile-theme-toggle .toggle-text {
-    font-weight: 500;
-}
-
-.mobile-theme-toggle:hover {
-    background: var(--primary-color);
-    color: white;
-    border-color: var(--primary-color);
-}
-
-/* Dark theme specific mobile toggle styling */
-[data-theme="dark"] .mobile-theme-toggle {
-    border-color: var(--border-color);
-    color: var(--pure-white);
-}
-
-[data-theme="dark"] .theme-toggle {
-    border-color: var(--border-color);
-}
-
-/* Responsive theme toggle adjustments */
-@media (max-width: 768px) {
-    .theme-toggle {
-        display: none;
-    }
-    
-    .mobile-theme-toggle {
-        display: flex;
-    }
-}
-
-@media (min-width: 769px) {
-    .mobile-theme-toggle {
-        display: none;
-    }
-}
-
-.theme-toggle:hover {
-    transform: scale(1.1);
-    box-shadow: var(--box-shadow-hover);
-}
-
-.theme-toggle-icon {
-    font-size: 1.5rem;
-    transition: transform var(--transition-normal);
-}
-
-.theme-toggle:hover .theme-toggle-icon {
-    transform: rotate(20deg);
-}
-
-/* Hide theme toggle icon based on current theme */
-[data-theme="dark"] .light-icon,
-[data-theme="light"] .dark-icon {
-    display: none;
-}
-
-/* Default icons for auto theme */
-:root:not([data-theme]) .dark-icon {
-    display: none;
-}
-
-@media (prefers-color-scheme: dark) {
-    :root:not([data-theme]) .light-icon {
-        display: none;
-    }
-    :root:not([data-theme]) .dark-icon {
-        display: inline;
-    }
-}
+/* All theme toggle styles have been removed as the site now only supports dark mode */
 
 /* ======================================
    ENHANCED LOGO STYLES
@@ -471,7 +367,34 @@ a:focus-visible {
     color: var(--subtitle-color);
 }
 
-/* Dark mode specific text overrides */
+/* Text color overrides - all text should be white in our dark-only theme */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+span,
+div,
+.hero-title,
+.hero-subtitle,
+.hero-description,
+.section-title,
+.section-subtitle,
+.contact-address,
+.contact-phone,
+.service-item h3,
+.award-item h4 {
+    color: #FFFFFF !important;
+}
+
+.text-secondary,
+.text-muted {
+    color: #FFFFFF !important;
+}
+
+/* Keep the data-theme selector for backward compatibility */
 [data-theme="dark"] h1,
 [data-theme="dark"] h2,
 [data-theme="dark"] h3,
@@ -490,12 +413,12 @@ a:focus-visible {
 [data-theme="dark"] .contact-phone,
 [data-theme="dark"] .service-item h3,
 [data-theme="dark"] .award-item h4 {
-    color: var(--pure-white) !important;
+    color: #FFFFFF !important;
 }
 
 [data-theme="dark"] .text-secondary,
 [data-theme="dark"] .text-muted {
-    color: #e5e7eb !important;
+    color: #FFFFFF !important;
 }
 
 /* Auto dark mode text overrides */
