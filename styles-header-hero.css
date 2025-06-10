@@ -377,8 +377,11 @@
 }
 
 .friends-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    flex-flow: row wrap;
+    margin: 200px;
     gap: 2rem;
     margin-top: 3rem;
 }
