@@ -340,7 +340,7 @@ Madhavi -->
             left: -100%;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            background: rgba(255,255,255,0.2);
             transition: left 0.5s;
         }
         
@@ -451,7 +451,7 @@ Madhavi -->
             position: absolute;
             width: 100%;
             height: 100%;
-            background: linear-gradient(135deg, #009A94, #00C4B8);
+            background: #009A94;
             border-radius: 8px 4px 4px 8px;
             box-shadow: 
                 0 0 0 2px #006B66,
@@ -474,7 +474,7 @@ Madhavi -->
             top: 0;
             width: 12px;
             height: 100%;
-            background: linear-gradient(180deg, #006B66, #004D49);
+            background: #006B66;
             border-radius: 0 4px 4px 0;
             box-shadow: 2px 0 8px rgba(0, 0, 0, 0.3);
             transform: rotateY(90deg);
@@ -498,13 +498,7 @@ Madhavi -->
             top: 0;
             width: 4px;
             height: 100%;
-            background: repeating-linear-gradient(
-                to bottom,
-                #006B66 0px,
-                #006B66 8px,
-                transparent 8px,
-                transparent 12px
-            );
+            background: #006B66;
             border-radius: 2px;
         }
 
@@ -515,13 +509,7 @@ Madhavi -->
             top: 0;
             width: 8px;
             height: 100%;
-            background: repeating-linear-gradient(
-                to bottom,
-                rgba(0, 107, 102, 0.3) 0px,
-                rgba(0, 107, 102, 0.3) 6px,
-                transparent 6px,
-                transparent 14px
-            );
+            background: rgba(0, 107, 102, 0.3);
             border-radius: 4px;
         }
 
@@ -530,7 +518,7 @@ Madhavi -->
             width: 60px;
             height: 80px;
             margin-bottom: 20px;
-            background: linear-gradient(135deg, #009A94, #00C4B8);
+            background: #009A94;
             border-radius: 4px 2px 2px 4px;
             position: relative;
             transform: perspective(500px) rotateY(-10deg);
@@ -547,7 +535,7 @@ Madhavi -->
             top: 0;
             width: 6px;
             height: 100%;
-            background: linear-gradient(180deg, #006B66, #004D49);
+            background: #006B66;
             border-radius: 0 2px 2px 0;
             transform: rotateY(90deg);
             transform-origin: left center;
@@ -578,7 +566,7 @@ Madhavi -->
     width: 100vw;
     overflow: hidden;
     position: relative;
-    background: linear-gradient(135deg, var(--bg-color) 0%, var(--bg-alt-color) 100%);
+    background: var(--bg-color);
     margin-bottom: 500px;
 }
 
@@ -590,7 +578,7 @@ Madhavi -->
 .profiles-container {
     display: flex;
     height: 100vh;
-    width: fit-content;
+    width: calc(100vw * 24); /* Explicitly set width for 24 profiles */
     align-items: center;
     transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     will-change: transform;
@@ -658,7 +646,7 @@ Madhavi -->
 .profile-image {
     width: 400px;
     height: 400px;
-    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    background: var(--primary-color);
     border-radius: 20px;
     display: flex;
     align-items: center;
@@ -680,7 +668,7 @@ Madhavi -->
     left: 0;
     right: 0;
     bottom: 0;
-    background: linear-gradient(45deg, transparent 30%, rgba(255, 255, 255, 0.1) 50%, transparent 70%);
+    background: rgba(255, 255, 255, 0.1);
     transform: translateX(-100%);
     transition: transform 0.6s;
 }
@@ -748,7 +736,7 @@ Madhavi -->
 }
 
 .skill-tag {
-    background: linear-gradient(135deg, var(--accent-color), var(--highlight-color));
+    background: var(--primary-color);
     color: white;
     padding: 8px 20px;
     border-radius: 25px;
@@ -826,6 +814,97 @@ Madhavi -->
     z-index: 100;
     box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
     animation: pulse 2s infinite;
+    transition: background-color var(--transition-normal), color var(--transition-normal);
+}
+
+/* Dark mode scroll indicator */
+[data-theme="dark"] .scroll-indicator {
+    background: rgba(26, 26, 26, 0.9);
+    color: #FFFFFF;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* Slideshow navigation controls */
+.slideshow-controls {
+    position: fixed;
+    top: 50%;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 30px;
+    z-index: 200;
+    pointer-events: none;
+}
+
+.slide-nav {
+    background: rgba(0, 154, 148, 0.9);
+    color: white;
+    border: none;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    pointer-events: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.slide-nav:hover {
+    background: var(--primary-color);
+    transform: scale(1.1);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+}
+
+.slide-nav:active {
+    transform: scale(0.95);
+}
+
+[data-theme="dark"] .slide-nav {
+    background: rgba(0, 154, 148, 0.9);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+}
+
+/* Profile counter */
+.profile-counter {
+    position: fixed;
+    top: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(255, 255, 255, 0.9);
+    padding: 10px 20px;
+    border-radius: 20px;
+    font-weight: 600;
+    z-index: 100;
+    backdrop-filter: blur(10px);
+    transition: background-color var(--transition-normal), color var(--transition-normal);
+}
+
+[data-theme="dark"] .profile-counter {
+    background: rgba(26, 26, 26, 0.9);
+    color: #FFFFFF;
+}
+
+/* Mobile responsive slideshow controls */
+@media (max-width: 768px) {
+    .slideshow-controls {
+        padding: 0 20px;
+    }
+    
+    .slide-nav {
+        width: 50px;
+        height: 50px;
+        font-size: 1.2rem;
+    }
+    
+    .profile-counter {
+        top: 20px;
+        padding: 8px 16px;
+        font-size: 0.9rem;
+    }
 }
 
 @keyframes pulse {
@@ -1087,7 +1166,7 @@ Madhavi -->
         </div>
     </nav>
 
-            <!-- horizontal profile scrolling content-->
+    <!-- horizontal profile scrolling content-->
     <section class="team-profiles" id="team">
         <div class="profiles-wrapper">
             <div class="profiles-container" id="profilesContainer">
@@ -1113,6 +1192,7 @@ Madhavi -->
                         </div>
                     </div>
                 </div>
+                
                 <!--Lakshi Mehta-->
                 <div class="profile-card" id="lakshi">
                     <div class="profile-content">
@@ -1623,8 +1703,19 @@ Madhavi -->
             <!-- Progress dots will be added by JavaScript -->
         </div>
         
+        <!-- Navigation controls -->
+        <div class="slideshow-controls">
+            <button class="slide-nav prev-slide" id="prevSlide" aria-label="Previous profile">←</button>
+            <button class="slide-nav next-slide" id="nextSlide" aria-label="Next profile">→</button>
+        </div>
+        
+        <!-- Profile counter -->
+        <div class="profile-counter">
+            <span id="currentProfile">1</span> / <span id="totalProfiles">24</span>
+        </div>
+        
         <div class="scroll-indicator">
-            ← Scroll or use arrow keys to navigate →
+            ← Use arrow keys or click buttons to navigate →
         </div>
     </section>
 
@@ -1680,11 +1771,12 @@ Madhavi -->
                         <button type="submit" class="newsletter-submit">Subscribe</button>
                     </form>
                     <div class="social-links">
-                        <a href="#" class="social-link">📸</a>
-                        <a href="#" class="social-link">🎵</a>
-                        <a href="#" class="social-link">📱</a>
-                        <a href="#" class="social-link">📺</a>
+                        <a href="#" class="social-link" title="Behind-the-scenes photos and visual content">📸</a>
+                        <a href="#" class="social-link" title="Podcast episodes and audio content">🎵</a>
+                        <a href="#" class="social-link" title="Mobile content and social media">📱</a>
+                        <a href="#" class="social-link" title="Video content and documentaries">📺</a>
                     </div>
+                    <p class="bts-explanation">Behind-the-scenes content: Photos, Podcasts, Social Media, Videos</p>
                 </div>
             </div>
             
@@ -1703,6 +1795,18 @@ Madhavi -->
     
     <script>
         document.addEventListener('DOMContentLoaded', function() {
+            // Wait for all content to be loaded
+            window.addEventListener('load', function() {
+                initializeProfiles();
+            });
+            
+            // Fallback initialization
+            setTimeout(initializeProfiles, 100);
+            
+            function initializeProfiles() {
+                // Only initialize once
+                if (window.profilesInitialized) return;
+                window.profilesInitialized = true;
             // Animate team cards on scroll
             const animatedElements = document.querySelectorAll('.animate-fade-up, .animate-pop');
             
@@ -1749,15 +1853,15 @@ Madhavi -->
             const progressDots = document.querySelectorAll('.progress-dot');
             
             function updateProfile() {
-                profilesContainer.style.transform = `translateX(-${currentIndex * 100}vw)`;
+                if (profilesContainer) {
+                    profilesContainer.style.transform = `translateX(-${currentIndex * 100}vw)`;
+                    console.log(`Setting transform to: translateX(-${currentIndex * 100}vw)`);
+                }
                 
                 // Update progress dots
                 progressDots.forEach((dot, index) => {
                     dot.classList.toggle('active', index === currentIndex);
                 });
-                
-                // Update sidebar active state
-                updateSidebarActive();
             }
             
             // Sidebar toggle functionality
@@ -1786,36 +1890,76 @@ Madhavi -->
                 });
             }
             
-            // Improved mouse wheel horizontal scrolling with better throttling
-            let isScrolling = false;
-            let scrollBuffer = 0;
-            const scrollThreshold = 50; // Increase threshold for less sensitivity
-            const teamProfilesSection = document.querySelector('.team-profiles');
-            if (teamProfilesSection) {
-                teamProfilesSection.addEventListener('wheel', (e) => {
-                    e.preventDefault();
-                    
-                    if (isScrolling) return;
-                    
-                    // Accumulate scroll delta
-                    scrollBuffer += Math.abs(e.deltaY);
-                    
-                    // Only trigger scroll when buffer exceeds threshold
-                    if (scrollBuffer >= scrollThreshold) {
-                        isScrolling = true;
-                        setTimeout(() => { 
-                            isScrolling = false;
-                            scrollBuffer = 0; // Reset buffer
-                        }, 800); // Longer throttle time
-                        
-                        const scrollAmount = e.deltaY > 0 ? 1 : -1;
-                        currentIndex = Math.max(0, Math.min(profileCards.length - 1, currentIndex + scrollAmount));
-                        
+            // Navigation button controls
+            const prevButton = document.getElementById('prevSlide');
+            const nextButton = document.getElementById('nextSlide');
+            const currentProfileSpan = document.getElementById('currentProfile');
+            const totalProfilesSpan = document.getElementById('totalProfiles');
+            
+            if (prevButton && nextButton) {
+                prevButton.addEventListener('click', () => {
+                    if (currentIndex > 0) {
+                        currentIndex--;
+                        updateProfile();
+                        updateSidebarActive();
+                    }
+                });
+                
+                nextButton.addEventListener('click', () => {
+                    if (currentIndex < profileCards.length - 1) {
+                        currentIndex++;
                         updateProfile();
                         updateSidebarActive();
                     }
                 });
             }
+            
+            // Update profile counter
+            function updateProfileCounter() {
+                if (currentProfileSpan && totalProfilesSpan) {
+                    currentProfileSpan.textContent = currentIndex + 1;
+                    totalProfilesSpan.textContent = profileCards.length;
+                }
+            }
+            
+            // Update the main updateProfile function to include counter
+            const originalUpdateProfile = updateProfile;
+            updateProfile = function() {
+                originalUpdateProfile();
+                updateProfileCounter();
+                
+                // Update button states
+                if (prevButton) {
+                    prevButton.style.opacity = currentIndex === 0 ? '0.5' : '1';
+                    prevButton.disabled = currentIndex === 0;
+                }
+                if (nextButton) {
+                    nextButton.style.opacity = currentIndex === profileCards.length - 1 ? '0.5' : '1';
+                    nextButton.disabled = currentIndex === profileCards.length - 1;
+                }
+            };
+            
+            // Initialize profile counter and ensure first profile is visible
+            updateProfileCounter();
+            
+            // Set initial state immediately without animation
+            profilesContainer.style.transition = 'none';
+            profilesContainer.style.transform = 'translateX(0)';
+            
+            // Re-enable transitions after a brief moment
+            setTimeout(() => {
+                profilesContainer.style.transition = 'transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+                
+                // Set initial sidebar state
+                updateSidebarActive();
+                
+                // Debug: Log profile container dimensions
+                console.log('Profile cards count:', profileCards.length);
+                console.log('Profiles container width:', profilesContainer.scrollWidth);
+                console.log('Current transform:', profilesContainer.style.transform);
+            }, 50);
+            
+            // Removed mouse wheel horizontal scrolling - navigation now only through arrow keys and buttons
             
             // Keyboard navigation
             document.addEventListener('keydown', (e) => {
@@ -1835,6 +1979,8 @@ Madhavi -->
             let endX = 0;
             let startY = 0;
             let endY = 0;
+            
+            const teamProfilesSection = document.querySelector('.team-profiles');
             
             teamProfilesSection?.addEventListener('touchstart', (e) => {
                 startX = e.touches[0].clientX;
@@ -1862,6 +2008,7 @@ Madhavi -->
                     updateSidebarActive();
                 }
             });
+            }
         });
     </script>
 </body>

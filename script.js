@@ -377,41 +377,49 @@ function initAdvancedAnimations() {
         });
     });
     
-    // Award items staggered animation
-    gsap.fromTo('.award-item', 
-        {y: 50, opacity: 0, scale: 0.8},
-        {
-            y: 0, 
-            opacity: 1, 
-            scale: 1,
-            duration: 0.6,
-            stagger: 0.1,
-            ease: 'back.out(1.7)',
-            scrollTrigger: {
-                trigger: '.awards-grid',
-                start: 'top 80%',
-                toggleActions: 'play none none none'
+    // Award items staggered animation - only run if elements exist
+    const awardItems = document.querySelectorAll('.award-item');
+    const awardsGrid = document.querySelector('.awards-grid');
+    if (awardItems.length > 0 && awardsGrid) {
+        gsap.fromTo('.award-item', 
+            {y: 50, opacity: 0, scale: 0.8},
+            {
+                y: 0, 
+                opacity: 1, 
+                scale: 1,
+                duration: 0.6,
+                stagger: 0.1,
+                ease: 'back.out(1.7)',
+                scrollTrigger: {
+                    trigger: '.awards-grid',
+                    start: 'top 80%',
+                    toggleActions: 'play none none none'
+                }
             }
-        }
-    );
+        );
+    }
     
-    // Friend logos animation
-    gsap.fromTo('.friend-logo', 
-        {y: 30, opacity: 0, rotation: -5},
-        {
-            y: 0, 
-            opacity: 1, 
-            rotation: 0,
-            duration: 0.5,
-            stagger: 0.1,
-            ease: 'power2.out',
-            scrollTrigger: {
-                trigger: '.friends-grid',
-                start: 'top 80%',
-                toggleActions: 'play none none none'
+    // Friend logos animation - only run if elements exist
+    const friendLogos = document.querySelectorAll('.friend-logo');
+    const friendsGrid = document.querySelector('.friends-grid');
+    if (friendLogos.length > 0 && friendsGrid) {
+        gsap.fromTo('.friend-logo', 
+            {y: 30, opacity: 0, rotation: -5},
+            {
+                y: 0, 
+                opacity: 1, 
+                rotation: 0,
+                duration: 0.5,
+                stagger: 0.1,
+                ease: 'power2.out',
+                scrollTrigger: {
+                    trigger: '.friends-grid',
+                    start: 'top 80%',
+                    toggleActions: 'play none none none'
+                }
             }
-        }
-    );
+        );
+    }
 }
 
 // Advanced scroll effects

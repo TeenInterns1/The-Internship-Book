@@ -536,6 +536,19 @@
     color: #FFFFFF;
 }
 
+/* BTS Explanation Text */
+.bts-explanation {
+    color: #FFFFFF;
+    font-size: var(--font-size-small);
+    text-align: center;
+    margin-top: var(--spacing-xs);
+    opacity: 0.8;
+}
+
+[data-theme="dark"] .bts-explanation {
+    color: #FFFFFF;
+}
+
 /* ===== Media Queries ===== */
 @media screen and (max-width: 1024px) {
     :root {

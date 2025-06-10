@@ -607,17 +607,29 @@
 }
 
 .impact-content {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 4rem;
+    display: flex;
+    flex-direction: column;
     align-items: center;
+    text-align: center;
     margin-top: 3rem;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.impact-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    width: 100%;
 }
 
 .impact-info h3 {
     font-size: 2.2rem;
     margin-bottom: 2rem;
     color: var(--text-color);
+    text-align: center;
 }
 
 .impact-stats {
@@ -625,6 +637,8 @@
     grid-template-columns: repeat(3, 1fr);
     gap: 2rem;
     margin-bottom: 2rem;
+    width: 100%;
+    max-width: 600px;
 }
 
 .impact-stat {
@@ -654,6 +668,8 @@
     font-size: 1.1rem;
     color: var(--text-color);
     line-height: 1.6;
+    text-align: center;
+    max-width: 600px;
 }
 
 /* Pre-order Section */
@@ -947,15 +963,13 @@
 @media (max-width: 768px) {
 
     .about-grid,
-    .preview-content,
-    .impact-content {
+    .preview-content {
         grid-template-columns: 1fr;
         gap: 2rem;
     }
 
     .about-content,
-    .preview-features,
-    .impact-info {
+    .preview-features {
         text-align: center;
     }
 

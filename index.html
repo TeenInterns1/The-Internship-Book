@@ -1,4 +1,4 @@
-    <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -291,6 +291,18 @@
         [data-theme="light"] div,
         [data-theme="light"] li,
         [data-theme="light"] a {
+            color: #000000 !important;
+        }
+        
+        /* Fix for light theme impact section */
+        [data-theme="light"] .impact-description,
+        [data-theme="light"] .impact h3,
+        [data-theme="light"] .impact-label {
+            color: #000000 !important;
+        }
+        
+        /* Fix for light theme BTS explanation */
+        [data-theme="light"] .bts-explanation {
             color: #000000 !important;
         }
         
@@ -746,7 +758,96 @@
             }
         }
 
-        /* Enhanced 3D Book Cover Styling */
+        /* Perfect centering for Impact Section */
+        .impact {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 80vh;
+            padding: 5rem 0;
+        }
+        
+        .impact .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            width: 100%;
+            max-width: 1000px;
+        }
+        
+        .impact .section-header {
+            margin-bottom: 3rem;
+        }
+        
+        .impact .impact-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .impact .impact-info {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            width: 100%;
+        }
+        
+        .impact .impact-info h3 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+        
+        .impact .impact-stats {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            width: 100%;
+            max-width: 700px;
+        }
+        
+        .impact .impact-stat {
+            flex: 1;
+            text-align: center;
+            padding: 1.5rem;
+            background: var(--bg-secondary);
+            border-radius: var(--border-radius-md);
+            min-width: 150px;
+        }
+        
+        .impact .impact-description {
+            font-size: 1.2rem;
+            line-height: 1.6;
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        @media (max-width: 768px) {
+            .impact .impact-stats {
+                flex-direction: column;
+                gap: 1rem;
+                max-width: 400px;
+            }
+            
+            .impact .impact-info h3 {
+                font-size: 2rem;
+            }
+            
+            .impact .impact-description {
+                font-size: 1.1rem;
+            }
+        }
         .book-cover-3d {
             position: relative;
             width: 300px;
@@ -1119,20 +1220,102 @@
             }
         }
 
+        /* Centered 4-4 School Logos Layout */
+        .friends-section {
+            padding: 5rem 0;
+            background: var(--bg-color);
+        }
+        
+        .friends-section .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .friends-section .section-header {
+            margin-bottom: 3rem;
+            text-align: center;
+        }
+        
+        .friends-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 3rem;
+            width: 100%;
+            max-width: 1000px;
+            margin: 0 auto;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .friend-logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1.5rem;
+            background: var(--card-bg);
+            border: 2px solid var(--border-color);
+            border-radius: 15px;
+            transition: all var(--transition-normal);
+            min-height: 120px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .friend-logo:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary-color);
+            box-shadow: 0 8px 25px rgba(0, 154, 148, 0.2);
+        }
+        
+        .friend-img {
+            max-width: 100%;
+            max-height: 80px;
+            width: auto;
+            height: auto;
+            object-fit: contain;
+            filter: grayscale(20%);
+            transition: filter var(--transition-normal);
+        }
+        
+        .friend-logo:hover .friend-img {
+            filter: grayscale(0%);
+        }
+        
+        /* Responsive layout for mobile */
+        @media (max-width: 768px) {
+            .friends-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 2rem;
+                max-width: 500px;
+            }
+            
+            .friend-logo {
+                padding: 1rem;
+                min-height: 100px;
+            }
+            
+            .friend-img {
+                max-height: 60px;
+            }
+        }
+        
         @media (max-width: 480px) {
-            .book-cover-3d {
-                width: 200px;
-                height: 260px;
-                transform: perspective(800px) rotateY(-10deg) rotateX(1deg);
+            .friends-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+                max-width: 300px;
             }
-
-            .book-cover-3d:hover {
-                transform: perspective(800px) rotateY(-5deg) rotateX(0deg) translateZ(15px);
+            
+            .friend-logo {
+                padding: 1rem;
+                min-height: 80px;
             }
-
-            .book-cover,
-            .book-mockup {
-                padding: 15px;
+            
+            .friend-img {
+                max-height: 50px;
             }
         }
     </style>
@@ -1342,7 +1525,7 @@
                             <div class="content-highlights">
                                 <div class="content-feature">
                                     <span class="content-icon">📱</span>
-                                    <div class="media-contentt">
+                                    <div class="content-text">
                                         <strong>QR Code Access:</strong> Instant access to exclusive digital content, templates, and resources with a simple scan.
                                     </div>
                                 </div>
@@ -1522,13 +1705,8 @@
             </div>
             
             <div class="impact-content">
-                <div class="impact-visual animate-fade-right">
-                    <div class="impact-text-logo">
-                        <span class="impact-brand-text logo-text">The Internship Book</span>
-                    </div>
-                </div>
                 
-                <div class="impact-info animate-fade-left">
+                <div class="impact-info animate-fade-up">
                     <h3>Our Goal</h3>
                     
                     <div class="impact-stats">
@@ -1693,11 +1871,12 @@ India is no longer just the back office of the world - we’re a creator economy
                         <button type="submit" class="newsletter-submit">Subscribe</button>
                     </form>
                     <div class="social-links">
-                        <a href="#" class="social-link">📸</a>
-                        <a href="#" class="social-link">🎵</a>
-                        <a href="#" class="social-link">📱</a>
-                        <a href="#" class="social-link">📺</a>
+                        <a href="#" class="social-link" title="Behind-the-scenes photos and visual content">📸</a>
+                        <a href="#" class="social-link" title="Podcast episodes and audio content">🎵</a>
+                        <a href="#" class="social-link" title="Mobile content and social media">📱</a>
+                        <a href="#" class="social-link" title="Video content and documentaries">📺</a>
                     </div>
+                    <p class="bts-explanation">Behind-the-scenes content: Photos, Podcasts, Social Media, Videos</p>
                 </div>
             </div>
             
