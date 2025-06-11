@@ -347,7 +347,6 @@
             backdrop-filter: blur(15px);
             padding: 15px;
             border-radius: 0 15px 15px 0;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
             border: 1px solid var(--border-color);
             transition: all var(--transition-normal);
             max-width: 250px;
@@ -450,7 +449,6 @@
             color: #FFFFFF;
             transform: translateX(5px);
             border-color: var(--primary-color);
-            box-shadow: 0 4px 15px rgba(0, 154, 148, 0.3);
         }
         
         .sidebar-link.active {
@@ -467,7 +465,6 @@
         
         /* Enhanced hover effect for entire sidebar - Dark background */
         .left-sidebar:hover {
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
             backdrop-filter: blur(20px);
         }
 
@@ -490,13 +487,15 @@
         .hero-content {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 80px; /* Increased gap */
+            gap: 120px; /* Further increased gap */
             align-items: center;
+            max-width: 1400px; /* Made wider */
+            margin: 0 auto;
         }
         
-        /* About section width reduction */
+        /* About section width increase */
         .about .container {
-            max-width: 900px; /* Reduced from 1200px */
+            max-width: 1200px; /* Increased width */
         }
         
         /* Responsive behavior */
@@ -850,8 +849,8 @@
         }
         .book-cover-3d {
             position: relative;
-            width: 300px;
-            height: 400px;
+            width: 350px; /* Made wider */
+            height: 450px; /* Made taller proportionally */
             margin: 0 auto;
             transform: perspective(1200px) rotateY(-15deg) rotateX(2deg);
             transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
@@ -868,13 +867,6 @@
             height: 100%;
             background: #ffffff;
             border-radius: 10px 6px 6px 10px;
-            box-shadow: 
-                0 0 0 2px #e0e0e0,
-                0 0 0 3px #d0d0d0,
-                0 5px 15px rgba(0, 0, 0, 0.2),
-                0 10px 30px rgba(0, 0, 0, 0.15),
-                0 20px 60px rgba(0, 0, 0, 0.1),
-                inset 0 0 0 1px rgba(255, 255, 255, 0.8);
             overflow: hidden;
             transform-style: preserve-3d;
             border: 1px solid #ccc;
@@ -906,11 +898,6 @@
                 #004440 75%, 
                 #003A36 100%);
             border-radius: 0 8px 8px 0;
-            box-shadow: 
-                3px 0 12px rgba(0, 0, 0, 0.4),
-                inset -3px 0 8px rgba(0, 0, 0, 0.3),
-                inset 3px 0 3px rgba(255, 255, 255, 0.1),
-                inset 0 0 0 1px rgba(0, 107, 102, 0.8);
             transform: rotateY(90deg);
             transform-origin: left center;
             position: relative;
@@ -962,12 +949,6 @@
                 #ffffff 70%, 
                 #fdfdfd 100%);
             border-radius: 0 6px 6px 0;
-            box-shadow: 
-                inset -4px 0 8px rgba(0, 0, 0, 0.12),
-                inset -2px 0 4px rgba(0, 0, 0, 0.08),
-                inset -1px 0 2px rgba(0, 0, 0, 0.05),
-                3px 0 10px rgba(0, 0, 0, 0.15),
-                1px 0 3px rgba(0, 0, 0, 0.1);
             position: relative;
         }
 
@@ -1040,14 +1021,12 @@
             border-radius: 8px;
             border-left: 3px solid var(--primary-color);
             transition: all var(--transition-fast);
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
             border: 1px solid var(--border-color);
         }
         
         .content-feature:hover {
             background: var(--bg-secondary);
             transform: translateX(3px);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
             border-left-color: var(--accent-color);
         }
         
@@ -1205,8 +1184,8 @@
         }
         @media (max-width: 768px) {
             .book-cover-3d {
-                width: 250px;
-                height: 330px;
+                width: 280px; /* Made wider for mobile too */
+                height: 370px; /* Made taller proportionally */
                 transform: perspective(1000px) rotateY(-12deg) rotateX(1deg);
             }
 
@@ -1261,13 +1240,11 @@
             border-radius: 15px;
             transition: all var(--transition-normal);
             min-height: 120px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
         }
         
         .friend-logo:hover {
             transform: translateY(-5px);
             border-color: var(--primary-color);
-            box-shadow: 0 8px 25px rgba(0, 154, 148, 0.2);
         }
         
         .friend-img {

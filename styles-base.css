@@ -68,7 +68,7 @@
     --transition-slow: 0.5s ease;
     
     /* Layout */
-    --container-width: 1200px;
+    --container-width: 1400px; /* Increased from 1200px to make divisions wider */
     --container-padding: var(--spacing-md);
     
     /* Logo sizes - Increased for better visibility */
