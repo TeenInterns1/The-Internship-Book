@@ -17,6 +17,11 @@
     background-color: var(--bg-color);
 }
 
+.quotes-person{
+    width: 100px;
+    height: 100px;
+}
+
 .sucess-stories .awards-grid .award-item animate-pop {
     width: 12vw;
     height: 12vh;
@@ -533,7 +538,7 @@
 }
 
 .book-cover img {
-    width: 100%;
+    width: 300px;
     height: auto;
 }
 
