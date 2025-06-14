@@ -940,7 +940,60 @@
                         <input type="email" placeholder="Your email" required class="newsletter-input">
                         <button type="submit" class="newsletter-submit">Subscribe</button>
                     </form>
-                    <div class="social-links">
+                    <div class="social-links friends-section">
+                        <a href="#" class="social-link" data-platform="instagram">📸</a>
+                        <a href="#" class="social-link" data-platform="spotify">🎵</a>
+                        <a href="#" class="social-link" data-platform="linkedin">📱</a>
+                        <a href="#" class="social-link" data-platform="youtube">📺</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p class="copyright">&copy; 2025 Teen Interns. Made with ❤️ by teens, for teens.</p>
+                <p class="credit">This project was created entirely by teenage interns.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script src="page-transition.js"></script>
+    <script src="preorder-system.js"></script>
+    <script src="theme-toggle.js"></script>
+
+    <script>
+        // Make social media icons functional
+        document.addEventListener('DOMContentLoaded', function() {
+            const socialLinks = document.querySelectorAll('.social-link[data-platform]');
+            
+            socialLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const platform = this.getAttribute('data-platform');
+                    
+                    switch(platform) {
+                        case 'instagram':
+                            window.open('https://instagram.com/teeninterns', '_blank');
+                            break;
+                        case 'spotify':
+                            window.open('https://open.spotify.com/show/teeninterns', '_blank');
+                            break;
+                        case 'linkedin':
+                            window.open('https://linkedin.com/company/teeninterns', '_blank');
+                            break;
+                        case 'youtube':
+                            window.open('https://youtube.com/@teeninterns', '_blank');
+                            break;
+                        default:
+                            console.log('Social platform not configured yet');
+                    }
+                });
+            });
+        });
+    </script>
+
+</body>
+</html>">
                         <a href="#" class="social-link">📸</a>
                         <a href="#" class="social-link">🎵</a>
                         <a href="#" class="social-link">📱</a>
