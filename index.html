@@ -149,8 +149,20 @@
             color: var(--text-color) !important;
         }
         
+        .award-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            gap: 10px;
+            animation: animate-pop 0.15s ease-in-out;
+        }
+        
         .award-item h4 {
             color: var(--text-color) !important;
+            margin: 0;
+            font-size: 18px;
+            font-weight: 600;
         }
         
         .footer-tagline,
@@ -1422,7 +1434,7 @@
                             
                             <div class="content-highlights">
                                 <div class="content-feature">
-                                    <span class="content-icon"><img src="C:\sam\___Projects\new\The-Internship-Book\logos\1.PNG" style="height: 25px; border-radius: 10px;"></span>
+                                    <span class="content-icon"><img src="logos\book.PNG" class = "emoji-icon"></span>
                                     <div class="media-content">
                                         <strong>No Adult BS:</strong> Just straight talk from people who remember what it's like to be completely lost about internships.
                                     </div>
@@ -1443,14 +1455,14 @@
                             
                             <div class="multimedia-features">
                                 <div class="media-feature">
-                                    <span class="media-icon">📹</span>
+                                    <span class="media-icon"><img src="logos\videography.PNG" class = "emoji-icon"></span>
                                     <div class="media-content">
-                                        <strong>Behind-the-Scenes Stories:</strong> Watch raw, unfiltered moments from our teen contributors as they share their biggest internship wins, epic fails, and everything in between.
+                                        <strong>Realtime Video Sessions:</strong> Watch raw, unfiltered moments from our teen contributors as they share their biggest internship wins, epic fails, and everything in between.
                                     </div>
                                 </div>
                                 
                                 <div class="media-feature">
-                                    <span class="media-icon">💬</span>
+                                    <span class="media-icon"><img src="logos\podcast.PNG" class = "emoji-icon"></span>
                                     <div class="media-content">
                                         <strong>Real Talk Sessions:</strong> Listen to honest conversations about imposter syndrome, networking anxiety, and how to bounce back when things don't go as planned.
                                     </div>
@@ -1480,7 +1492,7 @@
                             
                             <div class="content-highlights">
                                 <div class="content-feature">
-                                    <span class="content-icon">🎨</span>
+                                    <span class="content-icon"><img src="logos\illustrations.PNG" class = "emoji-icon"></span>
                                     <div class="media-content">
                                         <strong>Consistent Style:</strong> Hand-crafted illustrations that maintain a cohesive visual language throughout the entire book.
                                     </div>
@@ -1501,15 +1513,15 @@
                             
                             <div class="content-highlights">
                                 <div class="content-feature">
-                                    <span class="content-icon">📱</span>
-                                    <div class="content-text">
+                                    <span class="content-icon"><img src="logos\qrcode.PNG" class = "emoji-icon"></span>
+                                    <div class="media-content">
                                         <strong>QR Code Access:</strong> Instant access to exclusive digital content, templates, and resources with a simple scan.
                                         <a href="qr-generator.html" class="feature-link">See Example →</a>
                                     </div>
                                 </div>
                                 
                                 <div class="content-feature">
-                                    <span class="content-icon">👥</span>
+                                    <span class="content-icon"><img src="logos\account.PNG" class = "emoji-icon"></span>
                                     <div class="media-content">
                                         <strong>Community Connection:</strong> Join a private network of teen interns sharing real experiences and supporting each other.
                                     </div>
@@ -1565,7 +1577,7 @@
                     <div class="question-content">
                         <div class="question-panel active" data-question="what">
                             <div class="question-visual">
-                                <img src="images/what.jpg" alt="What is an internship" class="question-image">
+                                <img src="images/what.png" alt="What is an internship" class="question-image">
                                 <div class="question-overlay">
                                     <div class="question-icon">❓</div>
                                 </div>
@@ -1584,7 +1596,7 @@
                         
                         <div class="question-panel" data-question="why">
                             <div class="question-visual">
-                                <img src="images/why.jpg" alt="Why do teens need internships" class="question-image">
+                                <img src="images/why.png" alt="Why do teens need internships" class="question-image">
                                 <div class="question-overlay">
                                     <div class="question-icon">💡</div>
                                 </div>
@@ -1603,7 +1615,7 @@
                         
                         <div class="question-panel" data-question="how">
                             <div class="question-visual">
-                                <img src="images/how.jpg" alt="How to get internships" class="question-image">
+                                <img src="images/how.png" alt="How to get internships" class="question-image">
                                 <div class="question-overlay">
                                     <div class="question-icon">🚀</div>
                                 </div>
@@ -1634,40 +1646,40 @@
             
             <div class="awards-grid">
                 <div class="award-item animate-pop" style="--delay: 0.1s">
-                    <div class="award-icon">🎨</div>
-                    <h4>Illustrators</h4>
-                </div>
-                <div class="award-item animate-pop" style="--delay: 0.2s">
-                    <div class="award-icon">✍</div>
-                    <h4>Writers</h4>
-                </div>
-                <div class="award-item animate-pop" style="--delay: 0.3s">
-                    <div class="award-icon">🎙</div>
-                    <h4>Podcasters</h4>
-                </div>
-                <div class="award-item animate-pop" style="--delay: 0.4s">
-                    <div class="award-icon">✎</div>
+                    <div class="award-icon"><img src="logos/writer.png" class = "team-icon"></div>
                     <h4>Book<br/>Editors</h4>
                 </div>
-                <div class="award-item animate-pop" style="--delay: 0.5s">
-                    <div class="award-icon">💻</div>
-                    <h4>Web<br/>Designers</h4>
-                </div>
-                <div class="award-item animate-pop" style="--delay: 0.6s">
-                    <div class="award-icon">🎥</div>
-                    <h4>Videography</h4>
-                </div>
-                <div class="award-item animate-pop" style="--delay: 0.7s">
-                    <div class="award-icon">📈</div>
-                    <h4>Marketing and<br/>Social media</h4>
-                </div>
-                <div class="award-item animate-pop" style="--delay: 0.8s">
-                    <div class="award-icon">💲</div>
+                <div class="award-item animate-pop" style="--delay: 0.2s">
+                    <div class="award-icon"><img src="logos/finance.png" class = "team-icon"></div>
                     <h4>Finance and<br/> Sponsorship</h4>
                 </div>
-                <div class="award-item animate-pop" style="--delay: 0.9s">
-                    <div class="award-icon">📋</div>
+                <div class="award-item animate-pop" style="--delay: 0.3s">
+                    <div class="award-icon"><img src="logos/illustrations.png" class = "team-icon"></div>
+                    <h4>Illustrators</h4>
+                </div>
+                <div class="award-item animate-pop" style="--delay: 0.4s">
+                    <div class="award-icon"><img src="logos/announcement.png" class = "team-icon"></div>
+                    <h4>Marketing and<br/>Social media</h4>
+                </div>
+                <div class="award-item animate-pop" style="--delay: 0.5s">
+                    <div class="award-icon"><img src="logos/podcaster.png" class = "team-icon"></div>
+                    <h4>Podcasters</h4>
+                </div>
+                <div class="award-item animate-pop" style="--delay: 0.6s">
+                    <div class="award-icon"><img src="logos/managers.png" class = "team-icon"></div>
                     <h4>Project<br/>Managers</h4>
+                </div>
+                <div class="award-item animate-pop" style="--delay: 0.7s">
+                    <div class="award-icon"><img src="logos/videography.png" class = "team-icon"></div>
+                    <h4>Videography</h4>
+                </div>
+                <div class="award-item animate-pop" style="--delay: 0.8s">
+                    <div class="award-icon"><img src="logos/webdesigner.png" class = "team-icon"></div>
+                    <h4>Web<br/>Designers</h4>
+                </div>
+                <div class="award-item animate-pop" style="--delay: 0.9s">
+                    <div class="award-icon"><img src="logos/writer.png" class = "team-icon"></div>
+                    <h4>Writers</h4>
                 </div>
             </div>
         </div>

@@ -540,6 +540,14 @@
     margin: 0 auto;
 }
 
+.emoji-icon {
+    height: 25px; 
+    border-radius: 5px;
+}
+.team-icon {
+    height: 50px; 
+    border-radius: 5px;
+}
 .book-cover img {
     width: 300px;
     height: auto;
