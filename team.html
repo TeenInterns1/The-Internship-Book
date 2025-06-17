@@ -619,21 +619,26 @@ Madhavi -->
 .profile-card {
     width: 100vw;
     height: 100vh;
-    display: flex;
+    display: flex !important;
     align-items: center;
     justify-content: center;
     padding: 0 5vw;
     flex-shrink: 0;
     position: relative;
+    opacity: 1 !important;
+    visibility: visible !important;
+    box-sizing: border-box;
 }
 
 .profile-content {
     max-width: 1200px;
     width: 100%;
-    display: grid;
+    display: grid !important;
     grid-template-columns: 1fr 1fr;
     gap: 100px;
     align-items: center;
+    opacity: 1 !important;
+    visibility: visible !important;
 }
 
 .profile-image-section {
@@ -1129,7 +1134,7 @@ Madhavi -->
 
     <section class="team-page-section">
         <div class="container">
-            <div class="team-intro animate-fade-up">
+            <div class="team-intro">
                 <h1>Meet the Team</h1>
                 <p>The Teen Interns Book is a collaborative project created entirely by talented teenage interns. Get to know the amazing individuals who worked together to bring this book to life.</p>
             </div>
@@ -1795,24 +1800,7 @@ Madhavi -->
                 // Only initialize once
                 if (window.profilesInitialized) return;
                 window.profilesInitialized = true;
-            // Animate team cards on scroll
-            const animatedElements = document.querySelectorAll('.animate-fade-up, .animate-pop');
-            
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('in-view');
-                        observer.unobserve(entry.target);
-                    }
-                });
-            }, {
-                threshold: 0.1,
-                rootMargin: '0px 0px -50px 0px'
-            });
-            
-            animatedElements.forEach(el => {
-                observer.observe(el);
-            });
+            // Animation code removed to prevent errors
             
             // Update team links in main navigation
             const teamLinks = document.querySelectorAll('a[href="index.html#team"]');
@@ -1841,6 +1829,7 @@ Madhavi -->
             const progressDots = document.querySelectorAll('.progress-dot');
             
             function updateProfile() {
+                console.log(`Updating to profile ${currentIndex}`);
                 if (profilesContainer) {
                     profilesContainer.style.transform = `translateX(-${currentIndex * 100}vw)`;
                     console.log(`Setting transform to: translateX(-${currentIndex * 100}vw)`);
@@ -1849,6 +1838,16 @@ Madhavi -->
                 // Update progress dots
                 progressDots.forEach((dot, index) => {
                     dot.classList.toggle('active', index === currentIndex);
+                });
+                
+                // Ensure current profile is visible
+                profileCards.forEach((card, index) => {
+                    if (index === currentIndex) {
+                        card.style.display = 'flex';
+                        card.style.opacity = '1';
+                        card.style.visibility = 'visible';
+                        console.log(`Made profile ${index} visible:`, card.querySelector('.profile-name').textContent);
+                    }
                 });
             }
             
@@ -1933,6 +1932,14 @@ Madhavi -->
             // Set initial state immediately without animation
             profilesContainer.style.transition = 'none';
             profilesContainer.style.transform = 'translateX(0)';
+            
+            // Force all profile cards to be visible
+            profileCards.forEach((card, index) => {
+                card.style.display = 'flex';
+                card.style.visibility = 'visible';
+                card.style.opacity = '1';
+                console.log(`Profile ${index}: ${card.querySelector('.profile-name').textContent}`);
+            });
             
             // Re-enable transitions after a brief moment
             setTimeout(() => {
