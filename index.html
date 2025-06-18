@@ -485,14 +485,31 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            padding: 30px;
+            padding: 40px;
         }
 
         .book-mockup {
             display: flex;
             justify-content: center;
             align-items: center;
-            padding: 30px;
+            padding: 40px;
+        }
+        
+        /* Enhanced book cover styling for sneak peek */
+        .preview .book-cover,
+        .preview .book-mockup {
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .preview .book-cover img {
+            width: 100%;
+            height: auto;
+            max-width: 100%;
         }
         
         /* Hero section spacing improvement */
@@ -861,8 +878,8 @@
         }
         .book-cover-3d {
             position: relative;
-            width: 350px; /* Made wider */
-            height: 450px; /* Made taller proportionally */
+            width: 450px; /* Made significantly wider */
+            height: 580px; /* Made significantly taller proportionally */
             margin: 0 auto;
             transform: perspective(1200px) rotateY(-15deg) rotateX(2deg);
             transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
@@ -1196,8 +1213,8 @@
         }
         @media (max-width: 768px) {
             .book-cover-3d {
-                width: 280px; /* Made wider for mobile too */
-                height: 370px; /* Made taller proportionally */
+                width: 350px; /* Made wider for mobile too */
+                height: 460px; /* Made taller proportionally */
                 transform: perspective(1000px) rotateY(-12deg) rotateX(1deg);
             }
 
@@ -1207,7 +1224,65 @@
 
             .book-cover,
             .book-mockup {
-                padding: 20px;
+                padding: 25px;
+            }
+            
+            .preview .book-cover,
+            .preview .book-mockup {
+                padding: 30px;
+            }
+            
+            .preview .book-cover img {
+                max-width: 400px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .preview-content {
+                display: block !important;
+                gap: 0 !important;
+                min-height: auto !important;
+            }
+            
+            .preview .section-title {
+                font-size: 2.5rem !important;
+            }
+            
+            .preview .section-subtitle {
+                font-size: 1.2rem !important;
+            }
+            
+            .preview-features {
+                min-height: auto !important;
+                margin-top: 3rem;
+            }
+            
+            .preview-tabs {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 0.5rem;
+                justify-content: center;
+            }
+            
+            .tab-btn {
+                padding: 0.8rem 1.5rem !important;
+                font-size: 1rem !important;
+            }
+            
+            .book-visual {
+                margin-bottom: 2rem;
+                height: auto !important;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .preview .section-title {
+                font-size: 2rem !important;
+            }
+            
+            .tab-btn {
+                padding: 0.7rem 1.2rem !important;
+                font-size: 0.9rem !important;
             }
         }
 
@@ -1402,32 +1477,31 @@
     </section>
 
     <!-- 1. Sneak Peek Section -->
-    <section class="preview" id="preview">
-        <div class="container">
-            <div class="section-header animate-fade-up">
-                <h2 class="section-title">Sneak Peek</h2>
-                <p class="section-subtitle">Get a preview of what's inside</p>
+    <section class="preview" id="preview" style="padding: 6rem 0;">
+        <div class="container" style="max-width: 1400px;">
+            <div class="section-header animate-fade-up" style="margin-bottom: 4rem;">
+                <h2 class="section-title" style="font-size: 3.5rem; margin-bottom: 1.5rem;">Sneak Peek</h2>
+                <p class="section-subtitle" style="font-size: 1.4rem;">Get a preview of what's inside</p>
             </div>
             
-            <div class="preview-content">
-                <div class="book-visual animate-fade-right">
+            <div class="preview-content" style="display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: stretch; min-height: 600px;">
+                <div class="book-visual animate-fade-right" style="display: flex; align-items: center; justify-content: center; height: 100%;">
                     <div class="book-mockup">
                         <div class="book-cover">
                             <img src="images/book-cover.jpg" alt="Teen Interns Book Cover">
                         </div>
-                        <div class="book-pages"></div>
                     </div>
                 </div>
                 
-                <div class="preview-features animate-fade-left">
-                    <div class="preview-tabs">
-                        <button class="tab-btn active" data-tab="content">Content</button>
-                        <button class="tab-btn" data-tab="multimedia">Multimedia</button>
-                        <button class="tab-btn" data-tab="illustrations">Illustrations</button>
-                        <button class="tab-btn" data-tab="interactive">Interactive</button>
+                <div class="preview-features animate-fade-left" style="min-height: 600px;">
+                    <div class="preview-tabs" style="margin-bottom: 2.5rem;">
+                        <button class="tab-btn active" data-tab="content" style="padding: 1rem 2rem; font-size: 1.1rem;">Content</button>
+                        <button class="tab-btn" data-tab="multimedia" style="padding: 1rem 2rem; font-size: 1.1rem;">Multimedia</button>
+                        <button class="tab-btn" data-tab="illustrations" style="padding: 1rem 2rem; font-size: 1.1rem;">Illustrations</button>
+                        <button class="tab-btn" data-tab="interactive" style="padding: 1rem 2rem; font-size: 1.1rem;">Interactive</button>
                     </div>
                     
-                    <div class="tab-content">
+                    <div class="tab-content" style="font-size: 1.1rem; line-height: 1.7;">
                         <div class="tab-panel active" data-tab="content">
                             <h3>Written by Teens, For Teens</h3>
                             <p>This book breaks the mold of traditional career guides. Created by 23 teenagers who've actually been through the internship journey, it's packed with real stories, practical strategies, and the kind of honest advice you won't find anywhere else.</p>
@@ -1578,9 +1652,9 @@
                         <div class="question-panel active" data-question="what">
                             <div class="question-visual">
                                 <img src="images/what.png" alt="What is an internship" class="question-image">
-                                <div class="question-overlay">
+                                <!-- <div class="question-overlay">
                                     <div class="question-icon">❓</div>
-                                </div>
+                                </div> -->
                             </div>
                             <div class="question-text">
                                 <h3>What is an internship?</h3>
@@ -1597,9 +1671,9 @@
                         <div class="question-panel" data-question="why">
                             <div class="question-visual">
                                 <img src="images/why.png" alt="Why do teens need internships" class="question-image">
-                                <div class="question-overlay">
+                                <!-- <div class="question-overlay">
                                     <div class="question-icon">💡</div>
-                                </div>
+                                </div> -->
                             </div>
                             <div class="question-text">
                                 <h3>Why do teens need internships?</h3>
@@ -1616,9 +1690,9 @@
                         <div class="question-panel" data-question="how">
                             <div class="question-visual">
                                 <img src="images/how.png" alt="How to get internships" class="question-image">
-                                <div class="question-overlay">
+                                <!-- <div class="question-overlay">
                                     <div class="question-icon">🚀</div>
-                                </div>
+                                </div> -->
                             </div>
                             <div class="question-text">
                                 <h3>How to get internships?</h3>

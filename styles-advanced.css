@@ -324,9 +324,9 @@
 
 .question-visual {
     position: relative;
-    overflow: hidden;
+    /* overflow: ; */
     border-radius: var(--border-radius-lg);
-    box-shadow: var(--box-shadow);
+    /* box-shadow: var(--box-shadow); */
 }
 
 .question-image {
