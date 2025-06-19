@@ -205,12 +205,15 @@
             font-size: 0.9rem;
         }
         /* Hero section spacing improvement */
+        
+        /*
         .hero-content {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 80px; /* Increased gap */
+            gap: 80px; 
             align-items: center;
-        }
+        }*/
+        
         
         /* Logo Text Styles */
         .logo-text {
@@ -760,6 +763,20 @@
                 gap: 20px;
             }
         }
+
+        .hero.container{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container-book{
+            display: flex;
+            flex-direction: row;
+            align-items:center;
+            justify-content: space-around;
+        }
     </style>
 </head>
 <body class="loading preorder-page" data-theme="light">
@@ -816,6 +833,62 @@
     <!-- Pre-order Hero Section -->
     <section class="hero" id="preorder-hero">
         <div class="container">
+            <!-- Countdown Section -->
+                    <section class="countdown-section" id="countdown">
+                        <div class="container">
+                            <div class="countdown animate-fade-up">
+                                <div class="countdown-label">Launching in:</div>
+                                <div class="countdown-timer">
+                                    <div class="timer-unit">
+                                        <span class="timer-number" data-count="0">0</span>
+                                        <span class="timer-label">Days</span>
+                                    </div>
+                                    <div class="timer-unit">
+                                        <span class="timer-number" data-count="0">0</span>
+                                        <span class="timer-label">Hours</span>
+                                    </div>
+                                    <div class="timer-unit">
+                                        <span class="timer-number" data-count="0">0</span>
+                                        <span class="timer-label">Minutes</span>
+                                    </div>
+                                    <div class="timer-unit">
+                                        <span class="timer-number" data-count="0">0</span>
+                                        <span class="timer-label">Seconds</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                    <!--Book image-->
+                    <div class="container-book">
+                        <div class="container">
+                            <!-- text-->
+                            <h3>Print + Digital Bundle</h3>
+                            <div class="price">
+                                <span class="currency">₹</span>
+                                <span class="amount">528</span>
+                            </div>
+                        </div>
+                        <div class="book-cover">
+                           <img src="images/book-cover.jpg" alt="The Internship Book Cover">
+                        </div>
+                        <div class="container">
+                            <ul class="features-list">
+                            <li> Physical book delivered in India</li>
+                            <li> Digital resources with QR Code Integration</li>
+                            <li> First-edition benefits</li>
+                            <li> Shipping available only across India</li>
+                            <li>🇮🇳 Special India-exclusive content</li>
+                           </ul>
+                        </div>
+                    </div>
+                   <!-- preorder button leading to form-->
+                   <div class="container">
+                      <button class="order-btn bundle-btn" onclick="event.stopPropagation(); window.open('https://payments.cashfree.com/forms/thebook', '_blank');">Pre-order Bundle</button>
+                   </div>
+        </div>
+        <!--
+        <div class="container">
             <div class="hero-content">
                 <div class="hero-info">
                     <h1 class="hero-title">
@@ -823,10 +896,9 @@
                         <span class="title-line title-highlight">THE INTERNSHIP BOOK</span>
                     </h1>
                     <h2 class="hero-subtitle">Be among the <strong>first</strong> to receive this <strong>groundbreaking guide</strong></h2>
-                    <p class="hero-description">Join thousands of teens who are already preparing for their future. Get exclusive early access to the ultimate internship guide created by teenagers, for teenagers. Empowering the next generation through innovative career guidance and meaningful opportunities.</p>
-                
+                    
                     <div class="hero-cta">
-                        <a href="#pricing" class="cta-button primary">Choose Your Package</a>
+                        <a href="#pricing" class="cta-button primary">Pre</a>
                         <a href="index.html" class="cta-button secondary">Learn More</a>
                     </div>
                 </div>
@@ -836,35 +908,12 @@
             </div>
         </div>
     </section>
+    -->
 
-    <!-- Countdown Section -->
-    <section class="countdown-section" id="countdown">
-        <div class="container">
-            <div class="countdown animate-fade-up">
-                <div class="countdown-label">Launching in:</div>
-                <div class="countdown-timer">
-                    <div class="timer-unit">
-                        <span class="timer-number" data-count="0">0</span>
-                        <span class="timer-label">Days</span>
-                    </div>
-                    <div class="timer-unit">
-                        <span class="timer-number" data-count="0">0</span>
-                        <span class="timer-label">Hours</span>
-                    </div>
-                    <div class="timer-unit">
-                        <span class="timer-number" data-count="0">0</span>
-                        <span class="timer-label">Minutes</span>
-                    </div>
-                    <div class="timer-unit">
-                        <span class="timer-number" data-count="0">0</span>
-                        <span class="timer-label">Seconds</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
+    
+  
     <!-- Pricing Options Section -->
+        <!--
     <section class="pricing-section" id="pricing">
         <div class="container">
             <div class="section-header animate-fade-up">
@@ -898,6 +947,7 @@
             </div>
         </div>
     </section>
+    -->
 
     <!-- Footer -->
     <footer class="site-footer">
