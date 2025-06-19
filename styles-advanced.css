@@ -25,10 +25,7 @@
     box-shadow: 0 0 0 4px var(--primary-color);
 }
 
-.sucess-stories .awards-grid .award-item animate-pop {
-    width: 12vw;
-    height: 12vh;
-}
+/* Removed old awards-grid styles - now using teams-row layout */
 
 
 /* About Section */
@@ -548,8 +545,134 @@
     height: 50px; 
     border-radius: 5px;
 }
+
+/* Teams section layout for 5-4 format */
+.teams-row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+}
+
+.teams-top {
+    /* 5 items in top row */
+    max-width: 1200px;
+    margin: 0 auto 2rem auto;
+}
+
+.teams-bottom {
+    /* 4 items in bottom row */
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.award-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 10px;
+    padding: 1rem;
+    transition: all 0.3s ease;
+    border-radius: 8px;
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    min-width: 150px;
+}
+
+.award-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 154, 148, 0.15);
+    border-color: var(--primary-color);
+}
+
+.award-item h4 {
+    color: var(--text-color) !important;
+    margin: 0;
+    font-size: 1rem;
+    font-weight: 600;
+    line-height: 1.3;
+}
+
+.award-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 0.5rem;
+}
+
+/* Responsive behavior for teams layout */
+@media (max-width: 1200px) {
+    .teams-row {
+        gap: 1.5rem;
+    }
+    
+    .award-item {
+        min-width: 130px;
+    }
+}
+
+@media (max-width: 768px) {
+    .teams-row {
+        justify-content: center;
+        gap: 1rem;
+    }
+    
+    .teams-top,
+    .teams-bottom {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+        max-width: 400px;
+    }
+    
+    /* Last item in top row spans 2 columns on mobile */
+    .teams-top .award-item:last-child {
+        grid-column: 1 / -1;
+        justify-self: center;
+    }
+    
+    .award-item {
+        min-width: auto;
+        padding: 0.8rem;
+    }
+    
+    .team-icon {
+        height: 40px;
+    }
+    
+    .award-item h4 {
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .teams-top,
+    .teams-bottom {
+        grid-template-columns: 1fr;
+        max-width: 250px;
+    }
+    
+    .teams-top .award-item:last-child {
+        grid-column: 1;
+    }
+    
+    .award-item {
+        padding: 1rem 0.5rem;
+    }
+    
+    .team-icon {
+        height: 35px;
+    }
+    
+    .award-item h4 {
+        font-size: 0.85rem;
+    }
+}
 .book-cover img {
-    width: 300px;
+    width: 400px;
     height: auto;
 }
 

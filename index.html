@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Teen Interns Book | The Ultimate Guide to Teen Internships</title>
+    <title>The Internship Book | The Ultimate Guide to Teen Internships</title>
     <link rel="icon" type="image/png" href="logos/favicon.png">
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="preorder-styles.css">
@@ -17,6 +17,7 @@
     
     <style>
         /* CSS Variables for Theme System */
+        :root {
         :root {
             --primary-color: #009A94;
             --secondary-color: #00C4B8;
@@ -1382,6 +1383,80 @@
                 max-height: 50px;
             }
         }
+        
+        /* Updated Quote Section Styles */
+        .quotes-container {
+            position: relative;
+            padding-left: 4px; /* Space for the teal bar */
+            border-left: 4px solid var(--primary-color); /* Teal bar */
+        }
+        
+        .quote-content {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            margin: 2rem 0;
+            padding-left: 1rem; /* Space between teal bar and content */
+        }
+        
+        .quote-author-image {
+            flex-shrink: 0;
+            display: flex;
+            align-items: flex-start;
+        }
+        
+        .author-photo {
+            width: 1.2em; /* Same size as text */
+            height: 1.2em;
+            border-radius: 50%; /* Round shape */
+            object-fit: cover;
+            display: block;
+            flex-shrink: 0;
+        }
+        
+        .quote-text-section {
+            flex: 1;
+        }
+        
+        .quote {
+            font-size: 1.2rem;
+            line-height: 1.6;
+            font-style: italic;
+            margin: 0 0 1rem 0;
+            color: var(--text-color);
+        }
+        
+        cite {
+            display: block;
+            margin-top: 1rem;
+            font-size: 1rem;
+            font-style: normal;
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+        
+        /* Responsive adjustments for quotes */
+        @media (max-width: 768px) {
+            .quote-content {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: left;
+            }
+            
+            .quote-author-image {
+                align-self: flex-start;
+            }
+            
+            .author-photo {
+                width: 80px;
+                height: 80px;
+                border-radius: 50%;
+            }
+            
+            .quote-text-section {
+                min-height: auto;
+            }
+        }
     </style>
 </head>
 <body class="loading" data-theme="light">
@@ -1459,18 +1534,18 @@
                     <h1 class="hero-title">
                         <span class="title-line">The</span>
                         <span class="title-line title-highlight">Internship</span>
-                        <span class="title-line title-highlight">Book:</span>
+                        <span class="title-line title-highlight">Book</span>
                     </h1>
-                    <h2 class="hero-subtitle"> The <strong>What, Why,</strong> and <strong>How</strong> of internships </h2>
-                    <p class="hero-description">Empowering the next generation through innovative career guidance and meaningful opportunities. We combine cutting-edge design, authentic teen voices, and industry expertise to create the ultimate internship guide that transforms how young people approach their careers.</p>
+                    <h2 class="hero-subtitle"> <strong>What, Why,</strong> and <strong>How</strong> of internships </h2>
+                    <p class="hero-description">Welcome to the first teen-powered guide to internships—written by those living it, for those about to.</p>
                 
                     <div class="hero-cta">
-                        <a href="preorder.html" class="cta-button primary">Get Your Copy</a>
+                        <a href="preorder.html" class="cta-button primary">Pre-Order Now!</a>
                         <a href="#about" class="cta-button secondary">Learn More</a>
                     </div>
                 </div>
                 <div class="book-cover">
-                    <img src="images/trials/trial3.png" alt="book-cover">
+                    <img src="images/trials/trial4.png" alt="book-cover">
                 </div>
             </div>
         </div>
@@ -1488,7 +1563,7 @@
                 <div class="book-visual animate-fade-right" style="display: flex; align-items: center; justify-content: center; height: 100%;">
                     <div class="book-mockup">
                         <div class="book-cover">
-                            <img src="images/book-cover.jpg" alt="Teen Interns Book Cover">
+                            <img src="images/trials/trial3.png" alt="Teen Interns Book Cover">
                         </div>
                     </div>
                 </div>
@@ -1497,8 +1572,8 @@
                     <div class="preview-tabs" style="margin-bottom: 2.5rem;">
                         <button class="tab-btn active" data-tab="content" style="padding: 1rem 2rem; font-size: 1.1rem;">Content</button>
                         <button class="tab-btn" data-tab="multimedia" style="padding: 1rem 2rem; font-size: 1.1rem;">Multimedia</button>
-                        <button class="tab-btn" data-tab="illustrations" style="padding: 1rem 2rem; font-size: 1.1rem;">Illustrations</button>
-                        <button class="tab-btn" data-tab="interactive" style="padding: 1rem 2rem; font-size: 1.1rem;">Interactive</button>
+                        <button class="tab-btn" data-tab="illustrations" style="padding: 1rem 2rem; font-size: 1.1rem;">Sustainable</button>
+                        <button class="tab-btn" data-tab="interactive" style="padding: 1rem 2rem; font-size: 1.1rem;">Impactful</button>
                     </div>
                     
                     <div class="tab-content" style="font-size: 1.1rem; line-height: 1.7;">
@@ -1531,73 +1606,58 @@
                                 <div class="media-feature">
                                     <span class="media-icon"><img src="logos\videography.png" class = "emoji-icon"></span>
                                     <div class="media-content">
-                                        <strong>Realtime Video Sessions:</strong> Watch raw, unfiltered moments from our teen contributors as they share their biggest internship wins, epic fails, and everything in between.
+                                        <strong>Video Content:</strong> Watch raw, unfiltered moments from our teen contributors as they share their biggest internship wins, epic fails, and everything in between.The whole book is visual and filled with illustrations. 
                                     </div>
                                 </div>
                                 
                                 <div class="media-feature">
                                     <span class="media-icon"><img src="logos\podcast.png" class = "emoji-icon"></span>
                                     <div class="media-content">
-                                        <strong>Real Talk Sessions:</strong> Listen to honest conversations about imposter syndrome, networking anxiety, and how to bounce back when things don't go as planned.
-                                    </div>
+                                        <strong>Mixtape, Podcasts and Vlogs:</strong> Listen & watch honest conversations about imposter syndrome, networking anxiety, and how to bounce back when things don't go as planned. It is a complete visual and auditory delight. 
+                                    </div>  
                                 </div>
                             </div>
-                            
-                            <div class="multimedia-highlight">
-                                <div class="highlight-stat">
-                                    <span class="stat-number">50+</span>
-                                    <span class="stat-label">Exclusive Videos</span>
-                                </div>
-                                <div class="highlight-stat">
-                                    <span class="stat-number">30+</span>
-                                    <span class="stat-label">Downloadable Resources</span>
-                                </div>
-                                <div class="highlight-stat">
-                                    <span class="stat-number">24/7</span>
-                                    <span class="stat-label">Community Access</span>
-                                </div>
                             </div>
                             
                         </div>
                         
                         <div class="tab-panel" data-tab="illustrations">
-                            <h3>Rich Visual Storytelling</h3>
-                            <p>Every concept is brought to life with our signature line art style - minimalist, bright, and cohesive illustrations that make complex internship concepts easy to understand.</p>
+                            <h3>Eco-Friendly</h3>
+                            <p> Printed once, updated forever. Our eco-conscious approach means fresh content in real time without the environmental cost.</p>
                             
                             <div class="content-highlights">
                                 <div class="content-feature">
                                     <span class="content-icon"><img src="logos\illustrations.png" class = "emoji-icon"></span>
                                     <div class="media-content">
-                                        <strong>Consistent Style:</strong> Hand-crafted illustrations that maintain a cohesive visual language throughout the entire book.
+                                        <strong>Own one copy:</strong> Recycle. One copy is all you need to stay updated in almost real time. A phygital ( Physical and digital book ). 
                                     </div>
                                 </div>
                                 
                                 <div class="content-feature">
                                     <span class="content-icon">💡</span>
                                     <div class="media-content">
-                                        <strong>Concept Clarity:</strong> Complex ideas simplified through visual storytelling that makes learning effortless and engaging.
+                                        <strong>Stay relevant:</strong> This is one gift that updates itself. From Legacy to new age. 
                                     </div>
                                 </div>
                             </div>
                         </div>
                         
                         <div class="tab-panel" data-tab="interactive">
-                            <h3>Beyond the Page</h3>
-                            <p>Scan QR codes throughout the book to access downloadable templates, video tutorials, and a private community of teen interns sharing their journeys.</p>
+                            <h3>Impactful</h3>
+                            <p>Every book sold helps sponsor access for those who can't afford it — because everyone deserves a chance to grow.</p>
                             
                             <div class="content-highlights">
                                 <div class="content-feature">
                                     <span class="content-icon"><img src="logos\qrcode.png" class = "emoji-icon"></span>
                                     <div class="media-content">
-                                        <strong>QR Code Access:</strong> Instant access to exclusive digital content, templates, and resources with a simple scan.
-                                        <a href="qr-generator.html" class="feature-link">See Example →</a>
+                                        <strong>Accelerate:</strong> Not everyone has the same starting line to their dreams. Accelerate the one behind. Boost them by giving their dreams a push. 
                                     </div>
                                 </div>
                                 
                                 <div class="content-feature">
                                     <span class="content-icon"><img src="logos\account.png" class = "emoji-icon"></span>
                                     <div class="media-content">
-                                        <strong>Community Connection:</strong> Join a private network of teen interns sharing real experiences and supporting each other.
+                                        <strong>Invest to support:</strong> Every copy sold or gifted to a loved one contributes to Mentorship and internships sponsored for students who can't afford it.  
                                     </div>
                                 </div>
                             </div>
@@ -1613,7 +1673,7 @@
         <div class="container">
             <div class="section-header animate-fade-up">
                 <h2 class="section-title">About the Book</h2>
-                <p class="section-subtitle">A revolutionary approach to understanding internships</p>
+                <p class="section-subtitle">World's #1 Student Internship Book</p>
             </div>
             
             <div class="about-content">
@@ -1718,7 +1778,8 @@
                 <h2 class="section-title">These are the teams involved!</h2>
             </div>
             
-            <div class="awards-grid">
+            <!-- Top row - 5 teams -->
+            <div class="teams-row teams-top">
                 <div class="award-item animate-pop" style="--delay: 0.1s">
                     <div class="award-icon"><img src="logos/editors.png" class = "team-icon"></div>
                     <h4>Book<br/>Editors</h4>
@@ -1739,6 +1800,10 @@
                     <div class="award-icon"><img src="logos/podcaster.png" class = "team-icon"></div>
                     <h4>Podcasters</h4>
                 </div>
+            </div>
+            
+            <!-- Bottom row - 4 teams -->
+            <div class="teams-row teams-bottom">
                 <div class="award-item animate-pop" style="--delay: 0.6s">
                     <div class="award-icon"><img src="logos/managers.png" class = "team-icon"></div>
                     <h4>Project<br/>Managers</h4>
@@ -1806,7 +1871,6 @@
                 <h2 class="section-title">What they say?</h2>
                 <p class="section-subtitle"></p>
             </div>
-            <div class="quotes-container">
                 <blockquote class="quote">
                     "Side hustles. Build your own product. Passion projects. It’s really your time.
 India is no longer just the back office of the world - we’re a creator economy, and our biggest strength is our talent. From metros to rural India, there’s a rising hunger to build, innovate, and take charge - as entrepreneurs or micro-entrepreneurs. Today’s teens / youth are stepping into a world where holding two careers - one for passion, one for profession, could become the norm. And that’s your edge. You have the brightest runway ahead to lead the new Bharat wave." 
@@ -1815,9 +1879,7 @@ India is no longer just the back office of the world - we’re a creator economy
                 <div class="quotes-profile">
                     <img src="person.jpg" alt="Picture of person" class="quotes-person">
                 </div>
-            </div>
         </div>
-    </section>
     <section class="friends-section" id="friends">
         <div class="container">
             <div class="section-header animate-fade-up">
@@ -1860,7 +1922,7 @@ India is no longer just the back office of the world - we’re a creator economy
             <div class="footer-content">
                 <div class="footer-brand">
                     <a href="#" class="footer-logo">
-                        <span class="footer-logo-img large logo-text">Teen Interns Book</span>
+                        <span class="footer-logo-img large logo-text">The Internship Book</span>
                     </a>
                     <p class="footer-tagline">Empowering the next generation through internships</p>
                 </div>
@@ -1901,8 +1963,8 @@ India is no longer just the back office of the world - we’re a creator economy
                         </a> to subscribe
                     </p>
                     <div class="social-links">
-                        <a href="#" class="social-link" title="Behind-the-scenes photos and visual content">📸</a>
-                        <a href="https://open.spotify.com/show/7xBDGJEqNy4kJqeg5Ip2Sz?si=2a0c01a64e694361" class="social-link" title="Podcast episodes and audio content">🎵</a>
+                        <a href="https://www.instagram.com/teeninterns/" class="social-link" title="Behind-the-scenes photos and visual content"><img src="images/insta.png" style="height: 25px;"></a>
+                        <a href="https://open.spotify.com/show/7xBDGJEqNy4kJqeg5Ip2Sz?si=2a0c01a64e694361" class="social-link" title="Podcast episodes and audio content"><img src="images/spotify.png"  style="height: 25px;"></a>
                         <a href="#" class="social-link" title="Mobile content and social media">📱</a>
                         <a href="#" class="social-link" title="Video content and documentaries">📺</a>
                     </div>
@@ -1921,7 +1983,6 @@ India is no longer just the back office of the world - we’re a creator economy
     <script src="page-transition.js"></script>
     <script src="preorder-system.js"></script>
     <script src="theme-toggle.js"></script>
-    <script src="enhanced-email-system.js"></script>
     
 
 

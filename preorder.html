@@ -205,15 +205,12 @@
             font-size: 0.9rem;
         }
         /* Hero section spacing improvement */
-        
-        /*
         .hero-content {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 80px; 
+            gap: 80px; /* Increased gap */
             align-items: center;
-        }*/
-        
+        }
         
         /* Logo Text Styles */
         .logo-text {
@@ -763,20 +760,6 @@
                 gap: 20px;
             }
         }
-
-        .hero.container{
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .container-book{
-            display: flex;
-            flex-direction: row;
-            align-items:center;
-            justify-content: space-around;
-        }
     </style>
 </head>
 <body class="loading preorder-page" data-theme="light">
@@ -833,62 +816,6 @@
     <!-- Pre-order Hero Section -->
     <section class="hero" id="preorder-hero">
         <div class="container">
-            <!-- Countdown Section -->
-                    <section class="countdown-section" id="countdown">
-                        <div class="container">
-                            <div class="countdown animate-fade-up">
-                                <div class="countdown-label">Launching in:</div>
-                                <div class="countdown-timer">
-                                    <div class="timer-unit">
-                                        <span class="timer-number" data-count="0">0</span>
-                                        <span class="timer-label">Days</span>
-                                    </div>
-                                    <div class="timer-unit">
-                                        <span class="timer-number" data-count="0">0</span>
-                                        <span class="timer-label">Hours</span>
-                                    </div>
-                                    <div class="timer-unit">
-                                        <span class="timer-number" data-count="0">0</span>
-                                        <span class="timer-label">Minutes</span>
-                                    </div>
-                                    <div class="timer-unit">
-                                        <span class="timer-number" data-count="0">0</span>
-                                        <span class="timer-label">Seconds</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </section>
-                    <!--Book image-->
-                    <div class="container-book">
-                        <div class="container">
-                            <!-- text-->
-                            <h3>Print + Digital Bundle</h3>
-                            <div class="price">
-                                <span class="currency">₹</span>
-                                <span class="amount">528</span>
-                            </div>
-                        </div>
-                        <div class="book-cover">
-                           <img src="images/book-cover.jpg" alt="The Internship Book Cover">
-                        </div>
-                        <div class="container">
-                            <ul class="features-list">
-                            <li> Physical book delivered in India</li>
-                            <li> Digital resources with QR Code Integration</li>
-                            <li> First-edition benefits</li>
-                            <li> Shipping available only across India</li>
-                            <li>🇮🇳 Special India-exclusive content</li>
-                           </ul>
-                        </div>
-                    </div>
-                   <!-- preorder button leading to form-->
-                   <div class="container">
-                      <button class="order-btn bundle-btn" onclick="event.stopPropagation(); window.open('https://payments.cashfree.com/forms/thebook', '_blank');">Pre-order Bundle</button>
-                   </div>
-        </div>
-        <!--
-        <div class="container">
             <div class="hero-content">
                 <div class="hero-info">
                     <h1 class="hero-title">
@@ -896,9 +823,10 @@
                         <span class="title-line title-highlight">THE INTERNSHIP BOOK</span>
                     </h1>
                     <h2 class="hero-subtitle">Be among the <strong>first</strong> to receive this <strong>groundbreaking guide</strong></h2>
-                    
+                    <p class="hero-description">Join thousands of teens who are already preparing for their future. Get exclusive early access to the ultimate internship guide created by teenagers, for teenagers. Empowering the next generation through innovative career guidance and meaningful opportunities.</p>
+                
                     <div class="hero-cta">
-                        <a href="#pricing" class="cta-button primary">Pre</a>
+                        <a href="#pricing" class="cta-button primary">Choose Your Package</a>
                         <a href="index.html" class="cta-button secondary">Learn More</a>
                     </div>
                 </div>
@@ -908,12 +836,35 @@
             </div>
         </div>
     </section>
-    -->
 
-    
-  
+    <!-- Countdown Section -->
+    <section class="countdown-section" id="countdown">
+        <div class="container">
+            <div class="countdown animate-fade-up">
+                <div class="countdown-label">Launching in:</div>
+                <div class="countdown-timer">
+                    <div class="timer-unit">
+                        <span class="timer-number" data-count="0">0</span>
+                        <span class="timer-label">Days</span>
+                    </div>
+                    <div class="timer-unit">
+                        <span class="timer-number" data-count="0">0</span>
+                        <span class="timer-label">Hours</span>
+                    </div>
+                    <div class="timer-unit">
+                        <span class="timer-number" data-count="0">0</span>
+                        <span class="timer-label">Minutes</span>
+                    </div>
+                    <div class="timer-unit">
+                        <span class="timer-number" data-count="0">0</span>
+                        <span class="timer-label">Seconds</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Pricing Options Section -->
-        <!--
     <section class="pricing-section" id="pricing">
         <div class="container">
             <div class="section-header animate-fade-up">
@@ -947,7 +898,6 @@
             </div>
         </div>
     </section>
-    -->
 
     <!-- Footer -->
     <footer class="site-footer">
@@ -955,7 +905,7 @@
             <div class="footer-content">
                 <div class="footer-brand">
                     <a href="#" class="footer-logo">
-                        <span class="footer-logo-img large logo-text">Teen Interns Book</span>
+                        <span class="footer-logo-img large logo-text">The Internship Book</span>
                     </a>
                     <p class="footer-tagline">Empowering the next generation through internships</p>
                 </div>
@@ -989,9 +939,15 @@
                         <input type="email" placeholder="Your email" required class="newsletter-input">
                         <button type="submit" class="newsletter-submit">Subscribe</button>
                     </form>
+                    <p style="margin-top: 1rem; font-size: 0.9rem; color: var(--subtitle-color);">
+                        Or <a href="mailto:impact@teeninternsthebook.com?subject=Book Launch Updates%20Subscription&body=Hey!%20I%20want%20to%20stay%20updated%20with%20news%20related%20to%20the%20Teen%20Interns%20Book.%20Please%20add%20me%20to%20your%20mailing%20list%20for%20book%20launch%20updates,%20behind-the-scenes%20content,%20and%20exclusive%20announcements.%0A%0AThanks!"
+                               style="color: var(--primary-color); text-decoration: underline;">
+                        send us an email directly
+                        </a> to subscribe
+                    </p>
                     <div class="social-links">
-                        <a href="#" class="social-link" title="Behind-the-scenes photos and visual content">📸</a>
-                        <a href="#" class="social-link" title="Podcast episodes and audio content">🎵</a>
+                        <a href="https://www.instagram.com/teeninterns/" class="social-link" title="Behind-the-scenes photos and visual content"><img src="images/insta.png" style="height: 25px;"></a>
+                        <a href="https://open.spotify.com/show/7xBDGJEqNy4kJqeg5Ip2Sz?si=2a0c01a64e694361" class="social-link" title="Podcast episodes and audio content"><img src="images/spotify.png"  style="height: 25px;"></a>
                         <a href="#" class="social-link" title="Mobile content and social media">📱</a>
                         <a href="#" class="social-link" title="Video content and documentaries">📺</a>
                     </div>
