@@ -780,7 +780,7 @@ Madhavi -->
     margin-top: 5px;
 }
 
-/* Progress indicator */
+/* Progress indicator - conditionally hidden */
 .profiles-progress {
     position: fixed;
     bottom: 30px;
@@ -789,6 +789,13 @@ Madhavi -->
     display: flex;
     gap: 10px;
     z-index: 100;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.profiles-progress.hidden {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
 }
 
 .progress-dot {
@@ -819,7 +826,13 @@ Madhavi -->
     z-index: 100;
     box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
     animation: pulse 2s infinite;
-    transition: background-color var(--transition-normal), color var(--transition-normal);
+    transition: opacity 0.3s ease, visibility 0.3s ease, background-color var(--transition-normal), color var(--transition-normal);
+}
+
+.scroll-indicator.hidden {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
 }
 
 /* Dark mode scroll indicator */
@@ -829,7 +842,7 @@ Madhavi -->
     box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
 }
 
-/* Slideshow navigation controls */
+/* Slideshow navigation controls - conditionally hidden */
 .slideshow-controls {
     position: fixed;
     top: 50%;
@@ -838,6 +851,13 @@ Madhavi -->
     justify-content: space-between;
     padding: 0 30px;
     z-index: 200;
+    pointer-events: none;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.slideshow-controls.hidden {
+    opacity: 0;
+    visibility: hidden;
     pointer-events: none;
 }
 
@@ -873,7 +893,7 @@ Madhavi -->
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
 }
 
-/* Profile counter */
+/* Profile counter - conditionally hidden */
 .profile-counter {
     position: fixed;
     top: 30px;
@@ -885,7 +905,13 @@ Madhavi -->
     font-weight: 600;
     z-index: 100;
     backdrop-filter: blur(10px);
-    transition: background-color var(--transition-normal), color var(--transition-normal);
+    transition: opacity 0.3s ease, visibility 0.3s ease, background-color var(--transition-normal), color var(--transition-normal);
+}
+
+.profile-counter.hidden {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
 }
 
 [data-theme="dark"] .profile-counter {
@@ -1680,12 +1706,11 @@ Madhavi -->
                     </div>
                 </div>
             </div>
+            <div class="profiles-progress">
+                <!-- Progress dots will be added by JavaScript -->
+            </div>
         </div>
         
-        <!-- Navigation indicators -->
-        <div class="profiles-progress">
-            <!-- Progress dots will be added by JavaScript -->
-        </div>
         
         <!-- Navigation controls -->
         <div class="slideshow-controls">
@@ -1953,6 +1978,45 @@ Madhavi -->
                     updateSidebarActive();
                 }
             });
+            
+            // Hide navigation elements when scrolling to footer
+            function handleNavigationVisibility() {
+                const footer = document.querySelector('.site-footer');
+                const teamProfilesSection = document.querySelector('.team-profiles');
+                const slideshowControls = document.querySelector('.slideshow-controls');
+                const profileCounter = document.querySelector('.profile-counter');
+                const scrollIndicator = document.querySelector('.scroll-indicator');
+                const progressContainer = document.querySelector('.profiles-progress');
+                
+                if (!footer || !teamProfilesSection) return;
+                
+                const footerRect = footer.getBoundingClientRect();
+                const teamSectionRect = teamProfilesSection.getBoundingClientRect();
+                const viewportHeight = window.innerHeight;
+                
+                // Hide navigation when footer is visible or when not in team section
+                const shouldHide = footerRect.top < viewportHeight || teamSectionRect.bottom < 0 || teamSectionRect.top > viewportHeight;
+                
+                if (slideshowControls) {
+                    slideshowControls.classList.toggle('hidden', shouldHide);
+                }
+                if (profileCounter) {
+                    profileCounter.classList.toggle('hidden', shouldHide);
+                }
+                if (scrollIndicator) {
+                    scrollIndicator.classList.toggle('hidden', shouldHide);
+                }
+                if (progressContainer) {
+                    progressContainer.classList.toggle('hidden', shouldHide);
+                }
+            }
+            
+            // Listen for scroll events
+            window.addEventListener('scroll', handleNavigationVisibility);
+            window.addEventListener('resize', handleNavigationVisibility);
+            
+            // Initial check
+            handleNavigationVisibility();
             
             // Touch/swipe support for mobile with improved sensitivity
             let startX = 0;
