@@ -764,8 +764,10 @@
           .hero-container {
             display: flex;
             flex-direction: column;
-            justify-content: center;
             align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
         }
 
         .container-book{
@@ -779,7 +781,7 @@
             width: 100px;
         }
         
-        .book-cover{
+        .book-cover img{
             height: 500px;
             width: auto;
         }
@@ -867,7 +869,7 @@
                     </section>
                     <!--Book image-->
                     <div class="container-book">
-                        <div class="container">
+                        <div class="text-container">
                             <!-- text-->
                             <h3>Print + Digital Bundle</h3>
                             <div class="price">
@@ -895,6 +897,7 @@
                       <button class="order-btn bundle-btn" onclick="event.stopPropagation(); window.open('https://payments.cashfree.com/forms/thebook', '_blank');">Pre-order Bundle</button>
                    </div>
         </div>
+    </section>
 
  
     <!-- Footer -->
