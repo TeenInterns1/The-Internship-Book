@@ -292,7 +292,10 @@
             color: #000000 !important;
         }
         
-        /* Ultra aggressive pure black text override for light mode */
+        /* Ultra aggressive pure black text override for light mode - REMOVED */
+        /* The following overrides were preventing theme switching */
+        
+        /* Working light mode text overrides from teams.html */
         [data-theme="light"] h1,
         [data-theme="light"] h2,
         [data-theme="light"] h3,
@@ -307,35 +310,25 @@
             color: #000000 !important;
         }
         
-        /* Fix for light theme impact section */
+        /* Force specific elements to black in light mode */
+        [data-theme="light"] .hero-title,
+        [data-theme="light"] .hero-subtitle,
+        [data-theme="light"] .hero-description,
+        [data-theme="light"] .section-title,
+        [data-theme="light"] .section-subtitle,
+        [data-theme="light"] .lead-text,
         [data-theme="light"] .impact-description,
-        [data-theme="light"] .impact h3,
-        [data-theme="light"] .impact-label {
-            color: #000000 !important;
-        }
-        
-        /* Fix for light theme BTS explanation */
-        [data-theme="light"] .bts-explanation {
-            color: #000000 !important;
-        }
-        
-        /* Override external stylesheet colors */
+        [data-theme="light"] .question-text h3,
+        [data-theme="light"] .question-text p,
         [data-theme="light"] .tab-content h3,
         [data-theme="light"] .tab-content p,
-        [data-theme="light"] .tab-panel h3,
-        [data-theme="light"] .tab-panel p,
-        [data-theme="light"] .preview-features h3,
-        [data-theme="light"] .preview-features p {
-            color: #000000 !important;
-        }
-        
-        /* Force all content feature text to black */
         [data-theme="light"] .content-feature,
-        [data-theme="light"] .content-feature *,
         [data-theme="light"] .media-feature,
-        [data-theme="light"] .media-feature *,
-        [data-theme="light"] .content-text,
-        [data-theme="light"] .media-content {
+        [data-theme="light"] .footer-tagline,
+        [data-theme="light"] .footer-group h4,
+        [data-theme="light"] .footer-group a,
+        [data-theme="light"] .copyright,
+        [data-theme="light"] .credit {
             color: #000000 !important;
         }
         
@@ -1465,7 +1458,7 @@ cite {
         }
     </style>
 </head>
-<body class="loading" data-theme="light">
+<body class="loading" data-theme="dark" id="body">
     
     <div class="background-elements">
         <div class="bg-shape shape1"></div>
@@ -1993,6 +1986,16 @@ cite {
     <script src="page-transition.js"></script>
     <script src="preorder-system.js"></script>
     <script src="theme-toggle.js"></script>
+    
+    <!-- Debug and ensure theme toggle works - REMOVED REDUNDANT CSS -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('Theme toggle debug: Index.html theme system initialized');
+            
+            const body = document.body;
+            console.log('Initial theme state:', body.getAttribute('data-theme'));
+        });
+    </script>
     
 
 

@@ -17,21 +17,21 @@
     --pure-black: #000000;           /* Pure black for better contrast */
     --pure-white: #FFFFFF;           /* Pure white */
     
-    /* Dark Theme Colors (default and only) */
+    /* Light Theme Colors (default) */
     --primary-color: var(--teal-primary);
     --secondary-color: var(--yellow-primary);
     --accent-color: var(--yellow-primary);
-    --text-color: #FFFFFF;
-    --text-secondary: #FFFFFF;
+    --text-color: #000000;
+    --text-secondary: #000000;
     --text-button: #FFFFFF; /*for the teal buttons*/
-    --bg-color: #1A1A1A;
-    --bg-secondary: #1A1A1A;
-    --bg-alt-color: #1A1A1A;
+    --bg-color: #FFFFFF;
+    --bg-secondary: #F8F9FA;
+    --bg-alt-color: #F1F3F4;
     --bg-fills: var(--teal-primary);
-    --border-color: #444444;
-    --shadow-color: rgba(0, 0, 0, 0.3);
-    --shadow-color-hover: rgba(0, 0, 0, 0.4);
-    --subtitle-color: #FFFFFF;
+    --border-color: #E0E0E0;
+    --shadow-color: rgba(0, 0, 0, 0.1);
+    --shadow-color-hover: rgba(0, 0, 0, 0.2);
+    --subtitle-color: #000000;
     --highlight-color: var(--yellow-primary);
     
     /* Typography */
@@ -88,6 +88,19 @@
     --shadow-color: rgba(0, 0, 0, 0.3);
     --shadow-color-hover: rgba(0, 0, 0, 0.4);
     --subtitle-color: #FFFFFF;
+}
+
+/* Light theme override */
+[data-theme="light"] {
+    --text-color: #000000;
+    --text-secondary: #000000;
+    --bg-color: #FFFFFF;
+    --bg-secondary: #F8F9FA;
+    --bg-alt-color: #F1F3F4;
+    --border-color: #E0E0E0;
+    --shadow-color: rgba(0, 0, 0, 0.1);
+    --shadow-color-hover: rgba(0, 0, 0, 0.2);
+    --subtitle-color: #000000;
 }
 
 /* Automatic Dark Mode based on system preference */
@@ -367,7 +380,7 @@ a:focus-visible {
     color: var(--subtitle-color);
 }
 
-/* Text color overrides - all text should be white in our dark-only theme */
+/* Text color overrides - responsive to theme changes */
 h1,
 h2,
 h3,
@@ -386,12 +399,12 @@ div,
 .contact-phone,
 .service-item h3,
 .award-item h4 {
-    color: #FFFFFF !important;
+    color: var(--text-color) !important;
 }
 
 .text-secondary,
 .text-muted {
-    color: #FFFFFF !important;
+    color: var(--text-secondary) !important;
 }
 
 /* Keep the data-theme selector for backward compatibility */

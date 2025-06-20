@@ -4,8 +4,8 @@ document.addEventListener('DOMContentLoaded', function() {
     const mobileThemeToggle = document.getElementById('mobileThemeToggle');
     const body = document.body;
     
-    // Check for saved theme preference or default to 'light'
-    const savedTheme = localStorage.getItem('theme') || 'light';
+    // Check for saved theme preference or default to 'dark'
+    const savedTheme = localStorage.getItem('theme') || 'dark';
     body.setAttribute('data-theme', savedTheme);
     
     // Update toggle text for mobile
