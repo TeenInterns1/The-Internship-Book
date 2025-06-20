@@ -760,6 +760,29 @@
                 gap: 20px;
             }
         }
+        
+          .hero-container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container-book{
+            display: flex;
+            flex-direction: row;
+            align-items:center;
+            justify-content: space-around;
+        }
+        
+        order-btn bundle-btn{
+            width: 100px;
+        }
+        
+        .book-cover{
+            height: 500px;
+            width: auto;
+        }
     </style>
 </head>
 <body class="loading preorder-page" data-theme="light">
@@ -812,6 +835,66 @@
             </button>
         </div>
     </div>
+    
+     <!-- Pre-order Hero Section -->
+    <section class="hero" id="preorder-hero">
+        <div class="hero-container">
+            <!-- Countdown Section -->
+                    <section class="countdown-section" id="countdown">
+                        <div class="container">
+                            <div class="countdown animate-fade-up">
+                                <div class="countdown-label">Launching in:</div>
+                                <div class="countdown-timer">
+                                    <div class="timer-unit">
+                                        <span class="timer-number" data-count="0">0</span>
+                                        <span class="timer-label">Days</span>
+                                    </div>
+                                    <div class="timer-unit">
+                                        <span class="timer-number" data-count="0">0</span>
+                                        <span class="timer-label">Hours</span>
+                                    </div>
+                                    <div class="timer-unit">
+                                        <span class="timer-number" data-count="0">0</span>
+                                        <span class="timer-label">Minutes</span>
+                                    </div>
+                                    <div class="timer-unit">
+                                        <span class="timer-number" data-count="0">0</span>
+                                        <span class="timer-label">Seconds</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                    <!--Book image-->
+                    <div class="container-book">
+                        <div class="container">
+                            <!-- text-->
+                            <h3>Print + Digital Bundle</h3>
+                            <div class="price">
+                                <span class="currency">₹</span>
+                                <span class="amount">528</span>
+                            </div>
+                             <div class="container">
+                                <ul class="features-list">
+                                <li> Physical book delivered in India</li>
+                                <li> Digital resources with QR Code Integration</li>
+                                <li> First-edition benefits</li>
+                                <li> Shipping available only across India</li>
+                                <li>🇮🇳 Special India-exclusive content</li>
+                               </ul>
+                           </div>
+                        </div>
+                        
+                        <div class="book-cover">
+                           <img src="images/book-cover.jpg" alt="The Internship Book Cover">
+                        </div>
+                        
+                    </div>
+                   <!-- preorder button leading to form-->
+                   <div class="container">
+                      <button class="order-btn bundle-btn" onclick="event.stopPropagation(); window.open('https://payments.cashfree.com/forms/thebook', '_blank');">Pre-order Bundle</button>
+                   </div>
+        </div>
 
     <!-- Pre-order Hero Section -->
     <section class="hero" id="preorder-hero">
