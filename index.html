@@ -1385,55 +1385,55 @@
         }
         
         /* Updated Quote Section Styles */
-        .quotes-container {
-            position: relative;
-            padding-left: 4px; /* Space for the teal bar */
-            border-left: 4px solid var(--primary-color); /* Teal bar */
-        }
-        
-        .quote-content {
-            display: flex;
-            align-items: flex-start;
-            gap: 1rem;
-            margin: 2rem 0;
-            padding-left: 1rem; /* Space between teal bar and content */
-        }
-        
-        .quote-author-image {
-            flex-shrink: 0;
-            display: flex;
-            align-items: flex-start;
-        }
-        
-        .author-photo {
-            width: 1.2em; /* Same size as text */
-            height: 1.2em;
-            border-radius: 50%; /* Round shape */
-            object-fit: cover;
-            display: block;
-            flex-shrink: 0;
-        }
-        
-        .quote-text-section {
-            flex: 1;
-        }
-        
-        .quote {
-            font-size: 1.2rem;
-            line-height: 1.6;
-            font-style: italic;
-            margin: 0 0 1rem 0;
-            color: var(--text-color);
-        }
-        
-        cite {
-            display: block;
-            margin-top: 1rem;
-            font-size: 1rem;
-            font-style: normal;
-            font-weight: 600;
-            color: var(--primary-color);
-        }
+       .quotes-container {
+  position: relative;
+  padding-left: 4px;
+  border-left: 4px solid var(--primary-color); /* Teal bar */
+  margin-top: 2rem;
+}
+
+.quote-content {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.5rem;
+  padding-left: 1rem;
+}
+
+.quote-author-image {
+  flex-shrink: 0;
+}
+
+.author-photo {
+  width: auto;
+  height: 100%;
+  max-height: 280px; /* Adjust as needed */
+  aspect-ratio: 1 / 1;
+  border-radius: 50%;
+  object-fit: cover;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+}
+
+.quote-text-section {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.quote {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  font-style: italic;
+  margin: 0;
+  color: var(--text-color);
+}
+
+cite {
+  margin-top: 1rem;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--primary-color);
+}
+
         
         /* Responsive adjustments for quotes */
         @media (max-width: 768px) {
@@ -1864,22 +1864,24 @@
    
 
     <!-- Quotes -->
-
     <section class="quotes" id="quotes">
-        <div class="container">
-            <div class="section-header animate-fade-up">
-                <h2 class="section-title">What they say?</h2>
-                <p class="section-subtitle"></p>
-            </div>
-                <blockquote class="quote">
-                    "Side hustles. Build your own product. Passion projects. It’s really your time.
-India is no longer just the back office of the world - we’re a creator economy, and our biggest strength is our talent. From metros to rural India, there’s a rising hunger to build, innovate, and take charge - as entrepreneurs or micro-entrepreneurs. Today’s teens / youth are stepping into a world where holding two careers - one for passion, one for profession, could become the norm. And that’s your edge. You have the brightest runway ahead to lead the new Bharat wave." 
-                </blockquote>
-                <cite>- Ronnie Screwvala, Co-founder upGrad & Swades Foundation</cite>
-                <div class="quotes-profile">
-                    <img src="person.jpg" alt="Picture of person" class="quotes-person">
+        <div class="quotes-container">
+              <div class="quote-content">
+                <div class="quote-author-image">
+                  <img src="person.jpg" alt="Picture of person" class="author-photo" />
                 </div>
-        </div>
+                <div class="quote-text-section">
+                     <blockquote class="quote">
+                              "Side hustles. Build your own product. Passion projects. It’s really your time. India is no longer just the back office of the world – we’re a creator economy, and our biggest strength is our talent. From metros to rural India, there’s a rising hunger to build, innovate, and take charge – as entrepreneurs or micro-entrepreneurs. Today’s teens / youth are stepping into a world where holding two careers – one for passion, one for profession, could become the norm. And that’s your edge. You have the brightest runway ahead to lead the new Bharat wave."
+                     </blockquote>
+                  <cite>- Ronnie Screwvala, Co-founder upGrad & Swades Foundation</cite>
+                </div>
+              </div>
+      </div>
+    </section>
+
+
+    
     <section class="friends-section" id="friends">
         <div class="container">
             <div class="section-header animate-fade-up">
