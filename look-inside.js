@@ -10,13 +10,13 @@ class LookInsideViewer {
         this.currentMainImage = 'images/trials/trial3.png'; // Default book cover
         this.pages = [
             'images/trials/trial3.png', // Book cover as first page
-            'images/insight/IMG-20250620-WA0007.jpg',
-            'images/insight/IMG-20250620-WA0008.jpg',
-            'images/insight/IMG-20250620-WA0009.jpg',
-            'images/insight/IMG-20250620-WA0010.jpg',
-            'images/insight/IMG-20250620-WA0011.jpg',
-            'images/insight/IMG-20250620-WA0012.jpg',
-            'images/insight/IMG-20250620-WA0013.jpg'
+            'images/insight/1.jpg',
+            'images/insight/2.jpg',
+            'images/insight/3.jpg',
+            'images/insight/4.jpg',
+            'images/insight/5.jpg',
+            'images/insight/6.jpg',
+            'images/insight/7.jpg'
         ];
         this.pageLabels = [
             'Cover',
