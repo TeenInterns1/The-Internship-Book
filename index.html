@@ -14,6 +14,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollToPlugin.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.3/howler.min.js"></script>
     
     <style>
         /* CSS Variables for Theme System */
@@ -1019,6 +1021,792 @@
         .preview-img{
             width: 550px;
             height: auto;
+            transition: opacity 0.3s ease;
+        }
+
+        /* Look Inside Feature Styles */
+        .look-inside-overlay {
+            position: relative;
+            display: inline-block;
+            width: 100%;
+            height: 100%;
+        }
+
+        .look-inside-trigger {
+            position: relative;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: block;
+            width: 100%;
+            height: 100%;
+        }
+
+        .look-inside-trigger:hover {
+            transform: scale(1.02);
+        }
+
+        .look-inside-badge {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background: rgba(0, 154, 148, 0.9);
+            color: white;
+            padding: 8px 12px;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            z-index: 2;
+            animation: pulse 2s infinite;
+            box-shadow: 0 4px 12px rgba(0, 154, 148, 0.3);
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .look-inside-hover-text {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 10px 15px;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            opacity: 0;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            z-index: 2;
+        }
+
+        .look-inside-trigger:hover .look-inside-hover-text {
+            opacity: 1;
+            transform: translateX(-50%) translateY(-5px);
+        }
+
+        /* Modal Styles */
+        .look-inside-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 10000;
+            backdrop-filter: blur(10px);
+        }
+
+        .look-inside-modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            position: relative;
+            max-width: 90vw;
+            max-height: 90vh;
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+            transform: scale(0.95);
+            transition: transform 0.3s ease;
+        }
+
+        .look-inside-modal.active .modal-content {
+            transform: scale(1);
+        }
+
+        .modal-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 15px 20px;
+            background: #009A94;
+            color: white;
+            position: relative;
+            z-index: 1;
+        }
+
+        .modal-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin: 0;
+            color: #FFFFFF !important;
+        }
+
+        .modal-close {
+            background: none;
+            border: none;
+            color: #FFFFFF !important;
+            font-size: 1.8rem;
+            cursor: pointer;
+            padding: 5px;
+            border-radius: 4px;
+            transition: background 0.2s ease;
+        }
+
+        .modal-close:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .pages-container {
+            position: relative;
+            width: 100%;
+            height: 70vh;
+            overflow: hidden;
+            background: #f5f5f5;
+            padding-top: 10px;
+        }
+
+        .page-viewer {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .page-image {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            border-radius: 8px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .page-navigation {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0, 154, 148, 0.9);
+            color: white;
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .page-navigation:hover {
+            background: rgba(0, 154, 148, 1);
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .page-navigation:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: translateY(-50%) scale(0.9);
+        }
+
+        .page-prev {
+            left: 20px;
+        }
+
+        .page-next {
+            right: 20px;
+        }
+
+        .page-counter {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            backdrop-filter: blur(10px);
+        }
+
+        .page-thumbnails {
+            display: flex;
+            gap: 10px;
+            padding: 20px 25px;
+            background: #f8f9fa;
+            overflow-x: auto;
+            scrollbar-width: thin;
+        }
+
+        .page-thumbnails::-webkit-scrollbar {
+            height: 6px;
+        }
+
+        .page-thumbnails::-webkit-scrollbar-track {
+            background: #e9ecef;
+            border-radius: 3px;
+        }
+
+        .page-thumbnails::-webkit-scrollbar-thumb {
+            background: #009A94;
+            border-radius: 3px;
+        }
+
+        .thumbnail {
+            flex-shrink: 0;
+            width: 60px;
+            height: 80px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+            object-fit: cover;
+        }
+
+        .thumbnail:hover {
+            transform: scale(1.05);
+            border-color: #009A94;
+        }
+
+        .thumbnail.active {
+            border-color: #009A94;
+            box-shadow: 0 0 0 2px rgba(0, 154, 148, 0.3);
+        }
+
+        /* Loading state */
+        .loading-spinner {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #009A94;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Responsive adjustments for Look Inside */
+        @media (max-width: 768px) {
+            .modal-content {
+                max-width: 95vw;
+                max-height: 95vh;
+            }
+
+            .pages-container {
+                height: 60vh;
+            }
+
+            .page-navigation {
+                width: 40px;
+                height: 40px;
+                font-size: 1rem;
+            }
+
+            .page-prev {
+                left: 10px;
+            }
+
+            .page-next {
+                right: 10px;
+            }
+
+            .thumbnail {
+                width: 50px;
+                height: 65px;
+            }
+
+            .modal-header {
+                padding: 15px 20px;
+            }
+
+            .modal-title {
+                font-size: 1.1rem;
+            }
+
+            .page-thumbnails {
+                padding: 15px 20px;
+            }
+        }
+
+        /* Inside Pages Gallery Styles */
+        .inside-pages-preview {
+            margin-top: 2rem;
+            width: 100%;
+            max-width: 600px;
+        }
+
+        .inside-pages-title {
+            color: var(--text-color) !important;
+            font-size: 1.2rem;
+            font-weight: 600;
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+
+        .inside-pages-gallery {
+            margin-top: 1rem;
+        }
+
+        .gallery-grid {
+            display: flex;
+            flex-wrap: nowrap;
+            gap: 8px;
+            margin-bottom: 1rem;
+            overflow-x: auto;
+            padding: 8px;
+            border-radius: 8px;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            scrollbar-width: thin;
+        }
+
+        .gallery-grid::-webkit-scrollbar {
+            height: 6px;
+        }
+
+        .gallery-grid::-webkit-scrollbar-track {
+            background: var(--bg-secondary);
+            border-radius: 3px;
+        }
+
+        .gallery-grid::-webkit-scrollbar-thumb {
+            background: var(--primary-color);
+            border-radius: 3px;
+        }
+
+        .gallery-page {
+            position: relative;
+            flex-shrink: 0;
+            width: 60px;
+            height: 80px;
+            border-radius: 4px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+            background: white;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .gallery-page:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+            border-color: var(--primary-color);
+        }
+
+        .gallery-page img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-page:hover img {
+            transform: scale(1.03);
+        }
+
+        .gallery-page-number {
+            position: absolute;
+            top: 3px;
+            right: 3px;
+            background: rgba(0, 154, 148, 0.9);
+            color: white;
+            padding: 1px 4px;
+            border-radius: 3px;
+            font-size: 0.6rem;
+            font-weight: 600;
+        }
+
+        .gallery-page.selected {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 2px rgba(0, 154, 148, 0.3);
+        }
+
+        .gallery-actions {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        .zoom-view-btn {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 16px;
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 3px 10px rgba(0, 154, 148, 0.3);
+        }
+
+        .zoom-view-btn:hover {
+            background: var(--secondary-color);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 154, 148, 0.4);
+        }
+
+        .zoom-icon {
+            font-size: 1rem;
+        }
+
+        /* Cinematic Book Viewer Styles */
+        .cinematic-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 50%, #2a2a2a 100%);
+            z-index: 10000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            backdrop-filter: blur(20px);
+        }
+
+        .cinematic-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .cinematic-stage {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            perspective: 2000px;
+            perspective-origin: center center;
+        }
+
+        .book-3d-container {
+            position: relative;
+            transform-style: preserve-3d;
+            transition: all 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .book-3d {
+            position: relative;
+            width: 500px;
+            height: 700px;
+            transform-style: preserve-3d;
+            transition: all 1s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .book-cover-3d {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            transform-style: preserve-3d;
+            transform-origin: left center;
+            transition: transform 1.8s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+            border-radius: 12px 6px 6px 12px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8);
+        }
+
+        .cover-front {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 12px 6px 6px 12px;
+            backface-visibility: hidden;
+            box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+        }
+
+        .book-spine-3d {
+            position: absolute;
+            right: -25px;
+            top: 0;
+            width: 25px;
+            height: 100%;
+            background: linear-gradient(to right, 
+                #2a2a2a 0%, 
+                #3a3a3a 25%, 
+                #4a4a4a 50%, 
+                #3a3a3a 75%, 
+                #2a2a2a 100%);
+            transform: rotateY(90deg);
+            transform-origin: left;
+            border-radius: 0 8px 8px 0;
+            box-shadow: inset 2px 0 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .book-pages-3d {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            transform-style: preserve-3d;
+        }
+
+        .page-3d {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            transform-style: preserve-3d;
+            transform-origin: left center;
+            transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .page-front {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: white;
+            backface-visibility: hidden;
+            border-radius: 0 6px 6px 0;
+            box-shadow: 
+                0 8px 25px rgba(0, 0, 0, 0.3),
+                inset 0 0 0 1px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .page-front img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 0 6px 6px 0;
+        }
+
+        .page-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #f8f8f8 0%, #ffffff 100%);
+            transform: rotateY(180deg);
+            backface-visibility: hidden;
+            border-radius: 0 6px 6px 0;
+            box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.05);
+        }
+
+        /* Animation States */
+        .book-opening .book-cover-3d {
+            transform: perspective(1000px) rotateY(-165deg);
+        }
+
+        .page-flipping {
+            transform: perspective(1000px) rotateY(-180deg);
+        }
+
+        .cinematic-close {
+            position: absolute;
+            top: 40px;
+            right: 40px;
+            width: 60px;
+            height: 60px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 28px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(15px);
+            z-index: 10001;
+        }
+
+        .cinematic-close:hover {
+            background: rgba(255, 255, 255, 0.2);
+            border-color: rgba(255, 255, 255, 0.4);
+            transform: scale(1.1) rotate(90deg);
+        }
+
+        .cinematic-controls {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 15px;
+            align-items: center;
+            background: rgba(0, 0, 0, 0.3);
+            padding: 15px 25px;
+            border-radius: 50px;
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .control-btn {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: white;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 18px;
+        }
+
+        .control-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: scale(1.1);
+        }
+
+        .control-btn.active {
+            background: rgba(0, 154, 148, 0.8);
+            border-color: rgba(0, 154, 148, 1);
+        }
+
+        .volume-control {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: white;
+        }
+
+        .volume-slider {
+            width: 80px;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 2px;
+            outline: none;
+            cursor: pointer;
+        }
+
+        .volume-slider::-webkit-slider-thumb {
+            appearance: none;
+            width: 16px;
+            height: 16px;
+            background: #009A94;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+
+        /* Particle Effects */
+        .book-particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .particle {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            animation: float 8s infinite ease-in-out;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translateY(-100vh) rotate(360deg); opacity: 0; }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .book-3d {
+                width: 350px;
+                height: 500px;
+            }
+
+            .cinematic-close {
+                width: 50px;
+                height: 50px;
+                font-size: 24px;
+                top: 30px;
+                right: 30px;
+            }
+
+            .cinematic-controls {
+                bottom: 30px;
+                padding: 12px 20px;
+            }
+
+            .control-btn {
+                width: 40px;
+                height: 40px;
+                font-size: 16px;
+            }
+
+            .volume-slider {
+                width: 60px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .book-3d {
+                width: 280px;
+                height: 400px;
+            }
+
+            .cinematic-controls {
+                bottom: 20px;
+                padding: 10px 15px;
+                gap: 10px;
+            }
+        }
+        @media (max-width: 768px) {
+            .inside-pages-preview {
+                margin-top: 1.5rem;
+            }
+
+            .gallery-page {
+                width: 50px;
+                height: 65px;
+            }
+
+            .zoom-view-btn {
+                padding: 6px 12px;
+                font-size: 0.8rem;
+            }
+
+            .inside-pages-title {
+                font-size: 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .gallery-page {
+                width: 45px;
+                height: 60px;
+            }
+
+            .gallery-page-number {
+                font-size: 0.5rem;
+                padding: 1px 3px;
+            }
+
+            .preview-content {
+                grid-template-columns: 1fr !important;
+                gap: 2rem !important;
+            }
+
+            .book-visual {
+                order: 1;
+            }
+
+            .preview-features {
+                order: 2;
+            }
         }
 
         /* Enhanced book cover frame effect */
@@ -1563,10 +2351,26 @@ cite {
             </div>
             
             <div class="preview-content" style="display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: stretch; min-height: 600px;">
-                <div class="book-visual animate-fade-right" style="display: flex; align-items: center; justify-content: center; height: 100%;">
+                <div class="book-visual animate-fade-right" style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%;">
                     <div class="book-mockup">
                         <div class="book-cover">
-                            <img src="images/trials/trial3.png" alt="Teen Interns Book Cover" class="preview-img">
+                            <div class="look-inside-overlay">
+                                <div class="look-inside-trigger" id="lookInsideTrigger">
+                                    <div class="look-inside-badge">📖 Look Inside</div>
+                                    <img src="images/trials/trial3.png" alt="Teen Interns Book Cover" class="preview-img">
+                                    <div class="look-inside-hover-text">Click to preview inside pages</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Inside Pages Gallery Below Book Cover -->
+                    <div class="inside-pages-preview">
+                        <h4 class="inside-pages-title">Inside Pages Preview</h4>
+                        <div class="inside-pages-gallery">
+                            <div class="gallery-grid" id="insidePagesGrid">
+                                <!-- Pages will be dynamically loaded here -->
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -1924,6 +2728,65 @@ cite {
         </div>
     </section>
 
+    <!-- Cinematic Book Viewer -->
+    <div class="cinematic-overlay" id="cinematicOverlay">
+        <div class="cinematic-stage">
+            <div class="book-3d-container">
+                <div class="book-3d" id="cinematicBook">
+                    <div class="book-cover-3d">
+                        <img class="cover-front" id="cinematicCover" src="" alt="Book Cover">
+                        <div class="book-spine-3d"></div>
+                    </div>
+                    <div class="book-pages-3d" id="cinematicPages">
+                        <!-- Pages will be dynamically generated -->
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Particle Effects -->
+            <div class="book-particles" id="bookParticles"></div>
+            
+            <!-- Close Button -->
+            <button class="cinematic-close" id="cinematicClose" aria-label="Close cinematic view">×</button>
+            
+            <!-- Controls -->
+            <div class="cinematic-controls">
+                <button class="control-btn" id="playPauseBtn" title="Play/Pause">▶</button>
+                <button class="control-btn" id="restartBtn" title="Restart">↻</button>
+                <button class="control-btn" id="soundToggle" title="Toggle Sound">🔊</button>
+                <div class="volume-control">
+                    <input type="range" class="volume-slider" id="volumeSlider" min="0" max="100" value="70">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Look Inside Modal -->
+    <div class="look-inside-modal" id="lookInsideModal" role="dialog" aria-labelledby="modalTitle" aria-modal="true">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="modalTitle">The Internship Book - Inside Preview</h3>
+                <button class="modal-close" id="modalClose" aria-label="Close preview">&times;</button>
+            </div>
+            
+            <div class="pages-container">
+                <div class="page-viewer">
+                    <div class="loading-spinner" id="loadingSpinner" aria-label="Loading page..."></div>
+                    <img class="page-image" id="currentPageImage" style="display: none;" alt="Book page">
+                </div>
+                
+                <button class="page-navigation page-prev" id="prevPage" aria-label="Previous page">&larr;</button>
+                <button class="page-navigation page-next" id="nextPage" aria-label="Next page">&rarr;</button>
+                
+                <div class="page-counter" id="pageCounter" aria-live="polite">1 / 8</div>
+            </div>
+            
+            <div class="page-thumbnails" id="thumbnailContainer" role="tablist" aria-label="Page thumbnails">
+                <!-- Thumbnails will be generated dynamically -->
+            </div>
+        </div>
+    </div>
+
     <!-- Footer -->
     <footer class="site-footer">
         <div class="container">
@@ -1991,6 +2854,7 @@ cite {
     <script src="page-transition.js"></script>
     <script src="preorder-system.js"></script>
     <script src="theme-toggle.js"></script>
+    <script src="look-inside.js"></script>
     
     <!-- Debug and ensure theme toggle works - REMOVED REDUNDANT CSS -->
     <script>
