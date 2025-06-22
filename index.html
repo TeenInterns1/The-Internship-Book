@@ -1826,13 +1826,22 @@
 
             .friends-grid {
                 display: grid;
-                grid-template-columns: repeat(4, 1fr);
                 gap: 3rem;
                 width: 100%;
-                max-width: 1000px;
+                max-width: 1200px;
                 margin: 0 auto;
                 align-items: center;
                 justify-content: center;
+                margin-bottom: 2rem;
+            }
+
+            .friends-grid.friends-top {
+                grid-template-columns: repeat(5, 1fr);
+            }
+
+            .friends-grid.friends-bottom {
+                grid-template-columns: repeat(4, 1fr);
+                margin-bottom: 0;
             }
 
             .friend-logo {
@@ -1862,16 +1871,28 @@
                 transition: filter var(--transition-normal);
             }
 
+            .friend-img.sloka-logo {
+                background: white;
+                padding: 8px;
+                border-radius: 8px;
+            }
+
             .friend-logo:hover .friend-img {
                 filter: grayscale(0%);
             }
 
             /* Responsive layout for mobile */
             @media (max-width: 768px) {
-                .friends-grid {
+                .friends-grid.friends-top {
+                    grid-template-columns: repeat(3, 1fr);
+                    gap: 2rem;
+                    max-width: 600px;
+                }
+
+                .friends-grid.friends-bottom {
                     grid-template-columns: repeat(2, 1fr);
                     gap: 2rem;
-                    max-width: 500px;
+                    max-width: 400px;
                 }
 
                 .friend-logo {
@@ -1885,10 +1906,11 @@
             }
 
             @media (max-width: 480px) {
-                .friends-grid {
-                    grid-template-columns: 1fr;
+                .friends-grid.friends-top,
+                .friends-grid.friends-bottom {
+                    grid-template-columns: repeat(2, 1fr);
                     gap: 1.5rem;
-                    max-width: 300px;
+                    max-width: 350px;
                 }
 
                 .friend-logo {
@@ -2467,7 +2489,8 @@
                 <p class="section-subtitle">We swear we didn't force them to</p>
             </div>
 
-            <div class="friends-grid">
+            <!-- Top row - 5 schools -->
+            <div class="friends-grid friends-top">
                 <div class="friend-logo animate-pop" style="--delay: 0.1s">
                     <img src="images/dps.jpeg" alt="DPS School" class="friend-img">
                 </div>
@@ -2483,6 +2506,10 @@
                 <div class="friend-logo animate-pop" style="--delay: 0.5s">
                     <img src="images/pathways_school.jpeg" alt="Pathways School" class="friend-img">
                 </div>
+            </div>
+
+            <!-- Bottom row - 4 schools -->
+            <div class="friends-grid friends-bottom">
                 <div class="friend-logo animate-pop" style="--delay: 0.6s">
                     <img src="images/premia_academy.jpeg" alt="Premia Academy" class="friend-img">
                 </div>
@@ -2490,7 +2517,10 @@
                     <img src="images/shiv_nadar.png" alt="Shiv Nadar School" class="friend-img">
                 </div>
                 <div class="friend-logo animate-pop" style="--delay: 0.8s">
-                    <img src="images/sloka_waldorf.png" alt="Sloka Waldorf" class="friend-img">
+                    <img src="images/sloka_waldorf.png" alt="Sloka Waldorf" class="friend-img sloka-logo">
+                </div>
+                <div class="friend-logo animate-pop" style="--delay: 0.9s">
+                    <img src="images/chaman_bhartiya.png" alt="Chaman Bhartiya School" class="friend-img">
                 </div>
             </div>
         </div>
