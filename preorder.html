@@ -552,7 +552,8 @@
             }
             
             .timer-unit {
-                min-width: 60px;
+                width: 50px;
+                max-height: 100px;
             }
         }
         
@@ -717,31 +718,20 @@
             margin-top: 8px;
         }
         
-        /* Responsive Design for Team Profiles */
+        /* Responsive Design for Preorder hero */
         @media (max-width: 768px) {
-            .profiles-grid {
-                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-                gap: 20px;
-                margin: 40px 0;
+            .container-book{
+                display:flex;
+                flex-direction:column-reverse;
+                justify-content: center;
+                text-align: center;
             }
-            
-            .profile-card {
-                padding: 25px;
+            .text-container{
+                width: 100uw;
             }
-            
-            .profile-avatar {
-                width: 70px;
-                height: 70px;
-                font-size: 1.8rem;
-            }
-            
-            .team-stats {
-                gap: 30px;
-                margin-top: 40px;
-            }
-            
-            .team-stats .stat-number {
-                font-size: 2.5rem;
+            .book-cover img{
+                height: 250px;
+                width: auto;
             }
         }
         

@@ -566,6 +566,7 @@
                 .question-nav-btn {
                     width: 100px;
                     height: 50px;
+                    line-height: 1;  
                 }
 
             }
@@ -1930,9 +1931,16 @@
             /* Responsive friends layout for mobile */
             @media (max-width: 768px) {
                 .friends-grid.friends-top {
-                    grid-template-columns: repeat(3, 1fr);
-                    gap: 2rem;
-                    max-width: 600px;
+                   display: flex;
+                   flex-direction: row;
+                   justify-content: center;
+                   align-items: center;
+                }
+                .friends-grid{
+                    display:flex;
+                    flex-direction: row;
+                   justify-content: center;
+                   align-items: center;
                 }
 
                 .friends-grid.friends-bottom {
@@ -2535,7 +2543,7 @@
                 <h2 class="section-title">Here are just a few of<br />our friends</h2>
                 <p class="section-subtitle">We swear we didn't force them to</p>
             </div>
-
+        <div class="friend-grid">
             <!-- Top row - 5 schools -->
             <div class="friends-grid friends-top">
                 <div class="friend-logo animate-pop" style="--delay: 0.1s">
@@ -2569,6 +2577,7 @@
                 <div class="friend-logo animate-pop" style="--delay: 0.9s">
                     <img src="images/chaman_bhartiya.png" alt="Chaman Bhartiya School" class="friend-img">
                 </div>
+            </div>
             </div>
         </div>
     </section>
