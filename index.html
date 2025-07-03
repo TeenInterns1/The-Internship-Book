@@ -1742,14 +1742,10 @@
             .teams-row teams-top{
                 display:flex;
                 flex-direction: column;
+                justify-content: center;
                 align-items: center;
             }
-            .teams-row teams-bottom{
-                justify-content:flex-start;
-            }
-            .teams-row teams-top{
-                justify-content: center;
-            }
+        
             .award-item {
                 width: 150px;
                 height: 120px;
@@ -1763,7 +1759,7 @@
                 display: flex;
                 flex-direction: row;
                 justify-content: center;
-                align-items:center;
+                align-items: flex-start;
             }
         }
 
@@ -1949,22 +1945,25 @@
                    flex-direction: column;
                    justify-content: center;
                    align-items: center;
+                   flex: 1;
                 }
                 .friends-grid{
                     display:flex;
                     flex-direction: row;
-                   justify-content: center;
-                   align-items: center;
+                    justify-content: center;
+                    align-items: flex-start;
+                    width:100%;
+                    gap:2rem;
                 }
 
                 .friend-logo{
                     padding: 0rem;
-                    height: 70px;
-                    width: 80px;
+                    height: 100px;
+                    width: 100px;
                 }
 
                 .friend-img {
-                    height: 55px;
+                    height: 80px;
                     width: auto;
                 }
             }
