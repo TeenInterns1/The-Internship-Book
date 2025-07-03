@@ -567,6 +567,7 @@
                     width: 100px;
                     height: 50px;
                     line-height: 1;  
+                    padding: 1rem;
                 }
 
             }
@@ -1738,11 +1739,11 @@
             .teams-row teams-bottom,
             .teams-row teams-top{
                 display:flex;
-                flex-direction: row;
+                flex-direction: column;
                 justify-content: center;
                 align-items: center;
             }
-            .award-item animate-pop{
+            .award-item {
                 width: 150px;
                 height: 120px;
                 padding: 0.5rem;
@@ -1750,6 +1751,12 @@
             .team-icon{
                 height: 35px;
                 width:auto;
+            }
+            .teams-columns{
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+                align-items:center;
             }
         }
 
@@ -1932,7 +1939,7 @@
             @media (max-width: 768px) {
                 .friends-grid.friends-top {
                    display: flex;
-                   flex-direction: row;
+                   flex-direction: column;
                    justify-content: center;
                    align-items: center;
                 }
@@ -1950,13 +1957,14 @@
                 }
 
                 .friend-logo{
-                    padding: 1rem;
-                    min-height: 90px;
-                    width: 75px;
+                    padding: 0rem;
+                    height: 70px;
+                    width: 80px;
                 }
 
                 .friend-img {
-                    max-height: 50px;
+                    height: 55px;
+                    width: auto;
                 }
             }
 
@@ -1982,7 +1990,7 @@
             .quotes-container {
                 position: relative;
                 padding-left: 4px;
-                border-left: 4px solid var(--primary-color);
+               /* border-left: 4px solid var(--primary-color);*/
                 /* Teal bar */
                 margin-top: 2rem;
             }
@@ -2423,7 +2431,7 @@
             <div class="section-header animate-fade-up">
                 <h2 class="section-title">These are the teams involved!</h2>
             </div>
-
+            <div class="teams-columns"><!--for mobile-->
             <!-- Top row - 5 teams -->
             <div class="teams-row teams-top">
                 <div class="award-item animate-pop" style="--delay: 0.1s">
@@ -2467,6 +2475,7 @@
                     <h4>Writers</h4>
                 </div>
             </div>
+         </div>
         </div>
     </section>
 
