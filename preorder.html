@@ -713,39 +713,7 @@
             margin-top: 8px;
         }
         
-        /* Responsive Design for Preorder hero */
-        @media (max-width: 768px) {
-            .container-book{
-                display:flex;
-                flex-direction:column-reverse;
-                justify-content: center;
-                text-align: center;
-                gap: 2rem;   
-                width: 100%;            
-            }
-            .text-container{
-                width: 100%;
-                text-align: center;
-            }
-            .book-cover{
-                width:100%;
-                display: flex;
-                justify-content: center;
-            }
-            .book-cover img{
-                height: 250px;
-                width: auto;
-                display: block;
-            }
-            .hero-container{
-                display:flex;
-                flex-direction: column;
-                justify-content: center;
-                align-items: center;
-                padding: 0.5rem;
-            }
-            
-        }
+       
         
         @media (max-width: 480px) {
             .profiles-grid {
@@ -787,6 +755,40 @@
             height: 500px;
             width: auto;
             padding: 20px;
+        }
+
+         /* Responsive Design for Preorder hero */
+        @media (max-width: 768px) {
+            .container-book{
+                display:flex;
+                flex-direction: column;
+                justify-content: center;
+                text-align: center;
+                gap: 2rem;   
+                width: 100%;            
+            }
+            .text-container{
+                width: 100%;
+                text-align: center;
+            }
+            .book-cover{
+                width:100%;
+                display: flex;
+                justify-content: center;
+            }
+            .book-cover img{
+                height: 250px;
+                width: auto;
+                display: block;
+            }
+            .hero-container{
+                display:flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                padding: 0.5rem;
+            }
+            
         }
     </style>
 </head>
