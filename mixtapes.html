@@ -388,6 +388,869 @@
         .genre-classical .song-artwork {
             background: linear-gradient(135deg, #B19CD9, #C9A7EB);
         }
+
+        /* Hero Music Team Showcase Styles */
+        .hero-music-showcase {
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            gap: 1rem;
+            align-items: center;
+            margin: 2rem auto 4rem;
+            max-width: 1400px;
+            padding: 2rem;
+            background: var(--card-bg);
+            border-radius: 20px;
+            border: 2px solid var(--border-color);
+            box-shadow: 0 10px 30px rgba(0, 154, 148, 0.15);
+            transition: all var(--transition-normal);
+            min-height: 500px;
+        }
+
+        .hero-music-showcase:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(0, 154, 148, 0.2);
+        }
+
+        .hero-logo-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transform: rotate(-8deg);
+            transition: transform var(--transition-normal);
+            width: 100%;
+            height: 100%;
+        }
+
+        .hero-logo-container:hover {
+            transform: rotate(-5deg) scale(1.05);
+        }
+
+        .hero-logo {
+            max-width: 450px;
+            max-height: 450px;
+            width: auto;
+            height: auto;
+            object-fit: contain;
+            border-radius: 25px;
+            background: white;
+            padding: 20px;
+            border: 4px solid var(--border-color);
+            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.2);
+        }
+
+        .hero-content {
+            text-align: center;
+            padding: 1rem;
+        }
+
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: 800;
+            color: var(--primary-color) !important;
+            margin-bottom: 1rem;
+            line-height: 1.1;
+        }
+
+        .hero-artist {
+            font-size: 2.2rem;
+            font-weight: 600;
+            color: var(--text-color) !important;
+            margin: 0;
+            font-style: italic;
+        }
+
+        .hero-photo-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transform: rotate(8deg);
+            transition: transform var(--transition-normal);
+            width: 100%;
+            height: 100%;
+        }
+
+        .hero-photo-container:hover {
+            transform: rotate(5deg) scale(1.05);
+        }
+
+        .hero-photo {
+            max-width: 450px;
+            max-height: 450px;
+            width: auto;
+            height: auto;
+            object-fit: contain;
+            border-radius: 25px;
+            border: 4px solid var(--border-color);
+            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Responsive design for hero music showcase */
+        @media (max-width: 1200px) {
+            .hero-logo, .hero-photo {
+                max-width: 380px;
+                max-height: 380px;
+            }
+        }
+
+        @media (max-width: 968px) {
+            .hero-music-showcase {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: 3rem;
+                padding: 3rem 2rem;
+                margin: 1.5rem auto 3rem;
+                min-height: auto;
+            }
+
+            .hero-logo-container {
+                transform: rotate(-6deg);
+            }
+
+            .hero-logo-container:hover {
+                transform: rotate(-3deg) scale(1.05);
+            }
+
+            .hero-photo-container {
+                transform: rotate(6deg);
+            }
+
+            .hero-photo-container:hover {
+                transform: rotate(3deg) scale(1.05);
+            }
+
+            .hero-logo, .hero-photo {
+                max-width: 350px;
+                max-height: 350px;
+            }
+
+            .hero-title {
+                font-size: 3rem;
+            }
+
+            .hero-artist {
+                font-size: 2rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero-music-showcase {
+                padding: 2rem 1.5rem;
+                margin: 1rem auto 2rem;
+                gap: 2.5rem;
+            }
+
+            .hero-logo-container {
+                transform: rotate(-4deg);
+            }
+
+            .hero-logo-container:hover {
+                transform: rotate(-2deg) scale(1.05);
+            }
+
+            .hero-photo-container {
+                transform: rotate(4deg);
+            }
+
+            .hero-photo-container:hover {
+                transform: rotate(2deg) scale(1.05);
+            }
+
+            .hero-logo, .hero-photo {
+                max-width: 280px;
+                max-height: 280px;
+            }
+
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .hero-artist {
+                font-size: 1.8rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-music-showcase {
+                padding: 1.5rem 1rem;
+                gap: 2rem;
+            }
+
+            .hero-logo, .hero-photo {
+                max-width: 220px;
+                max-height: 220px;
+            }
+
+            .hero-title {
+                font-size: 2rem;
+            }
+
+            .hero-artist {
+                font-size: 1.4rem;
+            }
+        }
+
+        /* Interactive Music Player Styles */
+        .interactive-player-section {
+            padding: 6rem 0;
+            background: var(--bg-color);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .player-area {
+            position: relative;
+            height: 600px;
+            max-width: 1200px;
+            margin: 0 auto;
+            border-radius: 20px;
+            background: linear-gradient(135deg, var(--bg-secondary), var(--bg-alt-color));
+            border: 2px solid var(--border-color);
+            box-shadow: 0 15px 40px rgba(0, 154, 148, 0.1);
+        }
+
+        .player-title {
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--primary-color) !important;
+            margin-bottom: 0.5rem;
+            padding-top: 2rem;
+        }
+
+        .player-subtitle {
+            text-align: center;
+            font-size: 1.1rem;
+            color: var(--text-secondary) !important;
+            margin-bottom: 3rem;
+        }
+
+        /* Speaker Styles */
+        .speaker-container {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 200px;
+            height: 200px;
+        }
+
+        .speaker-main {
+            width: 200px;
+            height: 200px;
+            background: linear-gradient(145deg, #2c2c2c, #1a1a1a);
+            border-radius: 20px;
+            border: 4px solid var(--border-color);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .speaker-grill {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            right: 20px;
+            height: 40px;
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+        }
+
+        .grill-line {
+            height: 2px;
+            background: #666;
+            border-radius: 1px;
+        }
+
+        .speaker-cone {
+            width: 120px;
+            height: 120px;
+            background: radial-gradient(circle, #333, #111);
+            border-radius: 50%;
+            border: 3px solid #555;
+            position: relative;
+        }
+
+        .speaker-center {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(145deg, #444, #222);
+            border-radius: 50%;
+            border: 2px solid #666;
+        }
+
+        .drop-zone {
+            position: absolute;
+            top: -30px;
+            left: -30px;
+            right: -30px;
+            bottom: -30px;
+            border: 3px dashed transparent;
+            border-radius: 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all var(--transition-normal);
+        }
+
+        .drop-zone.drag-over {
+            border-color: var(--primary-color);
+            background: rgba(0, 154, 148, 0.1);
+        }
+
+        .drop-text {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            text-align: center;
+            opacity: 0;
+            transition: opacity var(--transition-normal);
+        }
+
+        .drop-zone.drag-over .drop-text {
+            opacity: 1;
+        }
+
+        /* Now Playing Info */
+        .now-playing {
+            position: absolute;
+            top: 220px;
+            left: -100px;
+            right: -100px;
+            background: var(--card-bg);
+            border-radius: 15px;
+            padding: 1rem;
+            border: 2px solid var(--border-color);
+            box-shadow: 0 8px 25px rgba(0, 154, 148, 0.2);
+        }
+
+        .track-info {
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+
+        .track-title {
+            display: block;
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--primary-color) !important;
+            margin-bottom: 0.25rem;
+        }
+
+        .track-artist {
+            font-size: 0.9rem;
+            color: var(--text-secondary) !important;
+            font-style: italic;
+        }
+
+        .audio-controls {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .control-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--primary-color);
+            border: none;
+            color: white;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all var(--transition-fast);
+        }
+
+        .control-btn:hover {
+            background: var(--secondary-color);
+            transform: scale(1.1);
+        }
+
+        .progress-container {
+            flex: 1;
+            height: 6px;
+            background: var(--border-color);
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background: var(--primary-color);
+            width: 0%;
+            transition: width 0.1s ease;
+        }
+
+        .time-display {
+            font-size: 0.9rem;
+            color: var(--text-secondary) !important;
+            min-width: 40px;
+        }
+
+        /* Floppy Disk Styles */
+        .floppy-disk {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            cursor: grab;
+            transition: all var(--transition-normal);
+            z-index: 10;
+            user-select: none;
+            -webkit-user-drag: element;
+        }
+
+        .floppy-disk:hover {
+            transform: scale(1.05) rotate(2deg);
+            z-index: 20;
+        }
+
+        .floppy-disk.dragging {
+            transform: scale(1.1) rotate(5deg);
+            z-index: 30;
+            cursor: grabbing;
+            opacity: 0.8;
+        }
+
+        .disk-body {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(145deg, #333, #111);
+            border-radius: 8px;
+            border: 2px solid #555;
+            position: relative;
+            padding: 8px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+            pointer-events: none;
+        }
+
+        .disk-label {
+            font-size: 0.7rem;
+            font-weight: 600;
+            color: var(--primary-color) !important;
+            text-align: center;
+            margin-bottom: 4px;
+        }
+
+        .disk-title {
+            font-size: 0.6rem;
+            color: #ccc !important;
+            text-align: center;
+            font-style: italic;
+            margin-bottom: 8px;
+        }
+
+        .disk-hole {
+            position: absolute;
+            bottom: 12px;
+            right: 12px;
+            width: 20px;
+            height: 20px;
+            background: #000;
+            border-radius: 2px;
+            border: 1px solid #666;
+        }
+
+        .disk-shutter {
+            position: absolute;
+            bottom: 8px;
+            left: 8px;
+            right: 30px;
+            height: 4px;
+            background: #666;
+            border-radius: 2px;
+        }
+
+        /* Genre-specific colors */
+        .floppy-disk[data-genre="pop"] .disk-body {
+            border-color: #FF6B9D;
+        }
+
+        .floppy-disk[data-genre="rock"] .disk-body {
+            border-color: #FF6B6B;
+        }
+
+        .floppy-disk[data-genre="electronic"] .disk-body {
+            border-color: #4ECDC4;
+        }
+
+        .floppy-disk[data-genre="indie"] .disk-body {
+            border-color: #A8E6CF;
+        }
+
+        .floppy-disk[data-genre="classical"] .disk-body {
+            border-color: #B19CD9;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .interactive-player-section {
+                padding: 4rem 0;
+            }
+
+            .player-area {
+                height: 500px;
+                margin: 0 1rem;
+            }
+
+            .player-title {
+                font-size: 2rem;
+            }
+
+            .speaker-container {
+                width: 150px;
+                height: 150px;
+            }
+
+            .speaker-main {
+                width: 150px;
+                height: 150px;
+            }
+
+            .speaker-cone {
+                width: 90px;
+                height: 90px;
+            }
+
+            .speaker-center {
+                width: 30px;
+                height: 30px;
+            }
+
+            .floppy-disk {
+                width: 80px;
+                height: 80px;
+            }
+
+            .now-playing {
+                left: -80px;
+                right: -80px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .player-area {
+                height: 450px;
+                margin: 0 0.5rem;
+            }
+
+            .floppy-disk {
+                width: 70px;
+                height: 70px;
+            }
+
+            .disk-label {
+                font-size: 0.6rem;
+            }
+
+            .disk-title {
+                font-size: 0.5rem;
+            }
+        }
+        .music-team-showcase {
+            display: grid;
+            grid-template-columns: auto 1fr auto;
+            gap: 2rem;
+            align-items: center;
+            margin: 3rem auto;
+            max-width: 800px;
+            padding: 2.5rem;
+            background: var(--card-bg);
+            border-radius: 20px;
+            border: 2px solid var(--border-color);
+            box-shadow: 0 10px 30px rgba(0, 154, 148, 0.15);
+            transition: all var(--transition-normal);
+        }
+
+        .music-team-showcase:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 154, 148, 0.25);
+            border-color: var(--primary-color);
+        }
+
+        .team-logo-section {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .team-logo {
+            width: 120px;
+            height: 120px;
+            object-fit: contain;
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0, 154, 148, 0.3);
+            transition: transform var(--transition-normal);
+            background: white;
+            padding: 10px;
+        }
+
+        .team-logo:hover {
+            transform: scale(1.05) rotate(2deg);
+        }
+
+        .team-info {
+            text-align: center;
+            flex: 1;
+        }
+
+        .team-name {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--primary-color) !important;
+            margin-bottom: 0.5rem;
+            text-shadow: 0 2px 4px rgba(0, 154, 148, 0.2);
+        }
+
+        .team-description {
+            font-size: 1.1rem;
+            color: var(--text-secondary) !important;
+            line-height: 1.5;
+            margin: 0;
+        }
+
+        .team-photo-section {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .team-photo {
+            width: 120px;
+            height: 120px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 4px solid var(--primary-color);
+            box-shadow: 0 8px 25px rgba(0, 154, 148, 0.3);
+            transition: all var(--transition-normal);
+        }
+
+        .team-photo:hover {
+            transform: scale(1.1);
+            border-color: var(--accent-color);
+            box-shadow: 0 12px 35px rgba(0, 154, 148, 0.4);
+        }
+
+        /* Responsive design for music team showcase */
+        @media (max-width: 768px) {
+            .music-team-showcase {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: 1.5rem;
+                padding: 2rem;
+                margin: 2rem auto;
+            }
+
+            .team-logo, .team-photo {
+                width: 100px;
+                height: 100px;
+            }
+
+            .team-name {
+                font-size: 1.6rem;
+            }
+
+            .team-description {
+                font-size: 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .music-team-showcase {
+                padding: 1.5rem;
+                margin: 1.5rem auto;
+            }
+
+            .team-logo, .team-photo {
+                width: 80px;
+                height: 80px;
+            }
+
+            .team-name {
+                font-size: 1.4rem;
+            }
+        }
+
+        /* Music Credits Section Styles - Small bottom section */
+        .music-credits-section {
+            padding: 2rem 0;
+            background: var(--bg-secondary);
+            border-top: 1px solid var(--border-color);
+        }
+
+        .credits-card {
+            max-width: 800px;
+            margin: 0 auto;
+            background: var(--card-bg);
+            border-radius: 15px;
+            padding: 1.5rem;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 5px 15px rgba(0, 154, 148, 0.1);
+            transition: all var(--transition-normal);
+        }
+
+        .credits-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0, 154, 148, 0.15);
+        }
+
+        .credits-header {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .credits-logo {
+            width: 40px;
+            height: 40px;
+            object-fit: contain;
+            border-radius: 8px;
+            background: white;
+            padding: 4px;
+            box-shadow: 0 2px 8px rgba(0, 154, 148, 0.2);
+        }
+
+        .credits-text {
+            text-align: center;
+        }
+
+        .credits-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--primary-color) !important;
+            margin-bottom: 0.25rem;
+        }
+
+        .credits-artist {
+            font-size: 0.9rem;
+            color: var(--text-color) !important;
+            margin: 0;
+        }
+
+        .credits-photo {
+            width: 60px;
+            height: 60px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 2px solid var(--primary-color);
+            box-shadow: 0 2px 8px rgba(0, 154, 148, 0.3);
+        }
+
+        .track-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+            justify-content: center;
+        }
+
+        .track-item {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 0.75rem;
+            background: var(--bg-secondary);
+            border-radius: 8px;
+            border-left: 3px solid var(--primary-color);
+            transition: all var(--transition-fast);
+            font-size: 0.8rem;
+        }
+
+        .track-item:hover {
+            background: var(--bg-alt-color);
+            transform: translateY(-1px);
+        }
+
+        .track-genre {
+            font-weight: 600;
+            color: var(--primary-color) !important;
+        }
+
+        .track-name {
+            font-style: italic;
+            color: var(--text-secondary) !important;
+        }
+
+        .credits-note {
+            text-align: center;
+            font-size: 0.85rem;
+            color: var(--text-secondary) !important;
+            line-height: 1.4;
+            margin: 0;
+            padding-top: 0.75rem;
+            border-top: 1px solid var(--border-color);
+        }
+
+        /* Responsive design for credits section */
+        @media (max-width: 768px) {
+            .credits-card {
+                padding: 1.25rem;
+                margin: 0 1rem;
+            }
+
+            .credits-header {
+                flex-direction: column;
+                gap: 0.75rem;
+            }
+
+            .track-list {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .track-item {
+                width: 100%;
+                max-width: 250px;
+                justify-content: space-between;
+            }
+
+            .credits-logo, .credits-photo {
+                width: 50px;
+                height: 50px;
+            }
+
+            .credits-title {
+                font-size: 1rem;
+            }
+
+            .credits-artist {
+                font-size: 0.85rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .music-credits-section {
+                padding: 1.5rem 0;
+            }
+
+            .credits-card {
+                padding: 1rem;
+                margin: 0 0.5rem;
+            }
+
+            .credits-title {
+                font-size: 0.95rem;
+            }
+
+            .credits-artist {
+                font-size: 0.8rem;
+            }
+
+            .track-item {
+                font-size: 0.75rem;
+                padding: 0.4rem 0.6rem;
+            }
+
+            .credits-note {
+                font-size: 0.8rem;
+            }
+        }
     </style>
 </head>
 
@@ -449,122 +1312,110 @@
     <section class="hero" id="hero">
         <div class="container">
             <div class="section-header animate-fade-up">
-                <h1 class="section-title">🎵 Teen Interns Mixtapes</h1>
-                <p class="section-subtitle">Curated soundtracks for your internship journey</p>
-                <p class="hero-description">Music to inspire, motivate, and accompany you through your professional adventure</p>
+                <!-- Hero Music Team Showcase -->
+                <div class="hero-music-showcase">
+                    <div class="hero-logo-container">
+                        <img src="images/JeevRay Rhapsody Logo.jpeg.jpg" alt="JeevRay Rhapsody Logo" class="hero-logo">
+                    </div>
+                    <div class="hero-content">
+                        <h1 class="hero-title">🎵 Teen Interns Mixtapes</h1>
+                        <h2 class="hero-artist">by JeevRay Rhapsody</h2>
+                    </div>
+                    <div class="hero-photo-container">
+                        <img src="images/J&R Pic.jpg" alt="JeevRay Rhapsody Team" class="hero-photo">
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Mixtapes Section -->
-    <section class="mixtapes-section" id="mixtapes">
+    <!-- Interactive Music Player Section -->
+    <section class="interactive-player-section" id="interactive-player">
         <div class="container">
-            
-            <!-- Pop Genre -->
-            <div class="genre-container genre-pop">
-                <h2 class="genre-title">🎤 Pop Vibes</h2>
-                <p class="genre-description">Upbeat and energetic tracks to keep your spirits high during those busy internship days</p>
-                <div class="song-player" data-genre="pop">
-                    <div class="song-artwork">🎤</div>
-                    <div class="song-info">
-                        <h3 class="song-title">Confidence Boost</h3>
-                        <p class="song-artist">Teen Interns Music Team</p>
-                        <div class="audio-controls">
-                            <button class="play-button" onclick="togglePlay(this)">▶️</button>
-                            <div class="audio-player" onclick="seek(event, this)">
-                                <div class="progress-bar"></div>
-                            </div>
-                            <span class="time-display">0:00</span>
+            <div class="player-area">
+                <h2 class="player-title">🎵 Drag & Drop Music Player</h2>
+                <p class="player-subtitle">Drag a floppy disk to the speaker to start playing!</p>
+                
+                <!-- Speaker in center -->
+                <div class="speaker-container" id="speakerContainer">
+                    <div class="speaker-main">
+                        <div class="speaker-grill">
+                            <div class="grill-line"></div>
+                            <div class="grill-line"></div>
+                            <div class="grill-line"></div>
+                            <div class="grill-line"></div>
+                            <div class="grill-line"></div>
                         </div>
-                        <audio src="mixtapes/pop-confidence.mp3" preload="metadata"></audio>
+                        <div class="speaker-cone"></div>
+                        <div class="speaker-center"></div>
+                    </div>
+                    <div class="drop-zone" id="dropZone">
+                        <span class="drop-text">Drop floppy disk here</span>
+                    </div>
+                    <div class="now-playing" id="nowPlaying" style="display: none;">
+                        <div class="track-info">
+                            <span class="track-title" id="currentTrack"></span>
+                            <span class="track-artist">JeevRay Rhapsody</span>
+                        </div>
+                        <div class="audio-controls">
+                            <button class="control-btn" id="playPauseBtn">⏸️</button>
+                            <div class="progress-container">
+                                <div class="progress-bar" id="progressBar"></div>
+                            </div>
+                            <span class="time-display" id="timeDisplay">0:00</span>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <!-- Rock Genre -->
-            <div class="genre-container genre-rock">
-                <h2 class="genre-title">🎸 Rock Energy</h2>
-                <p class="genre-description">Power through challenges with these high-energy rock anthems</p>
-                <div class="song-player" data-genre="rock">
-                    <div class="song-artwork">🎸</div>
-                    <div class="song-info">
-                        <h3 class="song-title">Breakthrough</h3>
-                        <p class="song-artist">Teen Interns Music Team</p>
-                        <div class="audio-controls">
-                            <button class="play-button" onclick="togglePlay(this)">▶️</button>
-                            <div class="audio-player" onclick="seek(event, this)">
-                                <div class="progress-bar"></div>
-                            </div>
-                            <span class="time-display">0:00</span>
-                        </div>
-                        <audio src="mixtapes/rock-breakthrough.mp3" preload="metadata"></audio>
+                <!-- Scattered Floppy Disks -->
+                <div class="floppy-disk" data-genre="pop" data-track="Euphonic" data-audio="mixtapes/pop-confidence.mp3" style="top: 15%; left: 10%;">
+                    <div class="disk-body">
+                        <div class="disk-label">🎤 Pop Vibes</div>
+                        <div class="disk-title">"Euphonic"</div>
+                        <div class="disk-hole"></div>
+                        <div class="disk-shutter"></div>
                     </div>
                 </div>
-            </div>
 
-            <!-- Electronic Genre -->
-            <div class="genre-container genre-electronic">
-                <h2 class="genre-title">🎧 Electronic Focus</h2>
-                <p class="genre-description">Perfect background music for coding, designing, and deep work sessions</p>
-                <div class="song-player" data-genre="electronic">
-                    <div class="song-artwork">🎧</div>
-                    <div class="song-info">
-                        <h3 class="song-title">Digital Dreams</h3>
-                        <p class="song-artist">Teen Interns Music Team</p>
-                        <div class="audio-controls">
-                            <button class="play-button" onclick="togglePlay(this)">▶️</button>
-                            <div class="audio-player" onclick="seek(event, this)">
-                                <div class="progress-bar"></div>
-                            </div>
-                            <span class="time-display">0:00</span>
-                        </div>
-                        <audio src="mixtapes/electronic-focus.mp3" preload="metadata"></audio>
+                <div class="floppy-disk" data-genre="rock" data-track="Surge" data-audio="mixtapes/rock-breakthrough.mp3" style="top: 25%; right: 15%;">
+                    <div class="disk-body">
+                        <div class="disk-label">🎸 Rock Energy</div>
+                        <div class="disk-title">"Surge"</div>
+                        <div class="disk-hole"></div>
+                        <div class="disk-shutter"></div>
                     </div>
                 </div>
-            </div>
 
-            <!-- Indie Genre -->
-            <div class="genre-container genre-indie">
-                <h2 class="genre-title">🌟 Indie Inspiration</h2>
-                <p class="genre-description">Thoughtful melodies for reflection and creative moments</p>
-                <div class="song-player" data-genre="indie">
-                    <div class="song-artwork">🌟</div>
-                    <div class="song-info">
-                        <h3 class="song-title">Future Path</h3>
-                        <p class="song-artist">Teen Interns Music Team</p>
-                        <div class="audio-controls">
-                            <button class="play-button" onclick="togglePlay(this)">▶️</button>
-                            <div class="audio-player" onclick="seek(event, this)">
-                                <div class="progress-bar"></div>
-                            </div>
-                            <span class="time-display">0:00</span>
-                        </div>
-                        <audio src="mixtapes/indie-inspiration.mp3" preload="metadata"></audio>
+                <div class="floppy-disk" data-genre="electronic" data-track="Bossalite" data-audio="mixtapes/electronic-focus.mp3" style="bottom: 30%; left: 8%;">
+                    <div class="disk-body">
+                        <div class="disk-label">🎧 Electronic</div>
+                        <div class="disk-title">"Bossalite"</div>
+                        <div class="disk-hole"></div>
+                        <div class="disk-shutter"></div>
                     </div>
                 </div>
-            </div>
 
-            <!-- Classical Genre -->
-            <div class="genre-container genre-classical">
-                <h2 class="genre-title">🎼 Classical Calm</h2>
-                <p class="genre-description">Sophisticated instrumentals for presentations and important meetings</p>
-                <div class="song-player" data-genre="classical">
-                    <div class="song-artwork">🎼</div>
-                    <div class="song-info">
-                        <h3 class="song-title">Professional Presence</h3>
-                        <p class="song-artist">Teen Interns Music Team</p>
-                        <div class="audio-controls">
-                            <button class="play-button" onclick="togglePlay(this)">▶️</button>
-                            <div class="audio-player" onclick="seek(event, this)">
-                                <div class="progress-bar"></div>
-                            </div>
-                            <span class="time-display">0:00</span>
-                        </div>
-                        <audio src="mixtapes/classical-calm.mp3" preload="metadata"></audio>
+                <div class="floppy-disk" data-genre="indie" data-track="Radiance" data-audio="mixtapes/indie-inspiration.mp3" style="bottom: 20%; right: 20%;">
+                    <div class="disk-body">
+                        <div class="disk-label">🌟 Indie</div>
+                        <div class="disk-title">"Radiance"</div>
+                        <div class="disk-hole"></div>
+                        <div class="disk-shutter"></div>
                     </div>
                 </div>
-            </div>
 
+                <div class="floppy-disk" data-genre="classical" data-track="Dawnlight" data-audio="mixtapes/classical-calm.mp3" style="top: 60%; left: 25%;">
+                    <div class="disk-body">
+                        <div class="disk-label">🎼 Classical</div>
+                        <div class="disk-title">"Dawnlight"</div>
+                        <div class="disk-hole"></div>
+                        <div class="disk-shutter"></div>
+                    </div>
+                </div>
+
+                <!-- Hidden audio element -->
+                <audio id="audioPlayer" preload="metadata"></audio>
+            </div>
         </div>
     </section>
 
@@ -628,7 +1479,127 @@
     <script src="theme-toggle.js"></script>
 
     <script>
-        // Music player functionality
+        // Interactive Music Player JavaScript
+        let currentAudio = null;
+        let isDragging = false;
+
+        // Initialize drag and drop functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const floppyDisks = document.querySelectorAll('.floppy-disk');
+            const dropZone = document.getElementById('dropZone');
+            const audioPlayer = document.getElementById('audioPlayer');
+            const nowPlaying = document.getElementById('nowPlaying');
+            const currentTrack = document.getElementById('currentTrack');
+            const playPauseBtn = document.getElementById('playPauseBtn');
+            const progressBar = document.getElementById('progressBar');
+            const timeDisplay = document.getElementById('timeDisplay');
+
+            // Make floppy disks draggable
+            floppyDisks.forEach(disk => {
+                disk.draggable = true;
+                
+                disk.addEventListener('dragstart', (e) => {
+                    isDragging = true;
+                    disk.classList.add('dragging');
+                    e.dataTransfer.setData('text/plain', disk.dataset.track);
+                    e.dataTransfer.setData('audio', disk.dataset.audio);
+                    e.dataTransfer.setData('genre', disk.dataset.genre);
+                });
+
+                disk.addEventListener('dragend', () => {
+                    isDragging = false;
+                    disk.classList.remove('dragging');
+                });
+            });
+
+            // Drop zone events
+            dropZone.addEventListener('dragover', (e) => {
+                e.preventDefault();
+                dropZone.classList.add('drag-over');
+            });
+
+            dropZone.addEventListener('dragleave', () => {
+                dropZone.classList.remove('drag-over');
+            });
+
+            dropZone.addEventListener('drop', (e) => {
+                e.preventDefault();
+                dropZone.classList.remove('drag-over');
+                
+                const track = e.dataTransfer.getData('text/plain');
+                const audioSrc = e.dataTransfer.getData('audio');
+                const genre = e.dataTransfer.getData('genre');
+                
+                playTrack(track, audioSrc, genre);
+            });
+
+            // Play/Pause button
+            playPauseBtn.addEventListener('click', () => {
+                if (audioPlayer.paused) {
+                    audioPlayer.play();
+                    playPauseBtn.textContent = '⏸️';
+                } else {
+                    audioPlayer.pause();
+                    playPauseBtn.textContent = '▶️';
+                }
+            });
+
+            // Audio progress tracking
+            audioPlayer.addEventListener('timeupdate', () => {
+                if (audioPlayer.duration) {
+                    const progress = (audioPlayer.currentTime / audioPlayer.duration) * 100;
+                    progressBar.style.width = progress + '%';
+                    timeDisplay.textContent = formatTime(audioPlayer.currentTime);
+                }
+            });
+
+            audioPlayer.addEventListener('ended', () => {
+                playPauseBtn.textContent = '▶️';
+                progressBar.style.width = '0%';
+                timeDisplay.textContent = '0:00';
+            });
+
+            // Play track function
+            function playTrack(track, audioSrc, genre) {
+                // Stop current audio if playing
+                if (currentAudio) {
+                    currentAudio.pause();
+                    currentAudio.currentTime = 0;
+                }
+
+                // Set up new audio
+                audioPlayer.src = audioSrc;
+                audioPlayer.load();
+                
+                // Update UI
+                currentTrack.textContent = track;
+                nowPlaying.style.display = 'block';
+                playPauseBtn.textContent = '⏸️';
+                
+                // Add visual effect to speaker
+                const speakerMain = document.querySelector('.speaker-main');
+                speakerMain.style.animation = 'pulse 2s infinite';
+                
+                // Play audio
+                audioPlayer.play().catch(console.error);
+                currentAudio = audioPlayer;
+                
+                // Add success animation
+                dropZone.style.background = 'rgba(0, 154, 148, 0.2)';
+                setTimeout(() => {
+                    dropZone.style.background = '';
+                }, 1000);
+            }
+
+            // Format time helper
+            function formatTime(seconds) {
+                const minutes = Math.floor(seconds / 60);
+                const remainingSeconds = Math.floor(seconds % 60);
+                return `${minutes}:${remainingSeconds.toString().padStart(2, '0')}`;
+            }
+        });
+
+        // Music player functionality from original code
         let currentlyPlaying = null;
 
         function togglePlay(button) {
@@ -707,7 +1678,7 @@
             const audioElements = document.querySelectorAll('audio');
             audioElements.forEach(audio => {
                 audio.addEventListener('loadedmetadata', function() {
-                    const timeDisplay = audio.closest('.song-player').querySelector('.time-display');
+                    const timeDisplay = audio.closest('.song-player')?.querySelector('.time-display');
                     if (timeDisplay && audio.duration) {
                         timeDisplay.textContent = formatTime(audio.duration);
                     }
@@ -716,7 +1687,7 @@
                 // Handle audio loading errors
                 audio.addEventListener('error', function() {
                     console.log('Audio file not found:', audio.src);
-                    const timeDisplay = audio.closest('.song-player').querySelector('.time-display');
+                    const timeDisplay = audio.closest('.song-player')?.querySelector('.time-display');
                     if (timeDisplay) {
                         timeDisplay.textContent = '0:00';
                     }
