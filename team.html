@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-    <!-- Team members:
+<!-- Team members:
 Mannat Gupta
 Mitali Nirody
 Lakshi Mehta
@@ -27,6 +27,7 @@ Vidhi Madan
 Shreyas Kartik
 Krishna 
 Madhavi -->
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -37,11 +38,13 @@ Madhavi -->
     <link rel="stylesheet" href="mobile-fixes.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&family=Caveat:wght@400;600&display=swap" rel="stylesheet">
-    
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&family=Caveat:wght@400;600&display=swap"
+        rel="stylesheet">
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-    
+
     <style>
         /* CSS Variables for Theme System */
         :root {
@@ -49,7 +52,7 @@ Madhavi -->
             --secondary-color: #00C4B8;
             --accent-color: #00E6D6;
             --highlight-color: #FF6B6B;
-            
+
             /* Light Theme Colors */
             --bg-color: #FFFFFF;
             --bg-secondary: #F8F9FA;
@@ -61,13 +64,13 @@ Madhavi -->
             --card-bg: #FFFFFF;
             --sidebar-bg: rgba(255, 255, 255, 0.95);
             --sidebar-text: #000000;
-            
+
             /* Transition variables */
             --transition-fast: 0.2s ease;
             --transition-normal: 0.3s ease;
             --transition-slow: 0.5s ease;
         }
-        
+
         /* Dark Theme Colors */
         [data-theme="dark"] {
             --bg-color: rgb(26, 26, 26);
@@ -81,36 +84,36 @@ Madhavi -->
             --sidebar-bg: rgba(26, 26, 26, 0.95);
             --sidebar-text: #FFFFFF;
         }
-        
+
         /* Apply theme colors to body and main elements */
         body {
             background-color: var(--bg-color);
             color: var(--text-color);
             transition: background-color var(--transition-normal), color var(--transition-normal);
         }
-        
+
         /* Force header background and text colors */
         .site-header {
             background-color: var(--bg-color) !important;
             transition: background-color var(--transition-normal);
         }
-        
+
         .nav-container {
             background-color: transparent !important;
         }
-        
+
         .nav-link {
             color: var(--text-color) !important;
         }
-        
+
         .mobile-menu {
             background-color: var(--bg-color) !important;
         }
-        
+
         .mobile-link {
             color: var(--text-color) !important;
         }
-        
+
         /* Ultra aggressive text color overrides for light mode */
         [data-theme="light"] h1,
         [data-theme="light"] h2,
@@ -125,7 +128,7 @@ Madhavi -->
         [data-theme="light"] a {
             color: #000000 !important;
         }
-        
+
         /* Force specific elements to black in light mode */
         [data-theme="light"] .team-intro h1,
         [data-theme="light"] .team-intro p,
@@ -138,13 +141,14 @@ Madhavi -->
         [data-theme="light"] .credit {
             color: #000000 !important;
         }
-        
+
         /* Keep teal colors for branding in light mode */
         [data-theme="light"] .logo-text,
         [data-theme="light"] .profile-role,
         [data-theme="light"] .skill-tag {
             color: #009A94 !important;
         }
+
         /* Enhanced Left Sidebar Navigation */
         .left-sidebar {
             position: fixed;
@@ -164,7 +168,7 @@ Madhavi -->
             max-height: 80vh;
             overflow-y: auto;
         }
-        
+
         /* Theme Toggle Button Styles */
         .theme-toggle {
             background: none;
@@ -181,40 +185,40 @@ Madhavi -->
             align-items: center;
             gap: 5px;
         }
-        
+
         .theme-toggle:hover {
             background: var(--primary-color);
             transform: scale(1.05);
         }
-        
+
         .theme-toggle .light-icon,
         .theme-toggle .dark-icon {
             transition: opacity var(--transition-fast), transform var(--transition-fast);
         }
-        
+
         /* Show/hide icons based on theme */
         [data-theme="light"] .theme-toggle .light-icon {
             opacity: 1;
             transform: scale(1);
         }
-        
+
         [data-theme="light"] .theme-toggle .dark-icon {
             opacity: 0;
             transform: scale(0.8);
             position: absolute;
         }
-        
+
         [data-theme="dark"] .theme-toggle .dark-icon {
             opacity: 1;
             transform: scale(1);
         }
-        
+
         [data-theme="dark"] .theme-toggle .light-icon {
             opacity: 0;
             transform: scale(0.8);
             position: absolute;
         }
-        
+
         /* Mobile theme toggle */
         .mobile-theme-toggle {
             background: none;
@@ -230,57 +234,57 @@ Madhavi -->
             gap: 8px;
             margin-top: 10px;
         }
-        
+
         .mobile-theme-toggle:hover {
             background: var(--primary-color);
             color: white;
         }
-        
+
         .toggle-text {
             font-size: 0.9rem;
         }
-        
+
         /* Custom scrollbar for sidebar */
         .left-sidebar::-webkit-scrollbar {
             width: 4px;
         }
-        
+
         .left-sidebar::-webkit-scrollbar-track {
             background: rgba(0, 0, 0, 0.1);
             border-radius: 2px;
         }
-        
+
         .left-sidebar::-webkit-scrollbar-thumb {
             background: var(--primary-color);
             border-radius: 2px;
         }
-        
+
         .left-sidebar::-webkit-scrollbar-thumb:hover {
             background: var(--accent-color);
         }
-        
+
         [data-theme="dark"] .left-sidebar {
             background: rgba(26, 26, 26, 0.95);
             border-color: var(--border-color);
         }
-        
+
         /* Improved collapsed state */
         .left-sidebar.collapsed {
             width: 50px;
             padding: 10px;
         }
-        
+
         .left-sidebar.collapsed .sidebar-nav {
             opacity: 0;
             visibility: hidden;
             pointer-events: none;
             transform: translateX(-20px);
         }
-        
+
         .left-sidebar.collapsed .sidebar-toggle {
             margin-bottom: 0;
         }
-        
+
         /* Enhanced toggle button */
         .sidebar-toggle {
             background: none;
@@ -298,29 +302,29 @@ Madhavi -->
             justify-content: center;
             position: relative;
         }
-        
+
         .sidebar-toggle:hover {
             background: var(--primary-color);
             color: white;
             transform: scale(1.05);
         }
-        
+
         [data-theme="dark"] .sidebar-toggle {
             color: var(--pure-white);
         }
-        
+
         .sidebar-nav {
             display: flex;
             flex-direction: column;
             gap: 8px;
-            transition: opacity var(--transition-normal), 
-                        visibility var(--transition-normal), 
-                        transform var(--transition-normal);
+            transition: opacity var(--transition-normal),
+                visibility var(--transition-normal),
+                transform var(--transition-normal);
             opacity: 1;
             visibility: visible;
             transform: translateX(0);
         }
-        
+
         .sidebar-link {
             display: block;
             color: var(--text-color);
@@ -335,7 +339,7 @@ Madhavi -->
             position: relative;
             overflow: hidden;
         }
-        
+
         .sidebar-link::before {
             content: '';
             position: absolute;
@@ -343,14 +347,14 @@ Madhavi -->
             left: -100%;
             width: 100%;
             height: 100%;
-            background: rgba(255,255,255,0.2);
+            background: rgba(255, 255, 255, 0.2);
             transition: left 0.5s;
         }
-        
+
         .sidebar-link:hover::before {
             left: 100%;
         }
-        
+
         .sidebar-link:hover {
             background: var(--primary-color);
             color: white;
@@ -358,53 +362,53 @@ Madhavi -->
             border-color: var(--primary-color);
             box-shadow: 0 4px 15px rgba(0, 154, 148, 0.3);
         }
-        
+
         .sidebar-link.active {
             background: var(--primary-color);
             color: white;
             border-color: var(--primary-color);
             transform: translateX(3px);
         }
-        
+
         /* Dark mode sidebar links */
         [data-theme="dark"] .sidebar-link {
             color: var(--pure-white);
         }
-        
+
         @media (max-width: 768px) {
             .left-sidebar {
                 display: none;
             }
         }
-        
+
         .team-page-section {
             padding: 100px 0 60px;
         }
-        
+
         .team-intro {
             text-align: center;
             max-width: 800px;
             margin: 0 auto 60px;
         }
-        
+
         .team-intro h1 {
             font-size: 3rem;
             margin-bottom: 20px;
             color: var(--pure-black);
         }
-        
+
         .team-intro p {
             font-size: 1.2rem;
             color: var(--pure-black);
             line-height: 1.6;
         }
-        
+
         /* Dark mode team intro styling */
         [data-theme="dark"] .team-intro h1,
         [data-theme="dark"] .team-intro p {
             color: var(--pure-white) !important;
         }
-        
+
         .book-icon {
             width: 60px;
             height: auto;
@@ -456,7 +460,7 @@ Madhavi -->
             height: 100%;
             background: #009A94;
             border-radius: 8px 4px 4px 8px;
-            box-shadow: 
+            box-shadow:
                 0 0 0 2px #006B66,
                 0 8px 20px rgba(0, 0, 0, 0.3),
                 0 12px 40px rgba(0, 0, 0, 0.2);
@@ -525,7 +529,7 @@ Madhavi -->
             border-radius: 4px 2px 2px 4px;
             position: relative;
             transform: perspective(500px) rotateY(-10deg);
-            box-shadow: 
+            box-shadow:
                 0 0 0 1px #006B66,
                 0 4px 12px rgba(0, 0, 0, 0.3),
                 0 6px 20px rgba(0, 0, 0, 0.2);
@@ -563,397 +567,463 @@ Madhavi -->
             border-radius: 20px;
         }
 
-/* Main container for the horizontal scrolling section */
-.team-profiles {
-    height: 100vh;
-    width: 100vw;
-    overflow: hidden;
-    position: relative;
-    background: var(--bg-color);
-    margin-bottom: 100px; /* Fixed large margin that was causing scroll issues */
-}
+        /* Special styling for JeevRay Rhapsody profile - wider layout */
+        #jeevray .profile-content {
+            max-width: 1400px !important;
+            gap: 120px !important;
+        }
+        
+        #jeevray .profile-image {
+            width: 600px !important;
+            height: 400px !important;
+        }
+        
+        #jeevray .profile-image img {
+            object-fit: contain !important;
+            width: 100% !important;
+            height: 100% !important;
+        }
+        
+        /* Logo overlay styling for JeevRay profile */
+        #jeevray .profile-image img:nth-child(2) {
+            position: absolute !important;
+            top: 15px !important;
+            right: 15px !important;
+            width: 80px !important;
+            height: 80px !important;
+            border-radius: 50% !important;
+            object-fit: cover !important;
+            border: 4px solid #009A94 !important;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4) !important;
+            z-index: 10 !important;
+            background: white !important;
+            padding: 2px !important;
+        }
+        
+        @media (max-width: 1024px) {
+            #jeevray .profile-content {
+                max-width: 1200px !important;
+                gap: 80px !important;
+            }
+            
+            #jeevray .profile-image {
+                width: 500px !important;
+                height: 350px !important;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            #jeevray .profile-content {
+                max-width: 100% !important;
+                gap: 30px !important;
+            }
+            
+            #jeevray .profile-image {
+                width: 400px !important;
+                height: 280px !important;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            #jeevray .profile-image {
+                width: 320px !important;
+                height: 220px !important;
+            }
+        }
 
-.profiles-wrapper {
-    height: 100vh;
-    overflow: hidden;
-}
+        /* Main container for the horizontal scrolling section */
+        .team-profiles {
+            height: 100vh;
+            width: 100vw;
+            overflow: hidden;
+            position: relative;
+            background: var(--bg-color);
+            margin-bottom: 100px;
+            /* Fixed large margin that was causing scroll issues */
+        }
 
-.profiles-container {
-    display: flex;
-    height: 100vh;
-    width: calc(100vw * 24); /* Explicitly set width for 24 profiles */
-    align-items: center;
-    transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    will-change: transform;
-}
+        .profiles-wrapper {
+            height: 100vh;
+            overflow: hidden;
+        }
 
-/* Custom scrollbar for the main page */
-::-webkit-scrollbar {
-    width: 8px;
-}
+        .profiles-container {
+            display: flex;
+            height: 100vh;
+            width: calc(100vw * 25);
+            /* Explicitly set width for 25 profiles */
+            align-items: center;
+            transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            will-change: transform;
+        }
 
-::-webkit-scrollbar-track {
-    background: var(--bg-color);
-}
+        /* Custom scrollbar for the main page */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
 
-::-webkit-scrollbar-thumb {
-    background: var(--primary-color);
-    border-radius: 4px;
-}
+        ::-webkit-scrollbar-track {
+            background: var(--bg-color);
+        }
 
-::-webkit-scrollbar-thumb:hover {
-    background: var(--accent-color);
-}
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary-color);
+            border-radius: 4px;
+        }
 
-[data-theme="dark"] ::-webkit-scrollbar-track {
-    background: var(--bg-secondary);
-}
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--accent-color);
+        }
 
-/* Scrollbar for Firefox */
-* {
-    scrollbar-width: thin;
-    scrollbar-color: var(--primary-color) var(--bg-color);
-}
+        [data-theme="dark"] ::-webkit-scrollbar-track {
+            background: var(--bg-secondary);
+        }
 
-[data-theme="dark"] * {
-    scrollbar-color: var(--primary-color) var(--bg-secondary);
-}
+        /* Scrollbar for Firefox */
+        * {
+            scrollbar-width: thin;
+            scrollbar-color: var(--primary-color) var(--bg-color);
+        }
 
-.profile-card {
-    width: 100vw;
-    height: 100vh;
-    display: flex !important;
-    align-items: center;
-    justify-content: center;
-    padding: 0 5vw;
-    flex-shrink: 0;
-    position: relative;
-    opacity: 1 !important;
-    visibility: visible !important;
-    box-sizing: border-box;
-}
+        [data-theme="dark"] * {
+            scrollbar-color: var(--primary-color) var(--bg-secondary);
+        }
 
-.profile-content {
-    max-width: 1200px;
-    width: 100%;
-    display: grid !important;
-    grid-template-columns: 1fr 1fr;
-    gap: 100px;
-    align-items: center;
-    opacity: 1 !important;
-    visibility: visible !important;
-}
+        .profile-card {
+            width: 100vw;
+            height: 100vh;
+            display: flex !important;
+            align-items: center;
+            justify-content: center;
+            padding: 0 5vw;
+            flex-shrink: 0;
+            position: relative;
+            opacity: 1 !important;
+            visibility: visible !important;
+            box-sizing: border-box;
+        }
 
-.profile-image-section {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-}
+        .profile-content {
+            max-width: 1200px;
+            width: 100%;
+            display: grid !important;
+            grid-template-columns: 1fr 1fr;
+            gap: 100px;
+            align-items: center;
+            opacity: 1 !important;
+            visibility: visible !important;
+        }
 
-.profile-image {
-    width: 400px;
-    height: 400px;
-    background: var(--primary-color);
-    border-radius: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 8rem;
-    font-weight: 800;
-    color: white;
-    margin-bottom: 30px;
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
-    position: relative;
-    overflow: hidden;
-    transition: transform 0.3s ease;
-}
+        .profile-image-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
 
-.profile-image::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(255, 255, 255, 0.1);
-    transform: translateX(-100%);
-    transition: transform 0.6s;
-}
+        .profile-image {
+            width: 400px;
+            height: 400px;
+            background: var(--primary-color);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 8rem;
+            font-weight: 800;
+            color: white;
+            margin-bottom: 30px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
 
-.profile-card:hover .profile-image::before {
-    transform: translateX(100%);
-}
+        .profile-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateX(-100%);
+            transition: transform 0.6s;
+        }
 
-.profile-card:hover .profile-image {
-    transform: scale(1.05);
-}
+        .profile-card:hover .profile-image::before {
+            transform: translateX(100%);
+        }
 
-.profile-name {
-    font-size: 3rem;
-    font-weight: 800;
-    color: var(--text-color);
-    margin-bottom: 10px;
-}
+        .profile-card:hover .profile-image {
+            transform: scale(1.05);
+        }
 
-.profile-role {
-    font-size: 1.5rem;
-    color: var(--primary-color);
-    font-weight: 600;
-    margin-bottom: 20px;
-}
+        .profile-name {
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--text-color);
+            margin-bottom: 10px;
+        }
 
-.profile-info {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
+        .profile-role {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
 
-.profile-quote {
-    font-size: 2.5rem;
-    font-family: var(--font-accent);
-    color: var(--subtitle-color);
-    font-style: italic;
-    margin-bottom: 40px;
-    line-height: 1.3;
-    position: relative;
-}
+        .profile-info {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
 
-.profile-quote::before {
-    content: '"';
-    font-size: 4rem;
-    position: absolute;
-    left: -30px;
-    top: -10px;
-    color: var(--primary-color);
-    opacity: 0.3;
-}
+        .profile-quote {
+            font-size: 2.5rem;
+            font-family: var(--font-accent);
+            color: var(--subtitle-color);
+            font-style: italic;
+            margin-bottom: 40px;
+            line-height: 1.3;
+            position: relative;
+        }
 
-.profile-description {
-    font-size: 1.3rem;
-    line-height: 1.7;
-    color: var(--text-color);
-    margin-bottom: 30px;
-}
+        .profile-quote::before {
+            content: '"';
+            font-size: 4rem;
+            position: absolute;
+            left: -30px;
+            top: -10px;
+            color: var(--primary-color);
+            opacity: 0.3;
+        }
 
-.profile-skills {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 15px;
-    margin-bottom: 30px;
-}
+        .profile-description {
+            font-size: 1.3rem;
+            line-height: 1.7;
+            color: var(--text-color);
+            margin-bottom: 30px;
+        }
 
-.skill-tag {
-    background: var(--primary-color);
-    color: white;
-    padding: 8px 20px;
-    border-radius: 25px;
-    font-size: 0.9rem;
-    font-weight: 600;
-    transition: transform 0.2s ease;
-}
+        .profile-skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
 
-.skill-tag:hover {
-    transform: translateY(-2px);
-}
+        .skill-tag {
+            background: var(--primary-color);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            transition: transform 0.2s ease;
+        }
 
-.profile-stats {
-    display: flex;
-    gap: 40px;
-    margin-bottom: 100px;
-}
+        .skill-tag:hover {
+            transform: translateY(-2px);
+        }
 
-.profile-stats .stat-item {
-    text-align: center;
-}
+        .profile-stats {
+            display: flex;
+            gap: 40px;
+            margin-bottom: 100px;
+        }
 
-.profile-stats .stat-number {
-    display: block;
-    font-size: 2rem;
-    font-weight: 800;
-    color: var(--primary-color);
-    line-height: 1;
-}
+        .profile-stats .stat-item {
+            text-align: center;
+        }
 
-.profile-stats .stat-label {
-    font-size: 0.9rem;
-    color: var(--subtitle-color);
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    margin-top: 5px;
-}
+        .profile-stats .stat-number {
+            display: block;
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--primary-color);
+            line-height: 1;
+        }
 
-/* Progress indicator - conditionally hidden */
-.profiles-progress {
-    position: fixed;
-    bottom: 30px;
-    left: 50%;
-    transform: translateX(-50%);
-    display: flex;
-    gap: 10px;
-    z-index: 100;
-    transition: opacity 0.3s ease, visibility 0.3s ease;
-}
+        .profile-stats .stat-label {
+            font-size: 0.9rem;
+            color: var(--subtitle-color);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-top: 5px;
+        }
 
-.profiles-progress.hidden {
-    opacity: 0;
-    visibility: hidden;
-    pointer-events: none;
-}
+        /* Progress indicator - conditionally hidden */
+        .profiles-progress {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+            z-index: 100;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
 
-.progress-dot {
-    width: 12px;
-    height: 12px;
-    border-radius: 50%;
-    background: rgba(255, 255, 255, 0.3);
-    transition: all 0.3s ease;
-    cursor: pointer;
-}
+        .profiles-progress.hidden {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
 
-.progress-dot.active {
-    background: var(--primary-color);
-    transform: scale(1.2);
-}
+        .progress-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .progress-dot.active {
+            background: var(--primary-color);
+            transform: scale(1.2);
+        }
 
 
-.scroll-indicator {
-    position: fixed;
-    bottom: 30px;
-    right: 30px;
-    background: rgba(255, 255, 255, 0.9);
-    padding: 15px 20px;
-    border-radius: 30px;
-    font-size: 0.9rem;
-    color: var(--primary-color);
-    font-weight: 600;
-    z-index: 100;
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
-    animation: pulse 2s infinite;
-    transition: opacity 0.3s ease, visibility 0.3s ease, background-color var(--transition-normal), color var(--transition-normal);
-}
+        .scroll-indicator {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 15px 20px;
+            border-radius: 30px;
+            font-size: 0.9rem;
+            color: var(--primary-color);
+            font-weight: 600;
+            z-index: 100;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            animation: pulse 2s infinite;
+            transition: opacity 0.3s ease, visibility 0.3s ease, background-color var(--transition-normal), color var(--transition-normal);
+        }
 
-.scroll-indicator.hidden {
-    opacity: 0;
-    visibility: hidden;
-    pointer-events: none;
-}
+        .scroll-indicator.hidden {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
 
-/* Dark mode scroll indicator */
-[data-theme="dark"] .scroll-indicator {
-    background: rgba(26, 26, 26, 0.9);
-    color: #FFFFFF;
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
-}
+        /* Dark mode scroll indicator */
+        [data-theme="dark"] .scroll-indicator {
+            background: rgba(26, 26, 26, 0.9);
+            color: #FFFFFF;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+        }
 
-/* Slideshow navigation controls - conditionally hidden */
-.slideshow-controls {
-    position: fixed;
-    top: 50%;
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    padding: 0 30px;
-    z-index: 200;
-    pointer-events: none;
-    transition: opacity 0.3s ease, visibility 0.3s ease;
-}
+        /* Slideshow navigation controls - conditionally hidden */
+        .slideshow-controls {
+            position: fixed;
+            top: 50%;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            padding: 0 30px;
+            z-index: 200;
+            pointer-events: none;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
 
-.slideshow-controls.hidden {
-    opacity: 0;
-    visibility: hidden;
-    pointer-events: none;
-}
+        .slideshow-controls.hidden {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
 
-.slide-nav {
-    background: rgba(0, 154, 148, 0.9);
-    color: white;
-    border: none;
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    font-size: 1.5rem;
-    cursor: pointer;
-    transition: all var(--transition-fast);
-    pointer-events: auto;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-}
+        .slide-nav {
+            background: rgba(0, 154, 148, 0.9);
+            color: white;
+            border: none;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: all var(--transition-fast);
+            pointer-events: auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
 
-.slide-nav:hover {
-    background: var(--primary-color);
-    transform: scale(1.1);
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
-}
+        .slide-nav:hover {
+            background: var(--primary-color);
+            transform: scale(1.1);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+        }
 
-.slide-nav:active {
-    transform: scale(0.95);
-}
+        .slide-nav:active {
+            transform: scale(0.95);
+        }
 
-[data-theme="dark"] .slide-nav {
-    background: rgba(0, 154, 148, 0.9);
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
-}
+        [data-theme="dark"] .slide-nav {
+            background: rgba(0, 154, 148, 0.9);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+        }
 
-/* Profile counter - conditionally hidden */
-.profile-counter {
-    position: fixed;
-    top: 30px;
-    left: 50%;
-    transform: translateX(-50%);
-    background: rgba(255, 255, 255, 0.9);
-    padding: 10px 20px;
-    border-radius: 20px;
-    font-weight: 600;
-    z-index: 100;
-    backdrop-filter: blur(10px);
-    transition: opacity 0.3s ease, visibility 0.3s ease, background-color var(--transition-normal), color var(--transition-normal);
-}
+        /* Profile counter - conditionally hidden */
+        .profile-counter {
+            position: fixed;
+            top: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(255, 255, 255, 0.9);
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-weight: 600;
+            z-index: 100;
+            backdrop-filter: blur(10px);
+            transition: opacity 0.3s ease, visibility 0.3s ease, background-color var(--transition-normal), color var(--transition-normal);
+        }
 
-.profile-counter.hidden {
-    opacity: 0;
-    visibility: hidden;
-    pointer-events: none;
-}
+        .profile-counter.hidden {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
 
-[data-theme="dark"] .profile-counter {
-    background: rgba(26, 26, 26, 0.9);
-    color: #FFFFFF;
-}
+        [data-theme="dark"] .profile-counter {
+            background: rgba(26, 26, 26, 0.9);
+            color: #FFFFFF;
+        }
 
-/* Mobile responsive slideshow controls */
-@media (max-width: 768px) {
-    .slideshow-controls {
-        padding: 0 20px;
-    }
-    
-    .slide-nav {
-        width: 50px;
-        height: 50px;
-        font-size: 1.2rem;
-    }
-    
-    .profile-counter {
-        top: 20px;
-        padding: 8px 16px;
-        font-size: 0.9rem;
-    }
-}
+        /* Mobile responsive slideshow controls */
+        @media (max-width: 768px) {
+            .slideshow-controls {
+                padding: 0 20px;
+            }
 
-@keyframes pulse {
+            .slide-nav {
+                width: 50px;
+                height: 50px;
+                font-size: 1.2rem;
+            }
 
-    0%,
-    100% {
-        opacity: 1;
-    }
+            .profile-counter {
+                top: 20px;
+                padding: 8px 16px;
+                font-size: 0.9rem;
+            }
+        }
 
-    50% {
-        opacity: 0.7;
-    }
-}
+        @keyframes pulse {
 
-/* Responsive design */
+            0%,
+            100% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0.7;
+            }
+        }
+
+        /* Responsive design */
         /*
 @media (max-width: 1024px) {
     .profile-content {
@@ -982,135 +1052,139 @@ Madhavi -->
     }
 }
 */
-@media (max-width: 768px) {
-    .profile-content {
-        gap: 30px;
-        padding: 0 20px;
-    }
+        @media (max-width: 768px) {
+            .profile-content {
+                gap: 30px;
+                padding: 0 20px;
+            }
 
-    .profile-image {
-        width: 200px;
-        height: 200px;
-        font-size: 5rem;
-    }
+            .profile-image {
+                width: 200px;
+                height: 200px;
+                font-size: 5rem;
+            }
 
-    .profile-name {
-        font-size: 2rem;
-    }
+            .profile-name {
+                font-size: 2rem;
+            }
 
-    .profile-quote {
-        font-size: 1.5rem;
-    }
+            .profile-quote {
+                font-size: 1.5rem;
+            }
 
 
-    .profile-stats {
-        gap: 20px;
-    }
+            .profile-stats {
+                gap: 20px;
+            }
 
-    .profile-stats .stat-number {
-        font-size: 2rem;
-    }
+            .profile-stats .stat-number {
+                font-size: 2rem;
+            }
 
-    .skill-tag {
-        font-size: 0.8rem;
-        padding: 6px 15px;
-    }
-    .profile-card{
-        width:100%;
-    }
-    .profile-content{
-        display: flex;
-        flex-direction: column;
-        width: 100%;
-        height:100vh;
-        text-align:center;
-    }
-    .profile-info{
-        width:100%;
-    }
-    .profile-description{
-        font-size: 0.9rem;
-        width:100%;
-    }
+            .skill-tag {
+                font-size: 0.8rem;
+                padding: 6px 15px;
+            }
 
-}
+            .profile-card {
+                width: 100%;
+            }
 
-@media (max-width: 480px) {
-    .profile-image {
-        width: 200px;
-        height: 200px;
-        font-size: 4rem;
-    }
+            .profile-content {
+                display: flex;
+                flex-direction: column;
+                width: 100%;
+                height: 100vh;
+                text-align: center;
+            }
 
-    .profile-name {
-        font-size: 1.8rem;
-    }
+            .profile-info {
+                width: 100%;
+            }
 
-    .profile-quote {
-        font-size: 1.3rem;
-    }
+            .profile-description {
+                font-size: 0.9rem;
+                width: 100%;
+            }
 
-    .profile-description {
-        font-size: 1rem;
-    }
+        }
 
-    .profile-stats {
-        flex-direction: column;
-        gap: 15px;
-    }
-}
-        
+        @media (max-width: 480px) {
+            .profile-image {
+                width: 200px;
+                height: 200px;
+                font-size: 4rem;
+            }
+
+            .profile-name {
+                font-size: 1.8rem;
+            }
+
+            .profile-quote {
+                font-size: 1.3rem;
+            }
+
+            .profile-description {
+                font-size: 1rem;
+            }
+
+            .profile-stats {
+                flex-direction: column;
+                gap: 15px;
+            }
+        }
+
         /* Responsive adjustments */
         @media (max-width: 768px) {
             .team-page-section {
                 padding: 80px 0 40px;
             }
-            
+
             .team-intro h1 {
                 font-size: 2.2rem;
             }
-            
+
             .team-intro p {
                 font-size: 1.1rem;
             }
-            
+
             .advisory-team {
                 padding: 30px 20px;
             }
-            
+
             .advisory-team h2 {
                 font-size: 1.7rem;
             }
-            
+
             .advisor-card {
                 width: 150px;
                 padding: 15px;
             }
-            
+
             .advisor-image {
                 width: 80px;
                 height: 80px;
                 font-size: 2rem;
             }
-            
+
             .team-table {
                 display: block;
                 overflow-x: auto;
             }
-            
+
             .all-members h2 {
                 font-size: 1.7rem;
             }
-            
+
             .members-grid {
                 grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
                 gap: 20px;
             }
-            
+
             .member-card {
                 padding: 20px;
             }
-            
+
             .member-image {
                 width: 80px;
                 height: 80px;
@@ -1119,8 +1193,9 @@ Madhavi -->
         }
     </style>
 </head>
+
 <body class="loading" data-theme="light">
-    
+
     <div class="page-transition">
         <div class="loader">
             <div class="loader-circle"></div>
@@ -1182,922 +1257,1078 @@ Madhavi -->
         <div class="container">
             <div class="team-intro">
                 <h1>Meet the Team</h1>
-                <p>The The Internship Book is a collaborative project created entirely by talented teenage interns. Get to know the amazing individuals who worked together to bring this book to life.</p>
+                <p>The The Internship Book is a collaborative project created entirely by talented teenage interns. Get
+                    to know the amazing individuals who worked together to bring this book to life.</p>
             </div>
         </div>
 
-    <!-- Left Sidebar Navigation for Team Members -->
-    <nav class="left-sidebar" id="leftSidebar-team">
-        <button class="sidebar-toggle" id="sidebarToggle-team">☰</button>
-        <div class="sidebar-nav" id="sidebarNav-team">
-            <a href="#achal" class="sidebar-link" data-index="0">Achal Kaur</a>
-            <a href="#adithi" class="sidebar-link" data-index="1">Adithi Bhamidipati</a>
-            <a href="#advay" class="sidebar-link" data-index="2">Advay Avinash</a>
-            <a href="#ahona" class="sidebar-link" data-index="3">Ahona Sircar</a>
-            <a href="#amritanshu" class="sidebar-link" data-index="4">Amritanshu Praveen</a>
-            <a href="#aniya" class="sidebar-link" data-index="5">Aniya Deori</a>
-            <a href="#ashita" class="sidebar-link" data-index="6">Ashita Sirkar</a>
-            <a href="#baargavi" class="sidebar-link" data-index="7">Baargavi</a>
-            <a href="#balahansini" class="sidebar-link" data-index="8">Balahansini Gujja</a>
-            <a href="#ira" class="sidebar-link" data-index="9">Ira S. B.</a>
-            <!-- <a href="#krishna" class="sidebar-link" data-index="10">Krishna</a> -->
-            <a href="#laksh" class="sidebar-link" data-index="10">Laksh Pandey</a>
-            <a href="#lakshi" class="sidebar-link" data-index="11">Lakshi Mehta</a>
-            <a href="#leanna" class="sidebar-link" data-index="12">Leanna Bhatia</a>
-            <a href="#mannat" class="sidebar-link" data-index="13">Mannat Gupta</a>
-            <a href="#mitali" class="sidebar-link" data-index="14">Mitali Nirody</a>
-            <a href="#myrah" class="sidebar-link" data-index="16">Myrah Sinha</a>
-            <a href="#nikhilesh" class="sidebar-link" data-index="17">Nikhilesh Manna</a>
-            <a href="#saanvi" class="sidebar-link" data-index="18">Saanvi Bhatia</a>
-            <a href="#samant" class="sidebar-link" data-index="19">Samant M Patil</a>
-            <a href="#sanjana" class="sidebar-link" data-index="20">Sanjana</a>
-            <a href="#sarah" class="sidebar-link" data-index="21">Sarah Hussain</a>
-            <a href="#shreyas" class="sidebar-link" data-index="22">Shreyas Kartik</a>
-            <a href="#shrika" class="sidebar-link" data-index="23">Shrika Chitturi</a>
-            <a href="#vidhi" class="sidebar-link" data-index="24">Vidhi Madan</a>
-        </div>
-    </nav>
-
-    <!-- horizontal profile scrolling content-->
-    <section class="team-profiles" id="team">
-        <div class="profiles-wrapper">
-            <div class="profiles-container" id="profilesContainer">
-                <!--Achal Kaur-->
-                <div class="profile-card" id="achal">
-                    <div class="profile-content">
-                        <div class="profile-image-section">
-                            <div class="profile-image"><img src="images/members/achal_kaur.jpg"></div>                            <h2 class="profile-name">Achal Kaur</h2>
-                            <p class="profile-role">Marketing (Social media, Offline etc)</p>
-                        </div>
-                        <div class="profile-info">
-                            <p class="profile-description">
-                                Hi, I'm <b>Achal</b>. I'm in <b>11th Grade</b> and part of the social media and marketing team for The Internship Book. I bring creativity and emotional intelligence to our marketing strategies, focusing on connecting with our teen audience in authentic and meaningful ways. I enjoy problem-solving and working collaboratively to create engaging content that resonates with our community.
-                            </p>
-                            <div class="profile-skills">
-                                <span class="skill-tag">Creativity</span>
-                                <span class="skill-tag">Teamwork</span>
-                                <span class="skill-tag">Emotional Intelligence</span>
-                                <span class="skill-tag">Problem Solving</span>
-                            </div>
-                            
-                        </div>
-                    </div>
-                </div>
-                <!--Adithi Bhamidipati-->
-                <div class="profile-card" id="adithi">   
-                    <div class="profile-content">
-                        <div class="profile-image-section">
-                            <div class="profile-image"><img src="images/members/adithi_bhamidapati.jpg"></div>                            <h2 class="profile-name">Adithi Bhamidipati</h2>
-                            <p class="profile-role">Writers/interviewers</p>
-                        </div>
-                        <div class="profile-info">
-                            <p class="profile-description">
-                                Hi, I’m <b>Adithi Bhamidipati</b>, I’m in 10th Grade and one of the writers for The Teen Internship Book. I’m passionate about storytelling, media, and creativity, and I’ve enjoyed helping shape the book’s voice and content. I see writing as a way to reflect, connect, and express ideas with intention. Outside of the project, I love sketching, reading, and exploring where art meets thought.
-                            </p>
-                            <div class="profile-skills">
-                                <span class="skill-tag">Writing and Editorial Judgment</span>
-                                <span class="skill-tag">Creative Direction</span>
-                                <span class="skill-tag">Team Collaboration</span>
-                                <span class="skill-tag">Research & Idea Development</span>
-                            </div>
-                            
-                        </div>
-                    </div>
-                </div>         
-                <!--Advay Avinash-->
-                <div class="profile-card" id="advay">
-                    <div class="profile-content">
-                        <div class="profile-image-section">
-                            <div class="profile-image"><img src="images/members/advay_avinash.jpg"></div>                            <h2 class="profile-name">Advay Avinash</h2>
-                            <p class="profile-role">Podcasters</p>
-                        </div>
-                        <div class="profile-info">
-                            <p class="profile-description">
-                                Hi, I’m <b>Advay Avinash</b>, I’m in 9th Grade and I work on the podcast team for The Teen Internship Book. I help bring teen stories and ideas to life through conversation and interviews. I enjoy planning, scripting, and hosting episodes that are engaging and thoughtful. I’m confident, bold, and love connecting with people through public speaking. Outside the project, I’m a gold medal swimmer and rank in the top one percent of my school academically.
-                            </p>
-                            <div class="profile-skills">
-                                <span class="skill-tag">Public Speaking</span>
-                                <span class="skill-tag">Leadership</span>
-                                <span class="skill-tag">Creative Thinking</span>
-                                <span class="skill-tag">Team Management</span>
-                            </div>
-                            
-                        </div>
-                    </div>
-                </div>  
-                <!--Ahona Sircar-->
-                <div class="profile-card" id="ahona">
-                    <div class="profile-content">
-                        <div class="profile-image-section">
-                            <div class="profile-image"><img src="images/members/ahona_sircar.jpg"></div>                            <h2 class="profile-name">Ahona Sircar</h2>
-                            <p class="profile-role">Book Editors</p>
-                        </div>
-                        <div class="profile-info">
-                            <p class="profile-description">
-                                Hi, I'm <b>Ahona</b>. I'm in <b>8th Grade</b> and based in Bangalore. I'm one of the editors for The Internship Book. I have a deep love for all forms of art, from writing to stage direction, and I bring creativity, precision, and thoughtful guidance to the editorial team.
-                            </p>
-                            <div class="profile-skills">
-                                <span class="skill-tag">Creative Writing</span>
-                                <span class="skill-tag">Editorial Guidance</span>
-                                <span class="skill-tag">Artistic Vision</span>
-                                <span class="skill-tag">Stage Direction</span>
-                            </div>
-                            
-                        </div>
-                    </div>
-                </div>
-                <!--Amritanshu Praveen-->
-                <div class="profile-card" id="amritanshu">
-                    <div class="profile-content">
-                        <div class="profile-image-section">
-                            <div class="profile-image"><img src="images/members/amritanshu_praveen.jpg"></div>                            <h2 class="profile-name">Amritanshu Praveen</h2>
-                            <p class="profile-role">Video Editor/Videographer</p>
-                        </div>
-                        <div class="profile-info">
-                            <p class="profile-description">
-                                Hi, I'm <b>Amritanshu</b>. I'm in <b>8th Grade</b> and I'm the video editor for The Internship Book. I focus on keeping videos sharp, engaging, and easy to follow, and I work closely with the videography team to make sure everything's accurate. Outside of the project, I run my own YouTube channel about tech and gaming. I'm also learning to build games using Unity. I'm the go-to tech help for my friends, and I love figuring out how things work, whether it's fixing bugs or getting better at Valorant and Minecraft.
-                            </p>
-                            <div class="profile-skills">
-                                <span class="skill-tag">Video Editing</span>
-                                <span class="skill-tag">Motivating</span>
-                                <span class="skill-tag">Creative</span>
-                                <span class="skill-tag">Positive</span>
-                            </div>
-                            
-                        </div>
-                    </div>
-                </div>
-                <!--Aniya Deori-->
-                <div class="profile-card" id="aniya">
-                    <div class="profile-content">
-                        <div class="profile-image-section">
-                            <div class="profile-image"><img src="images/members/aniya_deori.jpg"></div>                            <h2 class="profile-name">Aniya Deori</h2>
-                            <p class="profile-role">Illustrators</p>
-                        </div>
-                        <div class="profile-info">
-                            <p class="profile-description">
-                                Hi, I'm <b>Aniya</b>. I'm in <b>9th Grade</b> and one of the illustrators for The Internship Book. I'm an artist with a passion for character design and visual storytelling. I enjoy combining my love for art with research to create illustrations that are both creative and informative. Beyond art, I also have a talent for singing.
-                            </p>
-                            <div class="profile-skills">
-                                <span class="skill-tag">Character Sketching</span>
-                                <span class="skill-tag">Singing</span>
-                                <span class="skill-tag">Researching</span>
-                            </div>
-                            
-                        </div>
-                    </div>
-                </div>
-                <!--Ashita Sirkar-->
-                <div class="profile-card" id="ashita">
-                    <div class="profile-content">
-                        <div class="profile-image-section">
-                            <div class="profile-image"><img src="images/members/ashita_sirkar.jpg"></div>                            <h2 class="profile-name">Ashita Sirkar</h2>
-                            <p class="profile-role">Illustrators</p>
-                        </div>
-                        <div class="profile-info">
-                            <p class="profile-description">
-                                Hi, I'm <b>Ashita</b>. I'm in <b>10th Grade</b> and one of the illustrators for The Internship Book. I would consider myself an artist who enjoys creating both traditional and digital art. I'm passionate about bringing ideas to life through visual storytelling and design. I approach my work with determination and curiosity, always looking for ways to improve and learn new techniques.
-                            </p>
-                            <div class="profile-skills">
-                                <span class="skill-tag">Determined</span>
-                                <span class="skill-tag">Realistic</span>
-                                <span class="skill-tag">Inquisitive</span>
-                            </div>
-                            
-                        </div>
-                    </div>
-                </div>
-                <!--Baargavi-->
-                <div class="profile-card" id="baargavi">
-                    <div class="profile-content">
-                        <div class="profile-image-section">
-                            <div class="profile-image"><img src="images/members/baargavi_senthil.jpg"></div>                            <h2 class="profile-name">Baargavi</h2>
-                            <p class="profile-role">Illustrators</p>
-                        </div>
-                        <div class="profile-info">
-                            <p class="profile-description">
-                                Hi, I'm <b>Baargavi</b>. I'm in <b>8th Grade</b> and one of the illustrators for The Internship Book. I'm a digital artist who loves creating visual content that tells stories and captures emotions. I enjoy experimenting with different art styles and techniques to bring ideas to life through illustrations.
-                            </p>
-                            <div class="profile-skills">
-                                <span class="skill-tag">Creativity</span>
-                                <span class="skill-tag">Visual Story Telling</span>
-                                <span class="skill-tag">Researching</span>
-                            </div>
-                            
-                        </div>
-                    </div>
-                </div>  
-                <!--Balahansini Gujja-->
-                <div class="profile-card" id="balahansini">
-                    <div class="profile-content">
-                        <div class="profile-image-section">
-                            <div class="profile-image"><img src="images/members/balahansini_gujja.jpg"></div>                            <h2 class="profile-name">Balahansini Gujja</h2>
-                            <p class="profile-role">Podcasters</p>
-                        </div>
-                        <div class="profile-info">
-                            <p class="profile-description">
-                                Hi, I'm <b>Balahansini</b>. I'm in <b>9th Grade</b> and The Internship Book is my first internship. I work on the podcast team and I'm curious about everything from public speaking and editing to leadership and problem solving. I love learning, especially when it's fun and hands on. I'm a mix of go with the flow and plan it first, and I enjoy listening to different perspectives while keeping things steady. Whether it's MUNs, entrepreneurship, or team projects, I care about doing meaningful work and learning as I go.
-                            </p>
-                            <div class="profile-skills">
-                                <span class="skill-tag">Public Speaking</span>
-                                <span class="skill-tag">Communication</span>
-                                <span class="skill-tag">Time Management</span>
-                            </div>
-                            
-                        </div>
-                    </div>
-                </div>
-                <!--Ira S. B.-->
-                <div class="profile-card" id="ira">
-                    <div class="profile-content">
-                        <div class="profile-image-section">
-                            <div class="profile-image"><img src="images/members/ira_sb.jpg"></div>                            <h2 class="profile-name">Ira S. B.</h2>
-                            <p class="profile-role">Illustrators</p>
-                        </div>
-                        <div class="profile-info">
-                            <p class="profile-description">
-                                Hi, I'm <b>Ira</b>. I'm in <b>9th Grade</b> and one of the illustrators for The Internship Book. I'm a homeschooling student with a passion for creative expression through art. I enjoy bringing fresh perspectives to my illustrations and collaborating with the team to create meaningful visual content.
-                            </p>
-                            <div class="profile-skills">
-                                <span class="skill-tag">Creative</span>
-                                <span class="skill-tag">Innovative</span>
-                                <span class="skill-tag">Communicating Well</span>
-                            </div>
-                            
-                        </div>
-                    </div>
-                </div>
-                <!--Krishna-->
-                <!-- <div class="profile-card" id="krishna">
-                    <div class="profile-content">
-                        <div class="profile-image-section">
-                            <div class="profile-image"><img src="images/members/krishna_iyer.jpg"></div>                            <h2 class="profile-name">Krishna Iyer</h2>
-                            <p class="profile-role">Finance & Sponsorship Managers</p>
-                        </div>
-                        <div class="profile-info">
-                            <p class="profile-description">
-                                Hello, I am Krishna. I am in 9th grade and part of the finance and sponsorship management team. I study at Oakridge International School, Bengaluru. My role in this project is to identify sponsors who would be interested in being featured in our book. 
-                            </p>
-                            <div class="profile-skills">
-                                <span class="skill-tag">Researching</span>
-                                <span class="skill-tag">Planning</span>
-                                <span class="skill-tag">Open-Minded</span>
-                            </div>
-                            
-                        </div>
-                    </div>
-                </div> -->
-                <!--Laksh Pandey-->
-                <div class="profile-card" id="laksh">
-                    <div class="profile-content">
-                        <div class="profile-image-section">
-                            <div class="profile-image"><img src="images/members/laksh_pandey.jpg"></div>                            <h2 class="profile-name">Laksh Pandey</h2>
-                            <p class="profile-role">Marketing (Social media, Offline etc)</p>
-                        </div>
-                        <div class="profile-info">
-                            <p class="profile-description">
-                                Hi, I'm <b>Laksh</b>. I'm in <b>9th Grade</b> and part of the social media and marketing team for The Internship Book. I'm passionate about public speaking, marketing strategies, and leveraging AI for creative solutions. I enjoy debating and academic pursuits, and I bring creative thinking to our marketing campaigns to help spread awareness about internship opportunities for teens.
-                            </p>
-                            <div class="profile-skills">
-                                <span class="skill-tag">Public Speaking</span>
-                                <span class="skill-tag">Marketing</span>
-                                <span class="skill-tag">AI</span>
-                                <span class="skill-tag">Creative Thinking</span>
-                                <span class="skill-tag">Debating</span>
-                            </div>
-                            
-                        </div>
-                    </div>
-                </div>
-                <!--Lakshi Mehta-->
-                <div class="profile-card" id="lakshi">
-                    <div class="profile-content">
-                        <div class="profile-image-section">
-                            <div class="profile-image"><img src="images/members/lakshi_mehta.jpg"></div>                            <h2 class="profile-name">Lakshi Mehta</h2>
-                            <p class="profile-role">Project Manager + Book Design</p>
-                        </div>
-                        <div class="profile-info">
-                            <p class="profile-description">
-                                Hey, I’m <b>Lakshi Mehta</b> – a <b>9th grader</b>  and one of the Project Managers for The Internship Book. I’ve represented at EAMUN (East African Model United Nations), sharpening my diplomacy and debate skills on an international platform. I was ranked among the Top 20 chess players in Kenya and received the Silver Award in the prestigious Queen's Commonwealth Essay Competition. Beyond academics, I’ve played the recorder for 7 years, actively compete in table tennis, and have participated in several Cubing competitions. I’m also passionate about art, with multiple awards to my name, and I’ve proudly won seven medals at the World Scholars Cup.
-                            </p>
-                            <div class="profile-skills">
-                                <span class="skill-tag">Creative and Critical Thinker</span>
-                                <span class="skill-tag">Leadership</span>
-                                <span class="skill-tag">Public Speaking</span>
-                                <span class="skill-tag">Art</span>
-                                <span class="skill-tag">Debating</span>
-                                <span class="skill-tag">Academics</span>
-                            </div>
-                            
-                        </div>
-                    </div>
-                </div>
-                <!--Leanna Bhatia-->
-                <div class="profile-card" id="leanna">
-                    <div class="profile-content">
-                        <div class="profile-image-section">
-                            <div class="profile-image"><img src="images/members/leanna_bhatia.jpg"></div>                            <h2 class="profile-name">Leanna Bhatia</h2>
-                            <p class="profile-role">Illustrators</p>
-                        </div>
-                        <div class="profile-info">
-                            <p class="profile-description">
-                                Hi, I'm <b>Leanna</b>. I'm in <b>6th Grade</b> and one of the illustrators for The Internship Book. I'm a light-hearted artist who enjoys both traditional and digital art forms. I have a keen eye for detail and love observing the world around me to inspire my creative work. I enjoy collaborating with the team to bring visual stories to life.
-                            </p>
-                            <div class="profile-skills">
-                                <span class="skill-tag">Traditional and Digital Art</span>
-                                <span class="skill-tag">Observant</span>
-                                <span class="skill-tag">Creative</span>
-                                <span class="skill-tag">Collaborative</span>
-                            </div>
-                            
-                        </div>
-                    </div>
-                </div>
-                <!--Mannat Gupta-->
-                <div class="profile-card" id="mannat">
-                    <div class="profile-content">
-                        <div class="profile-image-section">
-                            <div class="profile-image"><img src="images/members/mannat_gupta.jpg"></div>
-                            <h2 class="profile-name">Mannat Gupta</h2>
-                            <p class="profile-role">Project Manager + Book Design</p>
-                        </div>
-                        <div class="profile-info">
-                            <p class="profile-description">
-                                Hi, I'm <b>Mannat</b>. I'm in <b>10th Grade</b> and I'm a project manager for the Teen Internship Book. I'm endlessly curious, driven by big dreams, and always looking for ways to add impact and meaning to everything that I do. I believe in the power of honest words, messy drafts, and ideas that make people stop and think. I like my plans color-coded, my conversations meaningful, and my work driven by purpose.I’m not just here to manage tasks- I’m here to build something that matters. My mind is wired for meaning: I see possibilities where others see problems, beauty in overlooked corners, and stories in places no one thought to look. Outside the project, you’ll find me chasing metaphors, redesigning the world in margins and sticky notes, and finding magic in the mess.
-                            </p>
-                            <div class="profile-skills">
-                                <span class="skill-tag">Project Management</span>
-                                <span class="skill-tag">Strategic Planning</span>
-                                <span class="skill-tag">Creative Thinking</span>
-                                <span class="skill-tag">Design</span>
-                            </div>
-                            
-                        </div>
-                    </div>
-                </div>
-                <!--Mitali Nirody-->
-                <div class="profile-card" id="mitali">
-                    <div class="profile-content">
-                        <div class="profile-image-section">
-                            <div class="profile-image"><img src="images/members/mitali_nirody.jpg"></div>
-                            <h2 class="profile-name">Mitali Nirody</h2>
-                            <p class="profile-role">Project Manager + Book Design</p>
-                        </div>
-                        <div class="profile-info">
-                            <p class="profile-description">
-                                Hi, I'm <b>Mitali Nirody</b>! I'm passionate about project management and book design, bringing organization and creative vision to The Internship Book. I excel at coordinating teams, managing timelines, and ensuring that all the moving pieces come together seamlessly. My role involves overseeing project workflows and contributing to the visual design elements that make our book both functional and beautiful.
-                            </p>
-                            <div class="profile-skills">
-                                <span class="skill-tag">Project Management</span>
-                                <span class="skill-tag">Book Design</span>
-                                <span class="skill-tag">Team Coordination</span>
-                                <span class="skill-tag">Creative Vision</span>
-                            </div>
-                            
-                        </div>
-                    </div>
-                </div>
-                <!--Myrah Sinha-->
-                <div class="profile-card" id="myrah">
-                    <div class="profile-content">
-                        <div class="profile-image-section">
-                            <div class="profile-image"><img src="images/members/myrah_sinha.jpg"></div>                            <h2 class="profile-name">Myrah Sinha</h2>
-                            <p class="profile-role">Writers/interviewers</p>
-                        </div>
-                        <div class="profile-info">
-                            <p class="profile-description">
-                                Hi, I’m <b>Myrah Sinha</b>, I’m in 10th Grade and one of the writers behind The Teen Internship Book. I have a deep passion for storytelling, law, and social impact, and I’ve always believed in making complex ideas feel accessible. Whether it’s conducting interviews, drafting guides, or bridging the gap between teens and the professional world, I try to keep my voice honest and sharp. Outside of writing, you’ll find me debating policy, leading initiatives, or dreaming up the next big idea that could change the world.
-                            </p>
-                            <div class="profile-skills">
-                                <span class="skill-tag">Creative Writing</span>
-                                <span class="skill-tag">Storytelling</span>
-                                <span class="skill-tag">Research</span>
-                                <span class="skill-tag">Interviewing</span>
-                            </div>
-                            
-                        </div>
-                    </div>
-                </div>
-                <!--Nikhilesh Manna-->
-                <div class="profile-card" id="nikhilesh">
-                    <div class="profile-content">
-                        <div class="profile-image-section">
-                            <div class="profile-image"><img src="images/members/nikhilesh_manna.jpg"></div>
-                            <h2 class="profile-name">Nikhilesh Manna</h2>
-                            <p class="profile-role">Book Editors</p>
-                        </div>
-                        <div class="profile-info">
-                            <p class="profile-description">
-                                Hi, I'm <b>Nikhilesh</b>. I'm in <b>12th Grade</b> and a biotechnology student with a passion for storytelling, public speaking, and classical violin. I'm aiming for a career in forensics or chemical engineering, and I enjoy blending my technical knowledge with writing to educate and inspire others through my work.
-                            </p>
-                            <div class="profile-skills">
-                                <span class="skill-tag">Creative</span>
-                                <span class="skill-tag">Driven</span>
-                                <span class="skill-tag">Innovative</span>
-                                <span class="skill-tag">Public Speaking</span>
-                            </div>
-                            
-                        </div>
-                    </div>
-                </div>  
-                <!--Saanvi Bhatia-->
-                <div class="profile-card" id="saanvi">
-                    <div class="profile-content">
-                        <div class="profile-image-section">
-                            <div class="profile-image"><img src="images/members/saanvi_bhatia.jpg"></div>                            <h2 class="profile-name">Saanvi Bhatia</h2>
-                            <p class="profile-role">Video Editor/Videographer</p>
-                        </div>
-                        <div class="profile-info">
-                            <p class="profile-description">
-                                Hi, I'm <b>Saanvi</b>. I'm a <b>11th grade IB student</b> and I'm the videographer for this internship also working with the podcasters. I am a storyteller with a camera. I like to capture raw moments and bringing emotions to life in one single frame. I love experimenting with lights angles and distance to create different perspectives. I feel i can connect people through my pictures and videos. I love leading and working on projects. I believe in the concept of building discipline, collaborating, and seeing how powerful visuals can make an impact.
-                            </p>
-                            <div class="profile-skills">
-                                <span class="skill-tag">Photography</span>
-                                <span class="skill-tag">Public Speaking</span>
-                                <span class="skill-tag">Communication</span>
-                                <span class="skill-tag">Creative Lighting</span>
-                            </div>
-                            
-                        </div>
-                    </div>
-                </div>
-                <!--Samant M Patil-->
-                <div class="profile-card" id="samant">
-                    <div class="profile-content">
-                        <div class="profile-image-section">
-                            <div class="profile-image"><img src="images/members/samant_patil.jpg"></div>
-                            <h2 class="profile-name">Samant M Patil</h2>
-                            <p class="profile-role">Website Designers</p>
-                        </div>
-                        <div class="profile-info">
-                            <p class="profile-description">
-                                Hi, I'm <b>Samant</b>. I'm in <b>9th Grade</b> and I'm a web developer and designer for The Internship Book. I love building things that connect hardware and software, like real-time dashboards or robotic systems. I'm into robotics, 3D modeling, and embedded systems, and I use tools like Python, React, Fusion 360, and ESP32 to bring my ideas to life. Whether I'm coding or designing, I care about clean, creative solutions that work in the real world. I also enjoy mentoring other makers and exploring what's possible when tech meets imagination.
-                            </p>
-                            <div class="profile-skills">
-                                <span class="skill-tag">Full-Stack Web Development</span>
-                                <span class="skill-tag">Interactive UI/UX Design</span>
-                                <span class="skill-tag">Version Control (Git)</span>
-                                <span class="skill-tag">AI Tools Integration</span>
-                            </div>
-                            
-                        </div>
-                    </div>
-                </div>
-                <!--Sanjana-->
-                <div class="profile-card" id="sanjana">
-                    <div class="profile-content">
-                        <div class="profile-image-section">
-                            <div class="profile-image"><img src="images/members/sanjana.jpg"></div>
-                            <h2 class="profile-name">Sanjana</h2>
-                            <p class="profile-role">Design Team</p>
-                        </div>
-                        <div class="profile-info">
-                            <p class="profile-description">
-                                Hi, I'm <b>Sanjana</b>! I'm a second-year Interaction Design student and part of the Design Team for The Internship Book. I love exploring how design, storytelling, and technology come together to shape experiences. Curious and hands-on by nature, I enjoy working on creative projects that solve real problems and learning something new along the way.
-                            </p>
-                            <div class="profile-skills">
-                                <span class="skill-tag">Interaction Design</span>
-                                <span class="skill-tag">UI/UX Design</span>
-                                <span class="skill-tag">Visual Design</span>
-                                <span class="skill-tag">Visual Communication</span>
-                            </div>
-                            
-                        </div>
-                    </div>
-                </div>
-                <!--Sarah Hussain-->
-                <div class="profile-card" id="sarah">
-                    <div class="profile-content">
-                        <div class="profile-image-section">
-                            <div class="profile-image"><img src="images/members/sarah_hussain.jpg"></div>                            <h2 class="profile-name">Sarah Hussain</h2>
-                            <p class="profile-role">Marketing (Social media, Offline etc)</p>
-                        </div>
-                        <div class="profile-info">
-                            <p class="profile-description">
-                                Hi, I'm <b>Sarah</b>. I'm in <b>9th Grade</b> and part of the social media and marketing team for The Internship Book. I'm passionate about understanding human psychology and how it applies to marketing and communication. I enjoy public speaking, podcasting, and creative thinking to develop marketing strategies that truly connect with our audience.
-                            </p>
-                            <div class="profile-skills">
-                                <span class="skill-tag">Public Speaking</span>
-                                <span class="skill-tag">Podcasting</span>
-                                <span class="skill-tag">Marketing</span>
-                                <span class="skill-tag">Human Psychology</span>
-                                <span class="skill-tag">Creative Thinking</span>
-                            </div>
-                            
-                        </div>
-                    </div>
-                </div>
-                <!--Shreyas Kartik-->
-                <div class="profile-card" id="shreyas">
-                    <div class="profile-content">
-                        <div class="profile-image-section">
-                            <div class="profile-image"><img src="images/members/shreyas_karthik.jpg"></div>                            <h2 class="profile-name">Shreyas Kartik</h2>
-                            <p class="profile-role">Finance & Sponsorship Managers</p>
-                        </div>
-                        <div class="profile-info">
-                            <p class="profile-description">
-                                Hi, I'm <b>Shreyas</b>. I'm in <b>11th Grade</b> and part of the finance and sponsorship team for The Internship Book. I work on developing financial strategies, managing budgets, and securing sponsorships to support our project goals. I enjoy analyzing data and creating sustainable financial models for our initiatives.
-                            </p>
-                            <div class="profile-skills">
-                                <span class="skill-tag">Financial Analysis</span>
-                                <span class="skill-tag">Budget Management</span>
-                                <span class="skill-tag">Strategic Planning</span>
-                            </div>
-                            
-                        </div>
-                    </div>
-                </div>
-                <!--Shrika Chitturi-->
-                <div class="profile-card" id="shrika">
-                    <div class="profile-content">
-                        <div class="profile-image-section">
-                            <div class="profile-image"><img src="images/members/shrika-chitturi.jpg"></div>                            <h2 class="profile-name">Shrika Chitturi</h2>
-                            <p class="profile-role">Website Designers</p>
-                        </div>
-                        <div class="profile-info">
-                            <p class="profile-description">
-                               Hi! I’m <b> Shrika</b>, a high school student who enjoys combining creativity and technology through front-end development and design. I like working with HTML, CSS, and exploring UI/UX to build clean, user-friendly interfaces. I’ve built websites, explored data science, and I’m currently learning Android app development and machine learning. I’m also fascinated by physics and astronomy, and love seeing how tech can connect with those fields. Outside of coding, I enjoy music and play both piano and guitar.
-                            </p>
-
-                            <div class="profile-skills">
-                                <span class="skill-tag">Web Design</span>
-                                <span class="skill-tag">Team Collaboration</span>
-                                <span class="skill-tag">Problem Solving</span>
-                            </div>
-                            
-                        </div>
-                    </div>
-                </div>
-                <!--Vidhi Madan-->
-                <div class="profile-card" id="vidhi">
-                    <div class="profile-content">
-                        <div class="profile-image-section">
-                            <div class="profile-image"><img src="images/members/vidhi_madan.jpg"></div>                            <h2 class="profile-name">Vidhi Madan</h2>
-                            <p class="profile-role">Marketing (Social media, Offline etc)</p>
-                        </div>
-                        <div class="profile-info">
-                            <p class="profile-description">
-                                Hi, I'm <b>Vidhi</b>. I'm in <b>10th Grade</b> and part of the social media and marketing team for The Internship Book. I specialize in social media marketing, content creation, and audience engagement. I'm passionate about understanding platform dynamics and creating content that drives meaningful interactions with our community.
-                            </p>
-                            <div class="profile-skills">
-                                <span class="skill-tag">Social Media Marketing</span>
-                                <span class="skill-tag">Content Creation</span>
-                                <span class="skill-tag">Audience Engagement</span>
-                                <span class="skill-tag">Platform Management</span>
-                            </div>
-                            
-                        </div>
-                    </div>
-                </div>
+        <!-- Left Sidebar Navigation for Team Members -->
+        <nav class="left-sidebar" id="leftSidebar-team">
+            <button class="sidebar-toggle" id="sidebarToggle-team">☰</button>
+            <div class="sidebar-nav" id="sidebarNav-team">
+                <a href="#achal" class="sidebar-link" data-index="0">Achal Kaur</a>
+                <a href="#adithi" class="sidebar-link" data-index="1">Adithi Bhamidipati</a>
+                <a href="#advay" class="sidebar-link" data-index="2">Advay Avinash</a>
+                <a href="#ahona" class="sidebar-link" data-index="3">Ahona Sircar</a>
+                <a href="#amritanshu" class="sidebar-link" data-index="4">Amritanshu Praveen</a>
+                <a href="#aniya" class="sidebar-link" data-index="5">Aniya Deori</a>
+                <a href="#ashita" class="sidebar-link" data-index="6">Ashita Sirkar</a>
+                <a href="#baargavi" class="sidebar-link" data-index="7">Baargavi</a>
+                <a href="#balahansini" class="sidebar-link" data-index="8">Balahansini Gujja</a>
+                <a href="#ira" class="sidebar-link" data-index="9">Ira S. B.</a>
+                <a href="#jeevray" class="sidebar-link" data-index="10">JeevRay Rhapsody</a>
+                <a href="#laksh" class="sidebar-link" data-index="11">Laksh Pandey</a>
+                <a href="#lakshi" class="sidebar-link" data-index="12">Lakshi Mehta</a>
+                <a href="#leanna" class="sidebar-link" data-index="13">Leanna Bhatia</a>
+                <a href="#mannat" class="sidebar-link" data-index="14">Mannat Gupta</a>
+                <a href="#mitali" class="sidebar-link" data-index="15">Mitali Nirody</a>
+                <a href="#myrah" class="sidebar-link" data-index="16">Myrah Sinha</a>
+                <a href="#nikhilesh" class="sidebar-link" data-index="17">Nikhilesh Manna</a>
+                <a href="#saanvi" class="sidebar-link" data-index="18">Saanvi Bhatia</a>
+                <a href="#samant" class="sidebar-link" data-index="19">Samant M Patil</a>
+                <a href="#sanjana" class="sidebar-link" data-index="20">Sanjana</a>
+                <a href="#sarah" class="sidebar-link" data-index="21">Sarah Hussain</a>
+                <a href="#shreyas" class="sidebar-link" data-index="22">Shreyas Kartik</a>
+                <a href="#shrika" class="sidebar-link" data-index="23">Shrika Chitturi</a>
+                <a href="#vidhi" class="sidebar-link" data-index="24">Vidhi Madan</a>
             </div>
-            <div class="profiles-progress">
-                <!-- Progress dots will be added by JavaScript -->
-            </div>
-        </div>
-        
-        
-        <!-- Navigation controls -->
-        <div class="slideshow-controls">
-            <button class="slide-nav prev-slide" id="prevSlide" aria-label="Previous profile">←</button>
-            <button class="slide-nav next-slide" id="nextSlide" aria-label="Next profile">→</button>
-        </div>
-        
-        <!-- Profile counter -->
-        <div class="profile-counter">
-            <span id="currentProfile">1</span> / <span id="totalProfiles">24</span>
-        </div>
-        
-        <div class="scroll-indicator">
-            ← Use arrow keys or click buttons to navigate →
-        </div>
-    </section>
+        </nav>
 
-    
-    <footer class="site-footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-brand">
-                    <a href="#" class="footer-logo">
-                        <span class="footer-logo-img large logo-text">The Internship Book</span>
-                    </a>
-                    <p class="footer-tagline">Empowering the next generation through internships</p>
-                </div>
-                
-                <div class="footer-links">
-                    <div class="footer-group">
-                        <h4>Navigate</h4>
-                        <ul>
-                            <li><a href="#about">About</a></li>
-                            <li><a href="team.html">Team</a></li>
-                            <li><a href="#preview">Preview</a></li>
-                            <li><a href="#impact">Impact</a></li>
-                            <li><a href="preorder.html">Pre-order</a></li>
-                        </ul>
+        <!-- horizontal profile scrolling content-->
+        <section class="team-profiles" id="team">
+            <div class="profiles-wrapper">
+                <div class="profiles-container" id="profilesContainer">
+                    <!--Achal Kaur-->
+                    <div class="profile-card" id="achal">
+                        <div class="profile-content">
+                            <div class="profile-image-section">
+                                <div class="profile-image"><img src="images/members/achal_kaur.jpg"></div>
+                                <h2 class="profile-name">Achal Kaur</h2>
+                                <p class="profile-role">Marketing (Social media, Offline etc)</p>
+                            </div>
+                            <div class="profile-info">
+                                <p class="profile-description">
+                                    Hi, I'm <b>Achal</b>. I'm in <b>11th Grade</b> and part of the social media and
+                                    marketing team for The Internship Book. I bring creativity and emotional
+                                    intelligence to our marketing strategies, focusing on connecting with our teen
+                                    audience in authentic and meaningful ways. I enjoy problem-solving and working
+                                    collaboratively to create engaging content that resonates with our community.
+                                </p>
+                                <div class="profile-skills">
+                                    <span class="skill-tag">Creativity</span>
+                                    <span class="skill-tag">Teamwork</span>
+                                    <span class="skill-tag">Emotional Intelligence</span>
+                                    <span class="skill-tag">Problem Solving</span>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <!--Adithi Bhamidipati-->
+                    <div class="profile-card" id="adithi">
+                        <div class="profile-content">
+                            <div class="profile-image-section">
+                                <div class="profile-image"><img src="images/members/adithi_bhamidapati.jpg"></div>
+                                <h2 class="profile-name">Adithi Bhamidipati</h2>
+                                <p class="profile-role">Writers/interviewers</p>
+                            </div>
+                            <div class="profile-info">
+                                <p class="profile-description">
+                                    Hi, I’m <b>Adithi Bhamidipati</b>, I’m in 10th Grade and one of the writers for The
+                                    Teen Internship Book. I’m passionate about storytelling, media, and creativity, and
+                                    I’ve enjoyed helping shape the book’s voice and content. I see writing as a way to
+                                    reflect, connect, and express ideas with intention. Outside of the project, I love
+                                    sketching, reading, and exploring where art meets thought.
+                                </p>
+                                <div class="profile-skills">
+                                    <span class="skill-tag">Writing and Editorial Judgment</span>
+                                    <span class="skill-tag">Creative Direction</span>
+                                    <span class="skill-tag">Team Collaboration</span>
+                                    <span class="skill-tag">Research & Idea Development</span>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <!--Advay Avinash-->
+                    <div class="profile-card" id="advay">
+                        <div class="profile-content">
+                            <div class="profile-image-section">
+                                <div class="profile-image"><img src="images/members/advay_avinash.jpg"></div>
+                                <h2 class="profile-name">Advay Avinash</h2>
+                                <p class="profile-role">Podcasters</p>
+                            </div>
+                            <div class="profile-info">
+                                <p class="profile-description">
+                                    Hi, I’m <b>Advay Avinash</b>, I’m in 9th Grade and I work on the podcast team for
+                                    The Teen Internship Book. I help bring teen stories and ideas to life through
+                                    conversation and interviews. I enjoy planning, scripting, and hosting episodes that
+                                    are engaging and thoughtful. I’m confident, bold, and love connecting with people
+                                    through public speaking. Outside the project, I’m a gold medal swimmer and rank in
+                                    the top one percent of my school academically.
+                                </p>
+                                <div class="profile-skills">
+                                    <span class="skill-tag">Public Speaking</span>
+                                    <span class="skill-tag">Leadership</span>
+                                    <span class="skill-tag">Creative Thinking</span>
+                                    <span class="skill-tag">Team Management</span>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <!--Ahona Sircar-->
+                    <div class="profile-card" id="ahona">
+                        <div class="profile-content">
+                            <div class="profile-image-section">
+                                <div class="profile-image"><img src="images/members/ahona_sircar.jpg"></div>
+                                <h2 class="profile-name">Ahona Sircar</h2>
+                                <p class="profile-role">Book Editors</p>
+                            </div>
+                            <div class="profile-info">
+                                <p class="profile-description">
+                                    Hi, I'm <b>Ahona</b>. I'm in <b>8th Grade</b> and based in Bangalore. I'm one of the
+                                    editors for The Internship Book. I have a deep love for all forms of art, from
+                                    writing to stage direction, and I bring creativity, precision, and thoughtful
+                                    guidance to the editorial team.
+                                </p>
+                                <div class="profile-skills">
+                                    <span class="skill-tag">Creative Writing</span>
+                                    <span class="skill-tag">Editorial Guidance</span>
+                                    <span class="skill-tag">Artistic Vision</span>
+                                    <span class="skill-tag">Stage Direction</span>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <!--Amritanshu Praveen-->
+                    <div class="profile-card" id="amritanshu">
+                        <div class="profile-content">
+                            <div class="profile-image-section">
+                                <div class="profile-image"><img src="images/members/amritanshu_praveen.jpg"></div>
+                                <h2 class="profile-name">Amritanshu Praveen</h2>
+                                <p class="profile-role">Video Editor/Videographer</p>
+                            </div>
+                            <div class="profile-info">
+                                <p class="profile-description">
+                                    Hi, I'm <b>Amritanshu</b>. I'm in <b>8th Grade</b> and I'm the video editor for The
+                                    Internship Book. I focus on keeping videos sharp, engaging, and easy to follow, and
+                                    I work closely with the videography team to make sure everything's accurate. Outside
+                                    of the project, I run my own YouTube channel about tech and gaming. I'm also
+                                    learning to build games using Unity. I'm the go-to tech help for my friends, and I
+                                    love figuring out how things work, whether it's fixing bugs or getting better at
+                                    Valorant and Minecraft.
+                                </p>
+                                <div class="profile-skills">
+                                    <span class="skill-tag">Video Editing</span>
+                                    <span class="skill-tag">Motivating</span>
+                                    <span class="skill-tag">Creative</span>
+                                    <span class="skill-tag">Positive</span>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <!--Aniya Deori-->
+                    <div class="profile-card" id="aniya">
+                        <div class="profile-content">
+                            <div class="profile-image-section">
+                                <div class="profile-image"><img src="images/members/aniya_deori.jpg"></div>
+                                <h2 class="profile-name">Aniya Deori</h2>
+                                <p class="profile-role">Illustrators</p>
+                            </div>
+                            <div class="profile-info">
+                                <p class="profile-description">
+                                    Hi, I'm <b>Aniya</b>. I'm in <b>9th Grade</b> and one of the illustrators for The
+                                    Internship Book. I'm an artist with a passion for character design and visual
+                                    storytelling. I enjoy combining my love for art with research to create
+                                    illustrations that are both creative and informative. Beyond art, I also have a
+                                    talent for singing.
+                                </p>
+                                <div class="profile-skills">
+                                    <span class="skill-tag">Character Sketching</span>
+                                    <span class="skill-tag">Singing</span>
+                                    <span class="skill-tag">Researching</span>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <!--Ashita Sirkar-->
+                    <div class="profile-card" id="ashita">
+                        <div class="profile-content">
+                            <div class="profile-image-section">
+                                <div class="profile-image"><img src="images/members/ashita_sirkar.jpg"></div>
+                                <h2 class="profile-name">Ashita Sirkar</h2>
+                                <p class="profile-role">Illustrators</p>
+                            </div>
+                            <div class="profile-info">
+                                <p class="profile-description">
+                                    Hi, I'm <b>Ashita</b>. I'm in <b>10th Grade</b> and one of the illustrators for The
+                                    Internship Book. I would consider myself an artist who enjoys creating both
+                                    traditional and digital art. I'm passionate about bringing ideas to life through
+                                    visual storytelling and design. I approach my work with determination and curiosity,
+                                    always looking for ways to improve and learn new techniques.
+                                </p>
+                                <div class="profile-skills">
+                                    <span class="skill-tag">Determined</span>
+                                    <span class="skill-tag">Realistic</span>
+                                    <span class="skill-tag">Inquisitive</span>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <!--Baargavi-->
+                    <div class="profile-card" id="baargavi">
+                        <div class="profile-content">
+                            <div class="profile-image-section">
+                                <div class="profile-image"><img src="images/members/baargavi_senthil.jpg"></div>
+                                <h2 class="profile-name">Baargavi</h2>
+                                <p class="profile-role">Illustrators</p>
+                            </div>
+                            <div class="profile-info">
+                                <p class="profile-description">
+                                    Hi, I'm <b>Baargavi</b>. I'm in <b>8th Grade</b> and one of the illustrators for The
+                                    Internship Book. I'm a digital artist who loves creating visual content that tells
+                                    stories and captures emotions. I enjoy experimenting with different art styles and
+                                    techniques to bring ideas to life through illustrations.
+                                </p>
+                                <div class="profile-skills">
+                                    <span class="skill-tag">Creativity</span>
+                                    <span class="skill-tag">Visual Story Telling</span>
+                                    <span class="skill-tag">Researching</span>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <!--Balahansini Gujja-->
+                    <div class="profile-card" id="balahansini">
+                        <div class="profile-content">
+                            <div class="profile-image-section">
+                                <div class="profile-image"><img src="images/members/balahansini_gujja.jpg"></div>
+                                <h2 class="profile-name">Balahansini Gujja</h2>
+                                <p class="profile-role">Podcasters</p>
+                            </div>
+                            <div class="profile-info">
+                                <p class="profile-description">
+                                    Hi, I'm <b>Balahansini</b>. I'm in <b>9th Grade</b> and The Internship Book is my
+                                    first internship. I work on the podcast team and I'm curious about everything from
+                                    public speaking and editing to leadership and problem solving. I love learning,
+                                    especially when it's fun and hands on. I'm a mix of go with the flow and plan it
+                                    first, and I enjoy listening to different perspectives while keeping things steady.
+                                    Whether it's MUNs, entrepreneurship, or team projects, I care about doing meaningful
+                                    work and learning as I go.
+                                </p>
+                                <div class="profile-skills">
+                                    <span class="skill-tag">Public Speaking</span>
+                                    <span class="skill-tag">Communication</span>
+                                    <span class="skill-tag">Time Management</span>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <!--Ira S. B.-->
+                    <div class="profile-card" id="ira">
+                        <div class="profile-content">
+                            <div class="profile-image-section">
+                                <div class="profile-image"><img src="images/members/ira_sb.jpg"></div>
+                                <h2 class="profile-name">Ira S. B.</h2>
+                                <p class="profile-role">Illustrators</p>
+                            </div>
+                            <div class="profile-info">
+                                <p class="profile-description">
+                                    Hi, I'm <b>Ira</b>. I'm in <b>9th Grade</b> and one of the illustrators for The
+                                    Internship Book. I'm a homeschooling student with a passion for creative expression
+                                    through art. I enjoy bringing fresh perspectives to my illustrations and
+                                    collaborating with the team to create meaningful visual content.
+                                </p>
+                                <div class="profile-skills">
+                                    <span class="skill-tag">Creative</span>
+                                    <span class="skill-tag">Innovative</span>
+                                    <span class="skill-tag">Communicating Well</span>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <!--JeevRay Rhapsody-->
+                    <div class="profile-card" id="jeevray">
+                        <div class="profile-content">
+                            <div class="profile-image-section">
+                                <div class="profile-image" style="position: relative;">
+                                    <img src="images/J&R Pic.jpg">
+                                    <img src="images/JeevRay Rhapsody Logo.jpeg.jpg"
+                                        style="position: absolute; top: 10px; right: 10px; width: 60px; height: 60px; border-radius: 50%; object-fit: cover; border: 3px solid #009A94; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);">
+                                </div>
+                                <h2 class="profile-name">JeevRay Rhapsody</h2>
+                                <p class="profile-role">Musical Contributors</p>
+                            </div>
+                            <div class="profile-info">
+                                <p class="profile-description">
+                                    Hi, we're <b>Jeevika & Rayansh</b> — <b>11-year-old homeschooled twins</b>
+                                    passionate about music and the arts. I (Jeevika) sing and play keyboard, and I
+                                    (Rayansh) play bass and guitar. We started music in 2022, now train in jazz, and
+                                    perform at events like International Jazz Day, Brillante Piano Festival, and more.
+                                    Our YouTube channel <b>JeevRay Rhapsody</b> features our covers and original songs.
+                                    We also practice Kalaripayattu and hold a one-year international certification from
+                                    UNESCO CID. I (Jeevika) train in Bharatanatyam too, and have an India Book of
+                                    Records title for most group dance performances. We love blending music, movement,
+                                    and creativity — and doing it all together!
+                                </p>
+                                <div class="profile-skills">
+                                    <span class="skill-tag">Jazz Music</span>
+                                    <span class="skill-tag">Singing & Keyboard</span>
+                                    <span class="skill-tag">Bass & Guitar</span>
+                                    <span class="skill-tag">Kalaripayattu</span>
+                                    <span class="skill-tag">Bharatanatyam</span>
+                                    <span class="skill-tag">YouTube Content Creation</span>
+                                </div>
+
+                            </div>
+                        </div>
                     </div>
 
-                    
-                    <div class="footer-group">
-                        <h4>Contact</h4>
-                        <ul>
-                            <li><a href="#">Email ID:</a></li>
-                            <li><a href="#">impact@teeninternsthebook.com</a></li>
-                        </ul>
+                    <!--Laksh Pandey-->
+                    <div class="profile-card" id="laksh">
+                        <div class="profile-content">
+                            <div class="profile-image-section">
+                                <div class="profile-image"><img src="images/members/laksh_pandey.jpg"></div>
+                                <h2 class="profile-name">Laksh Pandey</h2>
+                                <p class="profile-role">Marketing (Social media, Offline etc)</p>
+                            </div>
+                            <div class="profile-info">
+                                <p class="profile-description">
+                                    Hi, I'm <b>Laksh</b>. I'm in <b>9th Grade</b> and part of the social media and
+                                    marketing team for The Internship Book. I'm passionate about public speaking,
+                                    marketing strategies, and leveraging AI for creative solutions. I enjoy debating and
+                                    academic pursuits, and I bring creative thinking to our marketing campaigns to help
+                                    spread awareness about internship opportunities for teens.
+                                </p>
+                                <div class="profile-skills">
+                                    <span class="skill-tag">Public Speaking</span>
+                                    <span class="skill-tag">Marketing</span>
+                                    <span class="skill-tag">AI</span>
+                                    <span class="skill-tag">Creative Thinking</span>
+                                    <span class="skill-tag">Debating</span>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <!--Lakshi Mehta-->
+                    <div class="profile-card" id="lakshi">
+                        <div class="profile-content">
+                            <div class="profile-image-section">
+                                <div class="profile-image"><img src="images/members/lakshi_mehta.jpg"></div>
+                                <h2 class="profile-name">Lakshi Mehta</h2>
+                                <p class="profile-role">Project Manager + Book Design</p>
+                            </div>
+                            <div class="profile-info">
+                                <p class="profile-description">
+                                    Hey, I’m <b>Lakshi Mehta</b> – a <b>9th grader</b> and one of the Project Managers
+                                    for The Internship Book. I’ve represented at EAMUN (East African Model United
+                                    Nations), sharpening my diplomacy and debate skills on an international platform. I
+                                    was ranked among the Top 20 chess players in Kenya and received the Silver Award in
+                                    the prestigious Queen's Commonwealth Essay Competition. Beyond academics, I’ve
+                                    played the recorder for 7 years, actively compete in table tennis, and have
+                                    participated in several Cubing competitions. I’m also passionate about art, with
+                                    multiple awards to my name, and I’ve proudly won seven medals at the World Scholars
+                                    Cup.
+                                </p>
+                                <div class="profile-skills">
+                                    <span class="skill-tag">Creative and Critical Thinker</span>
+                                    <span class="skill-tag">Leadership</span>
+                                    <span class="skill-tag">Public Speaking</span>
+                                    <span class="skill-tag">Art</span>
+                                    <span class="skill-tag">Debating</span>
+                                    <span class="skill-tag">Academics</span>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <!--Leanna Bhatia-->
+                    <div class="profile-card" id="leanna">
+                        <div class="profile-content">
+                            <div class="profile-image-section">
+                                <div class="profile-image"><img src="images/members/leanna_bhatia.jpg"></div>
+                                <h2 class="profile-name">Leanna Bhatia</h2>
+                                <p class="profile-role">Illustrators</p>
+                            </div>
+                            <div class="profile-info">
+                                <p class="profile-description">
+                                    Hi, I'm <b>Leanna</b>. I'm in <b>6th Grade</b> and one of the illustrators for The
+                                    Internship Book. I'm a light-hearted artist who enjoys both traditional and digital
+                                    art forms. I have a keen eye for detail and love observing the world around me to
+                                    inspire my creative work. I enjoy collaborating with the team to bring visual
+                                    stories to life.
+                                </p>
+                                <div class="profile-skills">
+                                    <span class="skill-tag">Traditional and Digital Art</span>
+                                    <span class="skill-tag">Observant</span>
+                                    <span class="skill-tag">Creative</span>
+                                    <span class="skill-tag">Collaborative</span>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <!--Mannat Gupta-->
+                    <div class="profile-card" id="mannat">
+                        <div class="profile-content">
+                            <div class="profile-image-section">
+                                <div class="profile-image"><img src="images/members/mannat_gupta.jpg"></div>
+                                <h2 class="profile-name">Mannat Gupta</h2>
+                                <p class="profile-role">Project Manager + Book Design</p>
+                            </div>
+                            <div class="profile-info">
+                                <p class="profile-description">
+                                    Hi, I'm <b>Mannat</b>. I'm in <b>10th Grade</b> and I'm a project manager for the
+                                    Teen Internship Book. I'm endlessly curious, driven by big dreams, and always
+                                    looking for ways to add impact and meaning to everything that I do. I believe in the
+                                    power of honest words, messy drafts, and ideas that make people stop and think. I
+                                    like my plans color-coded, my conversations meaningful, and my work driven by
+                                    purpose.I’m not just here to manage tasks- I’m here to build something that matters.
+                                    My mind is wired for meaning: I see possibilities where others see problems, beauty
+                                    in overlooked corners, and stories in places no one thought to look. Outside the
+                                    project, you’ll find me chasing metaphors, redesigning the world in margins and
+                                    sticky notes, and finding magic in the mess.
+                                </p>
+                                <div class="profile-skills">
+                                    <span class="skill-tag">Project Management</span>
+                                    <span class="skill-tag">Strategic Planning</span>
+                                    <span class="skill-tag">Creative Thinking</span>
+                                    <span class="skill-tag">Design</span>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <!--Mitali Nirody-->
+                    <div class="profile-card" id="mitali">
+                        <div class="profile-content">
+                            <div class="profile-image-section">
+                                <div class="profile-image"><img src="images/members/mitali_nirody.jpg"></div>
+                                <h2 class="profile-name">Mitali Nirody</h2>
+                                <p class="profile-role">Project Manager + Book Design</p>
+                            </div>
+                            <div class="profile-info">
+                                <p class="profile-description">
+                                    Hi, I'm <b>Mitali Nirody</b>! I'm passionate about project management and book
+                                    design, bringing organization and creative vision to The Internship Book. I excel at
+                                    coordinating teams, managing timelines, and ensuring that all the moving pieces come
+                                    together seamlessly. My role involves overseeing project workflows and contributing
+                                    to the visual design elements that make our book both functional and beautiful.
+                                </p>
+                                <div class="profile-skills">
+                                    <span class="skill-tag">Project Management</span>
+                                    <span class="skill-tag">Book Design</span>
+                                    <span class="skill-tag">Team Coordination</span>
+                                    <span class="skill-tag">Creative Vision</span>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <!--Myrah Sinha-->
+                    <div class="profile-card" id="myrah">
+                        <div class="profile-content">
+                            <div class="profile-image-section">
+                                <div class="profile-image"><img src="images/members/myrah_sinha.jpg"></div>
+                                <h2 class="profile-name">Myrah Sinha</h2>
+                                <p class="profile-role">Writers/interviewers</p>
+                            </div>
+                            <div class="profile-info">
+                                <p class="profile-description">
+                                    Hi, I’m <b>Myrah Sinha</b>, I’m in 10th Grade and one of the writers behind The Teen
+                                    Internship Book. I have a deep passion for storytelling, law, and social impact, and
+                                    I’ve always believed in making complex ideas feel accessible. Whether it’s
+                                    conducting interviews, drafting guides, or bridging the gap between teens and the
+                                    professional world, I try to keep my voice honest and sharp. Outside of writing,
+                                    you’ll find me debating policy, leading initiatives, or dreaming up the next big
+                                    idea that could change the world.
+                                </p>
+                                <div class="profile-skills">
+                                    <span class="skill-tag">Creative Writing</span>
+                                    <span class="skill-tag">Storytelling</span>
+                                    <span class="skill-tag">Research</span>
+                                    <span class="skill-tag">Interviewing</span>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <!--Nikhilesh Manna-->
+                    <div class="profile-card" id="nikhilesh">
+                        <div class="profile-content">
+                            <div class="profile-image-section">
+                                <div class="profile-image"><img src="images/members/nikhilesh_manna.jpg"></div>
+                                <h2 class="profile-name">Nikhilesh Manna</h2>
+                                <p class="profile-role">Book Editors</p>
+                            </div>
+                            <div class="profile-info">
+                                <p class="profile-description">
+                                    Hi, I'm <b>Nikhilesh</b>. I'm in <b>12th Grade</b> and a biotechnology student with
+                                    a passion for storytelling, public speaking, and classical violin. I'm aiming for a
+                                    career in forensics or chemical engineering, and I enjoy blending my technical
+                                    knowledge with writing to educate and inspire others through my work.
+                                </p>
+                                <div class="profile-skills">
+                                    <span class="skill-tag">Creative</span>
+                                    <span class="skill-tag">Driven</span>
+                                    <span class="skill-tag">Innovative</span>
+                                    <span class="skill-tag">Public Speaking</span>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <!--Saanvi Bhatia-->
+                    <div class="profile-card" id="saanvi">
+                        <div class="profile-content">
+                            <div class="profile-image-section">
+                                <div class="profile-image"><img src="images/members/saanvi_bhatia.jpg"></div>
+                                <h2 class="profile-name">Saanvi Bhatia</h2>
+                                <p class="profile-role">Video Editor/Videographer</p>
+                            </div>
+                            <div class="profile-info">
+                                <p class="profile-description">
+                                    Hi, I'm <b>Saanvi</b>. I'm a <b>11th grade IB student</b> and I'm the videographer
+                                    for this internship also working with the podcasters. I am a storyteller with a
+                                    camera. I like to capture raw moments and bringing emotions to life in one single
+                                    frame. I love experimenting with lights angles and distance to create different
+                                    perspectives. I feel i can connect people through my pictures and videos. I love
+                                    leading and working on projects. I believe in the concept of building discipline,
+                                    collaborating, and seeing how powerful visuals can make an impact.
+                                </p>
+                                <div class="profile-skills">
+                                    <span class="skill-tag">Photography</span>
+                                    <span class="skill-tag">Public Speaking</span>
+                                    <span class="skill-tag">Communication</span>
+                                    <span class="skill-tag">Creative Lighting</span>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <!--Samant M Patil-->
+                    <div class="profile-card" id="samant">
+                        <div class="profile-content">
+                            <div class="profile-image-section">
+                                <div class="profile-image"><img src="images/members/samant_patil.jpg"></div>
+                                <h2 class="profile-name">Samant M Patil</h2>
+                                <p class="profile-role">Website Designers</p>
+                            </div>
+                            <div class="profile-info">
+                                <p class="profile-description">
+                                    Hi, I'm <b>Samant</b>. I'm in <b>9th Grade</b> and I'm a web developer and designer
+                                    for The Internship Book. I love building things that connect hardware and software,
+                                    like real-time dashboards or robotic systems. I'm into robotics, 3D modeling, and
+                                    embedded systems, and I use tools like Python, React, Fusion 360, and ESP32 to bring
+                                    my ideas to life. Whether I'm coding or designing, I care about clean, creative
+                                    solutions that work in the real world. I also enjoy mentoring other makers and
+                                    exploring what's possible when tech meets imagination.
+                                </p>
+                                <div class="profile-skills">
+                                    <span class="skill-tag">Full-Stack Web Development</span>
+                                    <span class="skill-tag">Interactive UI/UX Design</span>
+                                    <span class="skill-tag">Version Control (Git)</span>
+                                    <span class="skill-tag">AI Tools Integration</span>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <!--Sanjana-->
+                    <div class="profile-card" id="sanjana">
+                        <div class="profile-content">
+                            <div class="profile-image-section">
+                                <div class="profile-image"><img src="images/members/sanjana.jpg"></div>
+                                <h2 class="profile-name">Sanjana</h2>
+                                <p class="profile-role">Design Team</p>
+                            </div>
+                            <div class="profile-info">
+                                <p class="profile-description">
+                                    Hi, I'm <b>Sanjana</b>! I'm a second-year Interaction Design student and part of the
+                                    Design Team for The Internship Book. I love exploring how design, storytelling, and
+                                    technology come together to shape experiences. Curious and hands-on by nature, I
+                                    enjoy working on creative projects that solve real problems and learning something
+                                    new along the way.
+                                </p>
+                                <div class="profile-skills">
+                                    <span class="skill-tag">Interaction Design</span>
+                                    <span class="skill-tag">UI/UX Design</span>
+                                    <span class="skill-tag">Visual Design</span>
+                                    <span class="skill-tag">Visual Communication</span>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <!--Sarah Hussain-->
+                    <div class="profile-card" id="sarah">
+                        <div class="profile-content">
+                            <div class="profile-image-section">
+                                <div class="profile-image"><img src="images/members/sarah_hussain.jpg"></div>
+                                <h2 class="profile-name">Sarah Hussain</h2>
+                                <p class="profile-role">Marketing (Social media, Offline etc)</p>
+                            </div>
+                            <div class="profile-info">
+                                <p class="profile-description">
+                                    Hi, I'm <b>Sarah</b>. I'm in <b>9th Grade</b> and part of the social media and
+                                    marketing team for The Internship Book. I'm passionate about understanding human
+                                    psychology and how it applies to marketing and communication. I enjoy public
+                                    speaking, podcasting, and creative thinking to develop marketing strategies that
+                                    truly connect with our audience.
+                                </p>
+                                <div class="profile-skills">
+                                    <span class="skill-tag">Public Speaking</span>
+                                    <span class="skill-tag">Podcasting</span>
+                                    <span class="skill-tag">Marketing</span>
+                                    <span class="skill-tag">Human Psychology</span>
+                                    <span class="skill-tag">Creative Thinking</span>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <!--Shreyas Kartik-->
+                    <div class="profile-card" id="shreyas">
+                        <div class="profile-content">
+                            <div class="profile-image-section">
+                                <div class="profile-image"><img src="images/members/shreyas_karthik.jpg"></div>
+                                <h2 class="profile-name">Shreyas Kartik</h2>
+                                <p class="profile-role">Finance & Sponsorship Managers</p>
+                            </div>
+                            <div class="profile-info">
+                                <p class="profile-description">
+                                    Hi, I'm <b>Shreyas</b>. I'm in <b>11th Grade</b> and part of the finance and
+                                    sponsorship team for The Internship Book. I work on developing financial strategies,
+                                    managing budgets, and securing sponsorships to support our project goals. I enjoy
+                                    analyzing data and creating sustainable financial models for our initiatives.
+                                </p>
+                                <div class="profile-skills">
+                                    <span class="skill-tag">Financial Analysis</span>
+                                    <span class="skill-tag">Budget Management</span>
+                                    <span class="skill-tag">Strategic Planning</span>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <!--Shrika Chitturi-->
+                    <div class="profile-card" id="shrika">
+                        <div class="profile-content">
+                            <div class="profile-image-section">
+                                <div class="profile-image"><img src="images/members/shrika-chitturi.jpg"></div>
+                                <h2 class="profile-name">Shrika Chitturi</h2>
+                                <p class="profile-role">Website Designers</p>
+                            </div>
+                            <div class="profile-info">
+                                <p class="profile-description">
+                                    Hi! I’m <b> Shrika</b>, a high school student who enjoys combining creativity and
+                                    technology through front-end development and design. I like working with HTML, CSS,
+                                    and exploring UI/UX to build clean, user-friendly interfaces. I’ve built websites,
+                                    explored data science, and I’m currently learning Android app development and
+                                    machine learning. I’m also fascinated by physics and astronomy, and love seeing how
+                                    tech can connect with those fields. Outside of coding, I enjoy music and play both
+                                    piano and guitar.
+                                </p>
+
+                                <div class="profile-skills">
+                                    <span class="skill-tag">Web Design</span>
+                                    <span class="skill-tag">Team Collaboration</span>
+                                    <span class="skill-tag">Problem Solving</span>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <!--Vidhi Madan-->
+                    <div class="profile-card" id="vidhi">
+                        <div class="profile-content">
+                            <div class="profile-image-section">
+                                <div class="profile-image"><img src="images/members/vidhi_madan.jpg"></div>
+                                <h2 class="profile-name">Vidhi Madan</h2>
+                                <p class="profile-role">Marketing (Social media, Offline etc)</p>
+                            </div>
+                            <div class="profile-info">
+                                <p class="profile-description">
+                                    Hi, I'm <b>Vidhi</b>. I'm in <b>10th Grade</b> and part of the social media and
+                                    marketing team for The Internship Book. I specialize in social media marketing,
+                                    content creation, and audience engagement. I'm passionate about understanding
+                                    platform dynamics and creating content that drives meaningful interactions with our
+                                    community.
+                                </p>
+                                <div class="profile-skills">
+                                    <span class="skill-tag">Social Media Marketing</span>
+                                    <span class="skill-tag">Content Creation</span>
+                                    <span class="skill-tag">Audience Engagement</span>
+                                    <span class="skill-tag">Platform Management</span>
+                                </div>
+
+                            </div>
+                        </div>
                     </div>
                 </div>
-                
-                <div class="footer-newsletter">
-                    <h4>Stay Updated</h4>
-                    <p>Get the latest news and updates on the book launch</p>
-                    <form class="newsletter-form">
-                        <input type="email" placeholder="Your email" required class="newsletter-input">
-                        <button type="submit" class="newsletter-submit">Subscribe</button>
-                    </form>
-                    <p style="margin-top: 1rem; font-size: 0.9rem; color: var(--subtitle-color);">
-                        Or <a href="mailto:impact@teeninternsthebook.com?subject=Book Launch Updates%20Subscription&body=Hey!%20I%20want%20to%20stay%20updated%20with%20news%20related%20to%20the%20Teen%20Interns%20Book.%20Please%20add%20me%20to%20your%20mailing%20list%20for%20book%20launch%20updates,%20behind-the-scenes%20content,%20and%20exclusive%20announcements.%0A%0AThanks!"
-                               style="color: var(--primary-color); text-decoration: underline;">
-                        send us an email directly
-                        </a> to subscribe
-                    </p>
-                    <div class="social-links">
-                        <a href="https://www.instagram.com/teeninterns/" class="social-link" title="Behind-the-scenes photos and visual content"><img src="images/insta.png" style="height: 25px;"></a>
-                        <a href="https://open.spotify.com/show/7xBDGJEqNy4kJqeg5Ip2Sz?si=2a0c01a64e694361" class="social-link" title="Podcast episodes and audio content"><img src="images/spotify.png"  style="height: 25px;"></a>
-                        <a href="#" class="social-link" title="Mobile content and social media">📱</a>
-                        <a href="#" class="social-link" title="Video content and documentaries">📺</a>
-                    </div>
-                    <p class="bts-explanation">Behind-the-scenes content: Photos, Podcasts, Social Media, Videos</p>
+                <div class="profiles-progress">
+                    <!-- Progress dots will be added by JavaScript -->
                 </div>
             </div>
-            
-            <div class="footer-bottom">
-                <p class="copyright">&copy; 2025 Teen Interns. Made with ❤️ by teens, for teens.</p>
-                <p class="credit">This project was created entirely by teenage interns.</p>
+
+
+            <!-- Navigation controls -->
+            <div class="slideshow-controls">
+                <button class="slide-nav prev-slide" id="prevSlide" aria-label="Previous profile">←</button>
+                <button class="slide-nav next-slide" id="nextSlide" aria-label="Next profile">→</button>
             </div>
-        </div>
-    </footer>
-    
-    <!-- <script src="script.js"></script> -->
-    <script src="page-transition.js"></script>
-    <script src="theme-toggle.js"></script>
-    
-    
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Wait for all content to be loaded
-            window.addEventListener('load', function() {
-                initializeProfiles();
-            });
-            
-            // Fallback initialization
-            setTimeout(initializeProfiles, 100);
-            
-            function initializeProfiles() {
-                // Only initialize once
-                if (window.profilesInitialized) return;
-                window.profilesInitialized = true;
-            // Animation code removed to prevent errors
-            
-            // Update team links in main navigation
-            const teamLinks = document.querySelectorAll('a[href="index.html#team"]');
-            teamLinks.forEach(link => {
-                link.setAttribute('href', 'team.html');
-            });
-            
-            // Horizontal scrolling for team profiles
-            const profilesContainer = document.getElementById('profilesContainer');
-            const profileCards = document.querySelectorAll('.profile-card');
-            const progressContainer = document.querySelector('.profiles-progress');
-            let currentIndex = 0;
-            
-            // Create progress dots
-            profileCards.forEach((_, index) => {
-                const dot = document.createElement('div');
-                dot.className = 'progress-dot';
-                if (index === 0) dot.classList.add('active');
-                dot.addEventListener('click', () => {
-                    currentIndex = index;
-                    updateProfile();
+
+            <!-- Profile counter -->
+            <div class="profile-counter">
+                <span id="currentProfile">1</span> / <span id="totalProfiles">25</span>
+            </div>
+
+            <div class="scroll-indicator">
+                ← Use arrow keys or click buttons to navigate →
+            </div>
+        </section>
+
+
+        <footer class="site-footer">
+            <div class="container">
+                <div class="footer-content">
+                    <div class="footer-brand">
+                        <a href="#" class="footer-logo">
+                            <span class="footer-logo-img large logo-text">The Internship Book</span>
+                        </a>
+                        <p class="footer-tagline">Empowering the next generation through internships</p>
+                    </div>
+
+                    <div class="footer-links">
+                        <div class="footer-group">
+                            <h4>Navigate</h4>
+                            <ul>
+                                <li><a href="#about">About</a></li>
+                                <li><a href="team.html">Team</a></li>
+                                <li><a href="#preview">Preview</a></li>
+                                <li><a href="#impact">Impact</a></li>
+                                <li><a href="preorder.html">Pre-order</a></li>
+                            </ul>
+                        </div>
+
+
+                        <div class="footer-group">
+                            <h4>Contact</h4>
+                            <ul>
+                                <li><a href="#">Email ID:</a></li>
+                                <li><a href="#">impact@teeninternsthebook.com</a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="footer-newsletter">
+                        <h4>Stay Updated</h4>
+                        <p>Get the latest news and updates on the book launch</p>
+                        <form class="newsletter-form">
+                            <input type="email" placeholder="Your email" required class="newsletter-input">
+                            <button type="submit" class="newsletter-submit">Subscribe</button>
+                        </form>
+                        <p style="margin-top: 1rem; font-size: 0.9rem; color: var(--subtitle-color);">
+                            Or <a
+                                href="mailto:impact@teeninternsthebook.com?subject=Book Launch Updates%20Subscription&body=Hey!%20I%20want%20to%20stay%20updated%20with%20news%20related%20to%20the%20Teen%20Interns%20Book.%20Please%20add%20me%20to%20your%20mailing%20list%20for%20book%20launch%20updates,%20behind-the-scenes%20content,%20and%20exclusive%20announcements.%0A%0AThanks!"
+                                style="color: var(--primary-color); text-decoration: underline;">
+                                send us an email directly
+                            </a> to subscribe
+                        </p>
+                        <div class="social-links">
+                            <a href="https://www.instagram.com/teeninterns/" class="social-link"
+                                title="Behind-the-scenes photos and visual content"><img src="images/insta.png"
+                                    style="height: 25px;"></a>
+                            <a href="https://open.spotify.com/show/7xBDGJEqNy4kJqeg5Ip2Sz?si=2a0c01a64e694361"
+                                class="social-link" title="Podcast episodes and audio content"><img
+                                    src="images/spotify.png" style="height: 25px;"></a>
+                            <a href="#" class="social-link" title="Mobile content and social media">📱</a>
+                            <a href="#" class="social-link" title="Video content and documentaries">📺</a>
+                        </div>
+                        <p class="bts-explanation">Behind-the-scenes content: Photos, Podcasts, Social Media, Videos</p>
+                    </div>
+                </div>
+
+                <div class="footer-bottom">
+                    <p class="copyright">&copy; 2025 Teen Interns. Made with ❤️ by teens, for teens.</p>
+                    <p class="credit">This project was created entirely by teenage interns.</p>
+                </div>
+            </div>
+        </footer>
+
+        <!-- <script src="script.js"></script> -->
+        <script src="page-transition.js"></script>
+        <script src="theme-toggle.js"></script>
+
+
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                // Wait for all content to be loaded
+                window.addEventListener('load', function () {
+                    initializeProfiles();
                 });
-                progressContainer.appendChild(dot);
-            });
-            
-            const progressDots = document.querySelectorAll('.progress-dot');
-            
-            function updateProfile() {
-                console.log(`Updating to profile ${currentIndex}`);
-                if (profilesContainer) {
-                    profilesContainer.style.transform = `translateX(-${currentIndex * 100}vw)`;
-                    console.log(`Setting transform to: translateX(-${currentIndex * 100}vw)`);
-                }
-                
-                // Update progress dots
-                progressDots.forEach((dot, index) => {
-                    dot.classList.toggle('active', index === currentIndex);
-                });
-                
-                // Ensure current profile is visible
-                profileCards.forEach((card, index) => {
-                    if (index === currentIndex) {
+
+                // Fallback initialization
+                setTimeout(initializeProfiles, 100);
+
+                function initializeProfiles() {
+                    // Only initialize once
+                    if (window.profilesInitialized) return;
+                    window.profilesInitialized = true;
+                    // Animation code removed to prevent errors
+
+                    // Update team links in main navigation
+                    const teamLinks = document.querySelectorAll('a[href="index.html#team"]');
+                    teamLinks.forEach(link => {
+                        link.setAttribute('href', 'team.html');
+                    });
+
+                    // Horizontal scrolling for team profiles
+                    const profilesContainer = document.getElementById('profilesContainer');
+                    const profileCards = document.querySelectorAll('.profile-card');
+                    const progressContainer = document.querySelector('.profiles-progress');
+                    let currentIndex = 0;
+
+                    // Create progress dots
+                    profileCards.forEach((_, index) => {
+                        const dot = document.createElement('div');
+                        dot.className = 'progress-dot';
+                        if (index === 0) dot.classList.add('active');
+                        dot.addEventListener('click', () => {
+                            currentIndex = index;
+                            updateProfile();
+                        });
+                        progressContainer.appendChild(dot);
+                    });
+
+                    const progressDots = document.querySelectorAll('.progress-dot');
+
+                    function updateProfile() {
+                        console.log(`Updating to profile ${currentIndex}`);
+                        if (profilesContainer) {
+                            profilesContainer.style.transform = `translateX(-${currentIndex * 100}vw)`;
+                            console.log(`Setting transform to: translateX(-${currentIndex * 100}vw)`);
+                        }
+
+                        // Update progress dots
+                        progressDots.forEach((dot, index) => {
+                            dot.classList.toggle('active', index === currentIndex);
+                        });
+
+                        // Ensure current profile is visible
+                        profileCards.forEach((card, index) => {
+                            if (index === currentIndex) {
+                                card.style.display = 'flex';
+                                card.style.opacity = '1';
+                                card.style.visibility = 'visible';
+                                console.log(`Made profile ${index} visible:`, card.querySelector('.profile-name').textContent);
+                            }
+                        });
+                    }
+
+                    // Sidebar toggle functionality
+                    const sidebar = document.getElementById('leftSidebar-team');
+                    const sidebarToggle = document.getElementById('sidebarToggle-team');
+                    const sidebarLinks = document.querySelectorAll('.sidebar-link');
+
+                    sidebarToggle?.addEventListener('click', () => {
+                        sidebar.classList.toggle('collapsed');
+                    });
+
+                    // Sidebar navigation
+                    sidebarLinks.forEach(link => {
+                        link.addEventListener('click', (e) => {
+                            e.preventDefault();
+                            const targetIndex = parseInt(link.getAttribute('data-index'));
+                            currentIndex = targetIndex;
+                            updateProfile();
+                            updateSidebarActive();
+                        });
+                    });
+
+                    function updateSidebarActive() {
+                        sidebarLinks.forEach((link, index) => {
+                            link.classList.toggle('active', index === currentIndex);
+                        });
+                    }
+
+                    // Navigation button controls
+                    const prevButton = document.getElementById('prevSlide');
+                    const nextButton = document.getElementById('nextSlide');
+                    const currentProfileSpan = document.getElementById('currentProfile');
+                    const totalProfilesSpan = document.getElementById('totalProfiles');
+
+                    if (prevButton && nextButton) {
+                        prevButton.addEventListener('click', () => {
+                            if (currentIndex > 0) {
+                                currentIndex--;
+                                updateProfile();
+                                updateSidebarActive();
+                            }
+                        });
+
+                        nextButton.addEventListener('click', () => {
+                            if (currentIndex < profileCards.length - 1) {
+                                currentIndex++;
+                                updateProfile();
+                                updateSidebarActive();
+                            }
+                        });
+                    }
+
+                    // Update profile counter
+                    function updateProfileCounter() {
+                        if (currentProfileSpan && totalProfilesSpan) {
+                            currentProfileSpan.textContent = currentIndex + 1;
+                            totalProfilesSpan.textContent = profileCards.length;
+                        }
+                    }
+
+                    // Update the main updateProfile function to include counter
+                    const originalUpdateProfile = updateProfile;
+                    updateProfile = function () {
+                        originalUpdateProfile();
+                        updateProfileCounter();
+
+                        // Update button states
+                        if (prevButton) {
+                            prevButton.style.opacity = currentIndex === 0 ? '0.5' : '1';
+                            prevButton.disabled = currentIndex === 0;
+                        }
+                        if (nextButton) {
+                            nextButton.style.opacity = currentIndex === profileCards.length - 1 ? '0.5' : '1';
+                            nextButton.disabled = currentIndex === profileCards.length - 1;
+                        }
+                    };
+
+                    // Initialize profile counter and ensure first profile is visible
+                    updateProfileCounter();
+
+                    // Set initial state immediately without animation
+                    profilesContainer.style.transition = 'none';
+                    profilesContainer.style.transform = 'translateX(0)';
+
+                    // Force all profile cards to be visible
+                    profileCards.forEach((card, index) => {
                         card.style.display = 'flex';
-                        card.style.opacity = '1';
                         card.style.visibility = 'visible';
-                        console.log(`Made profile ${index} visible:`, card.querySelector('.profile-name').textContent);
-                    }
-                });
-            }
-            
-            // Sidebar toggle functionality
-            const sidebar = document.getElementById('leftSidebar-team');
-            const sidebarToggle = document.getElementById('sidebarToggle-team');
-            const sidebarLinks = document.querySelectorAll('.sidebar-link');
-            
-            sidebarToggle?.addEventListener('click', () => {
-                sidebar.classList.toggle('collapsed');
-            });
-            
-            // Sidebar navigation
-            sidebarLinks.forEach(link => {
-                link.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    const targetIndex = parseInt(link.getAttribute('data-index'));
-                    currentIndex = targetIndex;
-                    updateProfile();
-                    updateSidebarActive();
-                });
-            });
-            
-            function updateSidebarActive() {
-                sidebarLinks.forEach((link, index) => {
-                    link.classList.toggle('active', index === currentIndex);
-                });
-            }
-            
-            // Navigation button controls
-            const prevButton = document.getElementById('prevSlide');
-            const nextButton = document.getElementById('nextSlide');
-            const currentProfileSpan = document.getElementById('currentProfile');
-            const totalProfilesSpan = document.getElementById('totalProfiles');
-            
-            if (prevButton && nextButton) {
-                prevButton.addEventListener('click', () => {
-                    if (currentIndex > 0) {
-                        currentIndex--;
-                        updateProfile();
+                        card.style.opacity = '1';
+                        console.log(`Profile ${index}: ${card.querySelector('.profile-name').textContent}`);
+                    });
+
+                    // Re-enable transitions after a brief moment
+                    setTimeout(() => {
+                        profilesContainer.style.transition = 'transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+
+                        // Set initial sidebar state
                         updateSidebarActive();
+
+                        // Debug: Log profile container dimensions
+                        console.log('Profile cards count:', profileCards.length);
+                        console.log('Profiles container width:', profilesContainer.scrollWidth);
+                        console.log('Current transform:', profilesContainer.style.transform);
+                    }, 50);
+
+                    // Removed mouse wheel horizontal scrolling - navigation now only through arrow keys and buttons
+
+                    // Keyboard navigation
+                    document.addEventListener('keydown', (e) => {
+                        if (e.key === 'ArrowLeft' && currentIndex > 0) {
+                            currentIndex--;
+                            updateProfile();
+                            updateSidebarActive();
+                        } else if (e.key === 'ArrowRight' && currentIndex < profileCards.length - 1) {
+                            currentIndex++;
+                            updateProfile();
+                            updateSidebarActive();
+                        }
+                    });
+
+                    // Hide navigation elements when scrolling to footer
+                    function handleNavigationVisibility() {
+                        const footer = document.querySelector('.site-footer');
+                        const teamProfilesSection = document.querySelector('.team-profiles');
+                        const slideshowControls = document.querySelector('.slideshow-controls');
+                        const profileCounter = document.querySelector('.profile-counter');
+                        const scrollIndicator = document.querySelector('.scroll-indicator');
+                        const progressContainer = document.querySelector('.profiles-progress');
+
+                        if (!footer || !teamProfilesSection) return;
+
+                        const footerRect = footer.getBoundingClientRect();
+                        const teamSectionRect = teamProfilesSection.getBoundingClientRect();
+                        const viewportHeight = window.innerHeight;
+
+                        // Hide navigation when footer is visible or when not in team section
+                        const shouldHide = footerRect.top < viewportHeight || teamSectionRect.bottom < 0 || teamSectionRect.top > viewportHeight;
+
+                        if (slideshowControls) {
+                            slideshowControls.classList.toggle('hidden', shouldHide);
+                        }
+                        if (profileCounter) {
+                            profileCounter.classList.toggle('hidden', shouldHide);
+                        }
+                        if (scrollIndicator) {
+                            scrollIndicator.classList.toggle('hidden', shouldHide);
+                        }
+                        if (progressContainer) {
+                            progressContainer.classList.toggle('hidden', shouldHide);
+                        }
                     }
-                });
-                
-                nextButton.addEventListener('click', () => {
-                    if (currentIndex < profileCards.length - 1) {
-                        currentIndex++;
-                        updateProfile();
-                        updateSidebarActive();
-                    }
-                });
-            }
-            
-            // Update profile counter
-            function updateProfileCounter() {
-                if (currentProfileSpan && totalProfilesSpan) {
-                    currentProfileSpan.textContent = currentIndex + 1;
-                    totalProfilesSpan.textContent = profileCards.length;
-                }
-            }
-            
-            // Update the main updateProfile function to include counter
-            const originalUpdateProfile = updateProfile;
-            updateProfile = function() {
-                originalUpdateProfile();
-                updateProfileCounter();
-                
-                // Update button states
-                if (prevButton) {
-                    prevButton.style.opacity = currentIndex === 0 ? '0.5' : '1';
-                    prevButton.disabled = currentIndex === 0;
-                }
-                if (nextButton) {
-                    nextButton.style.opacity = currentIndex === profileCards.length - 1 ? '0.5' : '1';
-                    nextButton.disabled = currentIndex === profileCards.length - 1;
-                }
-            };
-            
-            // Initialize profile counter and ensure first profile is visible
-            updateProfileCounter();
-            
-            // Set initial state immediately without animation
-            profilesContainer.style.transition = 'none';
-            profilesContainer.style.transform = 'translateX(0)';
-            
-            // Force all profile cards to be visible
-            profileCards.forEach((card, index) => {
-                card.style.display = 'flex';
-                card.style.visibility = 'visible';
-                card.style.opacity = '1';
-                console.log(`Profile ${index}: ${card.querySelector('.profile-name').textContent}`);
-            });
-            
-            // Re-enable transitions after a brief moment
-            setTimeout(() => {
-                profilesContainer.style.transition = 'transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
-                
-                // Set initial sidebar state
-                updateSidebarActive();
-                
-                // Debug: Log profile container dimensions
-                console.log('Profile cards count:', profileCards.length);
-                console.log('Profiles container width:', profilesContainer.scrollWidth);
-                console.log('Current transform:', profilesContainer.style.transform);
-            }, 50);
-            
-            // Removed mouse wheel horizontal scrolling - navigation now only through arrow keys and buttons
-            
-            // Keyboard navigation
-            document.addEventListener('keydown', (e) => {
-                if (e.key === 'ArrowLeft' && currentIndex > 0) {
-                    currentIndex--;
-                    updateProfile();
-                    updateSidebarActive();
-                } else if (e.key === 'ArrowRight' && currentIndex < profileCards.length - 1) {
-                    currentIndex++;
-                    updateProfile();
-                    updateSidebarActive();
+
+                    // Listen for scroll events
+                    window.addEventListener('scroll', handleNavigationVisibility);
+                    window.addEventListener('resize', handleNavigationVisibility);
+
+                    // Initial check
+                    handleNavigationVisibility();
+
+                    // Touch/swipe support for mobile with improved sensitivity
+                    let startX = 0;
+                    let endX = 0;
+                    let startY = 0;
+                    let endY = 0;
+
+                    const teamProfilesSection = document.querySelector('.team-profiles');
+
+                    teamProfilesSection?.addEventListener('touchstart', (e) => {
+                        startX = e.touches[0].clientX;
+                        startY = e.touches[0].clientY;
+                    });
+
+                    teamProfilesSection?.addEventListener('touchend', (e) => {
+                        endX = e.changedTouches[0].clientX;
+                        endY = e.changedTouches[0].clientY;
+
+                        const diffX = startX - endX;
+                        const diffY = startY - endY;
+
+                        // Only trigger if horizontal swipe is more significant than vertical
+                        if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) > 80) { // Increased minimum swipe distance
+                            if (diffX > 0 && currentIndex < profileCards.length - 1) {
+                                // Swipe left - go to next
+                                currentIndex++;
+                            } else if (diffX < 0 && currentIndex > 0) {
+                                // Swipe right - go to previous
+                                currentIndex--;
+                            }
+
+                            updateProfile();
+                            updateSidebarActive();
+                        }
+                    });
                 }
             });
-            
-            // Hide navigation elements when scrolling to footer
-            function handleNavigationVisibility() {
-                const footer = document.querySelector('.site-footer');
-                const teamProfilesSection = document.querySelector('.team-profiles');
-                const slideshowControls = document.querySelector('.slideshow-controls');
-                const profileCounter = document.querySelector('.profile-counter');
-                const scrollIndicator = document.querySelector('.scroll-indicator');
-                const progressContainer = document.querySelector('.profiles-progress');
-                
-                if (!footer || !teamProfilesSection) return;
-                
-                const footerRect = footer.getBoundingClientRect();
-                const teamSectionRect = teamProfilesSection.getBoundingClientRect();
-                const viewportHeight = window.innerHeight;
-                
-                // Hide navigation when footer is visible or when not in team section
-                const shouldHide = footerRect.top < viewportHeight || teamSectionRect.bottom < 0 || teamSectionRect.top > viewportHeight;
-                
-                if (slideshowControls) {
-                    slideshowControls.classList.toggle('hidden', shouldHide);
-                }
-                if (profileCounter) {
-                    profileCounter.classList.toggle('hidden', shouldHide);
-                }
-                if (scrollIndicator) {
-                    scrollIndicator.classList.toggle('hidden', shouldHide);
-                }
-                if (progressContainer) {
-                    progressContainer.classList.toggle('hidden', shouldHide);
-                }
-            }
-            
-            // Listen for scroll events
-            window.addEventListener('scroll', handleNavigationVisibility);
-            window.addEventListener('resize', handleNavigationVisibility);
-            
-            // Initial check
-            handleNavigationVisibility();
-            
-            // Touch/swipe support for mobile with improved sensitivity
-            let startX = 0;
-            let endX = 0;
-            let startY = 0;
-            let endY = 0;
-            
-            const teamProfilesSection = document.querySelector('.team-profiles');
-            
-            teamProfilesSection?.addEventListener('touchstart', (e) => {
-                startX = e.touches[0].clientX;
-                startY = e.touches[0].clientY;
-            });
-            
-            teamProfilesSection?.addEventListener('touchend', (e) => {
-                endX = e.changedTouches[0].clientX;
-                endY = e.changedTouches[0].clientY;
-                
-                const diffX = startX - endX;
-                const diffY = startY - endY;
-                
-                // Only trigger if horizontal swipe is more significant than vertical
-                if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) > 80) { // Increased minimum swipe distance
-                    if (diffX > 0 && currentIndex < profileCards.length - 1) {
-                        // Swipe left - go to next
-                        currentIndex++;
-                    } else if (diffX < 0 && currentIndex > 0) {
-                        // Swipe right - go to previous
-                        currentIndex--;
-                    }
-                    
-                    updateProfile();
-                    updateSidebarActive();
-                }
-            });
-            }
-        });
-    </script>
+        </script>
 </body>
+
 </html>
