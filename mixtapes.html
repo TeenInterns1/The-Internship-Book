@@ -792,11 +792,36 @@
             min-width: 40px;
         }
 
-        /* Floppy Disk Styles */
-        .floppy-disk {
+        /* Speaker Image Styles */
+        .speaker-image-container {
             position: absolute;
-            width: 100px;
-            height: 100px;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 250px;
+            height: 250px;
+            z-index: 5;
+        }
+
+        .speaker-image {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            border-radius: 20px;
+            box-shadow: 0 15px 40px rgba(0, 154, 148, 0.3);
+            transition: all var(--transition-normal);
+        }
+
+        .speaker-image:hover {
+            transform: scale(1.02);
+            box-shadow: 0 20px 50px rgba(0, 154, 148, 0.4);
+        }
+
+        /* Mixtape Disk Styles */
+        .mixtape-disk {
+            position: absolute;
+            width: 120px;
+            height: 120px;
             cursor: grab;
             transition: all var(--transition-normal);
             z-index: 10;
@@ -804,86 +829,34 @@
             -webkit-user-drag: element;
         }
 
-        .floppy-disk:hover {
+        .mixtape-disk:hover {
             transform: scale(1.05) rotate(2deg);
             z-index: 20;
         }
 
-        .floppy-disk.dragging {
+        .mixtape-disk.dragging {
             transform: scale(1.1) rotate(5deg);
             z-index: 30;
             cursor: grabbing;
             opacity: 0.8;
         }
 
-        .disk-body {
+        .mixtape-image {
             width: 100%;
             height: 100%;
-            background: linear-gradient(145deg, #333, #111);
-            border-radius: 8px;
-            border: 2px solid #555;
-            position: relative;
-            padding: 8px;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+            object-fit: contain;
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0, 154, 148, 0.3);
+            transition: all var(--transition-normal);
             pointer-events: none;
         }
 
-        .disk-label {
-            font-size: 0.7rem;
-            font-weight: 600;
-            color: var(--primary-color) !important;
-            text-align: center;
-            margin-bottom: 4px;
+        .mixtape-disk:hover .mixtape-image {
+            box-shadow: 0 12px 35px rgba(0, 154, 148, 0.4);
         }
 
-        .disk-title {
-            font-size: 0.6rem;
-            color: #ccc !important;
-            text-align: center;
-            font-style: italic;
-            margin-bottom: 8px;
-        }
-
-        .disk-hole {
-            position: absolute;
-            bottom: 12px;
-            right: 12px;
-            width: 20px;
-            height: 20px;
-            background: #000;
-            border-radius: 2px;
-            border: 1px solid #666;
-        }
-
-        .disk-shutter {
-            position: absolute;
-            bottom: 8px;
-            left: 8px;
-            right: 30px;
-            height: 4px;
-            background: #666;
-            border-radius: 2px;
-        }
-
-        /* Genre-specific colors */
-        .floppy-disk[data-genre="pop"] .disk-body {
-            border-color: #FF6B9D;
-        }
-
-        .floppy-disk[data-genre="rock"] .disk-body {
-            border-color: #FF6B6B;
-        }
-
-        .floppy-disk[data-genre="electronic"] .disk-body {
-            border-color: #4ECDC4;
-        }
-
-        .floppy-disk[data-genre="indie"] .disk-body {
-            border-color: #A8E6CF;
-        }
-
-        .floppy-disk[data-genre="classical"] .disk-body {
-            border-color: #B19CD9;
+        .mixtape-disk.dragging .mixtape-image {
+            box-shadow: 0 15px 40px rgba(0, 154, 148, 0.5);
         }
 
         /* Responsive Design */
@@ -921,9 +894,14 @@
                 height: 30px;
             }
 
-            .floppy-disk {
-                width: 80px;
-                height: 80px;
+            .mixtape-disk {
+                width: 100px;
+                height: 100px;
+            }
+
+            .speaker-image-container {
+                width: 200px;
+                height: 200px;
             }
 
             .now-playing {
@@ -938,17 +916,14 @@
                 margin: 0 0.5rem;
             }
 
-            .floppy-disk {
-                width: 70px;
-                height: 70px;
+            .mixtape-disk {
+                width: 90px;
+                height: 90px;
             }
 
-            .disk-label {
-                font-size: 0.6rem;
-            }
-
-            .disk-title {
-                font-size: 0.5rem;
+            .speaker-image-container {
+                width: 180px;
+                height: 180px;
             }
         }
         .music-team-showcase {
@@ -1334,7 +1309,7 @@
         <div class="container">
             <div class="player-area">
                 <h2 class="player-title">🎵 Drag & Drop Music Player</h2>
-                <p class="player-subtitle">Drag a floppy disk to the speaker to start playing!</p>
+                <p class="player-subtitle">Drag a mixtape to the speaker to start playing! You can also drop them anywhere to rearrange.</p>
                 
                 <!-- Speaker in center -->
                 <div class="speaker-container" id="speakerContainer">
@@ -1350,7 +1325,7 @@
                         <div class="speaker-center"></div>
                     </div>
                     <div class="drop-zone" id="dropZone">
-                        <span class="drop-text">Drop floppy disk here</span>
+                        <span class="drop-text">Drop mixtape here to play</span>
                     </div>
                     <div class="now-playing" id="nowPlaying" style="display: none;">
                         <div class="track-info">
@@ -1367,50 +1342,30 @@
                     </div>
                 </div>
 
-                <!-- Scattered Floppy Disks -->
-                <div class="floppy-disk" data-genre="pop" data-track="Euphonic" data-audio="mixtapes/pop-confidence.mp3" style="top: 15%; left: 10%;">
-                    <div class="disk-body">
-                        <div class="disk-label">🎤 Pop Vibes</div>
-                        <div class="disk-title">"Euphonic"</div>
-                        <div class="disk-hole"></div>
-                        <div class="disk-shutter"></div>
-                    </div>
+                <!-- Speaker Image -->
+                <div class="speaker-image-container">
+                    <img src="images/mixtapes/speaker.png" alt="Speaker" class="speaker-image" id="speakerImage">
                 </div>
 
-                <div class="floppy-disk" data-genre="rock" data-track="Surge" data-audio="mixtapes/rock-breakthrough.mp3" style="top: 25%; right: 15%;">
-                    <div class="disk-body">
-                        <div class="disk-label">🎸 Rock Energy</div>
-                        <div class="disk-title">"Surge"</div>
-                        <div class="disk-hole"></div>
-                        <div class="disk-shutter"></div>
-                    </div>
+                <!-- Scattered Mixtape Images -->
+                <div class="mixtape-disk" data-track="Breakthrough" data-audio="mixtapes/rock-breakthrough.mp3" style="top: 15%; left: 10%;" draggable="true">
+                    <img src="images/mixtapes/breakthrough.png" alt="Breakthrough Mixtape" class="mixtape-image">
                 </div>
 
-                <div class="floppy-disk" data-genre="electronic" data-track="Bossalite" data-audio="mixtapes/electronic-focus.mp3" style="bottom: 30%; left: 8%;">
-                    <div class="disk-body">
-                        <div class="disk-label">🎧 Electronic</div>
-                        <div class="disk-title">"Bossalite"</div>
-                        <div class="disk-hole"></div>
-                        <div class="disk-shutter"></div>
-                    </div>
+                <div class="mixtape-disk" data-track="Digital Dreams" data-audio="mixtapes/electronic-focus.mp3" style="top: 25%; right: 15%;" draggable="true">
+                    <img src="images/mixtapes/digital_dreams.png" alt="Digital Dreams Mixtape" class="mixtape-image">
                 </div>
 
-                <div class="floppy-disk" data-genre="indie" data-track="Radiance" data-audio="mixtapes/indie-inspiration.mp3" style="bottom: 20%; right: 20%;">
-                    <div class="disk-body">
-                        <div class="disk-label">🌟 Indie</div>
-                        <div class="disk-title">"Radiance"</div>
-                        <div class="disk-hole"></div>
-                        <div class="disk-shutter"></div>
-                    </div>
+                <div class="mixtape-disk" data-track="Future Path" data-audio="mixtapes/indie-inspiration.mp3" style="bottom: 30%; left: 8%;" draggable="true">
+                    <img src="images/mixtapes/future_path.png" alt="Future Path Mixtape" class="mixtape-image">
                 </div>
 
-                <div class="floppy-disk" data-genre="classical" data-track="Dawnlight" data-audio="mixtapes/classical-calm.mp3" style="top: 60%; left: 25%;">
-                    <div class="disk-body">
-                        <div class="disk-label">🎼 Classical</div>
-                        <div class="disk-title">"Dawnlight"</div>
-                        <div class="disk-hole"></div>
-                        <div class="disk-shutter"></div>
-                    </div>
+                <div class="mixtape-disk" data-track="Independent Boost" data-audio="mixtapes/pop-confidence.mp3" style="bottom: 20%; right: 20%;" draggable="true">
+                    <img src="images/mixtapes/independent_boost.png" alt="Independent Boost Mixtape" class="mixtape-image">
+                </div>
+
+                <div class="mixtape-disk" data-track="Professional Presence" data-audio="mixtapes/classical-calm.mp3" style="top: 60%; left: 25%;" draggable="true">
+                    <img src="images/mixtapes/pro_prescence.png" alt="Professional Presence Mixtape" class="mixtape-image">
                 </div>
 
                 <!-- Hidden audio element -->
@@ -1485,17 +1440,19 @@
 
         // Initialize drag and drop functionality
         document.addEventListener('DOMContentLoaded', function() {
-            const floppyDisks = document.querySelectorAll('.floppy-disk');
+            const mixtapeDisks = document.querySelectorAll('.mixtape-disk');
             const dropZone = document.getElementById('dropZone');
+            const speakerImage = document.getElementById('speakerImage');
             const audioPlayer = document.getElementById('audioPlayer');
             const nowPlaying = document.getElementById('nowPlaying');
             const currentTrack = document.getElementById('currentTrack');
             const playPauseBtn = document.getElementById('playPauseBtn');
             const progressBar = document.getElementById('progressBar');
             const timeDisplay = document.getElementById('timeDisplay');
+            const playerArea = document.querySelector('.player-area');
 
-            // Make floppy disks draggable
-            floppyDisks.forEach(disk => {
+            // Make mixtape disks draggable
+            mixtapeDisks.forEach(disk => {
                 disk.draggable = true;
                 
                 disk.addEventListener('dragstart', (e) => {
@@ -1503,16 +1460,65 @@
                     disk.classList.add('dragging');
                     e.dataTransfer.setData('text/plain', disk.dataset.track);
                     e.dataTransfer.setData('audio', disk.dataset.audio);
-                    e.dataTransfer.setData('genre', disk.dataset.genre);
+                    e.dataTransfer.setData('diskElement', Array.from(mixtapeDisks).indexOf(disk));
+                    e.dataTransfer.effectAllowed = 'move';
                 });
 
-                disk.addEventListener('dragend', () => {
+                disk.addEventListener('dragend', (e) => {
                     isDragging = false;
                     disk.classList.remove('dragging');
                 });
             });
 
-            // Drop zone events
+            // Make the entire player area a drop zone
+            playerArea.addEventListener('dragover', (e) => {
+                e.preventDefault();
+                e.dataTransfer.dropEffect = 'move';
+            });
+
+            playerArea.addEventListener('drop', (e) => {
+                e.preventDefault();
+                const diskIndex = e.dataTransfer.getData('diskElement');
+                const disk = mixtapeDisks[diskIndex];
+                
+                if (disk) {
+                    // Get the drop coordinates relative to the player area
+                    const rect = playerArea.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    
+                    // Update disk position
+                    disk.style.left = `${(x / rect.width) * 100}%`;
+                    disk.style.top = `${(y / rect.height) * 100}%`;
+                    disk.style.right = 'auto';
+                    disk.style.bottom = 'auto';
+                    
+                    // Check if dropped on speaker (collision detection)
+                    const speakerRect = speakerImage.getBoundingClientRect();
+                    const diskRect = disk.getBoundingClientRect();
+                    
+                    const isOverSpeaker = (
+                        diskRect.left < speakerRect.right &&
+                        diskRect.right > speakerRect.left &&
+                        diskRect.top < speakerRect.bottom &&
+                        diskRect.bottom > speakerRect.top
+                    );
+                    
+                    if (isOverSpeaker) {
+                        const track = e.dataTransfer.getData('text/plain');
+                        const audioSrc = e.dataTransfer.getData('audio');
+                        playTrack(track, audioSrc);
+                        
+                        // Visual feedback for successful drop
+                        speakerImage.style.filter = 'brightness(1.2) drop-shadow(0 0 20px rgba(0, 154, 148, 0.8))';
+                        setTimeout(() => {
+                            speakerImage.style.filter = '';
+                        }, 1000);
+                    }
+                }
+            });
+
+            // Enhanced drop zone events (keeping original functionality)
             dropZone.addEventListener('dragover', (e) => {
                 e.preventDefault();
                 dropZone.classList.add('drag-over');
@@ -1528,9 +1534,8 @@
                 
                 const track = e.dataTransfer.getData('text/plain');
                 const audioSrc = e.dataTransfer.getData('audio');
-                const genre = e.dataTransfer.getData('genre');
                 
-                playTrack(track, audioSrc, genre);
+                playTrack(track, audioSrc);
             });
 
             // Play/Pause button
@@ -1559,8 +1564,8 @@
                 timeDisplay.textContent = '0:00';
             });
 
-            // Play track function
-            function playTrack(track, audioSrc, genre) {
+            // Enhanced play track function
+            function playTrack(track, audioSrc) {
                 // Stop current audio if playing
                 if (currentAudio) {
                     currentAudio.pause();
@@ -1577,8 +1582,8 @@
                 playPauseBtn.textContent = '⏸️';
                 
                 // Add visual effect to speaker
-                const speakerMain = document.querySelector('.speaker-main');
-                speakerMain.style.animation = 'pulse 2s infinite';
+                speakerImage.style.animation = 'pulse 2s infinite';
+                speakerImage.style.transform = 'scale(1.05)';
                 
                 // Play audio
                 audioPlayer.play().catch(console.error);
@@ -1588,7 +1593,32 @@
                 dropZone.style.background = 'rgba(0, 154, 148, 0.2)';
                 setTimeout(() => {
                     dropZone.style.background = '';
+                    speakerImage.style.transform = '';
                 }, 1000);
+                
+                // Create floating success message
+                const successMsg = document.createElement('div');
+                successMsg.textContent = `🎵 Now Playing: ${track}`;
+                successMsg.style.cssText = `
+                    position: absolute;
+                    top: 20px;
+                    left: 50%;
+                    transform: translateX(-50%);
+                    background: var(--primary-color);
+                    color: white;
+                    padding: 10px 20px;
+                    border-radius: 25px;
+                    font-weight: 600;
+                    z-index: 1000;
+                    animation: slideDown 3s ease forwards;
+                `;
+                
+                playerArea.appendChild(successMsg);
+                setTimeout(() => {
+                    if (successMsg.parentNode) {
+                        successMsg.parentNode.removeChild(successMsg);
+                    }
+                }, 3000);
             }
 
             // Format time helper
@@ -1597,6 +1627,26 @@
                 const remainingSeconds = Math.floor(seconds % 60);
                 return `${minutes}:${remainingSeconds.toString().padStart(2, '0')}`;
             }
+            
+            // Add CSS animation for success message
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes slideDown {
+                    0% {
+                        opacity: 0;
+                        transform: translateX(-50%) translateY(-30px);
+                    }
+                    20%, 80% {
+                        opacity: 1;
+                        transform: translateX(-50%) translateY(0);
+                    }
+                    100% {
+                        opacity: 0;
+                        transform: translateX(-50%) translateY(20px);
+                    }
+                }
+            `;
+            document.head.appendChild(style);
         });
 
         // Music player functionality from original code
