@@ -62,6 +62,7 @@
             background-color: var(--bg-color);
             color: var(--text-color);
             transition: background-color var(--transition-normal), color var(--transition-normal);
+            touch-action: none; /* Prevent default touch behaviors for drag and drop */
         }
 
         /* Global text color overrides */
@@ -606,6 +607,7 @@
             background: linear-gradient(135deg, var(--bg-secondary), var(--bg-alt-color));
             border: 2px solid var(--border-color);
             box-shadow: 0 15px 40px rgba(0, 154, 148, 0.1);
+            touch-action: none; /* Enable custom touch handling */
         }
 
         .player-title {
@@ -817,7 +819,7 @@
             box-shadow: 0 20px 50px rgba(0, 154, 148, 0.4);
         }
 
-        /* Mixtape Disk Styles */
+        /* Mixtape Disk Styles - Enhanced for Touch */
         .mixtape-disk {
             position: absolute;
             width: 120px;
@@ -827,6 +829,12 @@
             z-index: 10;
             user-select: none;
             -webkit-user-drag: element;
+            touch-action: none; /* Enable custom touch handling */
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            -khtml-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
         }
 
         .mixtape-disk:hover {
@@ -839,6 +847,14 @@
             z-index: 30;
             cursor: grabbing;
             opacity: 0.8;
+        }
+
+        /* Touch-specific dragging state */
+        .mixtape-disk.touch-dragging {
+            transform: scale(1.15) rotate(8deg);
+            z-index: 35;
+            opacity: 0.9;
+            box-shadow: 0 20px 40px rgba(0, 154, 148, 0.6);
         }
 
         .mixtape-image {
@@ -855,8 +871,31 @@
             box-shadow: 0 12px 35px rgba(0, 154, 148, 0.4);
         }
 
-        .mixtape-disk.dragging .mixtape-image {
+        .mixtape-disk.dragging .mixtape-image,
+        .mixtape-disk.touch-dragging .mixtape-image {
             box-shadow: 0 15px 40px rgba(0, 154, 148, 0.5);
+        }
+
+        /* Mobile instructions */
+        .mobile-instructions {
+            display: none;
+            text-align: center;
+            padding: 1rem;
+            background: var(--bg-secondary);
+            border-radius: 10px;
+            margin-bottom: 1rem;
+            border: 1px solid var(--border-color);
+            color: var(--text-secondary) !important;
+        }
+
+        @media (max-width: 768px) {
+            .mobile-instructions {
+                display: block;
+            }
+            
+            .player-subtitle {
+                display: none;
+            }
         }
 
         /* Responsive Design */
@@ -1310,6 +1349,9 @@
             <div class="player-area">
                 <h2 class="player-title">🎵 Drag & Drop Music Player</h2>
                 <p class="player-subtitle">Drag a mixtape to the speaker to start playing! You can also drop them anywhere to rearrange.</p>
+                <div class="mobile-instructions">
+                    📱 Touch and drag a mixtape to the speaker to play! Hold and move around the screen to rearrange.
+                </div>
                 
                 <!-- Speaker in center -->
                 <div class="speaker-container" id="speakerContainer">
@@ -1434,9 +1476,12 @@
     <script src="theme-toggle.js"></script>
 
     <script>
-        // Interactive Music Player JavaScript
+        // Interactive Music Player JavaScript with Touch Support
         let currentAudio = null;
         let isDragging = false;
+        let isTouchDragging = false;
+        let touchDragElement = null;
+        let touchOffset = { x: 0, y: 0 };
 
         // Initialize drag and drop functionality
         document.addEventListener('DOMContentLoaded', function() {
@@ -1455,6 +1500,7 @@
             mixtapeDisks.forEach(disk => {
                 disk.draggable = true;
                 
+                // Desktop drag events
                 disk.addEventListener('dragstart', (e) => {
                     isDragging = true;
                     disk.classList.add('dragging');
@@ -1468,9 +1514,92 @@
                     isDragging = false;
                     disk.classList.remove('dragging');
                 });
+
+                // Touch events for mobile
+                disk.addEventListener('touchstart', (e) => {
+                    e.preventDefault();
+                    isTouchDragging = true;
+                    touchDragElement = disk;
+                    
+                    const touch = e.touches[0];
+                    const rect = disk.getBoundingClientRect();
+                    touchOffset.x = touch.clientX - rect.left;
+                    touchOffset.y = touch.clientY - rect.top;
+                    
+                    disk.classList.add('touch-dragging');
+                }, { passive: false });
+
+                disk.addEventListener('touchmove', (e) => {
+                    if (isTouchDragging && touchDragElement === disk) {
+                        e.preventDefault();
+                        
+                        const touch = e.touches[0];
+                        const playerRect = playerArea.getBoundingClientRect();
+                        
+                        // Calculate new position relative to player area
+                        const x = touch.clientX - playerRect.left - touchOffset.x;
+                        const y = touch.clientY - playerRect.top - touchOffset.y;
+                        
+                        // Update disk position
+                        disk.style.left = `${(x / playerRect.width) * 100}%`;
+                        disk.style.top = `${(y / playerRect.height) * 100}%`;
+                        disk.style.right = 'auto';
+                        disk.style.bottom = 'auto';
+                        
+                        // Check collision with speaker for visual feedback
+                        const speakerRect = speakerImage.getBoundingClientRect();
+                        const diskRect = disk.getBoundingClientRect();
+                        
+                        const isOverSpeaker = (
+                            diskRect.left < speakerRect.right &&
+                            diskRect.right > speakerRect.left &&
+                            diskRect.top < speakerRect.bottom &&
+                            diskRect.bottom > speakerRect.top
+                        );
+                        
+                        if (isOverSpeaker) {
+                            dropZone.classList.add('drag-over');
+                        } else {
+                            dropZone.classList.remove('drag-over');
+                        }
+                    }
+                }, { passive: false });
+
+                disk.addEventListener('touchend', (e) => {
+                    if (isTouchDragging && touchDragElement === disk) {
+                        e.preventDefault();
+                        
+                        // Check if dropped on speaker
+                        const speakerRect = speakerImage.getBoundingClientRect();
+                        const diskRect = disk.getBoundingClientRect();
+                        
+                        const isOverSpeaker = (
+                            diskRect.left < speakerRect.right &&
+                            diskRect.right > speakerRect.left &&
+                            diskRect.top < speakerRect.bottom &&
+                            diskRect.bottom > speakerRect.top
+                        );
+                        
+                        if (isOverSpeaker) {
+                            playTrack(disk.dataset.track, disk.dataset.audio);
+                            
+                            // Visual feedback for successful drop
+                            speakerImage.style.filter = 'brightness(1.2) drop-shadow(0 0 20px rgba(0, 154, 148, 0.8))';
+                            setTimeout(() => {
+                                speakerImage.style.filter = '';
+                            }, 1000);
+                        }
+                        
+                        // Clean up
+                        dropZone.classList.remove('drag-over');
+                        disk.classList.remove('touch-dragging');
+                        isTouchDragging = false;
+                        touchDragElement = null;
+                    }
+                }, { passive: false });
             });
 
-            // Make the entire player area a drop zone
+            // Make the entire player area a drop zone for desktop
             playerArea.addEventListener('dragover', (e) => {
                 e.preventDefault();
                 e.dataTransfer.dropEffect = 'move';
@@ -1647,6 +1776,26 @@
                 }
             `;
             document.head.appendChild(style);
+            
+            // Add metadata loading for all audio elements (consolidated here)
+            const audioElements = document.querySelectorAll('audio');
+            audioElements.forEach(audio => {
+                audio.addEventListener('loadedmetadata', function() {
+                    const timeDisplay = audio.closest('.song-player')?.querySelector('.time-display');
+                    if (timeDisplay && audio.duration) {
+                        timeDisplay.textContent = formatTime(audio.duration);
+                    }
+                });
+
+                // Handle audio loading errors
+                audio.addEventListener('error', function() {
+                    console.log('Audio file not found:', audio.src);
+                    const timeDisplay = audio.closest('.song-player')?.querySelector('.time-display');
+                    if (timeDisplay) {
+                        timeDisplay.textContent = '0:00';
+                    }
+                });
+            });
         });
 
         // Music player functionality from original code
@@ -1722,28 +1871,7 @@
             return `${minutes}:${remainingSeconds.toString().padStart(2, '0')}`;
         }
 
-        // Initialize when DOM is loaded
-        document.addEventListener('DOMContentLoaded', function() {
-            // Add metadata loading for all audio elements
-            const audioElements = document.querySelectorAll('audio');
-            audioElements.forEach(audio => {
-                audio.addEventListener('loadedmetadata', function() {
-                    const timeDisplay = audio.closest('.song-player')?.querySelector('.time-display');
-                    if (timeDisplay && audio.duration) {
-                        timeDisplay.textContent = formatTime(audio.duration);
-                    }
-                });
 
-                // Handle audio loading errors
-                audio.addEventListener('error', function() {
-                    console.log('Audio file not found:', audio.src);
-                    const timeDisplay = audio.closest('.song-player')?.querySelector('.time-display');
-                    if (timeDisplay) {
-                        timeDisplay.textContent = '0:00';
-                    }
-                });
-            });
-        });
     </script>
 
 </body>
