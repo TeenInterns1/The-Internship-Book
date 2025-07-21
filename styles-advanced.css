@@ -28,6 +28,11 @@
 /* Removed old awards-grid styles - now using teams-row layout */
 
 /*faq section*/
+.faqs{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 
 .faq-item {
   border-bottom: 1px solid var(--text-color);
