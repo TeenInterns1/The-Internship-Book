@@ -33,10 +33,11 @@
 }
 
 .faq-question {
-  width: 100%;
+  width: 70%;
   text-align: left;
   padding: 1rem;
-  font-size: 1.1rem;
+  font-size: 1.3rem;
+  color: var(--text-color);
   background: none;
   border: none;
   position: relative;
@@ -44,6 +45,7 @@
 
 .faq-question::after {
   content: '+';
+  width: 70%;
   position: absolute;
   right: 1rem;
   font-size: 1.5rem;
