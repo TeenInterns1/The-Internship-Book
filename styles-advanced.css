@@ -28,15 +28,17 @@
 /* Removed old awards-grid styles - now using teams-row layout */
 
 /*faq section*/
+
 .faq-item {
   border-bottom: 1px solid var(--text-color);
+  width: 70%;
 }
 
 .faq-question {
-  width: 70%;
+  width: 100%;
   text-align: left;
   padding: 1rem;
-  font-size: 1.3rem;
+  font-size: 1.2rem;
   color: var(--text-color);
   background: none;
   border: none;
@@ -45,7 +47,7 @@
 
 .faq-question::after {
   content: '+';
-  width: 70%;
+  width: 100%;
   position: absolute;
   right: 1rem;
   font-size: 1.5rem;
