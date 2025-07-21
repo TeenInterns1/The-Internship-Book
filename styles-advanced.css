@@ -27,6 +27,43 @@
 
 /* Removed old awards-grid styles - now using teams-row layout */
 
+/*faq section*/
+.faq-item {
+  border-bottom: 1px solid var(--text-color);
+}
+
+.faq-question {
+  width: 100%;
+  text-align: left;
+  padding: 1rem;
+  font-size: 1.1rem;
+  background: none;
+  border: none;
+  position: relative;
+}
+
+.faq-question::after {
+  content: '+';
+  position: absolute;
+  right: 1rem;
+  font-size: 1.5rem;
+  transition: transform 0.3s ease;
+}
+
+.faq-question.active::after {
+  content: '-';
+}
+
+.faq-answer {
+  max-height: 0;
+  overflow: hidden;
+  padding: 0 1rem;
+}
+
+.faq-answer.open {
+  max-height: 500px;
+  padding: 1rem;
+}
 
 /* About Section */
 .about {
