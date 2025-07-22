@@ -1265,6 +1265,139 @@
                 font-size: 0.8rem;
             }
         }
+
+        /* Scroll Lock Button Styles */
+        .scroll-lock-container {
+            position: fixed;
+            top: 50%;
+            right: 20px;
+            transform: translateY(-50%);
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .scroll-lock-btn {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            border: 3px solid var(--bg-color);
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: all var(--transition-normal);
+            box-shadow: 0 8px 25px rgba(0, 154, 148, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .scroll-lock-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 12px 35px rgba(0, 154, 148, 0.4);
+        }
+
+        .scroll-lock-btn:active {
+            transform: scale(0.95);
+        }
+
+        .scroll-lock-btn.locked {
+            background: linear-gradient(135deg, var(--highlight-color), #ff8a8a);
+            animation: pulse-locked 2s infinite;
+        }
+
+        .scroll-lock-tooltip {
+            position: absolute;
+            right: 75px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: var(--card-bg);
+            color: var(--text-color);
+            padding: 8px 12px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            border: 2px solid var(--border-color);
+            box-shadow: 0 4px 15px rgba(0, 154, 148, 0.2);
+            opacity: 0;
+            visibility: hidden;
+            transition: all var(--transition-fast);
+            white-space: nowrap;
+            pointer-events: none;
+        }
+
+        .scroll-lock-btn:hover .scroll-lock-tooltip {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .scroll-lock-tooltip::after {
+            content: '';
+            position: absolute;
+            left: 100%;
+            top: 50%;
+            transform: translateY(-50%);
+            border: 6px solid transparent;
+            border-left-color: var(--border-color);
+        }
+
+        /* Scroll locked state */
+        body.scroll-locked {
+            overflow: hidden;
+            height: 100vh;
+        }
+
+        body.scroll-locked .player-area {
+            overflow: hidden;
+        }
+
+        @keyframes pulse-locked {
+            0%, 100% { 
+                box-shadow: 0 8px 25px rgba(255, 107, 107, 0.3); 
+            }
+            50% { 
+                box-shadow: 0 12px 35px rgba(255, 107, 107, 0.6); 
+            }
+        }
+
+        /* Mobile responsiveness for scroll lock button */
+        @media (max-width: 768px) {
+            .scroll-lock-container {
+                right: 15px;
+            }
+            
+            .scroll-lock-btn {
+                width: 50px;
+                height: 50px;
+                font-size: 1.2rem;
+            }
+            
+            .scroll-lock-tooltip {
+                font-size: 0.8rem;
+                padding: 6px 10px;
+                right: 60px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .scroll-lock-container {
+                right: 10px;
+            }
+            
+            .scroll-lock-btn {
+                width: 45px;
+                height: 45px;
+                font-size: 1.1rem;
+            }
+            
+            .scroll-lock-tooltip {
+                display: none; /* Hide tooltip on very small screens */
+            }
+        }
     </style>
 </head>
 
@@ -1342,6 +1475,14 @@
             </div>
         </div>
     </section>
+
+    <!-- Scroll Lock Button -->
+    <div class="scroll-lock-container">
+        <button class="scroll-lock-btn" id="scrollLockBtn" aria-label="Toggle scroll lock">
+            <span class="lock-icon" id="lockIcon">🔓</span>
+            <div class="scroll-lock-tooltip" id="scrollTooltip">Click to lock scroll for better drag & drop</div>
+        </button>
+    </div>
 
     <!-- Interactive Music Player Section -->
     <section class="interactive-player-section" id="interactive-player">
@@ -1482,6 +1623,7 @@
         let isTouchDragging = false;
         let touchDragElement = null;
         let touchOffset = { x: 0, y: 0 };
+        let scrollLocked = false;
 
         // Initialize drag and drop functionality
         document.addEventListener('DOMContentLoaded', function() {
@@ -1495,6 +1637,91 @@
             const progressBar = document.getElementById('progressBar');
             const timeDisplay = document.getElementById('timeDisplay');
             const playerArea = document.querySelector('.player-area');
+            
+            // Scroll lock elements
+            const scrollLockBtn = document.getElementById('scrollLockBtn');
+            const lockIcon = document.getElementById('lockIcon');
+            const scrollTooltip = document.getElementById('scrollTooltip');
+            
+            // Scroll lock functionality
+            function toggleScrollLock() {
+                scrollLocked = !scrollLocked;
+                const body = document.body;
+                
+                if (scrollLocked) {
+                    // Lock scroll
+                    body.classList.add('scroll-locked');
+                    scrollLockBtn.classList.add('locked');
+                    lockIcon.textContent = '🔒';
+                    scrollTooltip.textContent = 'Click to unlock scroll';
+                    
+                    // Prevent default scroll behavior
+                    document.addEventListener('wheel', preventDefault, { passive: false });
+                    document.addEventListener('touchmove', preventDefault, { passive: false });
+                    document.addEventListener('keydown', preventDefaultForScrollKeys, { passive: false });
+                    
+                    // Show success message
+                    showScrollMessage('Scroll locked! Drag & drop is now optimized 🎯', 'success');
+                } else {
+                    // Unlock scroll
+                    body.classList.remove('scroll-locked');
+                    scrollLockBtn.classList.remove('locked');
+                    lockIcon.textContent = '🔓';
+                    scrollTooltip.textContent = 'Click to lock scroll for better drag & drop';
+                    
+                    // Remove scroll prevention
+                    document.removeEventListener('wheel', preventDefault);
+                    document.removeEventListener('touchmove', preventDefault);
+                    document.removeEventListener('keydown', preventDefaultForScrollKeys);
+                    
+                    // Show unlock message
+                    showScrollMessage('Scroll unlocked! You can now scroll normally 📜', 'info');
+                }
+            }
+            
+            function preventDefault(e) {
+                // Only prevent if not currently dragging a mixtape disk
+                if (!isTouchDragging || !e.target.closest('.mixtape-disk')) {
+                    e.preventDefault();
+                }
+            }
+            
+            function preventDefaultForScrollKeys(e) {
+                const scrollKeys = [32, 33, 34, 35, 36, 37, 38, 39, 40];
+                if (scrollKeys.includes(e.keyCode)) {
+                    e.preventDefault();
+                    return false;
+                }
+            }
+            
+            function showScrollMessage(message, type) {
+                const messageEl = document.createElement('div');
+                messageEl.textContent = message;
+                messageEl.style.cssText = `
+                    position: fixed;
+                    top: 20px;
+                    left: 50%;
+                    transform: translateX(-50%);
+                    background: ${type === 'success' ? 'var(--primary-color)' : 'var(--highlight-color)'};
+                    color: white;
+                    padding: 12px 24px;
+                    border-radius: 25px;
+                    font-weight: 600;
+                    z-index: 1001;
+                    box-shadow: 0 8px 25px rgba(0, 154, 148, 0.3);
+                    animation: slideDown 3s ease forwards;
+                `;
+                
+                document.body.appendChild(messageEl);
+                setTimeout(() => {
+                    if (messageEl.parentNode) {
+                        messageEl.parentNode.removeChild(messageEl);
+                    }
+                }, 3000);
+            }
+            
+            // Add scroll lock button event listener
+            scrollLockBtn.addEventListener('click', toggleScrollLock);
 
             // Make mixtape disks draggable
             mixtapeDisks.forEach(disk => {
@@ -1517,6 +1744,7 @@
 
                 // Touch events for mobile
                 disk.addEventListener('touchstart', (e) => {
+                    // Always prevent default for drag elements to avoid scroll conflicts
                     e.preventDefault();
                     isTouchDragging = true;
                     touchDragElement = disk;
@@ -1527,11 +1755,22 @@
                     touchOffset.y = touch.clientY - rect.top;
                     
                     disk.classList.add('touch-dragging');
+                    
+                    // If scroll is not locked, suggest to user
+                    if (!scrollLocked) {
+                        setTimeout(() => {
+                            if (isTouchDragging) {
+                                showScrollMessage('💡 Tip: Lock scroll for better drag & drop!', 'info');
+                            }
+                        }, 1000);
+                    }
                 }, { passive: false });
 
                 disk.addEventListener('touchmove', (e) => {
                     if (isTouchDragging && touchDragElement === disk) {
+                        // Always prevent default during drag to avoid scroll
                         e.preventDefault();
+                        e.stopPropagation();
                         
                         const touch = e.touches[0];
                         const playerRect = playerArea.getBoundingClientRect();
@@ -1540,9 +1779,13 @@
                         const x = touch.clientX - playerRect.left - touchOffset.x;
                         const y = touch.clientY - playerRect.top - touchOffset.y;
                         
+                        // Constrain within player area bounds
+                        const constrainedX = Math.max(0, Math.min(x, playerRect.width - disk.offsetWidth));
+                        const constrainedY = Math.max(0, Math.min(y, playerRect.height - disk.offsetHeight));
+                        
                         // Update disk position
-                        disk.style.left = `${(x / playerRect.width) * 100}%`;
-                        disk.style.top = `${(y / playerRect.height) * 100}%`;
+                        disk.style.left = `${(constrainedX / playerRect.width) * 100}%`;
+                        disk.style.top = `${(constrainedY / playerRect.height) * 100}%`;
                         disk.style.right = 'auto';
                         disk.style.bottom = 'auto';
                         
@@ -1559,8 +1802,10 @@
                         
                         if (isOverSpeaker) {
                             dropZone.classList.add('drag-over');
+                            speakerImage.style.filter = 'brightness(1.1) drop-shadow(0 0 15px rgba(0, 154, 148, 0.6))';
                         } else {
                             dropZone.classList.remove('drag-over');
+                            speakerImage.style.filter = '';
                         }
                     }
                 }, { passive: false });
@@ -1592,6 +1837,7 @@
                         
                         // Clean up
                         dropZone.classList.remove('drag-over');
+                        speakerImage.style.filter = '';
                         disk.classList.remove('touch-dragging');
                         isTouchDragging = false;
                         touchDragElement = null;
