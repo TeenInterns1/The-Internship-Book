@@ -2801,45 +2801,10 @@
         </div>
     </footer>
 
-    <script src="script.js"></script>
-    <script src="page-transition.js"></script>
+    <!-- Consolidated Scripts -->
+    <script src="main.js"></script>
     <script src="preorder-system.js"></script>
-    <script src="theme-toggle.js"></script>
     <script src="look-inside.js"></script>
-
-    <!-- Debug and ensure theme toggle works - REMOVED REDUNDANT CSS -->
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            console.log('Theme toggle debug: Index.html theme system initialized');
-
-            const body = document.body;
-            console.log('Initial theme state:', body.getAttribute('data-theme'));
-        });
-
-        //faq js
-        document.addEventListener("DOMContentLoaded", function () {
-        const faqQuestions = document.querySelectorAll(".faq-question");
-
-        faqQuestions.forEach((btn) => {
-            btn.addEventListener("click", () => {
-            const answer = btn.nextElementSibling;
-            const isOpen = answer.classList.contains("open");
-
-            // Close all answers
-            document.querySelectorAll(".faq-answer").forEach(a => a.classList.remove("open"));
-            document.querySelectorAll(".faq-question").forEach(q => q.classList.remove("active"));
-
-            // Open the clicked one if not already open
-            if (!isOpen) {
-                answer.classList.add("open");
-                btn.classList.add("active");
-            }
-            });
-        });
-        });
-    </script>
-
-
 
 </body>
 

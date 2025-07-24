@@ -1,10 +1,5 @@
 
-@import 'styles-base.css';
-@import 'styles-header-hero.css';
-@import 'styles-transitions-content.css';
-@import 'styles-footer-responsive.css';
-@import 'styles-advanced.css';
-@import 'qr-code-styles.css';
-@import 'styles-profiles.css';
-@import 'loading-transition.css';
-@import 'right-menu-styles.css';
+/* Main Consolidated Styles for The Internship Book */
+@import 'main-styles.css';
+@import 'components.css';
+@import 'mobile-fixes.css';
